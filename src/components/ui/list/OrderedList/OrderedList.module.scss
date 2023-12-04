@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--offset-medium);
+
+    .list {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: var(--offset-small);
+
+        .row {
+            display: flex;
+            gap: var(--offset-medium);
+            align-items: center;
+
+            .number {
+                font-size: 12px;
+                color: var(--text-color-second);
+            }
+        }
+    }
+}

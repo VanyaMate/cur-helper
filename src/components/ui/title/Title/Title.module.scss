@@ -1,0 +1,32 @@
+.container {
+    font-weight: bold;
+    color: var(--text-color-main);
+
+    &.small {
+        font-size: 16px;
+
+        &.bordered {
+            padding-bottom: var(--offset-small);
+        }
+    }
+
+    &.medium {
+        font-size: 20px;
+
+        &.bordered {
+            padding-bottom: var(--offset-medium);
+        }
+    }
+
+    &.large {
+        font-size: 24px;
+
+        &.bordered {
+            padding-bottom: var(--offset-large);
+        }
+    }
+
+    &.bordered {
+        border-bottom: 1px dashed var(--border-color-invisible);
+    }
+}

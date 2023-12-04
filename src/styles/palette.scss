@@ -1,0 +1,16 @@
+:root body.dark {
+    background: var(--background-main);
+    color: var(--text-color-main);
+
+    --background-main: #232529;
+    --background-second: #31343a;
+    --background-item: #1b1d1f;
+
+    --text-color-main: #f2f2f5;
+    --text-color-second: #d9e4e8;
+    --text-color-invisible: #6a7585;
+
+    --text-color-link: #84a0ef;
+
+    --border-color-invisible: #383c41;
+}
