@@ -4,7 +4,7 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type OrderedListProps = {
-    title: string;
+    title: React.ReactNode | string;
     number: number;
     list: React.ReactNode[] | string[];
 }
@@ -14,7 +14,7 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
 
     return (
         <article className={ css.container }>
-            <Title size={ 'small' }>{ title }</Title>
+            <Title size={ 'small' } className={ css.title }>{ title }</Title>
             <ol className={ css.list }>
                 {
                     list.map((item, index) =>

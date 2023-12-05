@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+
+    .item {
+        list-style-type: none;
+
+        &:first-child {
+            .link {
+                color: var(--text-color-invisible);
+            }
+        }
+
+        &:not(:first-child) {
+            display: flex;
+            align-items: center;
+            padding-left: var(--offset-small);
+
+            &:before {
+                content: "\e941";
+                user-select: none;
+                margin-right: var(--offset-medium);
+                font-family: 'Material Symbols Outlined';
+                font-size: 16px;
+                color: var(--text-color-invisible) !important;
+                text-decoration: none;
+            }
+        }
+    }
+}

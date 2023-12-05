@@ -1,0 +1,13 @@
+.container {
+    border: 1px solid var(--border-color-invisible);
+    background: var(--button-background-second);
+    color: var(--text-color-main);
+    border-radius: var(--offset-small);
+    padding: var(--offset-medium);
+    font-size: 16px;
+
+    &.main {
+        border: 1px solid var(--border-color-mark);
+        background: var(--button-background-main);
+    }
+}

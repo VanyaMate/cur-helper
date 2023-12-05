@@ -1,3 +1,38 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--offset-small);
+    align-items: center;
+    justify-content: center;
+    padding: var(--offset-small);
+    border-radius: var(--offset-small);
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
 
+    &.active,
+    &:active {
+        .icon {
+            opacity: .8;
+        }
+
+        .label {
+            color: var(--text-color-second);
+        }
+    }
+
+    .icon {
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        opacity: .4;
+        filter: invert(1);
+        transition: var(--transition-fast);
+    }
+
+    .label {
+        font-size: 10px;
+        color: var(--text-color-invisible);
+        transition: var(--transition-fast);
+    }
 }

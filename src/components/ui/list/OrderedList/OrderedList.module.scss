@@ -3,6 +3,12 @@
     flex-direction: column;
     gap: var(--offset-medium);
 
+    .title {
+        & > * {
+            color: var(--text-color-main);
+        }
+    }
+
     .list {
         list-style-type: none;
         display: flex;

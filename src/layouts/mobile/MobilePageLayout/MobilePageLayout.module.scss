@@ -1,13 +1,16 @@
-$nav_height: 60px;
+$nav_height: 70px;
 $header_height: 40px;
 
 .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: 100dvh;
 
     .content {
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
         height: calc(100% - $nav_height);
         padding: var(--offset-large) var(--offset-medium);
         background: var(--background-main);
@@ -23,10 +26,12 @@ $header_height: 40px;
     }
 
     .nav {
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
         height: $nav_height;
         display: flex;
         align-items: center;
         justify-content: center;
         background: var(--background-second);
+        gap: var(--offset-medium);
     }
 }

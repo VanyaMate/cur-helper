@@ -5,6 +5,7 @@ import GuidPage from '@/pages/guid/GuidPage.tsx';
 import TestPage from '@/pages/test/TestPage.tsx';
 import ProfilePage from '@/pages/profile/ProfilePage.tsx';
 import HomePage from '@/pages/home/HomePage.tsx';
+import GuidItemPage from '@/pages/guid/item/GuidItemPage.tsx';
 
 
 export type PagesProps = {}
@@ -25,7 +26,10 @@ const Pages: React.FC<PagesProps> = (props) => {
                     <Route path={ '*' } element={ <ProfilePage/> }/>
                 </Route>
                 <Route path={ 'guid/*' }>
-                    <Route path={ ':id' } element={ <GuidPage/> }/>
+                    <Route path={ ':id' }>
+                        <Route path={ ':themeId' } element={ <GuidItemPage/> }/>
+                        <Route path={ '*' } element={ <GuidPage/> }/>
+                    </Route>
                     <Route path={ '*' } element={ <GuidPage/> }/>
                 </Route>
                 <Route path={ '*' } element={ <HomePage/> }/>

@@ -1,0 +1,78 @@
+.container {
+    padding-left: var(--offset-large);
+    padding-bottom: var(--offset-small);
+    display: flex;
+    flex-direction: column;
+    gap: var(--offset-medium);
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 6px;
+        height: 100%;
+        border-radius: 3px;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        color: var(--text-color-main);
+        font-size: 16px;
+
+        &:before {
+            font-family: "Material Symbols Outlined";
+            font-size: 24px;
+            margin-right: var(--offset-medium);
+        }
+    }
+
+    .body {
+        font-weight: normal;
+        color: var(--text-color-main);
+        font-size: 14px;
+    }
+
+    &.notify {
+        &:before {
+            background: var(--color-blue);
+        }
+
+        .header {
+            &:before {
+                content: '\f10d';
+                color: var(--color-blue);
+            }
+        }
+    }
+
+    &.warning {
+        &:before {
+            background: var(--color-yellow);
+        }
+
+        .header {
+            &:before {
+                content: '\e153';
+                color: var(--color-yellow);
+            }
+        }
+    }
+
+    &.urgent {
+        &:before {
+            background: var(--color-red);
+        }
+
+        .header {
+            &:before {
+                content: '\e000';
+                color: var(--color-red);
+            }
+        }
+    }
+}
