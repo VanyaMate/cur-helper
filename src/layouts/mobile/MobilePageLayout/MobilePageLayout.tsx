@@ -31,7 +31,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
             <nav className={ css.nav }>
                 <MobileSiteNavigationButton
                     icon={ 'https://cdn-icons-png.flaticon.com/512/25/25694.png' }
-                    label={ 'Домой' }
+                    label={ 'Общее' }
                     active={ pathname === '/' }
                     onClick={ () => {
                         navigate('/');

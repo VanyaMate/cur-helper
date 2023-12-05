@@ -20,7 +20,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
 
 
     return (
-        <section style={ { display: 'flex', flexDirection: 'column', gap: 20 } }>
+        <section style={ { display: 'flex', flexDirection: 'column', gap: 30 } }>
             <SectionTitle size={ 'large' }>Обучающие материалы</SectionTitle>
             <P>Перед вами учебник по работе с гражданами, начиная с основ, включающих в себя много
                 тонкостей и фишек</P>
