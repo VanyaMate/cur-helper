@@ -4,6 +4,7 @@ import SectionTitle from '@/components/ui/title/Title/Title.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import Footnote from '@/components/common/Footnote/Footnote.tsx';
 import P from '@/components/ui/p/P/P.tsx';
+import Section from '@/components/ui/container/box/Section.tsx';
 
 
 export type GuidItemPageProps = {}
@@ -19,7 +20,7 @@ const GuidItemPage: React.FC<GuidItemPageProps> = (props) => {
      */
 
     return (
-        <section style={ { display: 'flex', flexDirection: 'column', gap: 20 } }>
+        <Section size={ 'medium' }>
             <nav>
                 <Breadcrumb
                     items={
@@ -69,7 +70,7 @@ const GuidItemPage: React.FC<GuidItemPageProps> = (props) => {
                 влияя на их легитимность и эффективность. Это также способствует созданию более
                 здоровой и справедливой социальной среды, где граждане чувствуют себя защищёнными и
                 равноправными перед законом.</P>
-        </section>
+        </Section>
     );
 };
 

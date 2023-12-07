@@ -19,8 +19,8 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
                 {
                     list.map((item, index) =>
                         <li key={ index } className={ css.row }>
-                            <span className={ css.number }>{ number }.{ index + 1 }</span>
-                            <span>{ item }</span>
+                            <div className={ css.number }>{ number }.{ index + 1 }</div>
+                            <div className={ css.item }>{ item }</div>
                         </li>,
                     )
                 }

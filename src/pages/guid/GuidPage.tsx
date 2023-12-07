@@ -6,6 +6,7 @@ import Input from '@/components/ui/input/Input/Input.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import P from '@/components/ui/p/P/P.tsx';
+import Section from '@/components/ui/container/box/Section.tsx';
 
 
 export type GuidPageProps = {}
@@ -20,7 +21,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
 
 
     return (
-        <section style={ { display: 'flex', flexDirection: 'column', gap: 30 } }>
+        <Section size={ 'large' }>
             <SectionTitle size={ 'large' }>Обучающие материалы</SectionTitle>
             <P>Перед вами учебник по работе с гражданами, начиная с основ, включающих в себя много
                 тонкостей и фишек</P>
@@ -64,7 +65,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                     <Link to={ '#' }>Темы</Link>,
                 ] }
             />
-        </section>
+        </Section>
     );
 };
 

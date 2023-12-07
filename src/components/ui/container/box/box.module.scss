@@ -1,5 +1,20 @@
 .container {
-    background: var(--background-item);
-    border-radius: var(--offset-medium);
-    padding: var(--offset-medium);
+    display: flex;
+    flex-direction: column;
+
+    &.small {
+        gap: var(--offset-medium);
+    }
+
+    &.medium {
+        gap: var(--offset-large);
+    }
+
+    &.large {
+        gap: var(--offset-large-plus);
+    }
+
+    // background: var(--background-item);
+    // border-radius: var(--offset-medium);
+    // padding: var(--offset-medium);
 }
