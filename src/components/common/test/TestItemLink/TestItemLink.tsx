@@ -3,14 +3,14 @@ import css from './TestItemLink.module.scss';
 import { cn } from '@/helpers/cn.react.ts';
 
 
-export type TestItemLinkStatus =
+export type TestStatus =
     'not-started' | 'unsatisfactory' | 'satisfactorily' | 'perfect';
 
 export type TestItemLinkProps = {
     id: string;
     label: string;
     onClick: (id: string) => any;
-    status: TestItemLinkStatus;
+    status: TestStatus;
     disabled: boolean;
     questions: number;
     rightAnswers: number;
@@ -28,16 +28,19 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
           } = props;
 
     return (
-        <article className={
-            cn(
-                css.container,
-                disabled && css.disabled,
-                status === 'not-started' && css.not_started,
-                status === 'unsatisfactory' && css.unsatisfactory,
-                status === 'satisfactorily' && css.satisfactory,
-                status === 'perfect' && css.perfect,
-            )
-        }>
+        <article
+            className={
+                cn(
+                    css.container,
+                    disabled && css.disabled,
+                    status === 'not-started' && css.not_started,
+                    status === 'unsatisfactory' && css.unsatisfactory,
+                    status === 'satisfactorily' && css.satisfactory,
+                    status === 'perfect' && css.perfect,
+                )
+            }
+            onClick={ () => onClick(id) }
+        >
             <div className={ css.left }>
                 <span
                     className={

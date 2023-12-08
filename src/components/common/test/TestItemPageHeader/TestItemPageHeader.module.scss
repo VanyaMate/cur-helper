@@ -1,0 +1,45 @@
+.container {
+    &.not_started {
+        .status {
+            color: var(--text-color-invisible);
+        }
+    }
+
+    &.unsatisfactory {
+        .status {
+            color: var(--color-red);
+        }
+    }
+
+    &.satisfactory {
+        .status {
+            color: var(--color-blue);
+        }
+    }
+
+    &.perfect {
+        .status {
+            color: var(--color-gold);
+        }
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--offset-small);
+        align-items: center;
+
+        .status {
+            font-size: 14px;
+        }
+
+        .date {
+            font-size: 12px;
+            color: var(--text-color-invisible);
+
+            span {
+                font-size: 10px;
+            }
+        }
+    }
+}

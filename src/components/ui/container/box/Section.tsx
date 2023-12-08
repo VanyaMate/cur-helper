@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { cn } from '@/helpers/cn.react.ts';
 import css from '@/components/ui/container/box/box.module.scss';
 
@@ -6,22 +6,34 @@ import css from '@/components/ui/container/box/box.module.scss';
 export type SectionSize =
     'small' | 'medium' | 'large';
 
+export type SectionType =
+    'article' | 'section';
+
 export type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
     size?: SectionSize;
+    type?: SectionType;
+    item?: boolean;
 };
 
 const Section: React.FC<SectionProps> = (props) => {
-    const { className, size, ...other } = props;
+    const { className, size, item, type, ...other } = props;
 
-    return (
-        <section className={ cn(
+    const classNames = useMemo(() => {
+        return cn(
             css.container,
             className,
+            item && css.item,
             size === 'medium' && css.medium,
             size === 'large' && css.large,
-            (size === 'small' || !size) && css.small
-        ) } { ...other }/>
-    );
+            (size === 'small' || !size) && css.small,
+        );
+    }, [ size, item, className ]);
+
+    if (type === 'article') {
+        return <article className={ classNames } { ...other }/>;
+    } else {
+        return <section className={ classNames } { ...other }/>;
+    }
 };
 
 export default React.memo(Section);

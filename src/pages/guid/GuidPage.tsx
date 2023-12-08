@@ -35,7 +35,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                 <Button styleType={ 'main' }>Найти</Button>
             </aside>
             <OrderedList
-                number={ 1 }
+                prefix={ '1' }
                 title={ <Link to={ `/guid/1` }>Общие правила</Link> }
                 list={ [
                     <Link to={ `/guid/1/1` }>Законы</Link>,
@@ -44,7 +44,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                 ] }
             />
             <OrderedList
-                number={ 2 }
+                prefix={ '2' }
                 title={ 'Правила общения' }
                 list={ [
                     <Link to={ '#' }>Вежливость</Link>,
@@ -55,7 +55,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                 ] }
             />
             <OrderedList
-                number={ 3 }
+                prefix={ '3' }
                 title={ 'Запретные вещи' }
                 list={ [
                     <Link to={ '#' }>Слова</Link>,

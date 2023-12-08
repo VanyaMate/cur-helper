@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as LinkRouterDom, LinkProps as LinkRouterDomProps } from 'react-router-dom';
-import { cn } from '@/helpers/cn.react.ts';
 import css from './Link.module.scss';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type LinkProps = LinkRouterDomProps;

@@ -14,6 +14,12 @@
         gap: var(--offset-large-plus);
     }
 
+    &.item {
+        border-radius: var(--offset-medium);
+        padding: var(--offset-medium);
+        background: var(--background-item);
+    }
+
     // background: var(--background-item);
     // border-radius: var(--offset-medium);
     // padding: var(--offset-medium);

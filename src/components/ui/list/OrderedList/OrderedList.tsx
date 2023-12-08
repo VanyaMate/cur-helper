@@ -5,12 +5,12 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 
 export type OrderedListProps = {
     title: React.ReactNode | string;
-    number: number;
+    prefix?: string;
     list: React.ReactNode[] | string[];
 }
 
 const OrderedList: React.FC<OrderedListProps> = (props) => {
-    const { title, number, list } = props;
+    const { title, prefix, list } = props;
 
     return (
         <article className={ css.container }>
@@ -19,7 +19,10 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
                 {
                     list.map((item, index) =>
                         <li key={ index } className={ css.row }>
-                            <div className={ css.number }>{ number }.{ index + 1 }</div>
+                            <div className={ css.number }>
+                                { prefix ? `${ prefix }.` : '' }
+                                { index + 1 }
+                            </div>
                             <div className={ css.item }>{ item }</div>
                         </li>,
                     )
