@@ -5,6 +5,7 @@ import Section from '@/components/ui/container/box/Section.tsx';
 import css from './TestItemPageHeader.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
+import Button from '@/components/ui/button/Button/Button.tsx';
 
 
 export type TestItemPageHeaderProps = {
@@ -35,7 +36,20 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }>
-            <Title>Тест на тему "{ title }"</Title>
+            {
+                /**
+                 * TODO: Вынести в отдельный компонент
+                 */
+            }
+            <div
+                style={ {
+                    display       : 'flex',
+                    justifyContent: 'space-between',
+                    alignItems    : 'center',
+                } }>
+                <Title>Тест на тему "{ title }"</Title>
+                <Button>Начать</Button>
+            </div>
             <footer className={ css.footer }>
                 <span className={ css.status }>{ label }</span>
                 {

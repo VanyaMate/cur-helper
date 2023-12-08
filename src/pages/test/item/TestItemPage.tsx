@@ -51,20 +51,20 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 list={ [
                     <TestMistake
                         title={ 'Закон №1.43 Чрезмерная милота' }
-                        url={ '#' }
+                        url={ '/guid/1/1' }
                     />,
                     <TestMistake
                         title={ 'Закон №22.11 Пользовательское соглашение' }
-                        url={ '#' }
+                        url={ '/guid/1/1' }
                     />,
                     <TestMistake
                         title={ 'Закон №72.00.1 Ведение групп' }
                         body={ 'Обновление за 2023 год' }
-                        url={ '#' }
+                        url={ '/guid/1/1' }
                     />,
                     <TestMistake
                         title={ 'Закон №32.17 Представление о порядке' }
-                        url={ '#' }
+                        url={ '/guid/1/1' }
                     />,
                 ] }
             />

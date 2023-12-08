@@ -31,7 +31,9 @@ const TestMistake: React.FC<TestMistakeProps> = (props) => {
             }
             {
                 url &&
-                <Link to={ url } className={ css.link }>ссылка на материалы</Link>
+                <Link to={ url } target={ '_blank' } className={ css.link }>
+                    ссылка на материалы
+                </Link>
             }
         </Section>
     );
