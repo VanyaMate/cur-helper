@@ -4,6 +4,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import css from './TestResult.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type TestResultProps = {
@@ -59,7 +60,12 @@ const TestResult: React.FC<TestResultProps> = (props) => {
     return (
         <div className={ css.container }>
             <CircularProgressbar
-                className={ css.progress }
+                className={ cn(
+                    css.progress,
+                    status === 'perfect' && css.perfect,
+                    status === 'satisfactorily' && css.satis,
+                    status === 'unsatisfactory' && css.unsatis,
+                ) }
                 text={ `${ percent }%` }
                 value={ percent }
                 strokeWidth={ 4 }

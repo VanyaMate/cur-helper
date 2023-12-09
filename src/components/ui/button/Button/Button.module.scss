@@ -6,6 +6,7 @@
     padding: var(--offset-medium);
     font-size: 16px;
     cursor: pointer;
+    box-shadow: 0 0 10px 0 var(--color-gray-transparent);
     transition: var(--transition-fast);
 
     &:hover {
@@ -14,12 +15,15 @@
     }
 
     &.main {
-        border: 1px solid var(--border-color-mark);
+        border: 1px solid var(--button-background-main);
         background: var(--button-background-main);
+        box-shadow: 0 0 20px 0 var(--button-background-main-shadow);
 
         &:hover {
             border: 1px solid var(--button-background-main-hover);
             background: var(--button-background-main-hover);
+            color: var(--text-color-invert);
+            box-shadow: 0 0 20px 0 var(--button-background-main-hover-shadow)
         }
     }
 }

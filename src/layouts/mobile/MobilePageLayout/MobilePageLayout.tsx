@@ -3,6 +3,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import css from './MobilePageLayout.module.scss';
 import MobileSiteNavigationButton
     from '@/components/mobile/site-navigation/MobileSiteNavigationButton/MobileSiteNavigationButton.tsx';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type MobilePageLayoutProps = {}
@@ -15,7 +16,8 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
     return (
         <div className={ css.container }>
             <div className={ css.content }>
-                <aside className={ css.header } style={ { borderRadius: 5 } }>
+                <aside className={ cn(css.header, css.content_width) }
+                       style={ { borderRadius: 5 } }>
                     <div style={ { width: 80, overflow: 'hidden' } }>
                         <img
                             src={ 'https://russia.information-region.ru/static/images/logo-any.png' }
@@ -26,7 +28,9 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     </div>
                     ЦУР Помощник
                 </aside>
-                <Outlet/>
+                <div className={ css.content_width }>
+                    <Outlet/>
+                </div>
             </div>
             <nav className={ css.nav }>
                 <MobileSiteNavigationButton
@@ -48,7 +52,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                 <MobileSiteNavigationButton
                     icon={ 'https://cdn-icons-png.flaticon.com/512/1950/1950630.png' }
                     label={ 'Тесты' }
-                    active={ pathname.split('/')[1]  === 'test' }
+                    active={ pathname.split('/')[1] === 'test' }
                     onClick={ () => {
                         navigate('/test');
                     } }
@@ -56,7 +60,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                 <MobileSiteNavigationButton
                     icon={ 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' }
                     label={ 'Профиль' }
-                    active={ pathname.split('/')[1]  === 'profile' }
+                    active={ pathname.split('/')[1] === 'profile' }
                     onClick={ () => {
                         navigate('/profile');
                     } }

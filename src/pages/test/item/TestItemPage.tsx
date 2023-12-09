@@ -1,14 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Section from '@/components/ui/container/box/Section.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
 import TestResult from '@/components/common/test/TestResult/TestResult.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import TestItemPageHeader
     from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import Link from '@/components/ui/link/Link/Link.tsx';
-import TestMistake from '@/components/common/test/TestMistake/TestMistake.tsx';
+import TestMistake from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
+import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 
 
 export type TestItemPageProps = {}
@@ -46,28 +45,74 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                     status={ 'unsatisfactory' }
                 />
             </Section>
-            <OrderedList
+            <Collapse
                 title={ 'Что нужно повторить' }
-                list={ [
-                    <TestMistake
-                        title={ 'Закон №1.43 Чрезмерная милота' }
-                        url={ '/guid/1/1' }
-                    />,
-                    <TestMistake
-                        title={ 'Закон №22.11 Пользовательское соглашение' }
-                        url={ '/guid/1/1' }
-                    />,
-                    <TestMistake
-                        title={ 'Закон №72.00.1 Ведение групп' }
-                        body={ 'Обновление за 2023 год' }
-                        url={ '/guid/1/1' }
-                    />,
-                    <TestMistake
-                        title={ 'Закон №32.17 Представление о порядке' }
-                        url={ '/guid/1/1' }
-                    />,
-                ] }
-            />
+                opened
+            >
+                <OrderedList
+                    list={ [
+                        <TestMistake
+                            title={ 'Закон №1.43 Чрезмерная милота' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №22.11 Пользовательское соглашение' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №72.00.1 Ведение групп' }
+                            body={ 'Обновление за 2023 год' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №32.17 Представление о порядке' }
+                            url={ '/guid/1/1' }
+                        />,
+                    ] }
+                />
+            </Collapse>
+            <Collapse
+                title={ 'Темы затронутые в тесте' }
+            >
+                <OrderedList
+                    list={ [
+                        <TestMistake
+                            title={ 'Закон №1.43 Чрезмерная милота' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №22.11 Пользовательское соглашение' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №72.00.1 Ведение групп' }
+                            body={ 'Обновление за 2023 год' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №32.17 Представление о порядке' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №1.43 Чрезмерная милота' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №22.11 Пользовательское соглашение' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №72.00.1 Ведение групп' }
+                            body={ 'Обновление за 2023 год' }
+                            url={ '/guid/1/1' }
+                        />,
+                        <TestMistake
+                            title={ 'Закон №32.17 Представление о порядке' }
+                            url={ '/guid/1/1' }
+                        />,
+                    ] }
+                />
+            </Collapse>
         </Section>
     );
 };

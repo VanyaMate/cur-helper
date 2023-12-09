@@ -2,17 +2,17 @@ import React from 'react';
 import Section from '@/components/ui/container/box/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
-import css from './TestMistake.module.scss';
 import P from '@/components/ui/p/P/P.tsx';
+import css from './ListTitledItemWithUrl.module.scss';
 
 
-export type TestMistakeProps = {
+export type ListTitledItemWithUrlProps = {
     title?: string;
     body?: string;
     url?: string;
 }
 
-const TestMistake: React.FC<TestMistakeProps> = (props) => {
+const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
     const { title, body, url } = props;
 
     return (
@@ -39,4 +39,4 @@ const TestMistake: React.FC<TestMistakeProps> = (props) => {
     );
 };
 
-export default React.memo(TestMistake);
+export default React.memo(ListTitledItemWithUrl);

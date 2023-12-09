@@ -48,7 +48,7 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     alignItems    : 'center',
                 } }>
                 <Title>Тест на тему "{ title }"</Title>
-                <Button>Начать</Button>
+                <Button styleType={ 'main' }>Начать</Button>
             </div>
             <footer className={ css.footer }>
                 <span className={ css.status }>{ label }</span>

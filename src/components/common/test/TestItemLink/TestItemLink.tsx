@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './TestItemLink.module.scss';
-import { cn } from '@/helpers/cn.react.ts';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type TestStatus =

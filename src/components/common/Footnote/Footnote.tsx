@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './Footnote.module.scss';
-import { cn } from '@/helpers/cn.react.ts';
 import P from '@/components/ui/p/P/P.tsx';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type FootnoteType =

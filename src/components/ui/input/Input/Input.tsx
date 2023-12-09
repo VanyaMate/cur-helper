@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import css from './Input.module.scss';
-import { cn } from '@/helpers/cn.react.ts';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type OnInputChangeHandler = (value: string) => any;

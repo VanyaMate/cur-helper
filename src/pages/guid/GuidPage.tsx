@@ -7,6 +7,7 @@ import { useInput } from '@/hooks/ui/input/useInput.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Section from '@/components/ui/container/box/Section.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type GuidPageProps = {}
@@ -36,7 +37,9 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
             </aside>
             <OrderedList
                 prefix={ '1' }
-                title={ <Link to={ `/guid/1` }>Общие правила</Link> }
+                title={
+                    <Link to={ `/guid/1` }>Общие правила</Link>
+                }
                 list={ [
                     <Link to={ `/guid/1/1` }>Законы</Link>,
                     <Link to={ `/guid/1/2` }>Правила</Link>,

@@ -8,18 +8,21 @@
     &.unsatisfactory {
         .status {
             color: var(--color-red);
+            text-shadow: 0 0 4px var(--color-red-transparent);
         }
     }
 
     &.satisfactory {
         .status {
             color: var(--color-blue);
+            text-shadow: 0 0 4px var(--color-blue-transparent);
         }
     }
 
     &.perfect {
         .status {
             color: var(--color-gold);
+            text-shadow: 0 0 4px var(--color-gold-transparent);
         }
     }
 

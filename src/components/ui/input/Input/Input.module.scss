@@ -11,5 +11,6 @@
     &:active,
     &:focus {
         border: 1px solid var(--text-color-link);
+        box-shadow: 0 0 14px 0 var(--color-blue-transparent);
     }
 }

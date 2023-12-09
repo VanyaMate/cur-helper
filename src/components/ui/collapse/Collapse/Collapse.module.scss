@@ -1,0 +1,39 @@
+.container {
+    &:not(.opened) {
+        .content {
+            display: none;
+        }
+
+        .title {
+            .icon {
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: var(--offset-small);
+        border-bottom: 1px dotted var(--border-color-invisible);
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 1px dotted var(--color-blue);
+        }
+
+        .text {
+
+        }
+
+        .icon {
+            transition: var(--transition-fast);
+            transform: rotate(180deg);
+        }
+    }
+
+    .content {
+
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { cn } from '@/helpers/cn.react.ts';
 import css from './Title.module.scss';
+import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type TitleSizeType =

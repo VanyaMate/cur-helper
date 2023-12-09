@@ -8,13 +8,16 @@ $header_height: 40px;
     height: 100dvh;
 
     .content {
-        width: 100%;
-        max-width: 1000px;
-        margin: auto;
         height: calc(100% - $nav_height);
         padding: var(--offset-large) var(--offset-medium);
         background: var(--background-main);
-        overflow: auto;
+        overflow-y: auto;
+
+        .content_width {
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+        }
     }
 
     .header {
@@ -22,7 +25,7 @@ $header_height: 40px;
         align-items: center;
         background: var(--background-second);
         padding: var(--offset-medium);
-        margin-bottom: var(--offset-large);
+        margin-bottom: var(--offset-large) !important;
     }
 
     .nav {
