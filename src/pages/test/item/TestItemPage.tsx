@@ -6,7 +6,8 @@ import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import TestItemPageHeader
     from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import TestMistake from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
+import ListTitledItemWithUrl
+    from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 
 
@@ -25,7 +26,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                             label: <span className="material-symbols-outlined">home</span>,
                             url  : '/test',
                         },
-                        { label: 'Общие правила', url: '/test/1' },
+                        { label: 'Общие правила', url: `/test/${ themeId }` },
                     ]
                 }
             />
@@ -34,9 +35,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 status={ 'unsatisfactory' }
                 date={ '12 дней назад' }
             />
-            <Section
-                item
-            >
+            <Section item={ 'main' }>
                 <TestResult
                     questions={ 22 }
                     rightAnswers={ 7 }
@@ -51,20 +50,20 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
             >
                 <OrderedList
                     list={ [
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №1.43 Чрезмерная милота' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №22.11 Пользовательское соглашение' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №72.00.1 Ведение групп' }
                             body={ 'Обновление за 2023 год' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №32.17 Представление о порядке' }
                             url={ '/guid/1/1' }
                         />,
@@ -76,37 +75,37 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
             >
                 <OrderedList
                     list={ [
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №1.43 Чрезмерная милота' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №22.11 Пользовательское соглашение' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №72.00.1 Ведение групп' }
                             body={ 'Обновление за 2023 год' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №32.17 Представление о порядке' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №1.43 Чрезмерная милота' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №22.11 Пользовательское соглашение' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №72.00.1 Ведение групп' }
                             body={ 'Обновление за 2023 год' }
                             url={ '/guid/1/1' }
                         />,
-                        <TestMistake
+                        <ListTitledItemWithUrl
                             title={ 'Закон №32.17 Представление о порядке' }
                             url={ '/guid/1/1' }
                         />,

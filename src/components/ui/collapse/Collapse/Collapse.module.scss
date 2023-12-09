@@ -15,25 +15,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: var(--offset-small);
-        border-bottom: 1px dotted var(--border-color-invisible);
+        background: var(--background-item);
+        padding: var(--offset-medium);
+        border-radius: var(--offset-medium);
         cursor: pointer;
-
-        &:hover {
-            border-bottom: 1px dotted var(--color-blue);
-        }
-
-        .text {
-
-        }
 
         .icon {
             transition: var(--transition-fast);
             transform: rotate(180deg);
         }
-    }
-
-    .content {
-
     }
 }

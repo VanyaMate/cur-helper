@@ -2,6 +2,7 @@ import React from 'react';
 import css from './Footnote.module.scss';
 import P from '@/components/ui/p/P/P.tsx';
 import { cn } from '@vanyamate/helpers/react/classname';
+import Section from '@/components/ui/container/box/Section.tsx';
 
 
 export type FootnoteType =
@@ -17,7 +18,7 @@ const Footnote: React.FC<FootnoteProps> = (props) => {
     const { type, body, header } = props;
 
     return (
-        <section className={ cn(
+        <Section item={ 'second' } size={ 'small' } className={ cn(
             css.container,
             type === 'warning' && css.warning,
             type === 'urgent' && css.urgent,
@@ -25,7 +26,7 @@ const Footnote: React.FC<FootnoteProps> = (props) => {
         ) }>
             <h6 className={ css.header }>{ header }</h6>
             <P className={ css.body }>{ body }</P>
-        </section>
+        </Section>
     );
 };
 

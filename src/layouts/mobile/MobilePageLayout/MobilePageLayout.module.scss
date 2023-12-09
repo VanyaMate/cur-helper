@@ -29,6 +29,7 @@ $header_height: 40px;
     }
 
     .nav {
+        position: relative;
         box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
         height: $nav_height;
         display: flex;
