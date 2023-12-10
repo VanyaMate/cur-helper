@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import css from './Collapse.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
@@ -18,11 +18,24 @@ const Collapse: React.FC<CollapseProps> = (props) => {
               title,
               children,
               item,
-          }                 = props;
-    const [ open, setOpen ] = useState<boolean>(opened ?? false);
-    const toggle            = useCallback(() => {
+          }                                   = props;
+    const [ open, setOpen ]                   = useState<boolean>(opened ?? false);
+    const toggle                              = useCallback(() => {
         setOpen((prev) => !prev);
     }, [ open ]);
+/*    const ref                                 = useRef<HTMLDivElement | null>(null);
+    const [ contentHeight, setContentHeight ] = useState<number>(0);
+
+    useEffect(() => {
+        if (ref.current) {
+            console.log('ref.current', ref.current?.className);
+            const child: HTMLElement | null = ref.current?.querySelector('article');
+            console.log('child', child?.textContent);
+            setContentHeight(ref.current?.querySelector('article')?.scrollHeight ?? 0);
+        } else {
+            setContentHeight(0);
+        }
+    }, [ ref.current ]);*/
 
     return (
         <Section
@@ -40,7 +53,11 @@ const Collapse: React.FC<CollapseProps> = (props) => {
                     <span className={ cn('material-symbols-outlined', css.icon) }>expand_more</span>
                 </Title>
             }
-            <div className={ css.content }>
+            <div
+                className={ css.content }
+                /*ref={ ref }
+                 style={ { height: open ? `${ contentHeight }px` : '0px' } }*/
+            >
                 { children }
             </div>
         </Section>

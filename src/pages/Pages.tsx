@@ -8,6 +8,8 @@ import HomePage from '@/pages/home/HomePage.tsx';
 import GuidItemPage from '@/pages/guid/item/GuidItemPage.tsx';
 import TestItemPage from '@/pages/test/item/TestItemPage.tsx';
 import BukletPage from '@/pages/buklet/BukletPage.tsx';
+import TestPassingPage from '@/pages/test/passing/TestPassingPage.tsx';
+import TestResultPage from '@/pages/test/result/TestResultPage.tsx';
 
 
 export type PagesProps = {}
@@ -20,6 +22,8 @@ const Pages: React.FC<PagesProps> = (props) => {
             <Route path={ '/*' } element={ <MobilePageLayout/> }>
                 <Route path={ 'buklet' } element={ <BukletPage/> }/>
                 <Route path={ 'test/*' }>
+                    <Route path={ 'pass' } element={ <TestPassingPage/> }/>
+                    <Route path={ 'result' } element={ <TestResultPage/> }/>
                     <Route path={ ':themeId' }>
                         <Route path={ ':testId' } element={ <TestItemPage/> }/>
                         <Route path={ '*' } element={ <TestPage/> }/>

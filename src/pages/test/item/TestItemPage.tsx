@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Section from '@/components/ui/container/box/Section.tsx';
 import TestResult from '@/components/common/test/TestResult/TestResult.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
@@ -21,6 +21,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
     const {}                  = props;
     const { themeId, testId } = useParams<{ themeId: string, testId: string }>();
     const popupController     = useWindowPopupController();
+    const navigate            = useNavigate();
     const themes              = useMemo(() => {
         return [
             {
@@ -57,6 +58,11 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                     title={ 'Законы и нормы права в управлении персоналом' }
                     description={ 'Тест направленный на проверку знаний о законах и их применении' }
                     onStart={ async () => {
+                        return new Promise(() => {
+                            setTimeout(() => {
+                                navigate('/test/pass?id=' + Math.random());
+                            }, 1000);
+                        });
                     } }
                     onClose={ popupController.close }
                     themes={ [ ...themes, ...themes ] }

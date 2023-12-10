@@ -81,7 +81,6 @@ const BukletPage: React.FC<BukletPageProps> = (props) => {
                 </Section>
                 <TypingComponent text={ problem }/>
                 <Section>
-                    <Button styleType={ 'main' }>Узнать как</Button>
                     <div style={ { textAlign: 'left' } }>
                         <Collapse
                             title={ 'Что нужно сделать' }
@@ -98,6 +97,7 @@ const BukletPage: React.FC<BukletPageProps> = (props) => {
                             />
                         </Collapse>
                     </div>
+                    <Button styleType={ 'main' }>Узнать как</Button>
                 </Section>
             </Section>
         </Section>
