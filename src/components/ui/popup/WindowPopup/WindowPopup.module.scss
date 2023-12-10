@@ -1,0 +1,67 @@
+$close_button_size: 40px;
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    &.opened {
+        display: flex;
+    }
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background-second-transprent);
+        cursor: pointer;
+    }
+
+    $viewport_height_offset: calc($close_button_size + var(--offset-small));
+    $viewport_height: calc(100% - $viewport_height_offset - var(--offset-small) * 2);
+
+    .viewport {
+        position: relative;
+        width: calc(100% - var(--offset-medium) * 2);
+        max-width: 800px;
+        height: $viewport_height;
+        background: var(--background-main);
+        margin-top: $viewport_height_offset;
+        padding: 0 !important;
+
+        .closeButton {
+            position: absolute;
+            right: 0;
+            top: calc($close_button_size * -1 - var(--offset-small));
+            background: var(--color-red);
+            width: $close_button_size;
+            height: $close_button_size;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Material Symbols Outlined", serif;
+            border-radius: var(--offset-small);
+            cursor: pointer;
+
+            &:after {
+                font-size: calc($close_button_size / 2);
+                content: '\e5cd'
+            }
+        }
+
+        .content {
+            overflow-y: auto;
+            padding: var(--offset-medium) !important;
+        }
+    }
+}

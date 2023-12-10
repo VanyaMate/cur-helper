@@ -8,6 +8,14 @@
     cursor: pointer;
     box-shadow: 0 0 10px 0 var(--color-gray-transparent);
     transition: var(--transition-fast);
+    display: flex;
+    gap: var(--offset-small);
+    align-items: center;
+
+    & > span {
+        display: flex;
+        align-items: center;
+    }
 
     &:hover {
         border: 1px solid var(--button-background-second-hover);

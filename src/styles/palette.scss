@@ -1,3 +1,7 @@
+@function mergeStrings ($body, $append) {
+    @return $body + $append;
+}
+
 :root body.dark {
     background: var(--background-main);
     color: var(--text-color-main);
@@ -15,8 +19,11 @@
     --color-gray-transparent: #31343a33;
 
     --background-main: #232529;
+    --background-main-transprent: #23252933;
     --background-second: #31343a;
+    --background-second-transprent: #31343a33;
     --background-item: #1b1d1f;
+    --background-item-transprent: #1b1d1f33;
 
     --text-color-main: #f2f2f5;
     --text-color-second: #d9e4e8;

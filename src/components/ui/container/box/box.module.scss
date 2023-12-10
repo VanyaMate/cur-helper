@@ -20,10 +20,12 @@
 
         &.main {
             background: var(--background-item);
+            box-shadow: 0 0 10px 0 var(--background-item-transprent);
         }
 
         &.second {
             background: var(--background-second);
+            box-shadow: 0 0 10px 0 var(--background-second-transprent);
         }
     }
 }

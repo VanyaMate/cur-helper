@@ -7,19 +7,33 @@ export type ButtonType =
     'default' | 'main';
 
 export type ButtonProps = {
+    prefix?: React.ReactNode | string;
+    postfix?: React.ReactNode | string;
     children: React.ReactNode | string;
     styleType?: ButtonType;
+    onClick?: () => any;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-    const { children, styleType } = props;
+    const { children, postfix, prefix, styleType, onClick } = props;
 
     return (
-        <button className={ cn(
-            css.container,
-            styleType === 'main' && css.main,
-        ) }>
-            { children }
+        <button
+            className={ cn(
+                css.container,
+                styleType === 'main' && css.main,
+            ) }
+            onClick={ onClick }
+        >
+            {
+                prefix &&
+                <span>{ prefix }</span>
+            }
+            <span>{ children }</span>
+            {
+                postfix &&
+                <span>{ postfix }</span>
+            }
         </button>
     );
 };

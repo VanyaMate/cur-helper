@@ -5,6 +5,7 @@ import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import Footnote from '@/components/common/Footnote/Footnote.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Section from '@/components/ui/container/box/Section.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
 
 
 export type GuidItemPageProps = {}
@@ -70,6 +71,17 @@ const GuidItemPage: React.FC<GuidItemPageProps> = (props) => {
                 влияя на их легитимность и эффективность. Это также способствует созданию более
                 здоровой и справедливой социальной среды, где граждане чувствуют себя защищёнными и
                 равноправными перед законом.</P>
+            <div style={ { display: 'flex', justifyContent: 'space-between', gap: 10 } }>
+                <Button styleType={ 'main' }>Пройти тест</Button>
+                <Button
+                    styleType={ 'main' }
+                    postfix={
+                        <span className="material-symbols-outlined">arrow_forward</span>
+                    }
+                >
+                    <span>Следующая тема: "Правила"</span>
+                </Button>
+            </div>
         </Section>
     );
 };

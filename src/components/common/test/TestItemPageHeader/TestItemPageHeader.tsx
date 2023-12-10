@@ -6,6 +6,9 @@ import css from './TestItemPageHeader.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import { useWindowPopupController } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
+import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
+import GuidItemPage from '@/pages/guid/item/GuidItemPage.tsx';
 
 
 export type TestItemPageHeaderProps = {
@@ -21,7 +24,8 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
               date,
           } = props;
 
-    const label = useTestStatusLabel(status);
+    const label           = useTestStatusLabel(status);
+    const popupController = useWindowPopupController();
 
     return (
         <Section
@@ -36,6 +40,9 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }>
+            <WindowPopup controller={ popupController }>
+                <GuidItemPage/>
+            </WindowPopup>
             {
                 /**
                  * TODO: Вынести в отдельный компонент
@@ -48,7 +55,12 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     alignItems    : 'center',
                 } }>
                 <Title>Тест на тему "{ title }"</Title>
-                <Button styleType={ 'main' }>Начать</Button>
+                <Button
+                    styleType={ 'main' }
+                    onClick={ popupController.open }
+                >
+                    Начать
+                </Button>
             </div>
             <footer className={ css.footer }>
                 <span className={ css.status }>{ label }</span>
