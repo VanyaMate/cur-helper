@@ -7,7 +7,7 @@ export type SectionSize =
     'small' | 'medium' | 'large';
 
 export type SectionType =
-    'article' | 'section';
+    'article' | 'section' | 'div';
 
 export type SectionItem =
     'main' | 'second' | true;
@@ -36,6 +36,8 @@ const Section: React.FC<SectionProps> = (props) => {
 
     if (type === 'article') {
         return <article className={ classNames } { ...other }/>;
+    } else if (type === 'div') {
+        return <div className={ classNames } { ...other }/>;
     } else {
         return <section className={ classNames } { ...other }/>;
     }

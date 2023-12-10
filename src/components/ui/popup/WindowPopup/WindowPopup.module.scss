@@ -34,7 +34,7 @@ $close_button_size: 40px;
         position: relative;
         width: calc(100% - var(--offset-medium) * 2);
         max-width: 800px;
-        height: $viewport_height;
+        max-height: $viewport_height;
         background: var(--background-main);
         margin-top: $viewport_height_offset;
         padding: 0 !important;
