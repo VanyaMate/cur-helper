@@ -7,6 +7,7 @@ import ProfilePage from '@/pages/profile/ProfilePage.tsx';
 import HomePage from '@/pages/home/HomePage.tsx';
 import GuidItemPage from '@/pages/guid/item/GuidItemPage.tsx';
 import TestItemPage from '@/pages/test/item/TestItemPage.tsx';
+import BukletPage from '@/pages/buklet/BukletPage.tsx';
 
 
 export type PagesProps = {}
@@ -17,6 +18,7 @@ const Pages: React.FC<PagesProps> = (props) => {
     return (
         <Routes>
             <Route path={ '/*' } element={ <MobilePageLayout/> }>
+                <Route path={ 'buklet' } element={ <BukletPage/> }/>
                 <Route path={ 'test/*' }>
                     <Route path={ ':themeId' }>
                         <Route path={ ':testId' } element={ <TestItemPage/> }/>
