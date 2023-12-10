@@ -4,7 +4,7 @@ import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type TitleSizeType =
-    'small' | 'medium' | 'large';
+    'small' | 'medium' | 'large' | 'extra-large';
 
 export type TitleProps = {
     divider?: boolean;
@@ -21,6 +21,7 @@ const Title: React.FC<TitleProps> = (props) => {
             divider && css.bordered,
             (size === 'small') && css.small,
             (size === 'medium') && css.medium,
+            (size === 'extra-large') && css.extra_large,
             (size === 'large' || size === undefined) && css.large,
         ) } { ...other }/>
     );

@@ -26,6 +26,14 @@
         }
     }
 
+    &.extra_large {
+        font-size: 28px;
+
+        &.bordered {
+            padding-bottom: var(--offset-large);
+        }
+    }
+
     &.bordered {
         border-bottom: 1px dashed var(--border-color-invisible);
     }

@@ -15,6 +15,7 @@ export type TestItemPageHeaderProps = {
     title: string;
     status: TestStatus;
     date: string;
+    extra: React.ReactNode | string;
 }
 
 const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
@@ -22,10 +23,10 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
               title,
               status,
               date,
+              extra,
           } = props;
 
-    const label           = useTestStatusLabel(status);
-    const popupController = useWindowPopupController();
+    const label = useTestStatusLabel(status);
 
     return (
         <Section
@@ -40,9 +41,6 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }>
-            <WindowPopup controller={ popupController }>
-                <GuidItemPage/>
-            </WindowPopup>
             {
                 /**
                  * TODO: Вынести в отдельный компонент
@@ -55,12 +53,7 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     alignItems    : 'center',
                 } }>
                 <Title>Тест на тему "{ title }"</Title>
-                <Button
-                    styleType={ 'main' }
-                    onClick={ popupController.open }
-                >
-                    Начать
-                </Button>
+                { extra }
             </div>
             <footer className={ css.footer }>
                 <span className={ css.status }>{ label }</span>

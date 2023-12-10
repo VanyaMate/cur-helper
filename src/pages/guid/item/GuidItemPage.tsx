@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import SectionTitle from '@/components/ui/title/Title/Title.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import Footnote from '@/components/common/Footnote/Footnote.tsx';
 import P from '@/components/ui/p/P/P.tsx';
@@ -35,7 +35,7 @@ const GuidItemPage: React.FC<GuidItemPageProps> = (props) => {
                     }
                 />
             </nav>
-            <SectionTitle size={ 'large' }>Законы</SectionTitle>
+            <Title size={ 'large' }>Законы</Title>
             <P><strong>Законы</strong> играют важную роль в обществе,
                 устанавливая правила и нормы, которые помогают поддерживать порядок и защищать права
                 граждан.</P>

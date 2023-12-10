@@ -1,5 +1,4 @@
 import React from 'react';
-import SectionTitle from '@/components/ui/title/Title/Title.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import Input from '@/components/ui/input/Input/Input.tsx';
@@ -23,7 +22,7 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
 
     return (
         <Section size={ 'large' }>
-            <SectionTitle size={ 'large' }>Обучающие материалы</SectionTitle>
+            <Title size={ 'large' }>Обучающие материалы</Title>
             <P>Перед вами учебник по работе с гражданами, начиная с основ, включающих в себя много
                 тонкостей и фишек</P>
             <aside style={ { display: 'flex', gap: 5 } }>

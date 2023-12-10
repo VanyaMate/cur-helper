@@ -2,13 +2,14 @@ import React, { useCallback, useState } from 'react';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import css from './Collapse.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section, { SectionItem, SectionType } from '@/components/ui/container/box/Section.tsx';
 
 
 export type CollapseProps = {
     opened?: boolean;
     title: React.ReactNode | string;
     children: React.ReactNode | string;
+    item?: SectionItem;
 }
 
 const Collapse: React.FC<CollapseProps> = (props) => {
@@ -16,6 +17,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
               opened,
               title,
               children,
+              item,
           }                 = props;
     const [ open, setOpen ] = useState<boolean>(opened ?? false);
     const toggle            = useCallback(() => {
@@ -26,6 +28,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
         <Section
             type={ 'article' }
             size={ 'small' }
+            item={ item }
             className={ cn(css.container, open && css.opened) }
         >
             {

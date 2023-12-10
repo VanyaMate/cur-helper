@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import Section from '@/components/ui/container/box/Section.tsx';
 import TestResult from '@/components/common/test/TestResult/TestResult.tsx';
@@ -9,6 +9,10 @@ import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import ListTitledItemWithUrl
     from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
+import { useWindowPopupController } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
+import TestBriefing from '@/components/common/test/TestBriefing/TestBriefing.tsx';
 
 
 export type TestItemPageProps = {}
@@ -16,9 +20,49 @@ export type TestItemPageProps = {}
 const TestItemPage: React.FC<TestItemPageProps> = (props) => {
     const {}                  = props;
     const { themeId, testId } = useParams<{ themeId: string, testId: string }>();
+    const popupController     = useWindowPopupController();
+    const themes              = useMemo(() => {
+        return [
+            {
+                title      : 'Закон №1.43 Чрезмерная милота',
+                addition   : '',
+                description: '',
+                url        : '/guid/1/1',
+            },
+            {
+                title      : 'Закон №22.11 Пользовательское соглашение',
+                addition   : '',
+                description: '',
+                url        : '/guid/1/1',
+            },
+            {
+                title      : 'Закон №72.00.1 Ведение групп',
+                addition   : 'Обновление за 2023 год',
+                description: '',
+                url        : '/guid/1/1',
+            },
+            {
+                title      : 'Закон №32.17 Представление о порядке',
+                addition   : '',
+                description: '',
+                url        : '/guid/1/1',
+            },
+        ];
+    }, []);
 
     return (
-        <Section size={ 'medium' }>
+        <Section size={ 'small' }>
+            <WindowPopup controller={ popupController }>
+                <TestBriefing
+                    title={ 'Законы и нормы права в управлении персоналом' }
+                    description={ 'Тест направленный на проверку знаний о законах и их применении' }
+                    onStart={ async () => {
+                    } }
+                    onClose={ popupController.close }
+                    themes={ [ ...themes, ...themes ] }
+                    timeToPass={ 10 }
+                />
+            </WindowPopup>
             <Breadcrumb
                 items={
                     [
@@ -34,6 +78,9 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 title={ `Законы` }
                 status={ 'unsatisfactory' }
                 date={ '12 дней назад' }
+                extra={
+                    <Button styleType={ 'main' } onClick={ popupController.open }>Начать</Button>
+                }
             />
             <Section item={ 'main' }>
                 <TestResult
@@ -49,67 +96,26 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 opened
             >
                 <OrderedList
-                    list={ [
+                    list={ themes.map((theme) => (
                         <ListTitledItemWithUrl
-                            title={ 'Закон №1.43 Чрезмерная милота' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №22.11 Пользовательское соглашение' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №72.00.1 Ведение групп' }
-                            body={ 'Обновление за 2023 год' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №32.17 Представление о порядке' }
-                            url={ '/guid/1/1' }
-                        />,
-                    ] }
+                            title={ theme.title }
+                            body={ theme.addition }
+                            url={ theme.url }
+                        />
+                    )) }
                 />
             </Collapse>
             <Collapse
                 title={ 'Темы затронутые в тесте' }
             >
                 <OrderedList
-                    list={ [
+                    list={ [ ...themes, ...themes ].map((theme) => (
                         <ListTitledItemWithUrl
-                            title={ 'Закон №1.43 Чрезмерная милота' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №22.11 Пользовательское соглашение' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №72.00.1 Ведение групп' }
-                            body={ 'Обновление за 2023 год' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №32.17 Представление о порядке' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №1.43 Чрезмерная милота' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №22.11 Пользовательское соглашение' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №72.00.1 Ведение групп' }
-                            body={ 'Обновление за 2023 год' }
-                            url={ '/guid/1/1' }
-                        />,
-                        <ListTitledItemWithUrl
-                            title={ 'Закон №32.17 Представление о порядке' }
-                            url={ '/guid/1/1' }
-                        />,
-                    ] }
+                            title={ theme.title }
+                            body={ theme.addition }
+                            url={ theme.url }
+                        />
+                    )) }
                 />
             </Collapse>
         </Section>

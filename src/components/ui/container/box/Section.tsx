@@ -10,7 +10,7 @@ export type SectionType =
     'article' | 'section' | 'div';
 
 export type SectionItem =
-    'main' | 'second' | true;
+    'main' | 'second' | 'default' | true;
 
 export type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
     size?: SectionSize;
@@ -28,6 +28,7 @@ const Section: React.FC<SectionProps> = (props) => {
             item && css.item,
             item === 'main' && css.main,
             item === 'second' && css.second,
+            item === 'default' && css.default,
             size === 'medium' && css.medium,
             size === 'large' && css.large,
             (size === 'small' || !size) && css.small,

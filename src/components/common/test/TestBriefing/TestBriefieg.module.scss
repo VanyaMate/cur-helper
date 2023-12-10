@@ -1,0 +1,43 @@
+.container {
+    .header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--offset-large);
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--offset-medium);
+
+            .title {
+                .prefix {
+                    font-size: 12px;
+                    color: var(--text-color-invisible);
+                }
+            }
+
+            .description {
+                font-size: 14px;
+                color: var(--text-color-second);
+            }
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--offset-small);
+            align-items: center;
+
+            .footer_info {
+                display: flex;
+                flex-direction: column;
+                gap: var(--offset-small);
+            }
+
+            .timeToPass {
+                font-size: 12px;
+                color: var(--text-color-invisible);
+            }
+        }
+    }
+}

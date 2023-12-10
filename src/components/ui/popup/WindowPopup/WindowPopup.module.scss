@@ -43,20 +43,9 @@ $close_button_size: 40px;
             position: absolute;
             right: 0;
             top: calc($close_button_size * -1 - var(--offset-small));
-            background: var(--color-red);
             width: $close_button_size;
             height: $close_button_size;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: "Material Symbols Outlined", serif;
-            border-radius: var(--offset-small);
-            cursor: pointer;
-
-            &:after {
-                font-size: calc($close_button_size / 2);
-                content: '\e5cd'
-            }
+            padding: 0;
         }
 
         .content {

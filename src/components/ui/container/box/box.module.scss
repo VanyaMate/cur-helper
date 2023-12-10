@@ -18,6 +18,11 @@
         border-radius: var(--offset-medium);
         padding: var(--offset-medium);
 
+        &.default {
+            background: var(--background-main);
+            box-shadow: 0 0 10px 0 var(--background-main-transprent);
+        }
+
         &.main {
             background: var(--background-item);
             box-shadow: 0 0 10px 0 var(--background-item-transprent);

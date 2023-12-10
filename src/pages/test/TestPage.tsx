@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import Section from '@/components/ui/container/box/Section.tsx';
-import SectionTitle from '@/components/ui/title/Title/Title.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
 import Input from '@/components/ui/input/Input/Input.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
@@ -26,7 +26,7 @@ const TestPage: React.FC<TestPageProps> = (props) => {
 
     return (
         <Section size={ 'large' }>
-            <SectionTitle size={ 'large' }>Тесты</SectionTitle>
+            <Title size={ 'large' }>Тесты</Title>
             <aside style={ { display: 'flex', gap: 5 } }>
                 <Input
                     style={ { width: '100%' } }

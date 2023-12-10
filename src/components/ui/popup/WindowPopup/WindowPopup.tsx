@@ -2,6 +2,7 @@ import React from 'react';
 import css from './WindowPopup.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Section from '@/components/ui/container/box/Section.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
 
 
 export interface IWindowPopupController {
@@ -29,7 +30,13 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
                 item={ 'main' }
                 className={ css.viewport }
             >
-                <div onClick={ controller.close } className={ css.closeButton }/>
+                <Button
+                    className={ css.closeButton }
+                    onClick={ controller.close }
+                    styleType={ 'danger' }
+                >
+                    <span className="material-symbols-outlined">close</span>
+                </Button>
                 <div className={ css.content }>
                     { children }
                 </div>
