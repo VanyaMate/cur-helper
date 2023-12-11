@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section from '@/components/ui/container/box/Section.tsx';
-import TestResult from '@/components/common/test/TestResult/TestResult.tsx';
+import TestResult from '@/components/common/test/TestResultProgressbar/TestResultProgressbar.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import TestItemPageHeader
     from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
@@ -94,7 +94,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                     rightAnswers={ 7 }
                     time={ 10 }
                     trying={ 1 }
-                    status={ 'unsatisfactory' }
+                    result={ 'unsatisfactory' }
                 />
             </Section>
             <Collapse

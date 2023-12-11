@@ -1,7 +1,7 @@
-import { TestStatus } from '@/components/common/test/TestItemLink/TestItemLink.tsx';
+import { TestResult } from '@/components/common/test/TestItemLink/TestItemLink.tsx';
 
 
-export const useTestStatusLabel = function (status: TestStatus) {
+export const useTestStatusLabel = function (status: TestResult) {
     if (status === 'not-started') {
         return 'Не пройден';
     } else if (status === 'unsatisfactory') {

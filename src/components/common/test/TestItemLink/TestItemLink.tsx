@@ -1,16 +1,13 @@
 import React from 'react';
 import css from './TestItemLink.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-
-
-export type TestStatus =
-    'not-started' | 'unsatisfactory' | 'satisfactorily' | 'perfect';
+import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
 
 export type TestItemLinkProps = {
     id: string;
     label: string;
     onClick: (id: string) => any;
-    status: TestStatus;
+    status: TestResult;
     disabled: boolean;
     questions: number;
     rightAnswers: number;

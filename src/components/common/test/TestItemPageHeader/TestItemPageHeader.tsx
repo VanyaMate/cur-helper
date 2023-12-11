@@ -1,21 +1,17 @@
 import React from 'react';
-import { TestStatus } from '@/components/common/test/TestItemLink/TestItemLink.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import Section from '@/components/ui/container/box/Section.tsx';
 import css from './TestItemPageHeader.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import { useWindowPopupController } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
-import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
-import GuidItemPage from '@/pages/guid/item/GuidItemPage.tsx';
+import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
 
 
 export type TestItemPageHeaderProps = {
     title: string;
-    status: TestStatus;
+    status: TestResult;
     date: string;
-    extra: React.ReactNode | string;
+    extra?: React.ReactNode | string;
 }
 
 const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {

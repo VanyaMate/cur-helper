@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
-import { TestStatus } from '@/components/common/test/TestItemLink/TestItemLink.tsx';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import css from './TestResult.module.scss';
+import css from './TestResultProgressbar.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
-import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
 import { cn } from '@vanyamate/helpers/react/classname';
+import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
 
 
 export type TestResultProps = {
@@ -12,14 +11,14 @@ export type TestResultProps = {
     rightAnswers?: number;
     trying?: number;
     time?: number;
-    status: TestStatus;
+    result: TestResult;
 }
 
-const TestResult: React.FC<TestResultProps> = (props) => {
+const TestResultProgressbar: React.FC<TestResultProps> = (props) => {
     const {
               questions,
               rightAnswers,
-              status,
+              result,
               time,
               trying,
           }       = props;
@@ -27,22 +26,20 @@ const TestResult: React.FC<TestResultProps> = (props) => {
         return rightAnswers ? Math.floor(100 / questions * rightAnswers) : 0;
     }, [ questions, rightAnswers ]);
 
-    const label = useTestStatusLabel(status);
-
     const styles = useMemo(() => {
-        if (status === 'perfect') {
+        if (result === 'perfect') {
             return buildStyles({
                 textColor : '#ffde4b',
                 pathColor : '#ffde4b',
                 trailColor: '#31343a',
             });
-        } else if (status === 'unsatisfactory') {
+        } else if (result === 'unsatisfactory') {
             return buildStyles({
                 textColor : '#ef8484',
                 pathColor : '#ef8484',
                 trailColor: '#31343a',
             });
-        } else if (status === 'satisfactorily') {
+        } else if (result === 'satisfactorily') {
             return buildStyles({
                 textColor : '#84a0ef',
                 pathColor : '#84a0ef',
@@ -55,16 +52,16 @@ const TestResult: React.FC<TestResultProps> = (props) => {
                 trailColor: '#31343a',
             });
         }
-    }, [ status ]);
+    }, [ result ]);
 
     return (
         <div className={ css.container }>
             <CircularProgressbar
                 className={ cn(
                     css.progress,
-                    status === 'perfect' && css.perfect,
-                    status === 'satisfactorily' && css.satis,
-                    status === 'unsatisfactory' && css.unsatis,
+                    result === 'perfect' && css.perfect,
+                    result === 'satisfactorily' && css.satis,
+                    result === 'unsatisfactory' && css.unsatis,
                 ) }
                 text={ `${ percent }%` }
                 value={ percent }
@@ -93,4 +90,4 @@ const TestResult: React.FC<TestResultProps> = (props) => {
     );
 };
 
-export default React.memo(TestResult);
+export default React.memo(TestResultProgressbar);
