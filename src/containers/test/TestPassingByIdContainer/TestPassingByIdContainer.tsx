@@ -1,18 +1,18 @@
 import React from 'react';
 import { useFetchTestMockData } from '@/hooks/test/useFetchTestMockData.ts';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Section from '@/components/ui/container/box/Section.tsx';
 import TestResultQuestions
     from '@/components/common/test/TestResultQuestions/TestResultQuestions.tsx';
-import TestResultProgressbar
-    from '@/components/common/test/TestResultProgressbar/TestResultProgressbar.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import TestItemPageHeader from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
 import { useTestRightAnswersCalculator } from '@/hooks/test/useTestRightAnswersCalculator.ts';
 import { useTestTimeCalculator } from '@/hooks/test/useTestTimeCalculator.ts';
-import { useTestUrlGetter } from '@/hooks/test/useTestUrlGetter.ts';
 import { useThemeUrlGetter } from '@/hooks/theme/useThemeUrlGetter.ts';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
+import TestResultProgressbarCircle
+    from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
+import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
+import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 
 
 export type TestPassingByIdContainerProps = {
@@ -25,7 +25,6 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
     const rightAnswers      = useTestRightAnswersCalculator(test?.questions ?? []);
     const time              = useTestTimeCalculator(test?.startTime ?? '', test?.finishTime ?? '');
     const themeUrl          = useThemeUrlGetter(test?.id ?? '', 'test');
-    const deltaTime         = useDateDeltaWithPostfix(test?.finishTime ?? 0, new Date());
 
     if (loading) {
         return 'loading...';
@@ -51,17 +50,22 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
             <TestItemPageHeader
                 title={ `Законы` }
                 status={ test.result }
-                date={ deltaTime }
+                date={ test.finishTime }
             />
-            <Section item={ 'main' }>
-                <TestResultProgressbar
-                    questions={ test.questions.length }
-                    rightAnswers={ rightAnswers }
-                    time={ time }
-                    result={ test.result }
-                    trying={ test.try }
+            <SpaceBetween size={ 'small' } item={ 'main' }>
+                <TestResultProgressbarCircle
+                    result={ 'unsatisfactory' }
+                    percent={ 31 }
                 />
-            </Section>
+                <AdditionalList
+                    list={ [
+                        { label: 'Вопросов', value: 21 },
+                        { label: 'Правильных ответов', value: 5 },
+                        { label: 'Попыток', value: 2 },
+                        { label: 'Время', value: 21 },
+                    ] }
+                />
+            </SpaceBetween>
             <TestResultQuestions questions={ test.questions }/>
         </Section>
     );

@@ -1,15 +1,8 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--offset-small) !important;
-
     .title {
-        font-size: 16px;
     }
 
     .body {
-        font-size: 12px;
-        color: var(--text-color-invisible);
     }
 
     .link {

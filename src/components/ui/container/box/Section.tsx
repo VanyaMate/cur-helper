@@ -1,13 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { JSX, useMemo } from 'react';
 import css from '@/components/ui/container/box/box.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type SectionSize =
-    'small' | 'medium' | 'large';
+    'small' | 'medium' | 'large' | 'extra-small';
 
 export type SectionType =
-    'article' | 'section' | 'div';
+    'article' | 'section' | 'header' | 'footer' | 'div';
 
 export type SectionItem =
     'main' | 'second' | 'default' | true;
@@ -31,6 +31,7 @@ const Section: React.FC<SectionProps> = (props) => {
             item === 'default' && css.default,
             size === 'medium' && css.medium,
             size === 'large' && css.large,
+            size === 'extra-small' && css.extra_small,
             (size === 'small' || !size) && css.small,
         );
     }, [ size, item, className ]);
@@ -39,6 +40,10 @@ const Section: React.FC<SectionProps> = (props) => {
         return <article className={ classNames } { ...other }/>;
     } else if (type === 'div') {
         return <div className={ classNames } { ...other }/>;
+    } else if (type === 'footer') {
+        return <footer className={ classNames } { ...other }/>;
+    } else if (type === 'header') {
+        return <header className={ classNames } { ...other }/>;
     } else {
         return <section className={ classNames } { ...other }/>;
     }

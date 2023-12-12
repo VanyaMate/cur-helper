@@ -46,7 +46,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                             description &&
                             <P className={ css.notice }>{ description }</P>
                         }
-                        <P className={ css.timeToPass }>
+                        <P className={ css.timeToPass } item={ 'invisible' }>
                             Время на прохождение: { timeToPass } минут
                         </P>
                     </div>

@@ -5,12 +5,15 @@ import css from './TestItemPageHeader.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
 import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
+import P from '@/components/ui/p/P/P.tsx';
+import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
+import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 
 
 export type TestItemPageHeaderProps = {
     title: string;
     status: TestResult;
-    date: string;
+    date: string | number | Date;
     extra?: React.ReactNode | string;
 }
 
@@ -22,7 +25,8 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
               extra,
           } = props;
 
-    const label = useTestStatusLabel(status);
+    const label     = useTestStatusLabel(status);
+    const deltaDate = useDateDeltaWithPostfix(date, Date.now());
 
     return (
         <Section
@@ -37,27 +41,17 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }>
-            {
-                /**
-                 * TODO: Вынести в отдельный компонент
-                 */
-            }
-            <div
-                style={ {
-                    display       : 'flex',
-                    justifyContent: 'space-between',
-                    alignItems    : 'center',
-                } }>
+            <SpaceBetween>
                 <Title>Тест на тему "{ title }"</Title>
                 { extra }
-            </div>
-            <footer className={ css.footer }>
+            </SpaceBetween>
+            <SpaceBetween type={ 'footer' } className={ css.footer }>
                 <span className={ css.status }>{ label }</span>
                 {
                     (status !== 'not-started') &&
-                    <span className={ css.date }><span>пройдено: </span>{ date }</span>
+                    <P type={ 'span' } item={ 'invisible' }>{ deltaDate }</P>
                 }
-            </footer>
+            </SpaceBetween>
         </Section>
     );
 };

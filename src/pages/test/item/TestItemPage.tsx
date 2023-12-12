@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section from '@/components/ui/container/box/Section.tsx';
-import TestResult from '@/components/common/test/TestResultProgressbar/TestResultProgressbar.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import TestItemPageHeader
     from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
@@ -13,6 +12,12 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import { useWindowPopupController } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
 import TestBriefing from '@/components/common/test/TestBriefing/TestBriefing.tsx';
+import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import TestResultProgressbarCircle
+    from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
+import TestResultProgressbarList
+    from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
+import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 
 
 export type TestItemPageProps = {}
@@ -83,19 +88,26 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
             <TestItemPageHeader
                 title={ `Законы` }
                 status={ 'unsatisfactory' }
-                date={ '12 дней назад' }
+                date={ Date.now() - 827200 }
                 extra={
                     <Button styleType={ 'main' } onClick={ popupController.open }>Начать</Button>
                 }
             />
             <Section item={ 'main' }>
-                <TestResult
-                    questions={ 22 }
-                    rightAnswers={ 7 }
-                    time={ 10 }
-                    trying={ 1 }
-                    result={ 'unsatisfactory' }
-                />
+                <SpaceBetween type={ 'div' } size={ 'small' }>
+                    <TestResultProgressbarCircle
+                        result={ 'unsatisfactory' }
+                        percent={ 31 }
+                    />
+                    <AdditionalList
+                        list={ [
+                            { label: 'Вопросов', value: 21 },
+                            { label: 'Правильных ответов', value: 5 },
+                            { label: 'Попыток', value: 2 },
+                            { label: 'Время', value: 21 },
+                        ] }
+                    />
+                </SpaceBetween>
             </Section>
             <Collapse
                 title={ 'Что нужно повторить' }

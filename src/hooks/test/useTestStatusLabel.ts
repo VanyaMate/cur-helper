@@ -1,4 +1,4 @@
-import { TestResult } from '@/components/common/test/TestItemLink/TestItemLink.tsx';
+import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
 
 
 export const useTestStatusLabel = function (status: TestResult) {

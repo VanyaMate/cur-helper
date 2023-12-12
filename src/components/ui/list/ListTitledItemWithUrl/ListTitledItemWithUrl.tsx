@@ -18,6 +18,7 @@ const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
     return (
         <Section
             item
+            size={ 'extra-small' }
             type={ 'article' }
             className={ css.container }
         >
@@ -27,7 +28,7 @@ const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
             }
             {
                 body &&
-                <P className={ css.body }>{ body }</P>
+                <P className={ css.body } item={ 'invisible' }>{ body }</P>
             }
             {
                 url &&
