@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFetchTestMockData } from '@/hooks/test/useFetchTestMockData.ts';
+import { useTestResultMockData } from '@/hooks/test/useTestResultMockData.ts';
 import Section from '@/components/ui/container/box/Section.tsx';
 import TestResultQuestions
     from '@/components/common/test/TestResultQuestions/TestResultQuestions.tsx';
@@ -8,11 +8,13 @@ import TestItemPageHeader from '@/components/common/test/TestItemPageHeader/Test
 import { useTestRightAnswersCalculator } from '@/hooks/test/useTestRightAnswersCalculator.ts';
 import { useTestTimeCalculator } from '@/hooks/test/useTestTimeCalculator.ts';
 import { useThemeUrlGetter } from '@/hooks/theme/useThemeUrlGetter.ts';
-import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
 import TestResultProgressbarCircle
     from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import Link from '@/components/ui/link/Link/Link.tsx';
+import { useTestUrlGetter } from '@/hooks/test/useTestUrlGetter.ts';
+import { useMathPercent } from '@/hooks/math/useMathPercent.ts';
 
 
 export type TestPassingByIdContainerProps = {
@@ -21,10 +23,12 @@ export type TestPassingByIdContainerProps = {
 
 const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props) => {
     const { id }            = props;
-    const { loading, test } = useFetchTestMockData(id);
-    const rightAnswers      = useTestRightAnswersCalculator(test?.questions ?? []);
+    const { loading, test } = useTestResultMockData(id);
+    const rightAnswers      = useTestRightAnswersCalculator(test?.test.questions ?? []);
     const time              = useTestTimeCalculator(test?.startTime ?? '', test?.finishTime ?? '');
-    const themeUrl          = useThemeUrlGetter(test?.id ?? '', 'test');
+    const themeUrl          = useThemeUrlGetter(test?.test.id ?? '', 'test');
+    const testUrl           = useTestUrlGetter(test?.test.id ?? '');
+    const percent           = useMathPercent(rightAnswers, test?.test.questions.length ?? 0);
 
     if (loading) {
         return 'loading...';
@@ -44,29 +48,40 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                             url  : '/test',
                         },
                         { label: 'Общие правила', url: themeUrl },
+                        { label: 'Тест', url: testUrl },
                     ]
                 }
             />
             <TestItemPageHeader
-                title={ `Законы` }
+                title={ test.test.title }
                 status={ test.result }
                 date={ test.finishTime }
             />
-            <SpaceBetween size={ 'small' } item={ 'main' }>
-                <TestResultProgressbarCircle
-                    result={ 'unsatisfactory' }
-                    percent={ 31 }
-                />
+            <Section item={ 'main' } size={ 'small' }>
                 <AdditionalList
                     list={ [
-                        { label: 'Вопросов', value: 21 },
-                        { label: 'Правильных ответов', value: 5 },
-                        { label: 'Попыток', value: 2 },
-                        { label: 'Время', value: 21 },
+                        {
+                            label: 'Пользователь',
+                            value: <Link to={ '#' }>{ test.user.login }</Link>,
+                        },
                     ] }
                 />
-            </SpaceBetween>
-            <TestResultQuestions questions={ test.questions }/>
+                <SpaceBetween size={ 'small' }>
+                    <TestResultProgressbarCircle
+                        result={ 'satisfactorily' }
+                        percent={ percent }
+                    />
+                    <AdditionalList
+                        list={ [
+                            { label: 'Вопросов', value: test.test.questions.length },
+                            { label: 'Правильных ответов', value: rightAnswers },
+                            { label: 'Попытка', value: test.try },
+                            { label: 'Время', value: time + ' минут' },
+                        ] }
+                    />
+                </SpaceBetween>
+            </Section>
+            <TestResultQuestions questions={ test.test.questions }/>
         </Section>
     );
 };

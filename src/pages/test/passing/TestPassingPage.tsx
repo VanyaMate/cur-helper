@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import TestPassingByIdContainer
+import TestResultByIdContainer
     from '@/containers/test/TestPassingByIdContainer/TestPassingByIdContainer.tsx';
 
 
@@ -11,7 +11,7 @@ const TestPassingPage: React.FC<TestPassingPageProps> = (props) => {
     const [ searchParams ] = useSearchParams();
 
     return (
-        <TestPassingByIdContainer id={ searchParams.get('id') ?? '' }/>
+        <TestResultByIdContainer id={ searchParams.get('id') ?? '' }/>
     );
 };
 

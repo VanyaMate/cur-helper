@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import TestResultByIdContainer
+    from '@/containers/test/TestPassingByIdContainer/TestPassingByIdContainer.tsx';
 
 
 export type TestResultPageProps = {}
@@ -9,9 +11,7 @@ const TestResultPage: React.FC<TestResultPageProps> = (props) => {
     const [ searchParams ] = useSearchParams();
 
     return (
-        <div>
-            TestResultPage component { searchParams.get('id') }
-        </div>
+        <TestResultByIdContainer id={ searchParams.get('id') ?? '' }/>
     );
 };
 

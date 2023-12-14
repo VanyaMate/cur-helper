@@ -1,56 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Test, TestUserResult } from '@/types/test/test.types.ts';
+import { User } from '@/types/user/user.types.ts';
 
 
-export type TestStatus =
-    'not-started' | 'process' | 'finish';
-
-export type TestQuestionResult =
-    'error' | 'right' | 'selected' | 'empty';
-
-export type TestAnswer = {
-    id: string;
-    body: string;
-}
-
-export type TestQuestion = {
-    title: string;
-    description: string;
-    answerId: string;
-    themeId: string;
-    result: TestQuestionResult;
-    answers: TestAnswer[];
-}
-
-export type TestTheme = {
-    id: string;
-    title: string;
-    addition: string;
-}
-
-export type TestResult =
-    'not-started' | 'unsatisfactory' | 'satisfactorily' | 'perfect';
-
-export type Test = {
-    id: string;
-    title: string;
-    description: string;
-    startTime: string;
-    finishTime: string;
-    try: number;
-    result: TestResult;
-    status: TestStatus;
-    questions: TestQuestion[];
-    themes: TestTheme[];
-}
-
-export type FetchTest = {
+export type FetchTestResult = {
     loading: boolean;
-    test: Test | null;
+    test: TestUserResult | null;
 }
 
-export const useFetchTestMockData = function (id: string): FetchTest {
+export const useTestResultMockData = function (id: string): FetchTestResult {
     const [ loading, setLoading ] = useState<boolean>(true);
-    const [ test, setTest ]       = useState<Test | null>(null);
+    const [ test, setTest ]       = useState<TestUserResult | null>(null);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -59,15 +19,15 @@ export const useFetchTestMockData = function (id: string): FetchTest {
                 return;
             }
 
-            const test: Test = {
+            const user: User                     = {
+                id   : '1',
+                login: 'VanyaMate',
+                info : {},
+            };
+            const test: Test                     = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',
-                startTime  : new Date(Date.now() - 60000 * 27).toISOString(),
-                finishTime : new Date(Date.now() - 60000 * 15).toISOString(),
-                result     : 'satisfactorily',
-                status     : 'finish',
-                try        : 1,
                 questions  : [
                     {
                         title      : 'Правильно ли ответил?',
@@ -89,6 +49,23 @@ export const useFetchTestMockData = function (id: string): FetchTest {
                                 body: 'Тест направленный',
                             },
                         ],
+                        themes     : [
+                            {
+                                id      : '1-1',
+                                title   : 'Закон №1.43 Чрезмерная милота',
+                                addition: '',
+                            },
+                            {
+                                id      : '1-2',
+                                title   : 'Закон №72.00.1 Ведение групп',
+                                addition: 'Обновление за 2023 год',
+                            },
+                            {
+                                id      : '1-3',
+                                title   : 'Закон №32.17 Представление о порядке',
+                                addition: '',
+                            },
+                        ],
                     },
                     {
                         title      : 'Правильно ли ответил?',
@@ -108,6 +85,13 @@ export const useFetchTestMockData = function (id: string): FetchTest {
                             {
                                 id  : '3',
                                 body: 'Тест направленный',
+                            },
+                        ],
+                        themes     : [
+                            {
+                                id      : '1-2',
+                                title   : 'Закон №72.00.1 Ведение групп',
+                                addition: 'Обновление за 2023 год',
                             },
                         ],
                     },
@@ -131,6 +115,13 @@ export const useFetchTestMockData = function (id: string): FetchTest {
                                 body: 'Тест направленный',
                             },
                         ],
+                        themes     : [
+                            {
+                                id      : '1-1',
+                                title   : 'Закон №1.43 Чрезмерная милота',
+                                addition: '',
+                            },
+                        ],
                     },
                     {
                         title      : 'Правильно ли ответил?',
@@ -150,6 +141,13 @@ export const useFetchTestMockData = function (id: string): FetchTest {
                             {
                                 id  : '3',
                                 body: 'Тест направленный',
+                            },
+                        ],
+                        themes     : [
+                            {
+                                id      : '1-3',
+                                title   : 'Закон №32.17 Представление о порядке',
+                                addition: '',
                             },
                         ],
                     },
@@ -173,28 +171,27 @@ export const useFetchTestMockData = function (id: string): FetchTest {
                                 body: 'Тест направленный',
                             },
                         ],
-                    },
-                ],
-                themes     : [
-                    {
-                        id      : '1-1',
-                        title   : 'Закон №1.43 Чрезмерная милота',
-                        addition: '',
-                    },
-                    {
-                        id      : '1-2',
-                        title   : 'Закон №72.00.1 Ведение групп',
-                        addition: 'Обновление за 2023 год',
-                    },
-                    {
-                        id      : '1-3',
-                        title   : 'Закон №32.17 Представление о порядке',
-                        addition: '',
+                        themes     : [
+                            {
+                                id      : '1-1',
+                                title   : 'Закон №1.43 Чрезмерная милота',
+                                addition: '',
+                            },
+                        ],
                     },
                 ],
             };
+            const testUserResult: TestUserResult = {
+                startTime : new Date(Date.now() - 60000 * 27).toISOString(),
+                finishTime: new Date(Date.now() - 60000 * 15).toISOString(),
+                result    : 'satisfactorily',
+                status    : 'finish',
+                try       : 1,
+                test      : test,
+                user      : user,
+            };
 
-            setTest(test);
+            setTest(testUserResult);
             setLoading(false);
         }, 1500);
 

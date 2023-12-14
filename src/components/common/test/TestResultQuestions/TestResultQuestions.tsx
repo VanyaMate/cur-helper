@@ -1,5 +1,4 @@
 import React from 'react';
-import { TestQuestion } from '@/hooks/test/useFetchTestMockData.ts';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
@@ -8,6 +7,7 @@ import Section from '@/components/ui/container/box/Section.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
+import { TestQuestion } from '@/types/test/test.types.ts';
 
 
 export type TestResultQuestionsProps = {
@@ -21,37 +21,39 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
         <Collapse title={ `Вопросы (${ questions.length })` } opened>
             <OrderedList
                 list={ questions.map((question) => (
-                    <Section item={ 'main' } size={ 'medium' }>
-                        <Section size={ 'small' }>
+                    <Section item={ 'main' } size={ 'medium' } type={ 'article' }>
+                        <Section size={ 'small' } type={ 'div' }>
                             <Title size={ 'medium' }>{ question.title }</Title>
-                            <div>
-                                <P>{ question.description }</P>
-                                <Link
-                                    style={ { fontSize: 12 } }
-                                    target={ '_blank' }
-                                    /**
-                                     * TODO: Вынести генерацию ссылки во вне и передавать внутрь
-                                     генератор
-                                     */
-                                    to={ `/guid/${ question.themeId.split('-').join('/') }` }
-                                >
-                                    Ссылка на материалы
-                                </Link>
-                            </div>
-                        </Section>
-                        <OrderedList
-                            title={ 'Ответы' }
-                            list={ question.answers.map((answer) => (
-                                <TestResultAnswer
-                                    answer={ answer }
-                                    result={
-                                        question.answerId === answer.id
-                                        ? question.result
-                                        : 'empty'
+                            <P item={ 'second' }>{ question.description }</P>
+                            <OrderedList
+                                title={ 'Ответы' }
+                                list={ question.answers.map((answer) => (
+                                    <TestResultAnswer
+                                        answer={ answer }
+                                        result={
+                                            question.answerId === answer.id
+                                            ? question.result
+                                            : 'empty'
+                                        }
+                                    />
+                                )) }
+                            />
+                            <Collapse opened={ false } title={ 'Темы' } item={ 'default' }>
+                                <Section>
+                                    {
+                                        question.themes.map((theme) => (
+                                            <Link
+                                                size={ 'small' }
+                                                target={ '_blank' }
+                                                to={ `/guid/${ theme.id }` }
+                                            >
+                                                { theme.title }
+                                            </Link>
+                                        ))
                                     }
-                                />
-                            )) }
-                        />
+                                </Section>
+                            </Collapse>
+                        </Section>
                     </Section>
                 )) }
             />

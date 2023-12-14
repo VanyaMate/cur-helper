@@ -39,7 +39,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
 
     return (
         <Section
-            type={ 'article' }
+            type={ 'section' }
             size={ 'small' }
             item={ item }
             className={ cn(css.container, open && css.opened) }

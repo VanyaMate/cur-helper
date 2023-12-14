@@ -1,5 +1,5 @@
 import React from 'react';
-import { TestAnswer, TestQuestionResult } from '@/hooks/test/useFetchTestMockData.ts';
+import { TestAnswer, TestQuestionResult } from '@/hooks/test/useTestResultMockData.ts';
 import css from './TestResultAnswer.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Button from '@/components/ui/button/Button/Button.tsx';

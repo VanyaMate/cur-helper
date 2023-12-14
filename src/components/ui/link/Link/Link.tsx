@@ -4,13 +4,22 @@ import css from './Link.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 
 
-export type LinkProps = LinkRouterDomProps;
+export type LinkSize =
+    'small' | 'medium';
+
+export type LinkProps = LinkRouterDomProps & {
+    size?: LinkSize;
+};
 
 const Link: React.FC<LinkProps> = (props) => {
-    const { className, ...other } = props;
+    const { className, size, ...other } = props;
 
     return (
-        <LinkRouterDom { ...other } className={ cn(className, css.container) }/>
+        <LinkRouterDom { ...other } className={ cn(
+            className,
+            css.container,
+            size === 'small' && css.small,
+        ) }/>
     );
 };
 

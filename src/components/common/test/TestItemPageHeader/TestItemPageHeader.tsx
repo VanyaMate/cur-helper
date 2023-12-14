@@ -4,10 +4,10 @@ import Section from '@/components/ui/container/box/Section.tsx';
 import css from './TestItemPageHeader.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
-import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
 import P from '@/components/ui/p/P/P.tsx';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import { TestResult } from '@/types/test/test.types.ts';
 
 
 export type TestItemPageHeaderProps = {
@@ -41,10 +41,15 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }>
-            <SpaceBetween>
-                <Title>Тест на тему "{ title }"</Title>
-                { extra }
-            </SpaceBetween>
+            <Section size={ 'small' }>
+                <SpaceBetween>
+                    <div>
+                        <P type={ 'p' } item={ 'invisible' }>Тест на тему</P>
+                        <Title>{ title }</Title>
+                    </div>
+                    { extra }
+                </SpaceBetween>
+            </Section>
             <SpaceBetween type={ 'footer' } className={ css.footer }>
                 <span className={ css.status }>{ label }</span>
                 {

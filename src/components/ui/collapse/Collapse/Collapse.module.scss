@@ -11,6 +11,12 @@
         }
     }
 
+    &.opened {
+        & > .title {
+            box-shadow: 0 0 15px -10px var(--color-blue-transparent);
+        }
+    }
+
     /*    .content {
             overflow: hidden;
             transition: var(--transition-fast);
@@ -24,6 +30,11 @@
         padding: var(--offset-medium);
         border-radius: var(--offset-medium);
         cursor: pointer;
+        transition: var(--transition-medium);
+
+        &:hover {
+            box-shadow: 0 0 15px -5px var(--color-blue-transparent);
+        }
 
         .icon {
             transition: var(--transition-fast);

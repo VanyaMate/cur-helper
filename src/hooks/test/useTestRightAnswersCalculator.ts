@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { TestQuestion } from '@/hooks/test/useFetchTestMockData.ts';
+import { TestQuestion } from '@/hooks/test/useTestResultMockData.ts';
 
 
 export const useTestRightAnswersCalculator = function (questions: TestQuestion[]): number {

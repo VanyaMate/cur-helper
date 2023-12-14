@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './TestItemLink.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
+import { TestResult } from '@/hooks/test/useTestResultMockData.ts';
 
 export type TestItemLinkProps = {
     id: string;

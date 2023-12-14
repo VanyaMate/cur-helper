@@ -1,9 +1,6 @@
-import React, { useMemo } from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import React from 'react';
 import css from './TestResultProgressbar.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
-import { cn } from '@vanyamate/helpers/react/classname';
-import { TestResult } from '@/hooks/test/useFetchTestMockData.ts';
 
 
 export type TestResultProps = {

@@ -15,7 +15,7 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
 
     return (
         <Section
-            type={ 'article' }
+            type={ 'section' }
             size={ 'medium' }
             className={ css.container }
         >

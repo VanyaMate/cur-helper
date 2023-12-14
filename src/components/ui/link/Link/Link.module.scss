@@ -9,4 +9,8 @@
         text-shadow: 0 0 10px var(--color-gold-transparent);
         color: var(--text-color-link-hover);
     }
+
+    &.small {
+        font-size: 12px;
+    }
 }
