@@ -1,4 +1,4 @@
-import { TestResult } from '@/hooks/test/useTestResultMockData.ts';
+import { TestResult } from '@/types/test/test.types.ts';
 
 
 export const useTestStatusLabel = function (status: TestResult) {
