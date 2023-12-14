@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import { TestQuestion } from '@/hooks/test/useTestResultMockData.ts';
+import { TestUserQuestion } from '@/types/test/test.types.ts';
 
 
-export const useTestRightAnswersCalculator = function (questions: TestQuestion[]): number {
+export const useTestRightAnswersCalculator = function (questions: TestUserQuestion[]): number {
     return useMemo(() => {
         return questions.reduce((acc, que) =>
-            acc += (que.result === 'right' ? 1 : 0), 0,
+            acc += (que.result.result === 'right' ? 1 : 0), 0,
         );
     }, [ questions ]);
 };

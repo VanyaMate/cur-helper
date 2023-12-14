@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Test, TestUserResult } from '@/types/test/test.types.ts';
+import { Test, TestUser, TestUserResult } from '@/types/test/test.types.ts';
 import { User } from '@/types/user/user.types.ts';
 
 
@@ -24,17 +24,19 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                 login: 'VanyaMate',
                 info : {},
             };
-            const test: Test                     = {
+            const test: TestUser                 = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',
                 questions  : [
                     {
+                        id         : '1',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '1',
-                        themeId    : '1-1',
-                        result     : 'error',
+                        result     : {
+                            answerId: '3',
+                            result  : 'error',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -68,11 +70,13 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         ],
                     },
                     {
+                        id         : '2',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '3',
-                        themeId    : '1-1',
-                        result     : 'error',
+                        result     : {
+                            answerId: '1',
+                            result  : 'right',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -96,11 +100,13 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         ],
                     },
                     {
+                        id         : '3',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '2',
-                        themeId    : '1-2',
-                        result     : 'right',
+                        result     : {
+                            answerId: '1',
+                            result  : 'error',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -124,11 +130,13 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         ],
                     },
                     {
+                        id         : '4',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '2',
-                        themeId    : '1-3',
-                        result     : 'right',
+                        result     : {
+                            answerId: '2',
+                            result  : 'right',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -152,11 +160,13 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         ],
                     },
                     {
+                        id         : '5',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '3',
-                        themeId    : '1-3',
-                        result     : 'right',
+                        result     : {
+                            answerId: '3',
+                            result  : 'right',
+                        },
                         answers    : [
                             {
                                 id  : '1',

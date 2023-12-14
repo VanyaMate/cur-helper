@@ -7,11 +7,11 @@ import Section from '@/components/ui/container/box/Section.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
-import { TestQuestion } from '@/types/test/test.types.ts';
+import { TestUserQuestion } from '@/types/test/test.types.ts';
 
 
 export type TestResultQuestionsProps = {
-    questions: TestQuestion[];
+    questions: TestUserQuestion[];
 }
 
 const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
@@ -21,7 +21,12 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
         <Collapse title={ `Вопросы (${ questions.length })` } opened>
             <OrderedList
                 list={ questions.map((question) => (
-                    <Section item={ 'main' } size={ 'medium' } type={ 'article' }>
+                    <Section
+                        item={ 'main' }
+                        size={ 'medium' }
+                        type={ 'article' }
+                        key={ question.id }
+                    >
                         <Section size={ 'small' } type={ 'div' }>
                             <Title size={ 'medium' }>{ question.title }</Title>
                             <P item={ 'second' }>{ question.description }</P>
@@ -31,8 +36,8 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                     <TestResultAnswer
                                         answer={ answer }
                                         result={
-                                            question.answerId === answer.id
-                                            ? question.result
+                                            question.result.answerId === answer.id
+                                            ? question.result.result
                                             : 'empty'
                                         }
                                     />
@@ -43,6 +48,7 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                     {
                                         question.themes.map((theme) => (
                                             <Link
+                                                key={ theme.id }
                                                 size={ 'small' }
                                                 target={ '_blank' }
                                                 to={ `/guid/${ theme.id }` }

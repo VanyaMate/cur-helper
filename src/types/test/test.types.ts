@@ -12,14 +12,21 @@ export type TestAnswer = {
     body: string;
 }
 
+export type TestQuestionUserResult = {
+    answerId: string;
+    result: TestQuestionResult;
+}
+
 export type TestQuestion = {
+    id: string;
     title: string;
     description: string;
-    answerId: string;
-    themeId: string;
-    answers: TestAnswer[];
     themes: TestTheme[];
-    result: TestQuestionResult;
+    answers: TestAnswer[];
+}
+
+export type TestUserQuestion = TestQuestion & {
+    result: TestQuestionUserResult;
 }
 
 export type TestTheme = {
@@ -38,8 +45,12 @@ export type Test = {
     questions: TestQuestion[];
 }
 
+export type TestUser = Omit<Test, 'questions'> & {
+    questions: TestUserQuestion[];
+}
+
 export type TestUserResult = {
-    test: Test;
+    test: TestUser;
     user: User;
     startTime: string;
     finishTime: string;
