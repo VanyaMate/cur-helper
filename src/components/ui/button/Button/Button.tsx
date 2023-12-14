@@ -13,11 +13,23 @@ export type ButtonProps = {
     styleType?: ButtonType;
     onClick?: () => any;
     block?: boolean;
+    disabled?: boolean;
+    quad?: boolean;
     className?: string;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-    const { children, block, postfix, prefix, styleType, className, onClick } = props;
+    const {
+              children,
+              block,
+              postfix,
+              prefix,
+              styleType,
+              className,
+              quad,
+              disabled,
+              onClick,
+          } = props;
 
     return (
         <button
@@ -29,6 +41,8 @@ const Button: React.FC<ButtonProps> = (props) => {
                 styleType === 'main' && css.main,
                 styleType === 'danger' && css.danger,
                 styleType === 'selected' && css.selected,
+                disabled && css.disabled,
+                quad && css.quad,
             ) }
             onClick={ onClick }
         >

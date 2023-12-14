@@ -1,6 +1,7 @@
 @import "styles/palette.scss";
 @import "styles/offset.scss";
 @import "styles/transition.scss";
+@import "styles/sizes.scss";
 
 * {
     box-sizing: border-box;

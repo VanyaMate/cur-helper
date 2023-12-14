@@ -1,30 +1,22 @@
+import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
+import { Test } from '@/types/test/test.types.ts';
 import { useEffect, useMemo, useState } from 'react';
-import { Test, TestUser, TestUserResult } from '@/types/test/test.types.ts';
-import { User } from '@/types/user/user.types.ts';
 
 
-export type FetchTestResult = {
-    loading: boolean;
-    test: TestUserResult | null;
-}
-
-export const useTestResultMockData = function (id: string): FetchTestResult {
+export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
     const [ loading, setLoading ] = useState<boolean>(true);
-    const [ test, setTest ]       = useState<TestUserResult | null>(null);
+    const [ error, setError ]     = useState<FetchError>(null);
+    const [ test, setTest ]       = useState<FetchData<Test>>(null);
 
     useEffect(() => {
+        setLoading(true);
         const timeout = setTimeout(() => {
             if (!id) {
                 setLoading(false);
                 return;
             }
 
-            const user: User                     = {
-                id   : '1',
-                login: 'VanyaMate',
-                info : {},
-            };
-            const test: TestUser                 = {
+            const test: Test = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',
@@ -33,10 +25,6 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         id         : '1',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        result     : {
-                            answerId: '3',
-                            result  : 'error',
-                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -73,10 +61,6 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         id         : '2',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        result     : {
-                            answerId: '1',
-                            result  : 'right',
-                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -103,10 +87,6 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         id         : '3',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        result     : {
-                            answerId: '1',
-                            result  : 'error',
-                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -133,10 +113,6 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         id         : '4',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        result     : {
-                            answerId: '2',
-                            result  : 'right',
-                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -163,10 +139,6 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                         id         : '5',
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        result     : {
-                            answerId: '3',
-                            result  : 'right',
-                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -191,24 +163,15 @@ export const useTestResultMockData = function (id: string): FetchTestResult {
                     },
                 ],
             };
-            const testUserResult: TestUserResult = {
-                startTime : new Date(Date.now() - 60000 * 27).toISOString(),
-                finishTime: new Date(Date.now() - 60000 * 15).toISOString(),
-                result    : 'satisfactorily',
-                status    : 'finish',
-                try       : 1,
-                test      : test,
-                user      : user,
-            };
 
-            setTest(testUserResult);
+            setTest(test);
             setLoading(false);
-        }, 1500);
+        }, 100);
 
         return () => clearTimeout(timeout);
     }, [ id ]);
 
     return useMemo(() => ({
-        loading, test,
-    }), [ loading, test ]);
+        loading, data: test, error,
+    }), [ loading, error, test ]);
 };

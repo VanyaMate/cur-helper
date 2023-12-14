@@ -1,0 +1,50 @@
+$size: var(--offset-medium);
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: var(--height-medium);
+    border-radius: var(--offset-small);
+    width: 100%;
+    background: var(--background-item);
+    text-align: center;
+
+    & > * {
+        height: 100%;
+        font-size: 12px;
+        border-radius: var(--offset-small);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+    }
+
+    &.halfFilled {
+        .filled {
+            color: var(--text-color-main) !important;
+        }
+
+        .text {
+            & * {
+                color: transparent !important;
+            }
+        }
+    }
+
+    &:not(.halfFilled) {
+        .filled {
+            & * {
+                color: transparent !important;
+            }
+        }
+
+        .text {
+            color: var(--text-color-second) !important;
+        }
+    }
+
+    .filled {
+        background: var(--color-blue);
+        box-shadow: 0 0 10px var(--color-blue-transparent);
+    }
+}

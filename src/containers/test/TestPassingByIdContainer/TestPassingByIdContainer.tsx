@@ -1,20 +1,19 @@
-import React from 'react';
-import { useTestResultMockData } from '@/hooks/test/useTestResultMockData.ts';
-import Section from '@/components/ui/container/box/Section.tsx';
-import TestResultQuestions
-    from '@/components/common/test/TestResultQuestions/TestResultQuestions.tsx';
-import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
-import TestItemPageHeader from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
-import { useTestRightAnswersCalculator } from '@/hooks/test/useTestRightAnswersCalculator.ts';
-import { useTestTimeCalculator } from '@/hooks/test/useTestTimeCalculator.ts';
-import { useThemeUrlGetter } from '@/hooks/theme/useThemeUrlGetter.ts';
-import TestResultProgressbarCircle
-    from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
-import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
+import React, { useMemo } from 'react';
+import { useFetchTestPassingMockData } from '@/hooks/test/useFetchTestPassingMockData.ts';
+import Title from '@/components/ui/title/Title/Title.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import { useTestPassingQuestionHash } from '@/hooks/test/useTestPassingQuestionHash.ts';
+import { useNavigate } from 'react-router-dom';
+import { useTestPassingQuestionController } from '@/hooks/test/useTestPassingQuestionController.ts';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
-import Link from '@/components/ui/link/Link/Link.tsx';
-import { useTestUrlGetter } from '@/hooks/test/useTestUrlGetter.ts';
-import { useMathPercent } from '@/hooks/math/useMathPercent.ts';
+import Section from '@/components/ui/container/box/Section.tsx';
+import TestPassingProgress
+    from '@/components/common/test/TestPassingProgress/TestPassingProgress.tsx';
+import P from '@/components/ui/p/P/P.tsx';
+import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
+import TestResultAnswer
+    from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
+import Footnote from '@/components/common/Footnote/Footnote.tsx';
 
 
 export type TestPassingByIdContainerProps = {
@@ -22,66 +21,61 @@ export type TestPassingByIdContainerProps = {
 }
 
 const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props) => {
-    const { id }            = props;
-    const { loading, test } = useTestResultMockData(id);
-    const rightAnswers      = useTestRightAnswersCalculator(test?.test.questions ?? []);
-    const time              = useTestTimeCalculator(test?.startTime ?? '', test?.finishTime ?? '');
-    const themeUrl          = useThemeUrlGetter(test?.test.id ?? '', 'test');
-    const testUrl           = useTestUrlGetter(test?.test.id ?? '');
-    const percent           = useMathPercent(rightAnswers, test?.test.questions.length ?? 0);
+    const { id }              = props;
+    const { loading, data }   = useFetchTestPassingMockData(id);
+    const hash                = useTestPassingQuestionHash(data?.questions.length ?? 0);
+    const { next, set, prev } = useTestPassingQuestionController(hash);
+    const question            = useMemo(() => {
+        if (data) {
+            return data.questions[hash.current - 1];
+        } else {
+            return null;
+        }
+    }, [ hash.current, data?.questions ]);
+
 
     if (loading) {
-        return 'loading...';
+        return 'loading..';
     }
 
-    if (!test) {
-        return 'not found';
+    if (!data) {
+        return 'no find';
     }
 
     return (
-        <Section size={ 'small' }>
-            <Breadcrumb
-                items={
-                    [
-                        {
-                            label: <span className="material-symbols-outlined">home</span>,
-                            url  : '/test',
-                        },
-                        { label: 'Общие правила', url: themeUrl },
-                        { label: 'Тест', url: testUrl },
-                    ]
-                }
-            />
-            <TestItemPageHeader
-                title={ test.test.title }
-                status={ test.result }
-                date={ test.finishTime }
-            />
-            <Section item={ 'main' } size={ 'small' }>
-                <AdditionalList
+        <Section size={ 'large' }>
+            <SpaceBetween>
+                <TestPassingProgress questions={ data.questions.length } answers={ 4 }/>
+                <Button quad><span className="material-symbols-outlined">menu</span></Button>
+            </SpaceBetween>
+            <Section size={ 'medium' }>
+                <Title>{ question?.title }</Title>
+                <P>{ question?.description }</P>
+                <Footnote type={ 'notify' } header={ 'Важно' }>
+                    { question?.description }
+                </Footnote>
+                <P item={ 'invisible' }>{ question?.description }</P>
+                <OrderedList
+                    title={ 'Важно учесть' }
                     list={ [
-                        {
-                            label: 'Пользователь',
-                            value: <Link to={ '#' }>{ test.user.login }</Link>,
-                        },
+                        <P>Ночь</P>,
+                        <P>Котики</P>,
+                        <P>Завтрак</P>,
                     ] }
                 />
-                <SpaceBetween size={ 'small' }>
-                    <TestResultProgressbarCircle
-                        result={ 'satisfactorily' }
-                        percent={ percent }
-                    />
-                    <AdditionalList
-                        list={ [
-                            { label: 'Вопросов', value: test.test.questions.length },
-                            { label: 'Правильных ответов', value: rightAnswers },
-                            { label: 'Попытка', value: test.try },
-                            { label: 'Время', value: time + ' минут' },
-                        ] }
-                    />
-                </SpaceBetween>
+                <P>{ question?.description }</P>
             </Section>
-            <TestResultQuestions questions={ test.test.questions }/>
+            <OrderedList
+                title={ 'Варианты' }
+                list={ question?.answers.map((answer) => (
+                    <TestResultAnswer
+                        key={ answer.id }
+                        answer={ answer }
+                        result={ 'empty' }
+                        onClick={ next }
+                    />
+                )) ?? [] }
+            />
         </Section>
     );
 };

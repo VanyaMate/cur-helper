@@ -10,12 +10,12 @@ export type FootnoteType =
 
 export type FootnoteProps = {
     header: React.ReactNode | string;
-    body: React.ReactNode | string;
+    children: React.ReactNode | string;
     type: FootnoteType;
 }
 
 const Footnote: React.FC<FootnoteProps> = (props) => {
-    const { type, body, header } = props;
+    const { type, children, header } = props;
 
     return (
         <Section item={ 'second' } size={ 'small' } className={ cn(
@@ -25,7 +25,7 @@ const Footnote: React.FC<FootnoteProps> = (props) => {
             (type === 'notify' || !type) && css.notify,
         ) }>
             <h6 className={ css.header }>{ header }</h6>
-            <P className={ css.body }>{ body }</P>
+            <P className={ css.body }>{ children }</P>
         </Section>
     );
 };
