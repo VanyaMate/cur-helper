@@ -2,6 +2,7 @@
 @import "styles/offset.scss";
 @import "styles/transition.scss";
 @import "styles/sizes.scss";
+@import "styles/animation.scss";
 
 * {
     box-sizing: border-box;

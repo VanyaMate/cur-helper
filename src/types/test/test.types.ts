@@ -21,6 +21,7 @@ export type TestQuestion = {
     id: string;
     title: string;
     description: string;
+    answerId: string;
     themes: TestTheme[];
     answers: TestAnswer[];
 }

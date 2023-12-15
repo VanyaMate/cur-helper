@@ -14,6 +14,8 @@ import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Footnote from '@/components/common/Footnote/Footnote.tsx';
+import TestQuestionPassing
+    from '@/components/common/test/TestQuestionPassing/TestQuestionPassing.tsx';
 
 
 export type TestPassingByIdContainerProps = {
@@ -48,33 +50,12 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                 <TestPassingProgress questions={ data.questions.length } answers={ 4 }/>
                 <Button quad><span className="material-symbols-outlined">menu</span></Button>
             </SpaceBetween>
-            <Section size={ 'medium' }>
-                <Title>{ question?.title }</Title>
-                <P>{ question?.description }</P>
-                <Footnote type={ 'notify' } header={ 'Важно' }>
-                    { question?.description }
-                </Footnote>
-                <P item={ 'invisible' }>{ question?.description }</P>
-                <OrderedList
-                    title={ 'Важно учесть' }
-                    list={ [
-                        <P>Ночь</P>,
-                        <P>Котики</P>,
-                        <P>Завтрак</P>,
-                    ] }
-                />
-                <P>{ question?.description }</P>
-            </Section>
-            <OrderedList
-                title={ 'Варианты' }
-                list={ question?.answers.map((answer) => (
-                    <TestResultAnswer
-                        key={ answer.id }
-                        answer={ answer }
-                        result={ 'empty' }
-                        onClick={ next }
-                    />
-                )) ?? [] }
+            <TestQuestionPassing
+                question={ question! }
+                onSelect={ async (answerId) => new Promise<void>((resolve) => setTimeout(() => {
+                    console.log(`send answer [${ answerId }] to question [${ question?.id }] in test [${ id }]`);
+                    resolve();
+                }, 1000)) }
             />
         </Section>
     );

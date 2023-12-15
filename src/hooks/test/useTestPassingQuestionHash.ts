@@ -30,5 +30,5 @@ export const useTestPassingQuestionHash = function (questionsAmount: number): Te
             currentHash: `#${ question }`,
             current    : question,
         };
-    }, [ question ]);
+    }, [ question, questionsAmount ]);
 };

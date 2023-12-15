@@ -12,7 +12,12 @@
     gap: var(--offset-small);
     pointer-events: none;
     height: var(--height-medium);
-    min-width: var(--height-medium);
+
+    :global {
+        .loading {
+            animation: rotate360 1s infinite ease-in-out;
+        }
+    }
 
     &.quad {
         max-width: var(--height-medium);
@@ -36,42 +41,50 @@
             pointer-events: auto;
             cursor: pointer;
 
-            &:hover {
-                border: 1px solid var(--button-background-second-hover);
+            &:hover,
+            &.hover {
+                border: 1px solid var(--color-gold);
                 background: var(--button-background-second-hover);
+                box-shadow: 0 0 10px 0 var(--color-blue-transparent)
             }
-        }
 
-        &.selected {
-            pointer-events: none;
-            border: 1px solid var(--button-background-main-hover);
-            background: var(--button-background-main-hover);
-            color: var(--text-color-invert);
-            box-shadow: 0 0 30px 0 var(--button-background-main-hover-shadow)
-        }
+            &.hover {
+                &:hover {
+                    box-shadow: 0 0 20px 0 var(--color-gold-transparent);
+                }
+            }
 
-        &.main {
-            border: 1px solid var(--button-background-main);
-            background: var(--button-background-main);
-            box-shadow: 0 0 20px 0 var(--button-background-main-shadow);
-
-            &:hover {
+            &.selected {
+                pointer-events: none;
                 border: 1px solid var(--button-background-main-hover);
                 background: var(--button-background-main-hover);
                 color: var(--text-color-invert);
                 box-shadow: 0 0 30px 0 var(--button-background-main-hover-shadow)
             }
-        }
 
-        &.danger {
-            border: 1px solid var(--button-background-danger);
-            background: var(--button-background-danger);
-            box-shadow: 0 0 20px 0 var(--button-background-danger-shadow);
+            &.main {
+                border: 1px solid var(--button-background-main);
+                background: var(--button-background-main);
+                box-shadow: 0 0 20px 0 var(--button-background-main-shadow);
 
-            &:hover {
-                border: 1px solid var(--button-background-danger-hover);
-                background: var(--button-background-danger-hover);
-                box-shadow: 0 0 30px 0 var(--button-background-danger-hover-shadow);
+                &:hover {
+                    border: 1px solid var(--button-background-main-hover);
+                    background: var(--button-background-main-hover);
+                    color: var(--text-color-invert);
+                    box-shadow: 0 0 30px 0 var(--button-background-main-hover-shadow)
+                }
+            }
+
+            &.danger {
+                border: 1px solid var(--button-background-danger);
+                background: var(--button-background-danger);
+                box-shadow: 0 0 20px 0 var(--button-background-danger-shadow);
+
+                &:hover {
+                    border: 1px solid var(--button-background-danger-hover);
+                    background: var(--button-background-danger-hover);
+                    box-shadow: 0 0 30px 0 var(--button-background-danger-hover-shadow);
+                }
             }
         }
     }
