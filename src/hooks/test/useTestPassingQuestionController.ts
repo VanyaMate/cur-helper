@@ -20,7 +20,6 @@ export const useTestPassingQuestionController = function (hash: TestPassingQuest
 
     return useMemo(() => ({
         next (): void {
-            console.log(hash);
             if (hash.nextHash) {
                 navigate([ pathname, search, hash.nextHash ].join(''));
             }

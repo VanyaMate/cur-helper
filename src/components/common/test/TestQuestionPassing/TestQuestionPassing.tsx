@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { TestQuestion } from '@/types/test/test.types.ts';
 import Section from '@/components/ui/container/box/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
@@ -6,6 +6,9 @@ import P from '@/components/ui/p/P/P.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import TestQuestionPassingButton
     from '@/components/common/test/TestQuestionPassingButton/TestQuestionPassingButton.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
 
 
 export type TestQuestionPassingProps = {
@@ -18,15 +21,21 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
     const [ selected, setSelected ] = useState<string>('');
     const [ process, setProcess ]   = useState<boolean>(false);
 
+    const disabledSelectButton = useMemo(() => {
+        if (process) return true;
+        if (selected === '') return true;
+        return selected === question.answerId;
+    }, [ process, selected, question ]);
+
     const onSelectClick = useCallback((id: string) => {
         setSelected(id);
     }, [ selected ]);
 
-    const onAcceptClick = useCallback((id: string) => {
+    const onAcceptClick = useCallback(() => {
         setProcess(true);
-        onSelect(id)
+        onSelect(selected)
             .finally(() => setProcess(false));
-    }, [ onSelect ]);
+    }, [ selected ]);
 
     return (
         <Section>
@@ -40,12 +49,41 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                         answer={ answer }
                         selected={ answer.id === selected }
                         selectedAnswer={ answer.id === question.answerId }
-                        onSelect={ onAcceptClick }
-                        onClick={ onSelectClick }
+                        onSelect={ onSelectClick }
                         process={ process }
                     />
                 )) }
             />
+            <SpaceBetween>
+                <Button
+                    styleType={
+                        process
+                        ? 'default'
+                        : (selected !== question.answerId)
+                          ? 'hover'
+                          : 'default'
+                    }
+                    disabled={ disabledSelectButton }
+                    prefix={
+                        (process)
+                        ? <span
+                            className={ 'material-symbols-outlined loading' }>cached</span>
+                        : <span
+                            className={ 'material-symbols-outlined' }>check</span>
+                    }
+                    onClick={ onAcceptClick }
+                >
+                    Выбрать
+                </Button>
+                <Button
+                    postfix={
+                        <span
+                            className={ 'material-symbols-outlined' }>arrow_forward</span>
+                    }
+                >
+                    Дальше
+                </Button>
+            </SpaceBetween>
         </Section>
     );
 };
