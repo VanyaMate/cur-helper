@@ -1,21 +1,16 @@
 import React, { useMemo } from 'react';
 import { useFetchTestPassingMockData } from '@/hooks/test/useFetchTestPassingMockData.ts';
-import Title from '@/components/ui/title/Title/Title.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import { useTestPassingQuestionHash } from '@/hooks/test/useTestPassingQuestionHash.ts';
-import { useNavigate } from 'react-router-dom';
-import { useTestPassingQuestionController } from '@/hooks/test/useTestPassingQuestionController.ts';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Section from '@/components/ui/container/box/Section.tsx';
 import TestPassingProgress
     from '@/components/common/test/TestPassingProgress/TestPassingProgress.tsx';
-import P from '@/components/ui/p/P/P.tsx';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import TestResultAnswer
-    from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
-import Footnote from '@/components/common/Footnote/Footnote.tsx';
 import TestQuestionPassing
     from '@/components/common/test/TestQuestionPassing/TestQuestionPassing.tsx';
+import {
+    useTestPassingQuestionController
+} from '@/hooks/test/useTestPassingQuestionPageController.ts';
 
 
 export type TestPassingByIdContainerProps = {
