@@ -1,89 +1,100 @@
 .container {
-    border: 1px solid var(--border-color-invisible);
-    background: var(--button-background-second);
-    color: var(--text-color-main);
-    border-radius: var(--offset-small);
-    padding: var(--offset-medium);
-    font-size: 16px;
-    transition: var(--transition-fast);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--offset-small);
-    pointer-events: none;
-    height: var(--height-medium);
+    border          : 1px solid var(--border-color-invisible);
+    background      : var(--button-background-second);
+    color           : var(--text-color-main);
+    border-radius   : var(--offset-small);
+    padding         : var(--offset-medium);
+    font-size       : 16px;
+    transition      : var(--transition-fast);
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    gap             : var(--offset-small);
+    pointer-events  : none;
+    height          : var(--height-medium);
 
     :global {
         .loading {
-            animation: rotate360 1s infinite ease-in-out;
+            animation : rotate360 1s infinite ease-in-out;
         }
     }
 
     &.quad {
-        max-width: var(--height-medium);
-        min-width: var(--height-medium);
-        max-height: var(--height-medium);
-        min-height: var(--height-medium);
+        max-width  : var(--height-medium);
+        min-width  : var(--height-medium);
+        max-height : var(--height-medium);
+        min-height : var(--height-medium);
     }
 
     &.block {
-        width: 100%;
-        justify-content: start;
+        width           : 100%;
+        justify-content : start;
     }
 
     & > span {
-        display: flex;
-        align-items: center;
+        display     : flex;
+        align-items : center;
     }
 
     &:not(.disabled) {
         &.clickable {
-            pointer-events: auto;
-            cursor: pointer;
+            pointer-events : auto;
+            cursor         : pointer;
 
             &:hover,
             &.hover {
-                border: 1px solid var(--color-gold);
-                background: var(--button-background-second-hover);
-                box-shadow: 0 0 10px 0 var(--color-blue-transparent)
+                border     : 1px solid var(--color-gold);
+                background : var(--button-background-second-hover);
+                box-shadow : 0 0 10px 0 var(--color-blue-transparent)
             }
 
             &.hover {
                 &:hover {
-                    box-shadow: 0 0 20px 0 var(--color-gold-transparent);
+                    box-shadow : 0 0 20px 0 var(--color-gold-transparent);
+                }
+            }
+
+            &.simple {
+                border     : 1px solid transparent;
+                color      : var(--text-color-invisible);
+                background : transparent;
+                box-shadow : none;
+
+                &:hover {
+                    color : var(--text-color-main);
                 }
             }
 
             &.selected {
-                pointer-events: none;
-                border: 1px solid var(--button-background-main-hover);
-                background: var(--button-background-main-hover);
-                color: var(--text-color-invert);
-                box-shadow: 0 0 30px 0 var(--button-background-main-hover-shadow)
+                pointer-events : none;
+                border         : 1px solid var(--button-background-main-hover);
+                background     : var(--button-background-main-hover);
+                color          : var(--text-color-invert);
+                box-shadow     : 0 0 30px 0 var(--button-background-main-hover-shadow)
             }
 
             &.main {
-                border: 1px solid var(--button-background-main);
-                background: var(--button-background-main);
-                box-shadow: 0 0 20px 0 var(--button-background-main-shadow);
+                border     : 1px solid var(--button-background-main);
+                background : var(--button-background-main);
+                box-shadow : 0 0 20px 0 var(--button-background-main-shadow);
 
                 &:hover {
-                    border: 1px solid var(--button-background-main-hover);
-                    background: var(--button-background-main-hover);
-                    color: var(--text-color-invert);
-                    box-shadow: 0 0 30px 0 var(--button-background-main-hover-shadow)
+                    border     : 1px solid var(--button-background-main-hover);
+                    background : var(--button-background-main-hover);
+                    color      : var(--text-color-invert);
+                    box-shadow : 0 0 30px 0 var(--button-background-main-hover-shadow)
                 }
             }
 
             &.danger {
-                border: 1px solid var(--button-background-danger);
-                background: var(--button-background-danger);
-                box-shadow: 0 0 20px 0 var(--button-background-danger-shadow);
+                border     : 1px solid var(--button-background-danger);
+                background : var(--button-background-danger);
+                box-shadow : 0 0 20px 0 var(--button-background-danger-shadow);
 
                 &:hover {
-                    border: 1px solid var(--button-background-danger-hover);
-                    background: var(--button-background-danger-hover);
-                    box-shadow: 0 0 30px 0 var(--button-background-danger-hover-shadow);
+                    border     : 1px solid var(--button-background-danger-hover);
+                    background : var(--button-background-danger-hover);
+                    box-shadow : 0 0 30px 0 var(--button-background-danger-hover-shadow);
                 }
             }
         }
@@ -91,11 +102,22 @@
 
 
     &.disabled {
-        pointer-events: none;
-        cursor: none;
-        border: 1px solid var(--border-color-invisible);
-        background: var(--button-background-second);
-        color: var(--text-color-invisible);
-        box-shadow: 0 0 0 0 var(--color-gray-transparent);
+        pointer-events : none;
+        cursor         : none;
+        color          : var(--text-color-invisible);
+
+        &:not(.simple) {
+            border     : 1px solid var(--border-color-invisible);
+            background : var(--button-background-second);
+            box-shadow : 0 0 0 0 var(--color-gray-transparent);
+        }
+
+        &.simple {
+            opacity    : .6;
+            border     : 1px solid transparent;
+            color      : var(--text-color-invisible);
+            background : transparent;
+            box-shadow : none;
+        }
     }
 }

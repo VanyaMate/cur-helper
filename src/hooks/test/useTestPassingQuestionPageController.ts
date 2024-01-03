@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Test } from '@/types/test/test.types.ts';
 import {
     TestPassingQuestionHash,
-    useTestPassingQuestionHash,
 } from '@/hooks/test/useTestPassingQuestionHash.ts';
 import { useMemo } from 'react';
 
 
-export interface ITestPassingQuestionController {
+export interface ITestPassingQuestionPageController {
     next (): void;
 
     prev (): void;
@@ -14,7 +14,7 @@ export interface ITestPassingQuestionController {
     set (questionNumber: number): void;
 }
 
-export const useTestPassingQuestionController = function (hash: TestPassingQuestionHash): ITestPassingQuestionController {
+export const useTestPassingQuestionPageController = function (test: Test | null, hash: TestPassingQuestionHash) {
     const navigate             = useNavigate();
     const { pathname, search } = useLocation();
 

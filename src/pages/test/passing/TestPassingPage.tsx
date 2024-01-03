@@ -4,10 +4,7 @@ import TestPassingByIdContainer
     from '@/containers/test/TestPassingByIdContainer/TestPassingByIdContainer.tsx';
 
 
-export type TestPassingPageProps = {}
-
-const TestPassingPage: React.FC<TestPassingPageProps> = (props) => {
-    const {}               = props;
+const TestPassingPage: React.FC = () => {
     const [ searchParams ] = useSearchParams();
 
     return (

@@ -4,7 +4,12 @@ import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type ButtonType =
-    'default' | 'main' | 'danger' | 'selected' | 'hover';
+    'default'
+    | 'main'
+    | 'danger'
+    | 'selected'
+    | 'hover'
+    | 'simple';
 
 export type ButtonProps = {
     prefix?: React.ReactNode | string;
@@ -42,6 +47,7 @@ const Button: React.FC<ButtonProps> = (props) => {
                 styleType === 'danger' && css.danger,
                 styleType === 'selected' && css.selected,
                 styleType === 'hover' && css.hover,
+                styleType === 'simple' && css.simple,
                 disabled && css.disabled,
                 quad && css.quad,
             ) }

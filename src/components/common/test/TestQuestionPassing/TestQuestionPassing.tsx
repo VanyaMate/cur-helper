@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { TestQuestion } from '@/types/test/test.types.ts';
 import Section from '@/components/ui/container/box/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
@@ -20,6 +20,10 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
     const { question, onSelect }    = props;
     const [ selected, setSelected ] = useState<string>('');
     const [ process, setProcess ]   = useState<boolean>(false);
+
+    useEffect(() => {
+        setSelected('');
+    }, [ question ]);
 
     const disabledSelectButton = useMemo(() => {
         if (process) return true;
@@ -60,7 +64,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                         process
                         ? 'default'
                         : (selected !== question.answerId)
-                          ? 'hover'
+                          ? 'main'
                           : 'default'
                     }
                     disabled={ disabledSelectButton }
@@ -74,14 +78,6 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                     onClick={ onAcceptClick }
                 >
                     Выбрать
-                </Button>
-                <Button
-                    postfix={
-                        <span
-                            className={ 'material-symbols-outlined' }>arrow_forward</span>
-                    }
-                >
-                    Дальше
                 </Button>
             </SpaceBetween>
         </Section>

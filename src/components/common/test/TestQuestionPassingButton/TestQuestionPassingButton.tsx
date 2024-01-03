@@ -24,8 +24,8 @@ const TestQuestionPassingButton: React.FC<TestQuestionPassingButtonProps> = (pro
     return (
         <Button
             block
-            styleType={ selected ? 'hover' : selectedAnswer ? 'selected'
-                                                            : 'default' }
+            styleType={ selectedAnswer ? 'selected' : selected ? 'hover'
+                                                               : 'default' }
             onClick={ onAcceptClick }
             disabled={ process && !selected }
         >
