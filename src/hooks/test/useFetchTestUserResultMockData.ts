@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Test, TestUser, TestUserResult } from '@/types/test/test.types.ts';
+import { TestUser, TestUserResult } from '@/types/test/test.types.ts';
 import { User } from '@/types/user/user.types.ts';
 import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
 

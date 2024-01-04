@@ -2,10 +2,15 @@ import { User } from '@/types/user/user.types.ts';
 
 
 export type TestStatus =
-    'not-started' | 'process' | 'finish';
+    'not-started'
+    | 'process'
+    | 'finish';
 
 export type TestQuestionResult =
-    'error' | 'right' | 'selected' | 'empty';
+    'error'
+    | 'right'
+    | 'selected'
+    | 'empty';
 
 export type TestAnswer = {
     id: string;
@@ -26,9 +31,11 @@ export type TestQuestion = {
     answers: TestAnswer[];
 }
 
-export type TestUserQuestion = TestQuestion & {
-    result: TestQuestionUserResult;
-}
+export type TestUserQuestion =
+    Omit<TestQuestion, 'answerId'>
+    & {
+        result: TestQuestionUserResult;
+    }
 
 export type TestTheme = {
     id: string;
@@ -37,7 +44,10 @@ export type TestTheme = {
 }
 
 export type TestResult =
-    'not-started' | 'unsatisfactory' | 'satisfactorily' | 'perfect';
+    'not-started'
+    | 'unsatisfactory'
+    | 'satisfactorily'
+    | 'perfect';
 
 export type Test = {
     id: string;
@@ -46,9 +56,11 @@ export type Test = {
     questions: TestQuestion[];
 }
 
-export type TestUser = Omit<Test, 'questions'> & {
-    questions: TestUserQuestion[];
-}
+export type TestUser =
+    Omit<Test, 'questions'>
+    & {
+        questions: TestUserQuestion[];
+    }
 
 export type TestUserResult = {
     test: TestUser;
