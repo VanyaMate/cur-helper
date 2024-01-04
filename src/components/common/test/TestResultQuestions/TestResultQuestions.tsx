@@ -7,11 +7,11 @@ import Section from '@/components/ui/container/box/Section.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
-import { TestUserQuestion } from '@/types/test/test.types.ts';
+import { TestQuestion } from '@/types/test/test.types.ts';
 
 
 export type TestResultQuestionsProps = {
-    questions: TestUserQuestion[];
+    questions: TestQuestion[];
 }
 
 const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {

@@ -9,6 +9,7 @@ import TestQuestionPassingButton
 import SpaceBetween
     from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type TestQuestionPassingProps = {
@@ -43,22 +44,24 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
 
     return (
         <Section>
-            <Title>{ question.title }</Title>
-            <P>{ question.description }</P>
-            <OrderedList
-                title={ 'Варианты' }
-                list={ question.answers.map((answer) => (
-                    <TestQuestionPassingButton
-                        key={ question.id + answer.id }
-                        answer={ answer }
-                        selected={ answer.id === selected }
-                        selectedAnswer={ answer.id === question.result.answerId }
-                        onSelect={ onSelectClick }
-                        process={ process }
-                    />
-                )) }
-            />
-            <SpaceBetween>
+            <Section size={ 'medium' } type={ 'div' }>
+                <Title>{ question.title }</Title>
+                <P>{ question.description }</P>
+                <OrderedList
+                    title={ 'Варианты' }
+                    list={ question.answers.map((answer) => (
+                        <TestQuestionPassingButton
+                            key={ question.id + answer.id }
+                            answer={ answer }
+                            selected={ answer.id === selected }
+                            selectedAnswer={ answer.id === question.result.answerId }
+                            onSelect={ onSelectClick }
+                            process={ process }
+                        />
+                    )) }
+                />
+            </Section>
+            <SpaceBetween type={ 'div' }>
                 <Button
                     styleType={
                         process
@@ -70,10 +73,8 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                     disabled={ disabledSelectButton }
                     prefix={
                         (process)
-                        ? <span
-                            className={ 'material-symbols-outlined loading' }>cached</span>
-                        : <span
-                            className={ 'material-symbols-outlined' }>check</span>
+                        ? <IconM className={ 'loading' }>cached</IconM>
+                        : <IconM>check</IconM>
                     }
                     onClick={ onAcceptClick }
                 >
