@@ -18,6 +18,7 @@ import { useTestController } from '@/hooks/test/useTestController.ts';
 import TestQuestionPassing
     from '@/components/common/test/TestQuestionPassing/TestQuestionPassing.tsx';
 import { TestQuestion } from '@/types/test/test.types.ts';
+import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type TestPassingByIdContainerProps = {
@@ -59,7 +60,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                     answers={ hash.current - 1 }
                 />
                 <Button quad>
-                    <span className="material-symbols-outlined">menu</span>
+                    <IconM>menu</IconM>
                 </Button>
             </SpaceBetween>
             <TestQuestionPassing
@@ -70,20 +71,14 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                 <Button
                     styleType={ 'simple' }
                     disabled={ hash.current === 1 }
-                    prefix={
-                        <span
-                            className={ 'material-symbols-outlined' }>arrow_back</span>
-                    }
+                    prefix={ <IconM>arrow_back</IconM> }
                     onClick={ prev }
                 >
                     Назад
                 </Button>
                 <Button
                     styleType={ questionsAmount === hash.current ? 'default' : 'simple' }
-                    postfix={
-                        <span
-                            className={ 'material-symbols-outlined' }>arrow_forward</span>
-                    }
+                    postfix={ <IconM>arrow_forward</IconM> }
                     onClick={ next }
                 >
                     { questionsAmount === hash.current ? 'Закончить' : 'Вперед' }
