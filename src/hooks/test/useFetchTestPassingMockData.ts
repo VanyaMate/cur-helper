@@ -25,7 +25,10 @@ export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
                         id         : '1',
                         title      : 'Правильно ли ответил? 1',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '1',
+                        result     : {
+                            answerId: '1',
+                            result  : 'selected',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -62,7 +65,10 @@ export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
                         id         : '2',
                         title      : 'Правильно ли ответил? 2',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '3',
+                        result     : {
+                            answerId: '3',
+                            result  : 'selected',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -89,7 +95,10 @@ export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
                         id         : '3',
                         title      : 'Правильно ли ответил? 3',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '',
+                        result     : {
+                            answerId: '',
+                            result  : 'empty',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -116,7 +125,10 @@ export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
                         id         : '4',
                         title      : 'Правильно ли ответил? 4',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '2',
+                        result     : {
+                            answerId: '',
+                            result  : 'empty',
+                        },
                         answers    : [
                             {
                                 id  : '1',
@@ -143,7 +155,10 @@ export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
                         id         : '5',
                         title      : 'Правильно ли ответил? 5',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
-                        answerId   : '',
+                        result     : {
+                            answerId: '',
+                            result  : 'empty',
+                        },
                         answers    : [
                             {
                                 id  : '1',

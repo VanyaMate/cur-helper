@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { TestUser, TestUserResult } from '@/types/test/test.types.ts';
+import { Test, TestUserResult } from '@/types/test/test.types.ts';
 import { User } from '@/types/user/user.types.ts';
 import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
 
@@ -22,7 +22,7 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
                 login: 'VanyaMate',
                 info : {},
             };
-            const test: TestUser                 = {
+            const test: Test                     = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',

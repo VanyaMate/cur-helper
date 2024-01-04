@@ -40,7 +40,8 @@ export const useTestController = function (testId: string): ITestController {
                 if (test?.questions) {
                     const question: TestQuestion | undefined = test.questions.find((question) => question.id === questionId);
                     if (question) {
-                        question.answerId = answerId;
+                        question.result.answerId = answerId;
+                        question.result.result   = 'selected';
                         setTest({ ...test });
                     }
                 }

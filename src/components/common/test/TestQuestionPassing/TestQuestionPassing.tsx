@@ -28,7 +28,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
     const disabledSelectButton = useMemo(() => {
         if (process) return true;
         if (selected === '') return true;
-        return selected === question.answerId;
+        return selected === question.result.answerId;
     }, [ process, selected, question ]);
 
     const onSelectClick = useCallback((id: string) => {
@@ -52,7 +52,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                         key={ question.id + answer.id }
                         answer={ answer }
                         selected={ answer.id === selected }
-                        selectedAnswer={ answer.id === question.answerId }
+                        selectedAnswer={ answer.id === question.result.answerId }
                         onSelect={ onSelectClick }
                         process={ process }
                     />
@@ -63,7 +63,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                     styleType={
                         process
                         ? 'default'
-                        : (selected !== question.answerId)
+                        : (selected !== question.result.answerId)
                           ? 'main'
                           : 'default'
                     }
