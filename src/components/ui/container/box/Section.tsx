@@ -1,4 +1,4 @@
-import React, { JSX, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import css from '@/components/ui/container/box/box.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 

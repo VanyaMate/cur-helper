@@ -27,6 +27,7 @@ import {
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
+import { useNavigate } from 'react-router-dom';
 
 
 export type TestPassingByIdContainerProps = {
@@ -54,6 +55,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
     const completed                                  = useMemo(() => completedAmount === questionsAmount, [ completedAmount, questionsAmount ]);
     const popupQuestionListModal                     = useWindowPopupController();
     const popupFinishModal                           = useWindowPopupController();
+    const navigate                                   = useNavigate();
 
     if (loading) {
         return 'loading..';
@@ -107,6 +109,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                         <Button
                             styleType={ 'danger' }
                             onClick={ () => {
+                                navigate('/test/result/?id=' + id);
                             } }
                             postfix={ <IconM>arrow_forward</IconM> }
                         >Закончить</Button>

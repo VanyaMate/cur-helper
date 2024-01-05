@@ -22,7 +22,7 @@ const Pages: React.FC<PagesProps> = (props) => {
             <Route path={ '/*' } element={ <MobilePageLayout/> }>
                 <Route path={ 'buklet' } element={ <BukletPage/> }/>
                 <Route path={ 'test/*' }>
-                    <Route path={ 'pass/*' } element={ <TestPassingPage/> }/>
+                    <Route path={ 'pass' } element={ <TestPassingPage/> }/>
                     <Route path={ 'result' } element={ <TestResultPage/> }/>
                     <Route path={ ':themeId' }>
                         <Route path={ ':testId' } element={ <TestItemPage/> }/>

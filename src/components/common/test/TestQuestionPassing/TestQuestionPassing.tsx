@@ -47,19 +47,21 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
             <Section size={ 'medium' } type={ 'div' }>
                 <Title>{ question.title }</Title>
                 <P>{ question.description }</P>
-                <OrderedList
-                    title={ 'Варианты' }
-                    list={ question.answers.map((answer) => (
-                        <TestQuestionPassingButton
-                            key={ question.id + answer.id }
-                            answer={ answer }
-                            selected={ answer.id === selected }
-                            selectedAnswer={ answer.id === question.result.answerId }
-                            onSelect={ onSelectClick }
-                            process={ process }
-                        />
-                    )) }
-                />
+                <Section type={ 'div' } item={ 'main' }>
+                    <OrderedList
+                        title={ 'Варианты' }
+                        list={ question.answers.map((answer) => (
+                            <TestQuestionPassingButton
+                                key={ question.id + answer.id }
+                                answer={ answer }
+                                selected={ answer.id === selected }
+                                selectedAnswer={ answer.id === question.result.answerId }
+                                onSelect={ onSelectClick }
+                                process={ process }
+                            />
+                        )) }
+                    />
+                </Section>
             </Section>
             <SpaceBetween type={ 'div' }>
                 <Button
