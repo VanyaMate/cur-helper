@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import TestResultByIdContainer
-    from '@/containers/test/TestResultByIdContainer/TestPassingByIdContainer.tsx';
+    from '@/containers/test/TestResultByIdContainer/TestResultByIdContainer.tsx';
 
 
 export type TestResultPageProps = {}

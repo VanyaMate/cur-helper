@@ -28,6 +28,8 @@ import {
 import Title from '@/components/ui/title/Title/Title.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import { useNavigate } from 'react-router-dom';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import { useTestCurrentQuestion } from '@/hooks/test/useTestCurrentQuestion.ts';
 
 
 export type TestPassingByIdContainerProps = {
@@ -37,25 +39,17 @@ export type TestPassingByIdContainerProps = {
 const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props) => {
     const { id }                                     = props;
     const { loading, test, select, questionsAmount } = useTestController(id);
-    // Получить текущую страницу
     const hash                                       = useTestPassingQuestionHash(test?.questions.length ?? 0);
-    // Констроллер для управления страницами
     const {
               next, set, prev,
           }                                          = useTestPassingQuestionPageController(test, hash);
-    // Получить текущий question и loading
-    const currentQuestion: TestQuestion | null       = useMemo(() => {
-        if (test) {
-            return test.questions[hash.current - 1] ?? test.questions[0];
-        } else {
-            return null;
-        }
-    }, [ test, hash.current ]);
+    const currentQuestion: TestQuestion | null       = useTestCurrentQuestion(test, hash.current - 1);
     const completedAmount                            = useTestCompletedQuestions(test?.questions ?? []);
     const completed                                  = useMemo(() => completedAmount === questionsAmount, [ completedAmount, questionsAmount ]);
     const popupQuestionListModal                     = useWindowPopupController();
     const popupFinishModal                           = useWindowPopupController();
     const navigate                                   = useNavigate();
+    const pageGetter                                 = usePageUrl();
 
     if (loading) {
         return 'loading..';
@@ -109,7 +103,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                         <Button
                             styleType={ completed ? 'main' : 'danger' }
                             onClick={ () => {
-                                navigate('/test/result/?id=' + id);
+                                navigate(pageGetter.testResult(id));
                             } }
                             postfix={ <IconM>arrow_forward</IconM> }
                         >Закончить</Button>

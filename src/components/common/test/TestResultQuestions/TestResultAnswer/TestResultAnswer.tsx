@@ -35,7 +35,6 @@ const TestResultAnswer: React.FC<TestResultAnswerProps> = (props) => {
             onClick={ clickHandler }
             className={ cn(
                 css.container,
-                onClick && css.clickable,
             ) }>
             { answer.body }
         </Button>

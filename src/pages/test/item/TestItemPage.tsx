@@ -10,7 +10,9 @@ import ListTitledItemWithUrl
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
-import { useWindowPopupController } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
+import {
+    useWindowPopupController,
+} from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
 import TestBriefing from '@/components/common/test/TestBriefing/TestBriefing.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import TestResultProgressbarCircle
@@ -18,15 +20,18 @@ import TestResultProgressbarCircle
 import TestResultProgressbarList
     from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
+import { TEST_ID, THEME_ID } from '@/constants/pages.ts';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type TestItemPageProps = {}
 
 const TestItemPage: React.FC<TestItemPageProps> = (props) => {
     const {}                  = props;
-    const { themeId, testId } = useParams<{ themeId: string, testId: string }>();
+    const { themeId, testId } = useParams<{ [THEME_ID]: string, [TEST_ID]: string }>();
     const popupController     = useWindowPopupController();
     const navigate            = useNavigate();
+    const pageGetter          = usePageUrl();
     const themes              = useMemo(() => {
         return [
             {
@@ -65,7 +70,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                     onStart={ async () => {
                         return new Promise(() => {
                             setTimeout(() => {
-                                navigate('/test/pass?id=' + Math.random());
+                                navigate(pageGetter.testPassing(Math.random().toString()));
                             }, 1000);
                         });
                     } }
@@ -78,10 +83,11 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 items={
                     [
                         {
-                            label: <span className="material-symbols-outlined">home</span>,
-                            url  : '/test',
+                            label: <span
+                                className="material-symbols-outlined">home</span>,
+                            url  : pageGetter.test(),
                         },
-                        { label: 'Общие правила', url: `/test/${ themeId }` },
+                        { label: 'Общие правила', url: pageGetter.test(themeId) },
                     ]
                 }
             />
@@ -90,7 +96,8 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 status={ 'unsatisfactory' }
                 date={ Date.now() - 827200 }
                 extra={
-                    <Button styleType={ 'main' } onClick={ popupController.open }>Начать</Button>
+                    <Button styleType={ 'main' }
+                            onClick={ popupController.open }>Начать</Button>
                 }
             />
             <Section item={ 'main' }>

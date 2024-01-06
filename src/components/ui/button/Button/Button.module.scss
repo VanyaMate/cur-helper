@@ -53,49 +53,49 @@
                     box-shadow : 0 0 20px 0 var(--color-gold-transparent);
                 }
             }
+        }
 
-            &.simple {
-                border     : 1px solid transparent;
-                color      : var(--text-color-invisible);
-                background : transparent;
-                box-shadow : none;
+        &.simple {
+            border     : 1px solid transparent;
+            color      : var(--text-color-invisible);
+            background : transparent;
+            box-shadow : none;
 
-                &:hover {
-                    color : var(--text-color-main);
-                }
+            &:hover {
+                color : var(--text-color-main);
             }
+        }
 
-            &.selected {
-                pointer-events : none;
-                border         : 1px solid var(--button-background-main-hover);
-                background     : var(--button-background-main-hover);
-                color          : var(--text-color-invert);
-                box-shadow     : 0 0 30px 0 var(--button-background-main-hover-shadow)
+        &.selected {
+            pointer-events : none;
+            border         : 1px solid var(--button-background-main-hover);
+            background     : var(--button-background-main-hover);
+            color          : var(--text-color-invert);
+            box-shadow     : 0 0 30px 0 var(--button-background-main-hover-shadow)
+        }
+
+        &.main {
+            border     : 1px solid var(--button-background-main);
+            background : var(--button-background-main);
+            box-shadow : 0 0 20px 0 var(--button-background-main-shadow);
+
+            &:hover {
+                border     : 1px solid var(--button-background-main-hover);
+                background : var(--button-background-main-hover);
+                color      : var(--text-color-invert);
+                box-shadow : 0 0 30px 0 var(--button-background-main-hover-shadow)
             }
+        }
 
-            &.main {
-                border     : 1px solid var(--button-background-main);
-                background : var(--button-background-main);
-                box-shadow : 0 0 20px 0 var(--button-background-main-shadow);
+        &.danger {
+            border     : 1px solid var(--button-background-danger);
+            background : var(--button-background-danger);
+            box-shadow : 0 0 20px 0 var(--button-background-danger-shadow);
 
-                &:hover {
-                    border     : 1px solid var(--button-background-main-hover);
-                    background : var(--button-background-main-hover);
-                    color      : var(--text-color-invert);
-                    box-shadow : 0 0 30px 0 var(--button-background-main-hover-shadow)
-                }
-            }
-
-            &.danger {
-                border     : 1px solid var(--button-background-danger);
-                background : var(--button-background-danger);
-                box-shadow : 0 0 20px 0 var(--button-background-danger-shadow);
-
-                &:hover {
-                    border     : 1px solid var(--button-background-danger-hover);
-                    background : var(--button-background-danger-hover);
-                    box-shadow : 0 0 30px 0 var(--button-background-danger-hover-shadow);
-                }
+            &:hover {
+                border     : 1px solid var(--button-background-danger-hover);
+                background : var(--button-background-danger-hover);
+                box-shadow : 0 0 30px 0 var(--button-background-danger-hover-shadow);
             }
         }
     }

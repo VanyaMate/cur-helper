@@ -7,6 +7,7 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Section from '@/components/ui/container/box/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type GuidPageProps = {}
@@ -18,12 +19,14 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
         onChange    : (value) => console.log('value', value),
         debounce    : 500,
     });
+    const pageGetter          = usePageUrl();
 
 
     return (
         <Section size={ 'large' }>
             <Title size={ 'large' }>Обучающие материалы</Title>
-            <P>Перед вами учебник по работе с гражданами, начиная с основ, включающих в себя много
+            <P>Перед вами учебник по работе с гражданами, начиная с основ, включающих в
+                себя много
                 тонкостей и фишек</P>
             <aside style={ { display: 'flex', gap: 5 } }>
                 <Input
@@ -37,12 +40,12 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
             <OrderedList
                 prefix={ '1' }
                 title={
-                    <Link to={ `/guid/1` }>Общие правила</Link>
+                    <Link to={ pageGetter.guid('1') }>Общие правила</Link>
                 }
                 list={ [
-                    <Link to={ `/guid/1/1` }>Законы</Link>,
-                    <Link to={ `/guid/1/2` }>Правила</Link>,
-                    <Link to={ `/guid/1/3` }>Этикет</Link>,
+                    <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
+                    <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
+                    <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                 ] }
             />
             <OrderedList

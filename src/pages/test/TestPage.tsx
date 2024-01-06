@@ -7,6 +7,7 @@ import { useInput } from '@/hooks/ui/input/useInput.ts';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import TestItemLink from '@/components/common/test/TestItemLink/TestItemLink.tsx';
 import { useNavigate } from 'react-router-dom';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type TestPageProps = {}
@@ -19,10 +20,10 @@ const TestPage: React.FC<TestPageProps> = (props) => {
         debounce    : 500,
     });
     const navigate            = useNavigate();
+    const pageGetter          = usePageUrl();
     const navigateCallback    = useCallback((id: string) => {
-        const [ themeId, testId ] = id.split('-');
-        navigate(`/test/${ themeId }/${ testId }`);
-    }, []);
+        navigate(pageGetter.test(id));
+    }, [ pageGetter, navigate ]);
 
     return (
         <Section size={ 'large' }>

@@ -12,12 +12,11 @@ import { TestQuestion } from '@/types/test/test.types.ts';
 
 export type TestResultQuestionsProps = {
     questions: TestQuestion[];
+    testUrlGetter: (id: string) => string;
 }
 
 const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
     const { questions } = props;
-
-    console.log('questions', questions);
 
     return (
         <Collapse title={ `Вопросы (${ questions.length })` } opened>
@@ -42,9 +41,6 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                             ? question.result.result
                                             : 'empty'
                                         }
-                                        onClick={ () => {
-                                            console.log('Show modal description');
-                                        } }
                                     />
                                 )) }
                             />
@@ -62,7 +58,7 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                                 target={ '_blank' }
                                                 to={ `/guid/${ theme.id }` }
                                             >
-                                                { theme.title }
+                                                { theme.id } { theme.title }
                                             </Link>
                                         ))
                                     }
