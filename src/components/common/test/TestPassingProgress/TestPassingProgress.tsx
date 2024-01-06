@@ -12,7 +12,7 @@ export type TestPassingProgressProps = {
 
 const TestPassingProgress: React.FC<TestPassingProgressProps> = (props) => {
     const { questions, answers } = props;
-    const percent                = useMathPercent(answers, questions);
+    const percent                = useMathPercent(answers, questions - 1);
 
     return (
         <div className={ cn(css.container, percent > 50 && css.halfFilled) }>

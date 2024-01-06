@@ -1,28 +1,30 @@
 .container {
-    display: flex;
+    display : flex;
 
     .item {
-        list-style-type: none;
+        display         : flex;
+        align-items     : center;
+        list-style-type : none;
 
         &:first-child {
             .link {
-                color: var(--text-color-invisible);
+                color : var(--text-color-invisible);
             }
         }
 
         &:not(:first-child) {
-            display: flex;
-            align-items: center;
-            padding-left: var(--offset-small);
+            display      : flex;
+            align-items  : center;
+            padding-left : var(--offset-small);
 
             &:before {
-                content: "\e941";
-                user-select: none;
-                margin-right: var(--offset-medium);
-                font-family: 'Material Symbols Outlined';
-                font-size: 16px;
-                color: var(--text-color-invisible) !important;
-                text-decoration: none;
+                content         : "\e941";
+                user-select     : none;
+                margin-right    : var(--offset-medium);
+                font-family     : 'Material Symbols Outlined';
+                font-size       : 16px;
+                color           : var(--text-color-invisible) !important;
+                text-decoration : none;
             }
         }
     }

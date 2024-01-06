@@ -145,7 +145,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                         Назад
                     </Button>
                     <Button
-                        styleType={ (completed || currentQuestion.result.result !== 'empty')
+                        styleType={ (completed || (currentQuestion.result.result !== 'empty' && questionsAmount !== hash.current))
                                     ? 'hover' : questionsAmount === hash.current
                                                 ? 'danger' : 'simple' }
                         postfix={ <IconM>arrow_forward</IconM> }

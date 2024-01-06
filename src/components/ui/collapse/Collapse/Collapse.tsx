@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import css from './Collapse.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section, { SectionItem, SectionType } from '@/components/ui/container/box/Section.tsx';
+import Section, { SectionItem } from '@/components/ui/container/box/Section.tsx';
+import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type CollapseProps = {
@@ -18,24 +19,24 @@ const Collapse: React.FC<CollapseProps> = (props) => {
               title,
               children,
               item,
-          }                                   = props;
-    const [ open, setOpen ]                   = useState<boolean>(opened ?? false);
-    const toggle                              = useCallback(() => {
+          }                 = props;
+    const [ open, setOpen ] = useState<boolean>(opened ?? false);
+    const toggle            = useCallback(() => {
         setOpen((prev) => !prev);
     }, [ open ]);
-/*    const ref                                 = useRef<HTMLDivElement | null>(null);
-    const [ contentHeight, setContentHeight ] = useState<number>(0);
+    /*    const ref                                 = useRef<HTMLDivElement | null>(null);
+     const [ contentHeight, setContentHeight ] = useState<number>(0);
 
-    useEffect(() => {
-        if (ref.current) {
-            console.log('ref.current', ref.current?.className);
-            const child: HTMLElement | null = ref.current?.querySelector('article');
-            console.log('child', child?.textContent);
-            setContentHeight(ref.current?.querySelector('article')?.scrollHeight ?? 0);
-        } else {
-            setContentHeight(0);
-        }
-    }, [ ref.current ]);*/
+     useEffect(() => {
+     if (ref.current) {
+     console.log('ref.current', ref.current?.className);
+     const child: HTMLElement | null = ref.current?.querySelector('article');
+     console.log('child', child?.textContent);
+     setContentHeight(ref.current?.querySelector('article')?.scrollHeight ?? 0);
+     } else {
+     setContentHeight(0);
+     }
+     }, [ ref.current ]);*/
 
     return (
         <Section
@@ -50,7 +51,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
                     <span className={ css.text }>
                     { title }
                     </span>
-                    <span className={ cn('material-symbols-outlined', css.icon) }>expand_more</span>
+                    <IconM className={ css.icon }>expand_more</IconM>
                 </Title>
             }
             <div
