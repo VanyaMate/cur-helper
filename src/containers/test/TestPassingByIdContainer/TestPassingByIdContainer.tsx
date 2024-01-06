@@ -145,8 +145,9 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                         Назад
                     </Button>
                     <Button
-                        styleType={ completed ? 'hover' : questionsAmount === hash.current
-                                                          ? 'danger' : 'simple' }
+                        styleType={ (completed || currentQuestion.result.result !== 'empty')
+                                    ? 'hover' : questionsAmount === hash.current
+                                                ? 'danger' : 'simple' }
                         postfix={ <IconM>arrow_forward</IconM> }
                         onClick={ (completed || questionsAmount === hash.current)
                                   ? popupFinishModal.open : next }

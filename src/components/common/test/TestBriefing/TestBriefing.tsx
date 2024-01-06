@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Section from '@/components/ui/container/box/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
@@ -8,6 +8,7 @@ import ListTitledItemWithUrl
     from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import css from './TestBriefieg.module.scss';
+import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type ThemePreviewInfo = {
@@ -27,6 +28,11 @@ export type TestBriefingProps = {
 
 const TestBriefing: React.FC<TestBriefingProps> = (props) => {
     const { title, themes, timeToPass, description, onClose, onStart } = props;
+    const [ loading, setLoading ]                                      = useState<boolean>(false);
+    const onStartCallback                                              = useCallback(() => {
+        setLoading(true);
+        onStart().finally(() => setLoading(false));
+    }, [ onStart, loading ]);
 
     return (
         <Section
@@ -51,17 +57,19 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                         </P>
                     </div>
                     <Button
-                        onClick={ onStart }
+                        onClick={ onStartCallback }
                         styleType={ 'main' }
-                        postfix={
-                            <span className="material-symbols-outlined">arrow_forward</span>
+                        postfix={ loading ?
+                                  <IconM className={ 'loading' }>cached</IconM> :
+                                  <IconM>arrow_forward</IconM>
                         }
                     >
                         Начать
                     </Button>
                 </footer>
             </div>
-            <Collapse item={ 'default' } opened={ true } title={ 'Темы затрагиваемые в тесте' }>
+            <Collapse item={ 'default' } opened={ true }
+                      title={ 'Темы затрагиваемые в тесте' }>
                 <OrderedList
                     list={
                         themes.map((theme) => (
