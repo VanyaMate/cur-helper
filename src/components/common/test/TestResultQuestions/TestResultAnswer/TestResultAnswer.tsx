@@ -16,6 +16,12 @@ const TestResultAnswer: React.FC<TestResultAnswerProps> = (props) => {
               answer, result, onClick,
           } = props;
 
+    console.log('asnwer', answer, result);
+
+    console.log('style type', result === 'error' ? 'danger' :
+                              result === 'selected' ? 'selected' :
+                              result === 'right' ? 'main' : 'default');
+
     const clickHandler = useMemo(() => {
         if (onClick) {
             return () => onClick(answer.id);

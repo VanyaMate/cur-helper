@@ -64,6 +64,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                 </Section>
             </Section>
             <SpaceBetween type={ 'div' }>
+                <div></div>
                 <Button
                     styleType={
                         process

@@ -107,7 +107,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                             prefix={ <IconM>arrow_back</IconM> }
                         >Отмена</Button>
                         <Button
-                            styleType={ 'danger' }
+                            styleType={ completed ? 'main' : 'danger' }
                             onClick={ () => {
                                 navigate('/test/result/?id=' + id);
                             } }

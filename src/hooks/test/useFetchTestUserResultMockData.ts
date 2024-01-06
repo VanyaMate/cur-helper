@@ -162,8 +162,8 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
                         title      : 'Правильно ли ответил?',
                         description: `Дан текст: "Тест направленный на проверку знаний о законах и их применении", где ошибка?`,
                         result     : {
-                            answerId: '3',
-                            result  : 'right',
+                            answerId: '',
+                            result  : 'empty',
                         },
                         answers    : [
                             {

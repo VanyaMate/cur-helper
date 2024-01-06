@@ -17,6 +17,8 @@ export type TestResultQuestionsProps = {
 const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
     const { questions } = props;
 
+    console.log('questions', questions);
+
     return (
         <Collapse title={ `Вопросы (${ questions.length })` } opened>
             <OrderedList
@@ -40,10 +42,17 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                             ? question.result.result
                                             : 'empty'
                                         }
+                                        onClick={ () => {
+                                            console.log('Show modal description');
+                                        } }
                                     />
                                 )) }
                             />
-                            <Collapse opened={ false } title={ 'Темы' } item={ 'default' }>
+                            <Collapse
+                                opened={ false }
+                                title={ 'Темы' }
+                                item={ 'default' }
+                            >
                                 <Section>
                                     {
                                         question.themes.map((theme) => (
