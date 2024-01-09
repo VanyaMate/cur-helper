@@ -2,10 +2,15 @@ import { User } from '@/types/user/user.types.ts';
 
 
 export type TestStatus =
-    'not-started' | 'process' | 'finish';
+    'not-started'
+    | 'process'
+    | 'finish';
 
 export type TestQuestionResult =
-    'error' | 'right' | 'selected' | 'empty';
+    'error'
+    | 'right'
+    | 'selected'
+    | 'empty';
 
 export type TestAnswer = {
     id: string;
@@ -30,10 +35,14 @@ export type TestTheme = {
     id: string;
     title: string;
     addition: string;
+    url?: string;
 }
 
 export type TestResult =
-    'not-started' | 'unsatisfactory' | 'satisfactorily' | 'perfect';
+    'not-started'
+    | 'unsatisfactory'
+    | 'satisfactorily'
+    | 'perfect';
 
 export type Test = {
     id: string;

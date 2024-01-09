@@ -12,11 +12,11 @@ import { TestQuestion } from '@/types/test/test.types.ts';
 
 export type TestResultQuestionsProps = {
     questions: TestQuestion[];
-    testUrlGetter: (id: string) => string;
+    themeUrlGetter: (id: string) => string;
 }
 
 const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
-    const { questions } = props;
+    const { questions, themeUrlGetter } = props;
 
     return (
         <Collapse title={ `Вопросы (${ questions.length })` } opened>
@@ -56,9 +56,11 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                                 key={ theme.id }
                                                 size={ 'small' }
                                                 target={ '_blank' }
-                                                to={ `/guid/${ theme.id }` }
+                                                to={ theme.url ? theme.url
+                                                               : themeUrlGetter(theme.id) }
                                             >
-                                                { theme.id } { theme.title }
+                                                { theme.url ? ''
+                                                            : theme.id } { theme.title }
                                             </Link>
                                         ))
                                     }

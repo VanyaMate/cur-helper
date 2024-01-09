@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     useFetchTestUserResultMockData,
-} from '@/hooks/test/useFetchTestUserResultMockData.ts';
+} from '@/hooks/test/fetch/useFetchTestUserResultMockData.ts';
 import Section from '@/components/ui/container/box/Section.tsx';
 import TestResultQuestions
     from '@/components/common/test/TestResultQuestions/TestResultQuestions.tsx';
@@ -95,7 +95,7 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props)
             </Section>
             <TestResultQuestions
                 questions={ test.test.questions }
-                testUrlGetter={ pageGetter.test }
+                themeUrlGetter={ pageGetter.guid }
             />
         </Section>
     );

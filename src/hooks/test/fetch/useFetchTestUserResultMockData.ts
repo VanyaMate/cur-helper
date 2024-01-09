@@ -95,6 +95,12 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
                                 title   : 'Закон №72.00.1 Ведение групп',
                                 addition: 'Обновление за 2023 год',
                             },
+                            {
+                                id      : 'google.com',
+                                title   : 'Google',
+                                addition: '',
+                                url     : 'https://google.com',
+                            },
                         ],
                     },
                     {

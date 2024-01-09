@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import {
     useFetchTestPassingMockData,
-} from '@/hooks/test/useFetchTestPassingMockData.ts';
+} from '@/hooks/test/fetch/useFetchTestPassingMockData.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import {
     useTestPassingQuestionHash,
