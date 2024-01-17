@@ -18,9 +18,11 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
             }
 
             const user: User                     = {
-                id   : '1',
-                login: 'VanyaMate',
-                info : {},
+                id    : '1',
+                login : 'VanyaMate',
+                info  : {},
+                role  : 'admin',
+                avatar: '',
             };
             const test: Test                     = {
                 id         : '1-1',
