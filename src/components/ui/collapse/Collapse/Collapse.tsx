@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import css from './Collapse.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section, { SectionItem } from '@/components/ui/container/box/Section.tsx';
+import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 
 

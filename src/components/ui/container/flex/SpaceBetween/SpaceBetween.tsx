@@ -1,5 +1,5 @@
 import React from 'react';
-import Section, { SectionProps } from '@/components/ui/container/box/Section.tsx';
+import Section, { SectionProps } from '@/components/ui/container/Section/Section.tsx';
 import { cn } from '@vanyamate/helpers/react/classname';
 import css from './SpaceBetween.module.scss';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './WindowPopup.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 
 

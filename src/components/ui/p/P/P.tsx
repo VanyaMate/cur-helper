@@ -4,22 +4,32 @@ import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type PItem =
-    'invisible' | 'main' | 'danger' | 'primary' | 'second';
+    'invisible'
+    | 'main'
+    | 'danger'
+    | 'primary'
+    | 'second';
 
 export type PType =
-    'div' | 'p' | 'span';
+    'div'
+    | 'p'
+    | 'span';
 
-export type PProps = React.HTMLAttributes<HTMLParagraphElement> & {
-    item?: PItem;
-    type?: PType;
-};
+export type PProps =
+    React.HTMLAttributes<HTMLParagraphElement>
+    & {
+        item?: PItem;
+        type?: PType;
+        lines?: number;
+    };
 
 const P: React.FC<PProps> = (props) => {
-    const { className, item, type, ...other } = props;
-    const joinedClassName                     = useMemo(() => {
+    const { className, item, type, lines, style, ...other } = props;
+    const joinedClassName                                   = useMemo(() => {
         return cn(
             className,
             css.container,
+            !!lines && css.lines,
             item === 'invisible' && css.invisible,
             item === 'second' && css.second,
             item === 'main' && css.main,
@@ -28,17 +38,22 @@ const P: React.FC<PProps> = (props) => {
         );
     }, [ className, item ]);
 
+    const styles = useMemo(() => ({
+        ...style,
+        WebkitLineClamp: lines ?? '',
+    }), [ style, lines ]);
+
     if (type === 'div') {
         return (
-            <div className={ joinedClassName } { ...other }/>
+            <div className={ joinedClassName } { ...other } style={ styles }/>
         );
     } else if (type === 'span') {
         return (
-            <span className={ joinedClassName } { ...other }/>
+            <span className={ joinedClassName } { ...other } style={ styles }/>
         );
     } else {
         return (
-            <p className={ joinedClassName } { ...other }/>
+            <p className={ joinedClassName } { ...other } style={ styles }/>
         );
     }
 };

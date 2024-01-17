@@ -11,6 +11,8 @@ import BukletPage from '@/pages/buklet/BukletPage.tsx';
 import TestPassingPage from '@/pages/test/passing/TestPassingPage.tsx';
 import TestResultPage from '@/pages/test/result/TestResultPage.tsx';
 import {
+    ARTICLE_ID,
+    ARTICLE_PAGE,
     GUID_ID,
     GUID_PAGE,
     PROFILE_PAGE, PROFILE_SETTINGS_PAGE, TEST_ID,
@@ -18,6 +20,8 @@ import {
     TEST_PASSING_PAGE,
     TEST_RESULT_PAGE, THEME_ID,
 } from '@/constants/pages.ts';
+import ArticleItemPage from '@/pages/article/item/ArticleItemPage.tsx';
+import ArticlesPage from '@/pages/article/ArticlesPage.tsx';
 
 
 export type PagesProps = {}
@@ -49,6 +53,10 @@ const Pages: React.FC<PagesProps> = (props) => {
                         <Route path={ '*' } element={ <GuidPage/> }/>
                     </Route>
                     <Route path={ '*' } element={ <GuidPage/> }/>
+                </Route>
+                <Route path={ `${ ARTICLE_PAGE }/*` }>
+                    <Route path={ `:${ ARTICLE_ID }` } element={ <ArticleItemPage/> }/>
+                    <Route path={ '*' } element={ <ArticlesPage/> }/>
                 </Route>
                 <Route path={ '*' } element={ <HomePage/> }/>
             </Route>

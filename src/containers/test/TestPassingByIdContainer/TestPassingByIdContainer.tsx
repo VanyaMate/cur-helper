@@ -8,7 +8,7 @@ import {
 } from '@/hooks/test/useTestPassingQuestionHash.ts';
 import SpaceBetween
     from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import TestPassingProgress
     from '@/components/common/test/TestPassingProgress/TestPassingProgress.tsx';
 import {

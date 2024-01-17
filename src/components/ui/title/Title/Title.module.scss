@@ -1,40 +1,47 @@
 .container {
-    font-weight: bold;
-    color: var(--text-color-main);
+    font-weight : bold;
+    color       : var(--text-color-main);
 
     &.small {
-        font-size: 16px;
+        font-size : 16px;
 
         &.bordered {
-            padding-bottom: var(--offset-small);
+            padding-bottom : var(--offset-small);
         }
     }
 
     &.medium {
-        font-size: 20px;
+        font-size : 20px;
 
         &.bordered {
-            padding-bottom: var(--offset-medium);
+            padding-bottom : var(--offset-medium);
         }
     }
 
     &.large {
-        font-size: 24px;
+        font-size : 24px;
 
         &.bordered {
-            padding-bottom: var(--offset-large);
+            padding-bottom : var(--offset-large);
         }
     }
 
     &.extra_large {
-        font-size: 28px;
+        font-size : 28px;
 
         &.bordered {
-            padding-bottom: var(--offset-large);
+            padding-bottom : var(--offset-large);
         }
     }
 
     &.bordered {
-        border-bottom: 1px dashed var(--border-color-invisible);
+        border-bottom : 1px dashed var(--border-color-invisible);
+    }
+
+    &.lines {
+        display            : -webkit-box;
+        -webkit-box-orient : vertical;
+        text-overflow      : ellipsis;
+        overflow           : hidden;
     }
 }

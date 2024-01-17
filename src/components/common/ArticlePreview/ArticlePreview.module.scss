@@ -1,0 +1,26 @@
+.container {
+    max-height : 340px;
+    overflow   : hidden;
+    position   : relative;
+
+    & > * {
+        position : relative;
+        z-index  : 1;
+    }
+
+    .image {
+        max-height          : 140px;
+        min-height          : 140px;
+        border-radius       : var(--offset-medium);
+        background-size     : cover;
+        background-position : center;
+    }
+
+    .title {
+        font-size          : 18px;
+    }
+
+    .description {
+        font-size : 12px;
+    }
+}

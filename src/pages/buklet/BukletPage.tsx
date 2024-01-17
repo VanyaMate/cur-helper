@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';

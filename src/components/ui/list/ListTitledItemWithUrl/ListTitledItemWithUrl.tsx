@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import P from '@/components/ui/p/P/P.tsx';

@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './OrderedList.module.scss';
 import Title from '@/components/ui/title/Title/Title.tsx';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 
 
 export type OrderedListProps = {

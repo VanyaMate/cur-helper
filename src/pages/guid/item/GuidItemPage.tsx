@@ -4,7 +4,7 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import Footnote from '@/components/common/Footnote/Footnote.tsx';
 import P from '@/components/ui/p/P/P.tsx';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 
 

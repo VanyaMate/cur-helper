@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import css from '@/components/ui/container/box/box.module.scss';
+import css from '@/components/ui/container/Section/Section.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 
 

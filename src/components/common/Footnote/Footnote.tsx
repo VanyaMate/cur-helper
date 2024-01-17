@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Footnote.module.scss';
 import P from '@/components/ui/p/P/P.tsx';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 
 
 export type FootnoteType =

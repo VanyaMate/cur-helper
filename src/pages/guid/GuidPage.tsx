@@ -5,7 +5,7 @@ import Input from '@/components/ui/input/Input/Input.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import P from '@/components/ui/p/P/P.tsx';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 

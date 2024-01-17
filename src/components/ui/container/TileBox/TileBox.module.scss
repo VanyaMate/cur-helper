@@ -1,0 +1,17 @@
+.container {
+    display               : grid;
+    gap                   : var(--offset-small);
+    grid-template-columns : 1fr 1fr 1fr 1fr;
+
+    @media screen and (max-width : 700px) {
+        grid-template-columns : 1fr 1fr 1fr;
+    }
+
+    @media screen and (max-width : 500px) {
+        grid-template-columns : 1fr 1fr;
+    }
+
+    @media screen and (max-width : 370px) {
+        grid-template-columns : 1fr;
+    }
+}

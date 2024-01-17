@@ -2,7 +2,7 @@ import React from 'react';
 import {
     useFetchTestUserResultMockData,
 } from '@/hooks/test/fetch/useFetchTestUserResultMockData.ts';
-import Section from '@/components/ui/container/box/Section.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import TestResultQuestions
     from '@/components/common/test/TestResultQuestions/TestResultQuestions.tsx';
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';

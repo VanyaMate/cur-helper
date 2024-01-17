@@ -16,6 +16,8 @@ module.exports = {
                 allowConstantExport: true,
             },
         ],
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/ban-types": "off",
+        "no-empty-pattern": "off"
     },
 }
