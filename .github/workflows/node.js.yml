@@ -33,7 +33,6 @@ jobs:
           projectId: cur-helper
           channelId: live
       - name: notification
-        if: cancelled() == false
         uses: xinthink/action-telegram@v1.1
         with:
           botToken: ${{ secrets.TG_TOKEN_BOT }}
