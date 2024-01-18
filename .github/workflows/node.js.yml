@@ -38,3 +38,4 @@ jobs:
           botToken: ${{ secrets.TG_TOKEN_BOT }}
           chatId: ${{ secrets.TG_CHAT_ID }}
           jobStatus: ${{ job.status }}
+          skipSuccess: false
