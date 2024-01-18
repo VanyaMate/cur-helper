@@ -33,7 +33,7 @@ jobs:
           projectId: cur-helper
           channelId: live
       - name: My telegram notificator
-        uses: actions/vm-telegram-notification@v0.20
+        uses: VanyaMate/github-action-telegram-notification@v0.20
         with:
           success: ${{ job.status }}
           tg_bot_token: ${{ secrets.TG_TOKEN_BOT }}
