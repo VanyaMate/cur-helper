@@ -26,13 +26,18 @@ jobs:
       - run: npm run lint
       # add tests
       - run: npm run build
+      - name: Show Telegram secrets
+        run: |
+          echo "Telegram bot token: ${{ secrets.TG_TOKEN_BOT }}"
+          echo "Telegram chat ID: ${{ secrets.TG_CHAT_ID }}"
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CUR_HELPER }}"
           projectId: cur-helper
           channelId: live
-      - name: notification
+      - name: Telegram notification
         uses: xinthink/action-telegram@v1.1
         with:
           botToken: "${{ secrets.TG_TOKEN_BOT }}"
