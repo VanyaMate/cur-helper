@@ -1,19 +1,23 @@
 .container {
     &:not(.opened) {
         .content {
-            display: none;
+            display : none;
         }
 
         .title {
             .icon {
-                transform: rotate(0deg);
+                transform : rotate(0deg);
             }
         }
     }
 
     &.opened {
         & > .title {
-            box-shadow: 0 0 15px -10px var(--color-blue-transparent);
+            box-shadow : 0 0 15px -10px var(--color-blue-transparent);
+
+            &.item {
+                box-shadow : 0 0 15px -10px var(--background-item);
+            }
         }
     }
 
@@ -23,22 +27,30 @@
         }*/
 
     .title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: var(--background-item);
-        padding: var(--offset-medium);
-        border-radius: var(--offset-medium);
-        cursor: pointer;
-        transition: var(--transition-medium);
+        display         : flex;
+        justify-content : space-between;
+        align-items     : center;
+        background      : var(--background-item);
+        padding         : var(--offset-medium);
+        border-radius   : var(--offset-medium);
+        cursor          : pointer;
+        transition      : var(--transition-medium);
+
+        &.item {
+            background : var(--background-main);
+
+            &:hover {
+                box-shadow : 0 0 15px -5px var(--background-item);
+            }
+        }
 
         &:hover {
-            box-shadow: 0 0 15px -5px var(--color-blue-transparent);
+            box-shadow : 0 0 15px -5px var(--color-blue-transparent);
         }
 
         .icon {
-            transition: var(--transition-fast);
-            transform: rotate(180deg);
+            transition : var(--transition-fast);
+            transform  : rotate(180deg);
         }
     }
 }

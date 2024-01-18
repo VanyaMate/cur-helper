@@ -12,6 +12,16 @@
     transition      : var(--transition-fast);
     border          : 1px solid transparent;
 
+    &:hover:not(.active) {
+        .icon {
+            opacity : .6;
+        }
+
+        .label {
+            color : var(--text-color-second);
+        }
+    }
+
     &.active,
     &:active {
         .icon {

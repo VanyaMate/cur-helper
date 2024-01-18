@@ -47,7 +47,9 @@ const Collapse: React.FC<CollapseProps> = (props) => {
         >
             {
                 title &&
-                <Title size={ 'small' } className={ css.title } onClick={ toggle }>
+                <Title size={ 'small' }
+                       className={ cn(css.title, item === 'main' && css.item) }
+                       onClick={ toggle }>
                     <span className={ css.text }>
                     { title }
                     </span>

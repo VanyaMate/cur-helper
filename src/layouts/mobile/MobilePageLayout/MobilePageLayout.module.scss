@@ -25,12 +25,16 @@ $max_width     : 1000px;
         }
     }
 
+    /*    .header {
+            display       : flex;
+            align-items   : center;
+            background    : var(--background-second);
+            padding       : var(--offset-medium);
+            margin-bottom : var(--offset-large) !important;
+        }*/
+
     .header {
-        display       : flex;
-        align-items   : center;
-        background    : var(--background-second);
-        padding       : var(--offset-medium);
-        margin-bottom : var(--offset-large) !important;
+        margin-bottom : var(--offset-medium) !important;
     }
 
     /*    .nav {

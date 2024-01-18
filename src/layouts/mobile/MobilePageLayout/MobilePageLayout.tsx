@@ -4,6 +4,10 @@ import css from './MobilePageLayout.module.scss';
 import MobileSiteNavigationButton
     from '@/components/mobile/site-navigation/MobileSiteNavigationButton/MobileSiteNavigationButton.tsx';
 import { cn } from '@vanyamate/helpers/react/classname';
+import HeaderCur from '@/components/mobile/HeaderCur/HeaderCur.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
+import HeaderCurContainer
+    from '@/containers/header/HeaderCurContainer/HeaderCurContainer';
 
 
 export type MobilePageLayoutProps = {}
@@ -16,17 +20,8 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
     return (
         <div className={ css.container }>
             <div className={ css.content }>
-                <aside className={ cn(css.header, css.content_width) }
-                       style={ { borderRadius: 5 } }>
-                    <div style={ { width: 80, overflow: 'hidden' } }>
-                        <img
-                            src={ 'https://russia.information-region.ru/static/images/logo-any.png' }
-                            style={ {
-                                width: '200px',
-                            } }
-                        />
-                    </div>
-                    ЦУР Помощник
+                <aside className={ cn(css.header, css.content_width) }>
+                    <HeaderCurContainer/>
                 </aside>
                 <div className={ css.content_width }>
                     <Outlet/>
