@@ -35,7 +35,7 @@ jobs:
       - name: notification
         uses: xinthink/action-telegram@v1.1
         with:
-          botToken: ${{ secrets.TG_TOKEN_BOT }}
-          chatId: ${{ secrets.TG_CHAT_ID }}
+          botToken: "${{ secrets.TG_TOKEN_BOT }}"
+          chatId: "${{ secrets.TG_CHAT_ID }}"
           jobStatus: ${{ job.status }}
           skipSuccess: false
