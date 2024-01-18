@@ -40,7 +40,7 @@ jobs:
       #    jobStatus: ${{ job.status }}
       #    skipSuccess: false
       - name: My telegram notificator
-        uses: VanyaMate/github-action-telegram-notification@v0.12
+        uses: VanyaMate/github-action-telegram-notification@v0.13
         with:
           success: ${{ job.status }}
           tg_bot_token: ${{ secrets.TG_TOKEN_BOT }}
