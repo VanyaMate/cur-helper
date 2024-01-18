@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { TestAnswer } from '@/types/test/test.types.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 

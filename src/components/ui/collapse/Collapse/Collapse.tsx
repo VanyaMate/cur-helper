@@ -23,7 +23,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
     const [ open, setOpen ] = useState<boolean>(opened ?? false);
     const toggle            = useCallback(() => {
         setOpen((prev) => !prev);
-    }, [ open ]);
+    }, [ setOpen ]);
     /*    const ref                                 = useRef<HTMLDivElement | null>(null);
      const [ contentHeight, setContentHeight ] = useState<number>(0);
 

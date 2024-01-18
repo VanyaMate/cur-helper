@@ -27,12 +27,12 @@ export type TestBriefingProps = {
 }
 
 const TestBriefing: React.FC<TestBriefingProps> = (props) => {
-    const { title, themes, timeToPass, description, onClose, onStart } = props;
-    const [ loading, setLoading ]                                      = useState<boolean>(false);
-    const onStartCallback                                              = useCallback(() => {
+    const { title, themes, timeToPass, description, onStart } = props;
+    const [ loading, setLoading ]                             = useState<boolean>(false);
+    const onStartCallback                                     = useCallback(() => {
         setLoading(true);
         onStart().finally(() => setLoading(false));
-    }, [ onStart, loading ]);
+    }, [ onStart, setLoading ]);
 
     return (
         <Section

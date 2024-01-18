@@ -33,7 +33,7 @@ export const useInput = function (props: UseInputProps): [ string, OnInputChange
         if (value === nextValue) {
             props.onChange && props.onChange(value);
         }
-    }, [ value, nextValue, props.onChange ]);
+    }, [ value, nextValue, props, props.onChange ]);
 
     return useMemo(() => [ nextValue, onChangeHandler ], [ nextValue, onChangeHandler ]);
 };

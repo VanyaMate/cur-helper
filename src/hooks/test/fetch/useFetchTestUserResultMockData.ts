@@ -6,7 +6,7 @@ import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
 
 export const useFetchTestUserResultMockData = function (id: string): Fetch<TestUserResult> {
     const [ loading, setLoading ] = useState<boolean>(true);
-    const [ error, setError ]     = useState<FetchError>(null);
+    const [ error ]               = useState<FetchError>(null);
     const [ test, setTest ]       = useState<FetchData<TestUserResult>>(null);
 
     useEffect(() => {
@@ -216,5 +216,5 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
 
     return useMemo(() => ({
         loading, data: test, error,
-    }), [ loading, test ]);
+    }), [ loading, test, error ]);
 };

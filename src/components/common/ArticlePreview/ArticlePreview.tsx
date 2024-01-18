@@ -16,7 +16,7 @@ export type ArticlePreviewProps = {
 };
 
 const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
-    const { image, title, url, description, date, type } = props;
+    const { image, title, description, date, type } = props;
 
     return (
         <Section

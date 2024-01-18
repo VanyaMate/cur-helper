@@ -34,13 +34,13 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
 
     const onSelectClick = useCallback((id: string) => {
         setSelected(id);
-    }, [ selected ]);
+    }, [ setSelected ]);
 
     const onAcceptClick = useCallback(() => {
         setProcess(true);
         onSelect(selected)
             .finally(() => setProcess(false));
-    }, [ selected ]);
+    }, [ selected, setProcess, onSelect ]);
 
     return (
         <Section>

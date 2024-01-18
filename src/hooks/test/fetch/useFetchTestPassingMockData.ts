@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
     const [ loading, setLoading ] = useState<boolean>(true);
-    const [ error, setError ]     = useState<FetchError>(null);
+    const [ error ]               = useState<FetchError>(null);
     const [ test, setTest ]       = useState<FetchData<Test>>(null);
 
     useEffect(() => {

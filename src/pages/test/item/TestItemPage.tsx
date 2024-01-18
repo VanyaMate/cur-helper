@@ -17,8 +17,6 @@ import TestBriefing from '@/components/common/test/TestBriefing/TestBriefing.tsx
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import TestResultProgressbarCircle
     from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
-import TestResultProgressbarList
-    from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import { TEST_ID, THEME_ID } from '@/constants/pages.ts';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
@@ -27,12 +25,12 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 export type TestItemPageProps = {}
 
 const TestItemPage: React.FC<TestItemPageProps> = (props) => {
-    const {}                  = props;
-    const { themeId, testId } = useParams<{ [THEME_ID]: string, [TEST_ID]: string }>();
-    const popupController     = useWindowPopupController();
-    const navigate            = useNavigate();
-    const pageGetter          = usePageUrl();
-    const themes              = useMemo(() => {
+    const {}              = props;
+    const { themeId }     = useParams<{ [THEME_ID]: string, [TEST_ID]: string }>();
+    const popupController = useWindowPopupController();
+    const navigate        = useNavigate();
+    const pageGetter      = usePageUrl();
+    const themes          = useMemo(() => {
         return [
             {
                 title      : 'Закон №1.43 Чрезмерная милота',

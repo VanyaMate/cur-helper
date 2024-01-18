@@ -4,8 +4,6 @@ import css from './MobilePageLayout.module.scss';
 import MobileSiteNavigationButton
     from '@/components/mobile/site-navigation/MobileSiteNavigationButton/MobileSiteNavigationButton.tsx';
 import { cn } from '@vanyamate/helpers/react/classname';
-import HeaderCur from '@/components/mobile/HeaderCur/HeaderCur.tsx';
-import Section from '@/components/ui/container/Section/Section.tsx';
 import HeaderCurContainer
     from '@/containers/header/HeaderCurContainer/HeaderCurContainer';
 

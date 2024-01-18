@@ -36,7 +36,7 @@ const P: React.FC<PProps> = (props) => {
             item === 'danger' && css.danger,
             item === 'primary' && css.primary,
         );
-    }, [ className, item ]);
+    }, [ className, item, lines ]);
 
     const styles = useMemo(() => ({
         ...style,

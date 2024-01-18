@@ -1,4 +1,6 @@
-import { IWindowPopupController } from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
+import {
+    IWindowPopupController,
+} from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import { useCallback, useMemo, useState } from 'react';
 
 
@@ -6,10 +8,10 @@ export const useWindowPopupController = function (): IWindowPopupController {
     const [ opened, setOpened ] = useState<boolean>(false);
     const close                 = useCallback(() => {
         setOpened(false);
-    }, [ opened ]);
+    }, [ setOpened ]);
     const open                  = useCallback(() => {
         setOpened(true);
-    }, [ opened ]);
+    }, [ setOpened ]);
     return useMemo(() => ({
         open, close, opened,
     }), [ opened, close, open ]);

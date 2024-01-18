@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './AdditionalList.module.scss';
-import Section, { SectionItem, SectionType } from '@/components/ui/container/Section/Section.tsx';
+import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 
