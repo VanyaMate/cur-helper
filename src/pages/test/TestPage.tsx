@@ -26,8 +26,10 @@ const TestPage: React.FC<TestPageProps> = (props) => {
     }, [ pageGetter, navigate ]);
 
     return (
-        <Section size={ 'large' }>
-            <Title size={ 'large' }>Тесты</Title>
+        <Section size={ 'medium' }>
+            <Section type={ 'div' } size={ 'medium' }>
+                <Title size={ 'large' }>Тесты</Title>
+            </Section>
             <aside style={ { display: 'flex', gap: 5 } }>
                 <Input
                     style={ { width: '100%' } }
