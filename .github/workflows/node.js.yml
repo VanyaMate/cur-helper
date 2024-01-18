@@ -26,10 +26,6 @@ jobs:
       - run: npm run lint
       # add tests
       - run: npm run build
-      - name: Show Telegram secrets
-        run: |
-          echo "Telegram chat ID: ${{ secrets.TG_CHAT_ID }}"
-
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
