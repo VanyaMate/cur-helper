@@ -9,6 +9,7 @@ import TestItemLink from '@/components/common/test/TestItemLink/TestItemLink.tsx
 import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
+import P from '@/components/ui/p/P/P.tsx';
 
 
 export type TestPageProps = {}
@@ -28,8 +29,9 @@ const TestPage: React.FC<TestPageProps> = (props) => {
 
     return (
         <Section size={ 'medium' }>
-            <Section type={ 'div' } size={ 'medium' }>
+            <Section type={ 'div' } size={ 'extra-small' }>
                 <Title size={ 'large' }>Тесты</Title>
+                <P item={ 'second' }>Пройдите тесты чтобы проверить свои знания</P>
             </Section>
             <aside style={ { display: 'flex', gap: 5 } }>
                 <Input
