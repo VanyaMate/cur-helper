@@ -22,25 +22,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      #- run: npm i
-      #- run: npm run lint
+      - run: npm i
+      - run: npm run lint
       # add tests
-      #- run: npm run build
-      #- uses: FirebaseExtended/action-hosting-deploy@v0
-      #  with:
-      #    repoToken: "${{ secrets.GITHUB_TOKEN }}"
-      #    firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CUR_HELPER }}"
-      #    projectId: cur-helper
-      #    channelId: live
-      #- name: Telegram notification
-      #  uses: xinthink/action-telegram@v1.1
-      #  with:
-      #    botToken: "${{ secrets.TG_TOKEN_BOT }}"
-      #    chatId: "${{ secrets.TG_CHAT_ID }}"
-      #    jobStatus: ${{ job.status }}
-      #    skipSuccess: false
+      - run: npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_CUR_HELPER }}"
+          projectId: cur-helper
+          channelId: live
       - name: My telegram notificator
-        uses: VanyaMate/github-action-telegram-notification@v0.16
+        uses: VanyaMate/github-action-telegram-notification@v0.17
         with:
           success: ${{ job.status }}
           tg_bot_token: ${{ secrets.TG_TOKEN_BOT }}
