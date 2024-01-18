@@ -1,6 +1,6 @@
 .container {
     display               : grid;
-    gap                   : var(--offset-small);
+    gap                   : var(--offset-medium);
     grid-template-columns : 1fr 1fr 1fr 1fr;
 
     @media screen and (max-width : 750px) {
