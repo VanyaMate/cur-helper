@@ -2,6 +2,8 @@ import React from 'react';
 import css from './TestItemLink.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import { TestResult } from '@/types/test/test.types.ts';
+import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
+
 
 export type TestItemLinkProps = {
     id: string;
@@ -11,6 +13,7 @@ export type TestItemLinkProps = {
     disabled: boolean;
     questions: number;
     rightAnswers: number;
+    item?: SectionItem;
 }
 
 const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
@@ -22,10 +25,13 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
               disabled,
               questions,
               rightAnswers,
+              item,
           } = props;
 
     return (
-        <article
+        <Section
+            type={ 'article' }
+            item={ item }
             className={
                 cn(
                     css.container,
@@ -61,7 +67,7 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
                 <div className={ css.divider }>/</div>
                 <div className={ css.questions }>{ questions }</div>
             </div>
-        </article>
+        </Section>
     );
 };
 

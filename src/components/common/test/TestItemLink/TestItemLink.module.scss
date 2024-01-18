@@ -1,58 +1,59 @@
 .container {
-    border-radius: var(--offset-small);
-    padding: var(--offset-medium);
-    border: 1px solid var(--border-color-invisible);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-    transition: var(--transition-fast);
+    border-radius   : var(--offset-medium);
+    padding         : var(--offset-medium);
+    border          : 1px solid var(--background-second);
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between;
+    align-items     : center;
+    width           : 100%;
+    cursor          : pointer;
+    transition      : var(--transition-fast);
 
     &:hover {
-        background: var(--background-second);
+        background : var(--background-second);
     }
 
     &.disabled {
-        opacity: .2;
-        pointer-events: none;
+        opacity        : .2;
+        pointer-events : none;
     }
 
     &.not_started {
         .icon,
         .stats {
-            color: var(--text-color-invisible);
+            color : var(--text-color-invisible);
         }
     }
 
     &.unsatisfactory {
         .icon,
         .stats {
-            color: var(--color-red);
+            color : var(--color-red);
         }
     }
 
     &.satisfactory {
         .icon,
         .stats {
-            color: var(--color-blue);
+            color : var(--color-blue);
         }
     }
 
     &.perfect {
         .icon,
         .stats {
-            color: var(--color-gold);
+            color : var(--color-gold);
         }
     }
 
     .left {
-        display: flex;
-        gap: var(--offset-medium);
-        align-items: center;
+        display     : flex;
+        gap         : var(--offset-medium);
+        align-items : center;
 
         .icon {
-            font-size: 22px;
+            font-size : 22px;
         }
 
         .label {
@@ -61,22 +62,22 @@
     }
 
     .stats {
-        display: flex;
-        gap: var(--offset-small);
-        align-items: center;
+        display     : flex;
+        gap         : var(--offset-small);
+        align-items : center;
 
         .answers {
-            font-size: 16px;
-            font-weight: bold;
+            font-size   : 16px;
+            font-weight : bold;
         }
 
         .divider {
-            font-size: 12px;
-            color: var(--text-color-invisible);
+            font-size : 12px;
+            color     : var(--text-color-invisible);
         }
 
         .questions {
-            font-size: 12px;
+            font-size : 12px;
         }
     }
 
