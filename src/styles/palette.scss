@@ -97,3 +97,51 @@
     --button-background-second              : var(--background-second);
     --button-background-second-hover        : var(--background-main);
 }
+
+:root body.dark-blue-light {
+    background                              : var(--background-main);
+    color                                   : var(--text-color-main);
+
+    --color-blue                            : #84A0EF;
+    --color-blue-transparent                : #84A0EF33;
+    --color-blue-lighten                    : #94ACFA;
+    --color-blue-darken                     : #6C87DA;
+    --color-red                             : #EF8484;
+    --color-red-transparent                 : #EF848433;
+    --color-red-lighten                     : #FA9595;
+    --color-red-darken                      : #E87777;
+    --color-yellow                          : #EFD184;
+    --color-yellow-transparent              : #EFD18433;
+    --color-gold                            : #FFDE4B;
+    --color-gold-transparent                : #FFDE4B33;
+    --color-gray-transparent                : #31343A33;
+
+    --background-main                       : #23252D;
+    --background-main-transprent            : rgba(35, 37, 45, 0.2);
+    --background-second                     : #31343E;
+    --background-second-transprent          : rgba(49, 52, 62, 0.2);
+    --background-item                       : #1A1C22;
+    --background-item-transprent            : rgba(26, 28, 34, 0.2);
+
+    --text-color-main                       : #F2F2F5;
+    --text-color-second                     : #D9E4E8;
+    --text-color-invisible                  : #6A7585;
+    --text-color-invert                     : #121212;
+
+    --text-color-link                       : var(--color-blue);
+    --text-color-link-hover                 : var(--color-gold);
+
+    --border-color-invisible                : #383C41;
+    --border-color-mark                     : var(--color-blue);
+
+    --button-background-main                : var(--color-blue-darken);
+    --button-background-main-shadow         : var(--color-blue-transparent);
+    --button-background-main-hover          : var(--color-gold);
+    --button-background-main-hover-shadow   : var(--color-gold-transparent);
+    --button-background-danger              : var(--color-red-darken);
+    --button-background-danger-shadow       : var(--color-red-transparent);
+    --button-background-danger-hover        : var(--color-red);
+    --button-background-danger-hover-shadow : var(--color-red-transparent);
+    --button-background-second              : var(--background-second);
+    --button-background-second-hover        : var(--background-main);
+}
