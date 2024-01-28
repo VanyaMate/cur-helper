@@ -32,4 +32,4 @@ const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
     );
 };
 
-export default React.memo(Breadcrumb);
+export default Breadcrumb;

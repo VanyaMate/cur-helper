@@ -40,4 +40,4 @@ const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
     );
 };
 
-export default React.memo(ListTitledItemWithUrl);
+export default ListTitledItemWithUrl;

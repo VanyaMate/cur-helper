@@ -48,4 +48,4 @@ const AdditionalList: React.FC<AdditionalListProps> = (props) => {
     );
 };
 
-export default React.memo(AdditionalList);
+export default AdditionalList;

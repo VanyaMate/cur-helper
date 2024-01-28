@@ -66,4 +66,4 @@ const Button: React.FC<ButtonProps> = (props) => {
     );
 };
 
-export default React.memo(Button);
+export default Button;

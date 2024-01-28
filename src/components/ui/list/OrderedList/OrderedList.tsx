@@ -40,4 +40,4 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
     );
 };
 
-export default React.memo(OrderedList);
+export default OrderedList;

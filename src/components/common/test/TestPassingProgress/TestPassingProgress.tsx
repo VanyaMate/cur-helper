@@ -32,4 +32,4 @@ const TestPassingProgress: React.FC<TestPassingProgressProps> = (props) => {
     );
 };
 
-export default React.memo(TestPassingProgress);
+export default TestPassingProgress;

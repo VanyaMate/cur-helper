@@ -58,4 +58,4 @@ const TestResultProgressbarCircle: React.FC<TestResultProgressbarCircleProps> = 
     );
 };
 
-export default React.memo(TestResultProgressbarCircle);
+export default TestResultProgressbarCircle;

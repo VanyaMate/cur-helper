@@ -21,4 +21,4 @@ const RoundImage: React.FC<RoundImageProps> = (props) => {
     );
 };
 
-export default React.memo(RoundImage);
+export default RoundImage;

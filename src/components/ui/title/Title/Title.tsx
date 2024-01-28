@@ -38,4 +38,4 @@ const Title: React.FC<TitleProps> = (props) => {
     );
 };
 
-export default React.memo(Title);
+export default Title;

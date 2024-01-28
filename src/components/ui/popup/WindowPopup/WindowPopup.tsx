@@ -45,4 +45,4 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
     );
 };
 
-export default React.memo(WindowPopup);
+export default WindowPopup;

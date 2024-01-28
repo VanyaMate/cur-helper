@@ -14,4 +14,4 @@ const SpaceBetween: React.FC<SpaceBetweenProps> = (props) => {
     );
 };
 
-export default React.memo(SpaceBetween);
+export default SpaceBetween;

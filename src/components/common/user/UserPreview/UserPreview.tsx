@@ -37,4 +37,4 @@ const UserPreview: React.FC<UserPreviewProps> = (props) => {
     );
 };
 
-export default React.memo(UserPreview);
+export default UserPreview;

@@ -16,4 +16,4 @@ const TileBox: React.FC<TileBoxProps> = (props) => {
     );
 };
 
-export default React.memo(TileBox);
+export default TileBox;

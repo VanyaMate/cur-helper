@@ -19,4 +19,4 @@ const TestResultProgressbar: React.FC<TestResultProps> = (props) => {
     );
 };
 
-export default React.memo(TestResultProgressbar);
+export default TestResultProgressbar;

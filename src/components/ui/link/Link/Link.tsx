@@ -23,4 +23,4 @@ const Link: React.FC<LinkProps> = (props) => {
     );
 };
 
-export default React.memo(Link);
+export default Link;

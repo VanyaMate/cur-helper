@@ -30,4 +30,4 @@ const Footnote: React.FC<FootnoteProps> = (props) => {
     );
 };
 
-export default React.memo(Footnote);
+export default Footnote;

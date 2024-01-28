@@ -74,4 +74,4 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
     );
 };
 
-export default React.memo(TestResultQuestions);
+export default TestResultQuestions;

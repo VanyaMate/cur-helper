@@ -15,4 +15,4 @@ const IconM: React.FC<IconMProps> = (props) => {
     );
 };
 
-export default React.memo(IconM);
+export default IconM;

@@ -22,4 +22,4 @@ const HeaderCur: React.FC<HeaderCurProps> = (props) => {
     );
 };
 
-export default React.memo(HeaderCur);
+export default HeaderCur;

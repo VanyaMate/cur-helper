@@ -34,4 +34,4 @@ const TestQuestionPassingButton: React.FC<TestQuestionPassingButtonProps> = (pro
     );
 };
 
-export default React.memo(TestQuestionPassingButton);
+export default TestQuestionPassingButton;

@@ -71,4 +71,4 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
     );
 };
 
-export default React.memo(TestItemLink);
+export default TestItemLink;

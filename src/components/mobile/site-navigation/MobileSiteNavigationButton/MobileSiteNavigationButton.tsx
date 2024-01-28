@@ -21,4 +21,4 @@ const MobileSiteNavigationButton: React.FC<MobileSiteNavigationButtonProps> = (p
     );
 };
 
-export default React.memo(MobileSiteNavigationButton);
+export default MobileSiteNavigationButton;

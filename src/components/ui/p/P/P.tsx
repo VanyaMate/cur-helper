@@ -58,4 +58,4 @@ const P: React.FC<PProps> = (props) => {
     }
 };
 
-export default React.memo(P);
+export default P;

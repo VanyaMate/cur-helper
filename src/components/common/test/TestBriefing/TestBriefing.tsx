@@ -86,4 +86,4 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
     );
 };
 
-export default React.memo(TestBriefing);
+export default TestBriefing;

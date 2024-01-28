@@ -49,4 +49,4 @@ const Section: React.FC<SectionProps> = (props) => {
     }
 };
 
-export default React.memo(Section);
+export default Section;

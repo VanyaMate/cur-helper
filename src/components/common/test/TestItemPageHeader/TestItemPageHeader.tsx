@@ -61,4 +61,4 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
     );
 };
 
-export default React.memo(TestItemPageHeader);
+export default TestItemPageHeader;

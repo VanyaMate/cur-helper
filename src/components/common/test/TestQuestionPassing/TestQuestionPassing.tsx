@@ -88,4 +88,4 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
     );
 };
 
-export default React.memo(TestQuestionPassing);
+export default TestQuestionPassing;
