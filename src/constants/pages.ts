@@ -7,6 +7,7 @@ export const TEST_PASSING_PAGE     = 'passing';
 export const PROFILE_PAGE          = 'profile';
 export const PROFILE_SETTINGS_PAGE = 'settings';
 export const ARTICLE_PAGE          = 'article';
+export const ADMIN_PAGE            = 'admin';
 
 export const THEME_ID   = 'themeId';
 export const TEST_ID    = 'testId';

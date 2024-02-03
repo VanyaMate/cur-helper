@@ -14,7 +14,7 @@ import {
     ARTICLE_ID,
     ARTICLE_PAGE,
     GUID_ID,
-    GUID_PAGE,
+    GUID_PAGE, HOME_PAGE,
     PROFILE_PAGE, PROFILE_SETTINGS_PAGE, TEST_ID,
     TEST_PAGE,
     TEST_PASSING_PAGE,
@@ -22,6 +22,11 @@ import {
 } from '@/constants/pages.ts';
 import ArticleItemPage from '@/pages/article/item/ArticleItemPage.tsx';
 import ArticlesPage from '@/pages/article/ArticlesPage.tsx';
+import MobileAdminPageLayout
+    from '@/layouts/mobile/MobilePageLayout/MobileAdminPageLayout.tsx';
+import AdminGuidListPage from '@/pages/admin/AdminGuidListPage/AdminGuidListPage.tsx';
+import AdminHomePage from '@/pages/admin/AdminHomePage/AdminHomePage.tsx';
+import AdminTestListPage from '@/pages/admin/AdminTestListPage/AdminTestListPage.tsx';
 
 
 export type PagesProps = {}
@@ -31,6 +36,13 @@ const Pages: React.FC<PagesProps> = (props) => {
 
     return (
         <Routes>
+            <Route path={ '/admin/*' } element={ <MobileAdminPageLayout/> }>
+                <Route path={ `${ GUID_PAGE }/:id` } element={ <AdminGuidListPage/> }/>
+                <Route path={ `${ GUID_PAGE }` } element={ <AdminGuidListPage/> }/>
+                <Route path={ `${ TEST_PAGE }/:id` } element={ <AdminTestListPage/> }/>
+                <Route path={ `${ TEST_PAGE }` } element={ <AdminTestListPage/> }/>
+                <Route path={ `${ HOME_PAGE }` } element={ <AdminHomePage/> }/>
+            </Route>
             <Route path={ '/*' } element={ <MobilePageLayout/> }>
                 <Route path={ 'buklet' } element={ <BukletPage/> }/>
                 <Route path={ `${ TEST_PAGE }/*` }>
