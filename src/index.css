@@ -3,11 +3,12 @@
 @import "styles/transition.scss";
 @import "styles/sizes.scss";
 @import "styles/animation.scss";
+@import "styles/common-styles.scss";
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Lunasima", serif;
-    line-height: 1.2em;
+    box-sizing  : border-box;
+    padding     : 0;
+    margin      : 0;
+    font-family : "Lunasima", serif;
+    line-height : 1.2em;
 }

@@ -6,10 +6,11 @@ import css from './HeaderCur.module.scss';
 
 export type HeaderCurProps = {
     region: string;
+    link: string;
 };
 
 const HeaderCur: React.FC<HeaderCurProps> = (props) => {
-    const { region } = props;
+    const { region, link } = props;
 
     return (
         <Section type={ 'section' } item={ 'main' } className={ css.container }>
@@ -17,7 +18,7 @@ const HeaderCur: React.FC<HeaderCurProps> = (props) => {
                 src={ '/cur-logo.png' }
                 className={ css.logo }
             />
-            <Link to={ '#' }>{ region }</Link>
+            <Link to={ link }>{ region }</Link>
         </Section>
     );
 };
