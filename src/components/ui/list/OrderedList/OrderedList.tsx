@@ -22,36 +22,37 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
 
     return (
         <Section
-            type={ type ?? 'section' }
-            item={ item ?? undefined }
-            size={ 'medium' }
             className={ css.container }
+            item={ item ?? undefined }
+            size="small"
+            type={ type ?? 'section' }
         >
             {
-                title &&
-                <Section item={ 'default' }>
-                    <Title size={ 'small' } className={ css.title }>
+                title ? <Section item="default">
+                    <Title className={ css.title } size="small">
                         {
-                            showPrefix &&
-                            <P item={ 'invisible' }>{ prefix }.</P>
+                            showPrefix ? <P item="invisible">{ prefix }.</P> : null
                         }
                         { title }
                     </Title>
-                </Section>
+                </Section> : null
             }
-            <ol className={ css.list }>
-                {
-                    list.map((item, index) =>
-                        <li key={ index } className={ css.row }>
-                            <div className={ css.number }>
-                                { prefix ? `${ prefix }.` : '' }
-                                { index + 1 }
-                            </div>
-                            <div className={ css.item }>{ item }</div>
-                        </li>,
-                    )
-                }
-            </ol>
+            {
+                list.length ?
+                <ol className={ css.list }>
+                    {
+                        list.map((item, index) =>
+                            <li className={ css.row } key={ index }>
+                                <div className={ css.number }>
+                                    { prefix ? `${ prefix }.` : '' }
+                                    { index + 1 }
+                                </div>
+                                <div className={ css.item }>{ item }</div>
+                            </li>,
+                        )
+                    }
+                </ol> : null
+            }
         </Section>
     );
 };

@@ -30,8 +30,6 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
 
     return (
         <Section
-            size={ 'medium' }
-            type={ 'section' }
             className={
                 cn(
                     css.container,
@@ -40,21 +38,22 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                     status === 'satisfactorily' && css.satisfactory,
                     status === 'perfect' && css.perfect,
                 )
-            }>
-            <Section size={ 'small' }>
+            }
+            size="medium"
+            type="section">
+            <Section size="small">
                 <SpaceBetween>
                     <div>
-                        <P type={ 'p' } item={ 'invisible' }>Тест на тему</P>
+                        <P item="invisible" type="p">Тест на тему</P>
                         <Title>{ title }</Title>
                     </div>
                     { extra }
                 </SpaceBetween>
             </Section>
-            <SpaceBetween type={ 'footer' } className={ css.footer }>
+            <SpaceBetween className={ css.footer } type="footer">
                 <span className={ css.status }>{ label }</span>
                 {
-                    (status !== 'not-started') &&
-                    <P type={ 'span' } item={ 'invisible' }>{ deltaDate }</P>
+                    (status !== 'not-started') ? <P item="invisible" type="span">{ deltaDate }</P> : null
                 }
             </SpaceBetween>
         </Section>

@@ -23,6 +23,7 @@ export type TestBriefingProps = {
     themes: ThemePreviewInfo[];
     timeToPass: number;
     onStart: () => Promise<any>;
+    //eslint-disable-next-line react/no-unused-prop-types
     onClose: () => any;
 }
 
@@ -36,8 +37,8 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
 
     return (
         <Section
-            size={ 'small' }
             className={ css.container }
+            size="small"
         >
             <div className={ css.header }>
                 <div className={ css.info }>
@@ -49,33 +50,34 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                 <footer className={ css.footer }>
                     <div className={ css.footer_info }>
                         {
-                            description &&
-                            <P className={ css.notice }>{ description }</P>
+                            description ? <P className={ css.notice }>{ description }</P>
+                                        : null
                         }
-                        <P className={ css.timeToPass } item={ 'invisible' }>
+                        <P className={ css.timeToPass } item="invisible">
                             Время на прохождение: { timeToPass } минут
                         </P>
                     </div>
                     <Button
                         onClick={ onStartCallback }
-                        styleType={ 'main' }
                         postfix={ loading ?
-                                  <IconM className={ 'loading' }>cached</IconM> :
+                                  <IconM className="loading">cached</IconM> :
                                   <IconM>arrow_forward</IconM>
                         }
+                        styleType="main"
                     >
                         Начать
                     </Button>
                 </footer>
             </div>
-            <Collapse item={ 'default' } opened={ true }
-                      title={ 'Темы затрагиваемые в тесте' }>
+            <Collapse item="default" opened={ true }
+                      title="Темы затрагиваемые в тесте">
                 <OrderedList
                     list={
                         themes.map((theme) => (
                             <ListTitledItemWithUrl
-                                title={ theme.title }
                                 body={ theme.addition }
+                                key={ theme.title }
+                                title={ theme.title }
                                 url={ theme.url }
                             />
                         ))

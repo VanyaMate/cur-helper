@@ -15,16 +15,16 @@ const UserPreview: React.FC<UserPreviewProps> = (props) => {
 
     return (
         <Section
-            type={ 'section' }
+            type="section"
         >
-            <SpaceBetween size={ 'small' }>
+            <SpaceBetween size="small">
                 <RoundImage
+                    alt="Аватарка"
+                    size="140px"
                     src={ user.avatar }
-                    alt={ 'Аватарка' }
-                    size={ '140px' }
                 />
                 <AdditionalList
-                    item={ 'main' }
+                    item="main"
                     list={ [
                         { label: 'Id', value: user.id },
                         { label: 'Имя', value: user.info.firstName },

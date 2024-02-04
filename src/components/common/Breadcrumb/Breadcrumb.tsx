@@ -21,7 +21,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
                 items.map((item) =>
                     (
                         <li className={ css.item } key={ item.url }>
-                            <Link to={ item.url } className={ css.link }>
+                            <Link className={ css.link } to={ item.url }>
                                 { item.label }
                             </Link>
                         </li>

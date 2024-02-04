@@ -27,15 +27,15 @@ const TestResultAnswer: React.FC<TestResultAnswerProps> = (props) => {
     return (
         <Button
             block
+            className={ cn(
+                css.container,
+            ) }
+            onClick={ clickHandler }
             styleType={
                 result === 'error' ? 'danger' :
                 result === 'selected' ? 'selected' :
                 result === 'right' ? 'main' : 'default'
-            }
-            onClick={ clickHandler }
-            className={ cn(
-                css.container,
-            ) }>
+            }>
             { answer.body }
         </Button>
     );

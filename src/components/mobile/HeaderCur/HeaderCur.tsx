@@ -12,12 +12,12 @@ const HeaderCur: React.FC<HeaderCurProps> = (props) => {
     const { region } = props;
 
     return (
-        <Section type={ 'section' } item={ 'main' } className={ css.container }>
+        <Section className={ css.container } item="main" type="section">
             <img
-                src={ '/cur-logo.png' }
                 className={ css.logo }
+                src="/cur-logo.png"
             />
-            <Link to={ '#' }>{ region }</Link>
+            <Link to="#">{ region }</Link>
         </Section>
     );
 };

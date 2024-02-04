@@ -19,23 +19,23 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
     const { questions, themeUrlGetter } = props;
 
     return (
-        <Collapse title={ `Вопросы (${ questions.length })` } opened>
+        <Collapse opened title={ `Вопросы (${ questions.length })` }>
             <OrderedList
                 list={ questions.map((question) => (
                     <Section
-                        item={ 'main' }
-                        size={ 'medium' }
-                        type={ 'article' }
+                        item="main"
                         key={ question.id }
+                        size="medium"
+                        type="article"
                     >
-                        <Section size={ 'small' } type={ 'div' }>
-                            <Title size={ 'medium' }>{ question.title }</Title>
-                            <P item={ 'second' }>{ question.description }</P>
+                        <Section size="small" type="div">
+                            <Title size="medium">{ question.title }</Title>
+                            <P item="second">{ question.description }</P>
                             <OrderedList
-                                title={ 'Ответы' }
                                 list={ question.answers.map((answer) => (
                                     <TestResultAnswer
                                         answer={ answer }
+                                        key={ answer.title }
                                         result={
                                             question.result.answerId === answer.id
                                             ? question.result.result
@@ -43,19 +43,20 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                         }
                                     />
                                 )) }
+                                title="Ответы"
                             />
                             <Collapse
+                                item="default"
                                 opened={ false }
-                                title={ 'Темы' }
-                                item={ 'default' }
+                                title="Темы"
                             >
                                 <Section>
                                     {
                                         question.themes.map((theme) => (
                                             <Link
                                                 key={ theme.id }
-                                                size={ 'small' }
-                                                target={ '_blank' }
+                                                size="small"
+                                                target="_blank"
                                                 to={ theme.url ? theme.url
                                                                : themeUrlGetter(theme.id) }
                                             >

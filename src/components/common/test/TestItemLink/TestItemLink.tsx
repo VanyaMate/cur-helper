@@ -30,8 +30,6 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
 
     return (
         <Section
-            type={ 'article' }
-            item={ item }
             className={
                 cn(
                     css.container,
@@ -42,7 +40,9 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }
+            item={ item }
             onClick={ () => onClick(id) }
+            type="article"
         >
             <div className={ css.left }>
                 <span

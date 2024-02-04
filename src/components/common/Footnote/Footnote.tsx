@@ -18,12 +18,12 @@ const Footnote: React.FC<FootnoteProps> = (props) => {
     const { type, children, header } = props;
 
     return (
-        <Section item={ 'second' } size={ 'small' } className={ cn(
+        <Section className={ cn(
             css.container,
             type === 'warning' && css.warning,
             type === 'urgent' && css.urgent,
             (type === 'notify' || !type) && css.notify,
-        ) }>
+        ) } item="second" size="small">
             <h6 className={ css.header }>{ header }</h6>
             <P className={ css.body }>{ children }</P>
         </Section>

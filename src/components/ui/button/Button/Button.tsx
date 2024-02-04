@@ -52,15 +52,14 @@ const Button: React.FC<ButtonProps> = (props) => {
                 quad && css.quad,
             ) }
             onClick={ onClick }
+            type="button"
         >
             {
-                prefix &&
-                <span>{ prefix }</span>
+                prefix ? <span>{ prefix }</span> : null
             }
             <span>{ children }</span>
             {
-                postfix &&
-                <span>{ postfix }</span>
+                postfix ? <span>{ postfix }</span> : null
             }
         </button>
     );

@@ -7,11 +7,10 @@ import { cn } from '@vanyamate/helpers/react/classname';
 import HeaderCurContainer
     from '@/containers/header/HeaderCurContainer/HeaderCurContainer';
 import {
-    ADMIN_PAGE,
-    GUID_PAGE,
+    ADMIN_PAGE, GUID_PAGE,
+    GUIDS_PAGE,
     HOME_PAGE,
-    PROFILE_PAGE,
-    TEST_PAGE,
+    PROFILE_PAGE, TEST_PAGE,
 } from '@/constants/pages.ts';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {
@@ -43,40 +42,40 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
             </div>
             <nav className={ css.nav }>
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/25/25694.png' }
-                    label={ 'Общее' }
                     active={ pathname === `/${ HOME_PAGE }` }
+                    icon="https://cdn-icons-png.flaticon.com/512/25/25694.png"
+                    label="Общее"
                     onClick={ () => {
                         navigate(`/${ HOME_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/171/171322.png' }
-                    label={ 'Учебник' }
-                    active={ pathname.split('/')[1] === GUID_PAGE }
+                    active={ new RegExp(`^/${GUID_PAGE}`).test(pathname) }
+                    icon="https://cdn-icons-png.flaticon.com/512/171/171322.png"
+                    label="Учебник"
                     onClick={ () => {
-                        navigate(`/${ GUID_PAGE }`);
+                        navigate(`/${ GUIDS_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/1950/1950630.png' }
-                    label={ 'Тесты' }
-                    active={ pathname.split('/')[1] === TEST_PAGE }
+                    active={ new RegExp(`^/${TEST_PAGE}`).test(pathname) }
+                    icon="https://cdn-icons-png.flaticon.com/512/1950/1950630.png"
+                    label="Тесты"
                     onClick={ () => {
                         navigate(`/${ TEST_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' }
-                    label={ 'Профиль' }
-                    active={ pathname.split('/')[1] === PROFILE_PAGE }
+                    active={ new RegExp(`^/${PROFILE_PAGE}`).test(pathname) }
+                    icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                    label="Профиль"
                     onClick={ () => {
                         navigate(`/${ PROFILE_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/56/56763.png' }
-                    label={ 'Меню' }
+                    icon="https://cdn-icons-png.flaticon.com/512/56/56763.png"
+                    label="Меню"
                     onClick={ () => {
                         menuController.open();
                     } }

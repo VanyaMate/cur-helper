@@ -60,11 +60,11 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
     }, []);
 
     return (
-        <Section size={ 'small' }>
+        <Section size="small">
             <WindowPopup controller={ popupController }>
                 <TestBriefing
-                    title={ 'Законы и нормы права в управлении персоналом' }
-                    description={ 'Тест направленный на проверку знаний о законах и их применении' }
+                    description="Тест направленный на проверку знаний о законах и их применении"
+                    onClose={ popupController.close }
                     onStart={ async () => {
                         return new Promise(() => {
                             setTimeout(() => {
@@ -72,9 +72,9 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                             }, 1000);
                         });
                     } }
-                    onClose={ popupController.close }
                     themes={ [ ...themes, ...themes ] }
                     timeToPass={ 10 }
+                    title="Законы и нормы права в управлении персоналом"
                 />
             </WindowPopup>
             <Breadcrumb
@@ -90,19 +90,19 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 }
             />
             <TestItemPageHeader
-                title={ `Законы` }
-                status={ 'unsatisfactory' }
                 date={ Date.now() - 827200 }
                 extra={
-                    <Button styleType={ 'main' }
-                            onClick={ popupController.open }>Начать</Button>
+                    <Button onClick={ popupController.open }
+                            styleType="main">Начать</Button>
                 }
+                status="unsatisfactory"
+                title="Законы"
             />
-            <Section item={ 'main' }>
-                <SpaceBetween type={ 'div' } size={ 'small' }>
+            <Section item="main">
+                <SpaceBetween size="small" type="div">
                     <TestResultProgressbarCircle
-                        result={ 'unsatisfactory' }
                         percent={ 31 }
+                        result="unsatisfactory"
                     />
                     <AdditionalList
                         list={ [
@@ -115,27 +115,29 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
                 </SpaceBetween>
             </Section>
             <Collapse
-                title={ 'Что нужно повторить' }
                 opened
+                title="Что нужно повторить"
             >
                 <OrderedList
-                    list={ themes.map((theme) => (
+                    list={ themes.map((theme, index) => (
                         <ListTitledItemWithUrl
-                            title={ theme.title }
                             body={ theme.addition }
+                            key={ index }
+                            title={ theme.title }
                             url={ theme.url }
                         />
                     )) }
                 />
             </Collapse>
             <Collapse
-                title={ 'Темы затронутые в тесте' }
+                title="Темы затронутые в тесте"
             >
                 <OrderedList
-                    list={ [ ...themes, ...themes ].map((theme) => (
+                    list={ [ ...themes, ...themes ].map((theme, index) => (
                         <ListTitledItemWithUrl
-                            title={ theme.title }
                             body={ theme.addition }
+                            key={ index }
+                            title={ theme.title }
                             url={ theme.url }
                         />
                     )) }

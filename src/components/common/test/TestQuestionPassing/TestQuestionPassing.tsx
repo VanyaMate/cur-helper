@@ -44,28 +44,35 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
 
     return (
         <Section>
-            <Section size={ 'medium' } type={ 'div' }>
+            <Section size="medium" type="div">
                 <Title>{ question.title }</Title>
                 <P>{ question.description }</P>
-                <Section type={ 'div' } item={ 'main' }>
+                <Section item="main" type="div">
                     <OrderedList
-                        title={ 'Варианты' }
                         list={ question.answers.map((answer) => (
                             <TestQuestionPassingButton
-                                key={ question.id + answer.id }
                                 answer={ answer }
-                                selected={ answer.id === selected }
-                                selectedAnswer={ answer.id === question.result.answerId }
+                                key={ question.id + answer.id }
                                 onSelect={ onSelectClick }
                                 process={ process }
+                                selected={ answer.id === selected }
+                                selectedAnswer={ answer.id === question.result.answerId }
                             />
                         )) }
+                        title="Варианты"
                     />
                 </Section>
             </Section>
-            <SpaceBetween type={ 'div' }>
-                <div></div>
+            <SpaceBetween type="div">
+                <div />
                 <Button
+                    disabled={ disabledSelectButton }
+                    onClick={ onAcceptClick }
+                    prefix={
+                        (process)
+                        ? <IconM className="loading">cached</IconM>
+                        : <IconM>check</IconM>
+                    }
                     styleType={
                         process
                         ? 'default'
@@ -73,13 +80,6 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                           ? 'main'
                           : 'default'
                     }
-                    disabled={ disabledSelectButton }
-                    prefix={
-                        (process)
-                        ? <IconM className={ 'loading' }>cached</IconM>
-                        : <IconM>check</IconM>
-                    }
-                    onClick={ onAcceptClick }
                 >
                     Выбрать
                 </Button>

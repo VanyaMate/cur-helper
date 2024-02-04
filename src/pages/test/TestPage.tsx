@@ -28,104 +28,112 @@ const TestPage: React.FC<TestPageProps> = (props) => {
     }, [ pageGetter, navigate ]);
 
     return (
-        <Section size={ 'medium' }>
-            <Section type={ 'div' } size={ 'extra-small' }>
-                <Title size={ 'large' }>Тесты</Title>
-                <P item={ 'second' }>Пройдите тесты чтобы проверить свои знания</P>
+        <Section size="medium">
+            <Section size="extra-small" type="div">
+                <Title size="large">Тесты</Title>
+                <P item="second">Пройдите тесты чтобы проверить свои знания</P>
             </Section>
             <aside style={ { display: 'flex', gap: 5 } }>
                 <Input
+                    onChangeHandler={ onChange }
+                    placeholder="Поиск"
                     style={ { width: '100%' } }
                     value={ value }
-                    onChangeHandler={ onChange }
-                    placeholder={ 'Поиск' }
                 />
-                <Button styleType={ 'main' }>Найти</Button>
+                <Button styleType="main">Найти</Button>
             </aside>
-            <Collapse title={ '1. Общие правила' } opened={ true } item={ 'main' }>
+            <Collapse item="main" opened={ true } title="1. Общие правила">
                 <OrderedList
-                    prefix={ '1' }
                     list={ [
                         <TestItemLink
-                            id={ '1-1' }
                             disabled={ false }
-                            label={ 'Законы' }
+                            id="1-1"
+                            key="1-1"
+                            label="Законы"
                             onClick={ navigateCallback }
-                            status={ 'satisfactorily' }
                             questions={ 17 }
                             rightAnswers={ 14 }
+                            status="satisfactorily"
                         />,
                         <TestItemLink
-                            id={ '1-2' }
                             disabled={ false }
-                            label={ 'Правила' }
+                            id="1-2"
+                            key="1-2"
+                            label="Правила"
                             onClick={ navigateCallback }
-                            status={ 'unsatisfactory' }
                             questions={ 16 }
                             rightAnswers={ 7 }
+                            status="unsatisfactory"
                         />,
                         <TestItemLink
-                            id={ '1-3' }
                             disabled={ false }
-                            label={ 'Этикет' }
+                            id="1-3"
+                            key="1-3"
+                            label="Этикет"
                             onClick={ navigateCallback }
-                            status={ 'perfect' }
                             questions={ 21 }
                             rightAnswers={ 21 }
+                            status="perfect"
                         />,
                     ] }
+                    prefix="1"
                 />
             </Collapse>
-            <Collapse title={ '2. Правила общения' } opened={ true } item={ 'main' }>
+            <Collapse item="main" opened={ true } title="2. Правила общения">
                 <OrderedList
-                    prefix={ '2' }
                     list={ [
                         <TestItemLink
-                            id={ '2-1' }
                             disabled={ false }
-                            label={ 'Вежливость' }
+                            id="2-1"
+                            key="2-1"
+                            label="Вежливость"
                             onClick={ navigateCallback }
-                            status={ 'satisfactorily' }
                             questions={ 11 }
                             rightAnswers={ 7 }
+                            status="satisfactorily"
                         />,
                         <TestItemLink
-                            id={ '2-2' }
                             disabled={ false }
-                            label={ 'Открытость' }
+                            id="2-2"
+                            key="2-2"
+                            label="Открытость"
                             onClick={ navigateCallback }
-                            status={ 'perfect' }
                             questions={ 13 }
                             rightAnswers={ 13 }
+                            status="perfect"
                         />,
                         <TestItemLink
-                            id={ '2-3' }
                             disabled={ false }
-                            label={ 'Конкретика' }
+                            id="2-3"
+                            key="2-3"
+                            label="Конкретика"
                             onClick={ navigateCallback }
-                            status={ 'not-started' }
                             questions={ 27 }
                             rightAnswers={ 0 }
+                            status="not-started"
                         />,
                         <TestItemLink
-                            id={ '2-4' }
                             disabled={ true }
-                            label={ 'Обвинения' }
+                            id="2-4"
+                            key="2-4"
+                            label="Обвинения"
                             onClick={ navigateCallback }
-                            status={ 'not-started' }
                             questions={ 13 }
                             rightAnswers={ 0 }
+                            status="not-started"
                         />,
                         <TestItemLink
-                            id={ '2-5' }
                             disabled={ true }
-                            label={ 'Вопросы' }
+                            id="2-5"
+                            key="2-5"
+                            label="Вопросы"
                             onClick={ navigateCallback }
-                            status={ 'not-started' }
                             questions={ 14 }
                             rightAnswers={ 0 }
+                            status="not-started"
                         />,
                     ] }
+                    prefix="2"
                 />
             </Collapse>
         </Section>

@@ -50,10 +50,10 @@ const TestResultProgressbarCircle: React.FC<TestResultProgressbarCircleProps> = 
                 result === 'satisfactorily' && css.satis,
                 result === 'unsatisfactory' && css.unsatis,
             ) }
-            text={ `${ percent }%` }
-            value={ percent }
             strokeWidth={ 4 }
             styles={ styles }
+            text={ `${ percent }%` }
+            value={ percent }
         />
     );
 };
