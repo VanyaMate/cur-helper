@@ -7,11 +7,10 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
-import { TestQuestion } from '@/types/test/test.types.ts';
 
 
 export type TestResultQuestionsProps = {
-    questions: TestQuestion[];
+    questions: any[];
     themeUrlGetter: (id: string) => string;
 }
 
@@ -32,7 +31,7 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                             <Title size="medium">{ question.title }</Title>
                             <P item="second">{ question.description }</P>
                             <OrderedList
-                                list={ question.answers.map((answer) => (
+                                list={ question.answers.map((answer: any) => (
                                     <TestResultAnswer
                                         answer={ answer }
                                         key={ answer.title }
@@ -52,7 +51,7 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                             >
                                 <Section>
                                     {
-                                        question.themes.map((theme) => (
+                                        question.themes.map((theme: any) => (
                                             <Link
                                                 key={ theme.id }
                                                 size="small"
