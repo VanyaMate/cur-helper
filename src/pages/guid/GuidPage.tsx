@@ -8,7 +8,7 @@ import P from '@/components/ui/p/P/P.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
-import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 
 
 export type GuidPageProps = {}
@@ -21,7 +21,6 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
         debounce    : 500,
     });
     const pageGetter          = usePageUrl();
-
 
     return (
         <Section size={ 'medium' }>
@@ -44,52 +43,46 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                     <Button styleType={ 'main' }>Найти</Button>
                 </aside>
             </Section>
-            <Collapse
-                title={ '1. Общие правила' }
-                opened={ true }
-                item={ 'main' }
-            >
+            <TileBox>
                 <OrderedList
                     prefix={ '1' }
+                    type={ 'article' }
+                    showPrefix
+                    item={ 'main' }
+                    title={
+                        <Link to={ pageGetter.guid('1') }>Общие правила</Link>
+                    }
                     list={ [
                         <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
                         <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
                         <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                     ] }
                 />
-            </Collapse>
-            <Collapse
-                title={ '2. Правила общения' }
-                opened={ true }
-                item={ 'main' }
-            >
                 <OrderedList
                     prefix={ '2' }
+                    type={ 'article' }
+                    item={ 'main' }
+                    showPrefix
+                    title={ <Link to={ pageGetter.guid('2') }>Общие правила</Link> }
                     list={ [
-                        <Link to={ '#' }>Вежливость</Link>,
-                        <Link to={ '#' }>Открытость</Link>,
-                        <Link to={ '#' }>Конкретика</Link>,
-                        <Link to={ '#' }>Обвинения</Link>,
-                        <Link to={ '#' }>Вопросы</Link>,
+                        <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
+                        <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
+                        <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                     ] }
                 />
-            </Collapse>
-            <Collapse
-                title={ '3. Запретные вещи' }
-                opened={ true }
-                item={ 'main' }
-            >
                 <OrderedList
                     prefix={ '3' }
+                    type={ 'article' }
+                    item={ 'main' }
+                    showPrefix
+                    title={ <Link to={ pageGetter.guid('3') }>Общие правила</Link> }
                     list={ [
-                        <Link to={ '#' }>Слова</Link>,
-                        <Link to={ '#' }>Темы</Link>,
-                        <Link to={ '#' }>Темы</Link>,
-                        <Link to={ '#' }>Темы</Link>,
-                        <Link to={ '#' }>Темы</Link>,
+                        <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
+                        <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
+                        <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                     ] }
                 />
-            </Collapse>
+            </TileBox>
         </Section>
     );
 };

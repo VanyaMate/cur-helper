@@ -1,62 +1,19 @@
-import { User } from '@/types/user/user.types.ts';
+import { Create } from '@/types/types.ts';
 
 
-export type TestStatus =
-    'not-started'
-    | 'process'
-    | 'finish';
-
-export type TestQuestionResult =
-    'error'
-    | 'right'
-    | 'selected'
-    | 'empty';
-
-export type TestAnswer = {
+export type TestType = {
     id: string;
-    body: string;
-}
-
-export type TestQuestionUserResult = {
-    answerId: string;
-    result: TestQuestionResult;
-}
-
-export type TestQuestion = {
-    id: string;
+    enabled: boolean;
+    themeId: string;
     title: string;
     description: string;
-    result: TestQuestionUserResult;
-    themes: TestTheme[];
-    answers: TestAnswer[];
+    timeToPass: number;
+    questionsAmount: number;
+    unsatisfactoryScore: number;
+    satisfactoryScore: number;
+    perfectScore: number;
 }
 
-export type TestTheme = {
-    id: string;
-    title: string;
-    addition: string;
-    url?: string;
-}
-
-export type TestResult =
-    'not-started'
-    | 'unsatisfactory'
-    | 'satisfactorily'
-    | 'perfect';
-
-export type Test = {
-    id: string;
-    title: string;
-    description: string;
-    questions: TestQuestion[];
-}
-
-export type TestUserResult = {
-    test: Test;
-    user: User;
-    startTime: string;
-    finishTime: string;
-    try: number;
-    result: TestResult;
-    status: TestStatus;
-}
+export type TestCreateType = Create<TestType, 'themeId' | 'title'>;
+export type TestUpdateType = Partial<TestType>;
+export type TestShortType = Pick<TestType, 'id' | 'themeId' | 'title'>;

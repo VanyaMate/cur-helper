@@ -1,4 +1,4 @@
-import { Test, TestQuestion } from '@/types/test/test.types.ts';
+import { TestType } from '@/types/test/test.types.ts';
 import { useFetchTestPassingMockData } from '@/hooks/test/fetch/useFetchTestPassingMockData.ts';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
