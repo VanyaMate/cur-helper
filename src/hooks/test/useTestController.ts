@@ -1,11 +1,10 @@
-import { TestType } from '@/types/test/test.types.ts';
 import { useFetchTestPassingMockData } from '@/hooks/test/fetch/useFetchTestPassingMockData.ts';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 
 export interface ITestController {
     loading: boolean;
-    test: Test | null;
+    test: any | null;
     questionsAmount: number;
 
     select (questionId: string, answerId: string): Promise<any>;
@@ -13,7 +12,7 @@ export interface ITestController {
 
 export const useTestController = function (testId: string): ITestController {
     const [ process, setProcess ]                 = useState<boolean>(true);
-    const [ test, setTest ]                       = useState<Test | null>(null);
+    const [ test, setTest ]                       = useState<any | null>(null);
     const [ questionsAmount, setQuestionsAmount ] = useState<number>(0);
     const { loading, data }                       = useFetchTestPassingMockData(testId);
 
@@ -38,7 +37,7 @@ export const useTestController = function (testId: string): ITestController {
         return new Promise<void>((resolve) => {
             setTimeout(() => {
                 if (test?.questions) {
-                    const question: TestQuestion | undefined = test.questions.find((question) => question.id === questionId);
+                    const question: any | undefined = test.questions.find((question: any) => question.id === questionId);
                     if (question) {
                         question.result.answerId = answerId;
                         question.result.result   = 'selected';

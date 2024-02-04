@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
-import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
@@ -11,7 +10,7 @@ import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { With } from '@/types/types.ts';
 import { ThemeRecursiveChildren, ThemeShortType } from '@/types/theme/theme.types.ts';
-import { GUID_ID, GUID_PAGE } from '@/constants/pages.ts';
+import { GUID_PAGE } from '@/constants/pages.ts';
 
 
 export type GuidListContainerProps = {};
@@ -23,7 +22,6 @@ const GuidListContainer: React.FC<GuidListContainerProps> = (props) => {
         onChange    : (value) => console.log('value', value),
         debounce    : 500,
     });
-    const pageGetter          = usePageUrl();
 
     // TODO: Temp
     const [ items, setItems ] = useState<With<ThemeShortType, [ ThemeRecursiveChildren ]>[]>([]);
