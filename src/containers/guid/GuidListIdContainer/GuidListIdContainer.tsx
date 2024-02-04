@@ -1,19 +1,21 @@
 import React from 'react';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import Link from '@/components/ui/link/Link/Link.tsx';
-import Input from '@/components/ui/input/Input/Input.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import P from '@/components/ui/p/P/P.tsx';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
-import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import P from '@/components/ui/p/P/P.tsx';
+import Input from '@/components/ui/input/Input/Input.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
+import Link from '@/components/ui/link/Link/Link.tsx';
 
 
-export type GuidPageProps = {}
+export type GuidListIdContainerProps = {
+    id: string;
+};
 
-const GuidPage: React.FC<GuidPageProps> = (props) => {
+const GuidListIdContainer: React.FC<GuidListIdContainerProps> = (props) => {
     const {}                  = props;
     const [ value, onChange ] = useInput({
         initialValue: '',
@@ -43,6 +45,8 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                     <Button styleType={ 'main' }>Найти</Button>
                 </aside>
             </Section>
+            // breadcrumbs
+            // title
             <TileBox>
                 <OrderedList
                     prefix={ '1' }
@@ -87,4 +91,4 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
     );
 };
 
-export default React.memo(GuidPage);
+export default React.memo(GuidListIdContainer);
