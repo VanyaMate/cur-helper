@@ -1,12 +1,11 @@
 import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
-import { Test } from '@/types/test/test.types.ts';
 import { useEffect, useMemo, useState } from 'react';
 
 
-export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
+export const useFetchTestPassingMockData = function (id: string): Fetch<any> {
     const [ loading, setLoading ] = useState<boolean>(true);
     const [ error ]               = useState<FetchError>(null);
-    const [ test, setTest ]       = useState<FetchData<Test>>(null);
+    const [ test, setTest ]       = useState<FetchData<any>>(null);
 
     useEffect(() => {
         setLoading(true);
@@ -16,7 +15,7 @@ export const useFetchTestPassingMockData = function (id: string): Fetch<Test> {
                 return;
             }
 
-            const test: Test = {
+            const test: any = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',

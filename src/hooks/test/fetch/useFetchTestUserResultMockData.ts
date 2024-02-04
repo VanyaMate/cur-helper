@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Test, TestUserResult } from '@/types/test/test.types.ts';
 import { User } from '@/types/user/user.types.ts';
 import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
 
 
-export const useFetchTestUserResultMockData = function (id: string): Fetch<TestUserResult> {
+export const useFetchTestUserResultMockData = function (id: string): Fetch<any> {
     const [ loading, setLoading ] = useState<boolean>(true);
     const [ error ]               = useState<FetchError>(null);
-    const [ test, setTest ]       = useState<FetchData<TestUserResult>>(null);
+    const [ test, setTest ]       = useState<FetchData<any>>(null);
 
     useEffect(() => {
         setLoading(true);
@@ -24,7 +23,7 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
                 role  : 'admin',
                 avatar: '',
             };
-            const test: Test                     = {
+            const test: any                     = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',
@@ -197,7 +196,7 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<TestU
                     },
                 ],
             };
-            const testUserResult: TestUserResult = {
+            const testUserResult: any = {
                 startTime : new Date(Date.now() - 60000 * 27).toISOString(),
                 finishTime: new Date(Date.now() - 60000 * 15).toISOString(),
                 result    : 'satisfactorily',

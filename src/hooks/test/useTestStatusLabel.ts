@@ -1,7 +1,4 @@
-import { TestResult } from '@/types/test/test.types.ts';
-
-
-export const useTestStatusLabel = function (status: TestResult) {
+export const useTestStatusLabel = function (status: any) {
     if (status === 'not-started') {
         return 'Не пройден';
     } else if (status === 'unsatisfactory') {

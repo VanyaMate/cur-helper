@@ -1,19 +1,21 @@
 import React from 'react';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import Link from '@/components/ui/link/Link/Link.tsx';
-import Input from '@/components/ui/input/Input/Input.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import P from '@/components/ui/p/P/P.tsx';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
-import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
-import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
+import P from '@/components/ui/p/P/P.tsx';
+import Input from '@/components/ui/input/Input/Input.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
+import Link from '@/components/ui/link/Link/Link.tsx';
 
 
-export type GuidPageProps = {}
+export type GuidListIdContainerProps = {
+    id: string;
+};
 
-const GuidPage: React.FC<GuidPageProps> = (props) => {
+const GuidListIdContainer: React.FC<GuidListIdContainerProps> = (props) => {
     const {}                  = props;
     const [ value, onChange ] = useInput({
         initialValue: '',
@@ -21,7 +23,6 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
         debounce    : 500,
     });
     const pageGetter          = usePageUrl();
-
 
     return (
         <Section size={ 'medium' }>
@@ -44,54 +45,50 @@ const GuidPage: React.FC<GuidPageProps> = (props) => {
                     <Button styleType={ 'main' }>Найти</Button>
                 </aside>
             </Section>
-            <Collapse
-                title={ '1. Общие правила' }
-                opened={ true }
-                item={ 'main' }
-            >
+            // breadcrumbs
+            // title
+            <TileBox>
                 <OrderedList
                     prefix={ '1' }
+                    type={ 'article' }
+                    showPrefix
+                    item={ 'main' }
+                    title={
+                        <Link to={ pageGetter.guid('1') }>Общие правила</Link>
+                    }
                     list={ [
                         <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
                         <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
                         <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                     ] }
                 />
-            </Collapse>
-            <Collapse
-                title={ '2. Правила общения' }
-                opened={ true }
-                item={ 'main' }
-            >
                 <OrderedList
                     prefix={ '2' }
+                    type={ 'article' }
+                    item={ 'main' }
+                    showPrefix
+                    title={ <Link to={ pageGetter.guid('2') }>Общие правила</Link> }
                     list={ [
-                        <Link to={ '#' }>Вежливость</Link>,
-                        <Link to={ '#' }>Открытость</Link>,
-                        <Link to={ '#' }>Конкретика</Link>,
-                        <Link to={ '#' }>Обвинения</Link>,
-                        <Link to={ '#' }>Вопросы</Link>,
+                        <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
+                        <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
+                        <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                     ] }
                 />
-            </Collapse>
-            <Collapse
-                title={ '3. Запретные вещи' }
-                opened={ true }
-                item={ 'main' }
-            >
                 <OrderedList
                     prefix={ '3' }
+                    type={ 'article' }
+                    item={ 'main' }
+                    showPrefix
+                    title={ <Link to={ pageGetter.guid('3') }>Общие правила</Link> }
                     list={ [
-                        <Link to={ '#' }>Слова</Link>,
-                        <Link to={ '#' }>Темы</Link>,
-                        <Link to={ '#' }>Темы</Link>,
-                        <Link to={ '#' }>Темы</Link>,
-                        <Link to={ '#' }>Темы</Link>,
+                        <Link to={ pageGetter.guid('1-1') }>Законы</Link>,
+                        <Link to={ pageGetter.guid('1-2') }>Правила</Link>,
+                        <Link to={ pageGetter.guid('1-3') }>Этикет</Link>,
                     ] }
                 />
-            </Collapse>
+            </TileBox>
         </Section>
     );
 };
 
-export default React.memo(GuidPage);
+export default React.memo(GuidListIdContainer);

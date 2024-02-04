@@ -1,9 +1,9 @@
 import {
     COMMON_PAGE,
-    GUID_PAGE,
+    GUID_PAGE, GUIDS_PAGE,
     HOME_PAGE, PROFILE_PAGE,
     TEST_PAGE,
-    TEST_PASSING_PAGE, TEST_RESULT_PAGE,
+    TEST_PASSING_PAGE, TEST_RESULT_PAGE, TESTS_PAGE,
 } from '@/constants/pages.ts';
 import { useMemo } from 'react';
 
@@ -16,6 +16,10 @@ export interface PageUrlGetter {
     guid (id?: string): string;
 
     test (id?: string): string;
+
+    guids (id?: string): string;
+
+    tests (id?: string): string;
 
     testResult (id: string): string;
 
@@ -37,9 +41,19 @@ export const usePageUrl = function (): PageUrlGetter {
             return `/${ GUID_PAGE }${ themeId ? `/${ themeId }${ guidId ? `/${ guidId }`
                                                                         : '' }` : '' }`;
         },
+        guids (id: string): string {
+            const [ themeId, guidId ] = (id ?? '').split('-');
+            return `/${ GUIDS_PAGE }${ themeId ? `/${ themeId }${ guidId ? `/${ guidId }`
+                                                                        : '' }` : '' }`;
+        },
         test (id: string): string {
             const [ themeId, testId ] = (id ?? '').split('-');
             return `/${ TEST_PAGE }${ themeId ? `/${ themeId }${ testId ? `/${ testId }`
+                                                                        : '' }` : '' }`;
+        },
+        tests (id: string): string {
+            const [ themeId, testId ] = (id ?? '').split('-');
+            return `/${ TESTS_PAGE }${ themeId ? `/${ themeId }${ testId ? `/${ testId }`
                                                                         : '' }` : '' }`;
         },
         testPassing (id: string): string {

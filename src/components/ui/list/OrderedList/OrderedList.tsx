@@ -1,27 +1,43 @@
 import React from 'react';
 import css from './OrderedList.module.scss';
 import Title from '@/components/ui/title/Title/Title.tsx';
-import Section from '@/components/ui/container/Section/Section.tsx';
+import Section, {
+    SectionItem,
+    SectionType,
+} from '@/components/ui/container/Section/Section.tsx';
+import P from '@/components/ui/p/P/P.tsx';
 
 
 export type OrderedListProps = {
     title?: React.ReactNode | string;
     prefix?: string;
     list: React.ReactNode[] | string[];
+    item?: SectionItem;
+    type?: SectionType;
+    showPrefix?: boolean;
 }
 
 const OrderedList: React.FC<OrderedListProps> = (props) => {
-    const { title, prefix, list } = props;
+    const { title, prefix, list, item, type, showPrefix } = props;
 
     return (
         <Section
-            type={ 'section' }
+            type={ type ?? 'section' }
+            item={ item ?? undefined }
             size={ 'medium' }
             className={ css.container }
         >
             {
                 title &&
-                <Title size={ 'small' } className={ css.title }>{ title }</Title>
+                <Section item={ 'default' }>
+                    <Title size={ 'small' } className={ css.title }>
+                        {
+                            showPrefix &&
+                            <P item={ 'invisible' }>{ prefix }.</P>
+                        }
+                        { title }
+                    </Title>
+                </Section>
             }
             <ol className={ css.list }>
                 {
