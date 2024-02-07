@@ -1,3 +1,5 @@
+import AdminTestsListContainer
+    from '@/containers/admin/AdminTestsList/AdminTestsListContainer';
 import React from 'react';
 
 
@@ -7,9 +9,7 @@ const AdminTestListPage: React.FC<AdminTestListPageProps> = (props) => {
     const {} = props;
 
     return (
-        <div>
-            AdminTestListPageComponent
-        </div>
+        <AdminTestsListContainer/>
     );
 };
 
