@@ -36,7 +36,8 @@ export const useFetch = function <Data> (url: string): Fetch<Data> {
         setLoading(() => true);
         setError(() => null);
 
-        fetch(url, { signal: abortController.signal })
+        // TODO: Cred
+        fetch(url, { signal: abortController.signal, credentials: 'include' })
             .then(async (response) => {
                 if (response.ok) {
                     return response;

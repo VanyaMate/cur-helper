@@ -50,7 +50,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     } }
                 />
                 <MobileSiteNavigationButton
-                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === GUID_PAGE : null }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === GUID_PAGE : undefined }
                     icon="https://cdn-icons-png.flaticon.com/512/171/171322.png"
                     label="Темы"
                     onClick={ () => {
@@ -58,7 +58,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     } }
                 />
                 <MobileSiteNavigationButton
-                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === TEST_PAGE : null }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === TEST_PAGE : undefined }
                     icon="https://cdn-icons-png.flaticon.com/512/1950/1950630.png"
                     label="Тесты"
                     onClick={ () => {
@@ -66,7 +66,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     } }
                 />
                 <MobileSiteNavigationButton
-                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === PROFILE_PAGE : null }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === PROFILE_PAGE : undefined }
                     icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
                     label="Профили"
                     onClick={ () => {

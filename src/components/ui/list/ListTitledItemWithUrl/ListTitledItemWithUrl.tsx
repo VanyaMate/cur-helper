@@ -7,8 +7,8 @@ import css from './ListTitledItemWithUrl.module.scss';
 
 
 export type ListTitledItemWithUrlProps = {
-    title?: string;
-    body?: string;
+    title?: React.ReactNode;
+    body?: React.ReactNode;
     url?: string;
 }
 
@@ -23,7 +23,8 @@ const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
             type="article"
         >
             {
-                title ? <Title className={ css.title } size="small">{ title }</Title> : null
+                title ? <Title className={ css.title } size="small">{ title }</Title>
+                      : null
             }
             {
                 body ? <P className={ css.body } item="invisible">{ body }</P> : null

@@ -10,7 +10,7 @@ import {
     ADMIN_PAGE, GUID_PAGE,
     GUIDS_PAGE,
     HOME_PAGE,
-    PROFILE_PAGE, TEST_PAGE,
+    PROFILE_PAGE, TEST_PAGE, TESTS_PAGE,
 } from '@/constants/pages.ts';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {
@@ -62,7 +62,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     icon="https://cdn-icons-png.flaticon.com/512/1950/1950630.png"
                     label="Тесты"
                     onClick={ () => {
-                        navigate(`/${ TEST_PAGE }`);
+                        navigate(`/${ TESTS_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton

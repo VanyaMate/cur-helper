@@ -9,6 +9,7 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import { useFetchThemeById } from '@/hooks/theme/fetch/useFetchThemeById.ts';
 import React from 'react';
+import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
 
 
 export type GuidItemContainerProps = {
@@ -47,34 +48,41 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = (props) => {
                 ]
                 }
             />
-            <Section size="extra-small">
-                <Title>{ data.title }</Title>
-                {
-                    data.description ? <P item="second">{ data.description }</P> : null
-                }
-            </Section>
-            {
-                data.children.length ?
-                <OrderedList
-                    item="main"
-                    list={ data.children.map((child) => (
-                        <Link
-                            key={ child.publicId }
-                            to={ `/${ GUID_PAGE }/${ child.publicId }` }>{ child.title }</Link>
-                    )) }
-                /> : null
-            }
-            {
-                data.additional ? <P item="invisible">{ data.additional }</P> : null
-            }
-            {
-                data.body ? <P>{ data.body }</P> : null
-            }
-            <div>
-                <Button styleType="default">Следующая тема</Button>
-            </div>
-            <div>// tests</div>
-            <div>// FAQ</div>
+            <ContentBox>
+                <Section size={ 'large' }>
+                    <Section size="extra-small">
+                        <Title>{ data.title }</Title>
+                        {
+                            data.description ? <P item="second">{ data.description }</P>
+                                             : null
+                        }
+                    </Section>
+                    {
+                        data.children.length ?
+                        <OrderedList
+                            item="main"
+                            list={ data.children.map((child) => (
+                                <Link
+                                    key={ child.publicId }
+                                    to={ `/${ GUID_PAGE }/${ child.publicId }` }>{ child.title }</Link>
+                            )) }
+                        /> : null
+                    }
+                    {
+                        data.additional ? <P item="invisible">{ data.additional }</P>
+                                        : null
+                    }
+                    {
+                        data.body ? <P>{ data.body }</P> : null
+                    }
+                    <div>
+                        <Button styleType="default">Следующая тема</Button>
+                    </div>
+                    <div>// tests</div>
+                    <div>// FAQ</div>
+                    <div>// comments</div>
+                </Section>
+            </ContentBox>
         </Section>
     );
 };

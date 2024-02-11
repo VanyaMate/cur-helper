@@ -1,16 +1,27 @@
-export type UserRole =
-    'user'
-    | 'admin';
+import {
+    TestPassingResults,
+    TestPassingType,
+} from '@/types/test-passing/test-passing.types.ts';
+import { RoleType } from '@/types/role/role.types.ts';
+import { Create, With } from '@/types/types.ts';
 
-export type UserInfo = {
-    firstName: string;
-    lastName: string;
-}
 
-export type User = {
+export type UserType = {
     id: string;
     login: string;
-    avatar: string;
-    info: Partial<UserInfo>;
-    role: UserRole;
+    avatarUrl: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    verified: boolean;
+    role: RoleType | null;
 }
+
+export type UserTestPassing = {
+    testPassing: With<TestPassingType, [ TestPassingResults ]>[];
+}
+
+export type UserCreateType =
+    Create<Omit<UserType, 'role'>, 'login'>
+    & { password: string };
+export type UserUpdateType = Partial<Omit<UserType, 'role'>>;

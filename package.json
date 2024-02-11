@@ -11,7 +11,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@vanyamate/helpers": "^0.0.4",
+        "@vanyamate/helpers": "^0.0.5",
         "react": "^18.2.0",
         "react-circular-progressbar": "^2.1.0",
         "react-dom": "^18.2.0",

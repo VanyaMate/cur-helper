@@ -16,7 +16,7 @@ import {
     PROFILE_PAGE, PROFILE_SETTINGS_PAGE, TEST_ID,
     TEST_PAGE,
     TEST_PASSING_PAGE,
-    TEST_RESULT_PAGE, THEME_ID,
+    TEST_RESULT_PAGE, TESTS_PAGE, THEME_ID,
 } from '@/constants/pages.ts';
 import ArticleItemPage from '@/pages/article/item/ArticleItemPage.tsx';
 import ArticlesPage from '@/pages/article/ArticlesPage.tsx';
@@ -27,6 +27,8 @@ import AdminHomePage from '@/pages/admin/AdminHomePage/AdminHomePage.tsx';
 import AdminTestListPage from '@/pages/admin/AdminTestListPage/AdminTestListPage.tsx';
 import GuidListIdPage from '@/pages/guid/list-id/GuidListIdPage.tsx';
 import GuidListPage from '@/pages/guid/list/GuidListPage.tsx';
+import TestsLayout from '@/layouts/tests/TestsLayout/TestsLayout.tsx';
+import ThemesLayout from '@/layouts/themes/ThemesLayout/ThemesLayout.tsx';
 
 
 export type PagesProps = {}
@@ -46,14 +48,16 @@ const Pages: React.FC<PagesProps> = (props) => {
                 <Route element={ <AdminHomePage/> } path={ `${ HOME_PAGE }` }/>
             </Route>
             <Route element={ <MobilePageLayout/> } path={ '/*' }>
-                <Route path={ `${ TEST_PAGE }/*` }>
-                    <Route element={ <TestPassingPage/> } path={ TEST_PASSING_PAGE }/>
-                    <Route element={ <TestResultPage/> } path={ TEST_RESULT_PAGE }/>
-                    <Route path={ `:${ THEME_ID }` }>
-                        <Route element={ <TestItemPage/> } path={ `:${ TEST_ID }` }/>
-                        <Route element={ <TestPage/> } path="*"/>
-                    </Route>
+                <Route path={ `${ TESTS_PAGE }/*` } element={ <TestsLayout/> }>
+                    <Route element={ <TestPage/> } path={ `${ TEST_ID }` }/>
                     <Route element={ <TestPage/> } path="*"/>
+                </Route>
+                <Route path={ `${ TEST_PAGE }/*` }>
+                    <Route element={ <TestPassingPage/> }
+                           path={ `${ TEST_PASSING_PAGE }/:${ TEST_ID }` }/>
+                    <Route element={ <TestResultPage/> }
+                           path={ `${ TEST_RESULT_PAGE }/:${ TEST_ID }` }/>
+                    <Route element={ <TestItemPage/> } path={ `:${ TEST_ID }` }/>
                 </Route>
                 <Route path={ `${ PROFILE_PAGE }/*` }>
                     <Route element={ <ProfilePage/> } path={ PROFILE_SETTINGS_PAGE }/>
@@ -65,7 +69,7 @@ const Pages: React.FC<PagesProps> = (props) => {
                     <Route element={ <GuidListPage/> } path="*"/>
                 </Route>
 
-                <Route path={ `${ GUIDS_PAGE }/*` }>
+                <Route path={ `${ GUIDS_PAGE }/*` } element={ <ThemesLayout/> }>
                     <Route element={ <GuidListIdPage/> } path={ `:${ GUID_ID }` }/>
                     <Route element={ <GuidListPage/> } path="*"/>
                 </Route>

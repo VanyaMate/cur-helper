@@ -4,24 +4,18 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import ListTitledItemWithUrl
-    from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import css from './TestBriefieg.module.scss';
 import IconM from '@/components/ui/icon/IconM.tsx';
+import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
+import { ThemeShortType } from '@/types/theme/theme.types.ts';
 
-
-export type ThemePreviewInfo = {
-    title: string;
-    addition: string;
-    url: string;
-}
 
 export type TestBriefingProps = {
     title: string;
     description: string;
-    themes: ThemePreviewInfo[];
-    timeToPass: number;
+    themes: ThemeShortType[];
+    timeToPass: string;
     onStart: () => Promise<any>;
     //eslint-disable-next-line react/no-unused-prop-types
     onClose: () => any;
@@ -54,7 +48,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                                         : null
                         }
                         <P className={ css.timeToPass } item="invisible">
-                            Время на прохождение: { timeToPass } минут
+                            Время на прохождение: { timeToPass }
                         </P>
                     </div>
                     <Button
@@ -74,11 +68,9 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                 <OrderedList
                     list={
                         themes.map((theme) => (
-                            <ListTitledItemWithUrl
-                                body={ theme.addition }
-                                key={ theme.title }
-                                title={ theme.title }
-                                url={ theme.url }
+                            <ThemeListItem
+                                key={ theme.publicId }
+                                theme={ theme }
                             />
                         ))
                     }

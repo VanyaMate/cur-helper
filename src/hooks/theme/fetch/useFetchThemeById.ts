@@ -1,11 +1,14 @@
 import { Fetch, useFetch } from '@/hooks/useFetch.ts';
 import { With } from '@/types/types.ts';
 import {
+
+    ThemeType,
+} from '@/types/theme/theme.types.ts';
+import {
     ThemeBreadcrumb,
     ThemeChildren,
     ThemeTests,
-    ThemeType,
-} from '@/types/theme/theme.types.ts';
+} from '@/types/themes/themes.types.ts';
 
 
 export const useFetchThemeById = function (id: string): Fetch<With<ThemeType, [ ThemeChildren, ThemeBreadcrumb, ThemeTests ]>> {

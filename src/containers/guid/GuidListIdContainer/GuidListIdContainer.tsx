@@ -35,6 +35,10 @@ const GuidListIdContainer: React.FC<GuidListIdContainerProps> = (props) => {
         return `Error: ${ error.message }`;
     }
 
+    if (!data) {
+        return 'Not found';
+    }
+
     return (
         <Section size="medium">
             <Section size="medium" type="div">

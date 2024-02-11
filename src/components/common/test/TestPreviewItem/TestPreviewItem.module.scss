@@ -1,0 +1,17 @@
+.container {
+    justify-content : space-between;
+    transition      : var(--transition-medium);
+
+    &:hover {
+        box-shadow : 0 0 20px -10px var(--color-blue-transparent) !important;
+        cursor     : pointer;
+    }
+
+    .header {
+
+    }
+
+    .footer {
+
+    }
+}

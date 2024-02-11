@@ -1,27 +1,30 @@
 $nav_height    : 70px;
 $header_height : 40px;
 $max_width     : 1000px;
+$page_padding  : var(--offset-medium);
 
 .container {
-    display         : flex;
-    flex-direction  : column;
-    justify-content : space-between;
-    height          : 100dvh;
+    height : 100dvh;
 
     .content {
         // height        : calc(100% - $nav_height);
-        height        : calc(100% - $nav_height - var(--offset-medium) * 2);
-        margin        : var(--offset-medium) var(--offset-medium) 0 var(--offset-medium);
+        height        : calc(100%);
+        padding       : $page_padding $page_padding 0 $page_padding;
         background    : var(--background-main);
-        overflow-y    : auto;
+        // overflow-y    : auto;
+        width         : 100%;
+        max-width     : calc($max_width + $page_padding * 2);
+        margin        : auto;
 
         // new_design
         border-radius : var(--offset-medium);
 
         .content_width {
-            width     : 100%;
-            max-width : $max_width;
-            margin    : auto;
+            width          : 100%;
+            max-width      : $max_width;
+            margin         : auto;
+
+            padding-bottom : calc($nav_height + $page_padding);
         }
     }
 
@@ -34,7 +37,8 @@ $max_width     : 1000px;
         }*/
 
     .header {
-        margin-bottom : var(--offset-medium) !important;
+        margin-bottom  : var(--offset-medium) !important;
+        padding-bottom : 0 !important;
     }
 
     /*    .nav {
@@ -52,12 +56,16 @@ $max_width     : 1000px;
         margin          : auto;
         width           : calc(100% - var(--offset-medium) * 2);
         max-width       : $max_width;
-        position        : relative;
+        position        : fixed;
+        z-index         : 1000;
+        left            : 50%;
+        transform       : translateX(-50%);
+        bottom          : var(--offset-small);
         height          : $nav_height;
         display         : flex;
         align-items     : center;
         justify-content : center;
-        box-shadow      : 0 0 0 4px var(--background-main);
+        box-shadow      : 0 5px 0 10px var(--background-main);
         background      : var(--background-item);
         gap             : var(--offset-medium);
         border-radius   : var(--offset-medium);
