@@ -2,12 +2,11 @@ import React, { useMemo } from 'react';
 import css from './TestResultAnswer.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Button from '@/components/ui/button/Button/Button.tsx';
-import { TestAnswer, TestQuestionResult } from '@/types/test/test.types.ts';
 
 
 export type TestResultAnswerProps = {
-    answer: TestAnswer;
-    result: TestQuestionResult;
+    answer: any;
+    result: any;
     onClick?: (id: string) => any;
 }
 

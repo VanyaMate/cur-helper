@@ -43,8 +43,8 @@ const TestListContainer: React.FC<TestListContainerProps> = (props) => {
                                 theme.tests.map((test) => (
                                     <TestPreviewItem
                                         key={ test.id }
-                                        test={ test }
                                         onClick={ navigateCallback }
+                                        test={ test }
                                     />
                                 ))
                             }

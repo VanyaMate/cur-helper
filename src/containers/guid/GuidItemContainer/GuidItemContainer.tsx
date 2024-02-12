@@ -49,7 +49,7 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = (props) => {
                 }
             />
             <ContentBox>
-                <Section size={ 'large' }>
+                <Section size="large">
                     <Section size="extra-small">
                         <Title>{ data.title }</Title>
                         {

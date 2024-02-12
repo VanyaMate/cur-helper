@@ -68,7 +68,7 @@ const TestPassingByIdContainer: React.FC<TestPassingByIdContainerProps> = (props
                     </Section>
                     <OrderedList
                         list={
-                            test.questions.map((question, index) => (
+                            test.questions.map((question: any, index: number) => (
                                 <Button
                                     block
                                     key={ question.title }

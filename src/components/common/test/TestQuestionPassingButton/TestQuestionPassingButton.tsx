@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
-import { TestAnswer } from '@/types/test/test.types.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 
 
 export type TestQuestionPassingButtonProps = {
-    answer: TestAnswer;
+    answer: any;
     selectedAnswer: boolean;
     selected: boolean;
     process: boolean;
@@ -24,7 +23,7 @@ const TestQuestionPassingButton: React.FC<TestQuestionPassingButtonProps> = (pro
     return (
         <Button
             block
-            disabled={ process ? !selected : null }
+            disabled={ process ? !selected : undefined }
             onClick={ onAcceptClick }
             styleType={ selectedAnswer ? 'selected' : selected ? 'hover'
                                                                : 'default' }

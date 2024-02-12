@@ -63,8 +63,6 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props)
                 }
             />
             <TestItemPageHeader
-                date={ test.finishTime }
-                status={ test.result }
                 title={ test.test.title }
             />
             <Section item="main" size="small">
@@ -81,7 +79,7 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props)
                 <SpaceBetween size="small">
                     <TestResultProgressbarCircle
                         percent={ percent }
-                        result="satisfactorily"
+                        result="satis"
                     />
                     <AdditionalList
                         list={ [

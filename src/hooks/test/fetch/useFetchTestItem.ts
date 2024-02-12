@@ -6,8 +6,9 @@ import {
     TestThemeShort,
 } from '@/types/tests/tests.types.ts';
 import { With } from '@/types/types.ts';
+import { API_HOST } from '@/constants/api.url.ts';
 
 
 export const useFetchTestItem = function (id: string): Fetch<With<TestType, [ TestShortResult, TestThemeShort, TestQuestionsThemesShort ]>> {
-    return useFetch(`http://localhost:3000/api/v1/tests/${ id }`);
+    return useFetch(`${ API_HOST }/api/v1/tests/${ id }`);
 };

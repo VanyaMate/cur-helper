@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { User } from '@/types/user/user.types.ts';
 import { Fetch, FetchData, FetchError } from '@/hooks/useFetch.ts';
 
 
@@ -16,14 +15,14 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<any> 
                 return;
             }
 
-            const user: User                     = {
+            const user: any           = {
                 id    : '1',
                 login : 'VanyaMate',
                 info  : {},
                 role  : 'admin',
                 avatar: '',
             };
-            const test: any                     = {
+            const test: any           = {
                 id         : '1-1',
                 title      : 'Законы и нормы права в управлении персоналом',
                 description: 'Тест направленный на проверку знаний о законах и их применении',
@@ -199,7 +198,7 @@ export const useFetchTestUserResultMockData = function (id: string): Fetch<any> 
             const testUserResult: any = {
                 startTime : new Date(Date.now() - 60000 * 27).toISOString(),
                 finishTime: new Date(Date.now() - 60000 * 15).toISOString(),
-                result    : 'satisfactorily',
+                result    : 'satis',
                 status    : 'finish',
                 try       : 1,
                 test      : test,

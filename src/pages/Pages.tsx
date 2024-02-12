@@ -48,7 +48,7 @@ const Pages: React.FC<PagesProps> = (props) => {
                 <Route element={ <AdminHomePage/> } path={ `${ HOME_PAGE }` }/>
             </Route>
             <Route element={ <MobilePageLayout/> } path={ '/*' }>
-                <Route path={ `${ TESTS_PAGE }/*` } element={ <TestsLayout/> }>
+                <Route element={ <TestsLayout/> } path={ `${ TESTS_PAGE }/*` }>
                     <Route element={ <TestPage/> } path={ `${ TEST_ID }` }/>
                     <Route element={ <TestPage/> } path="*"/>
                 </Route>
@@ -69,7 +69,7 @@ const Pages: React.FC<PagesProps> = (props) => {
                     <Route element={ <GuidListPage/> } path="*"/>
                 </Route>
 
-                <Route path={ `${ GUIDS_PAGE }/*` } element={ <ThemesLayout/> }>
+                <Route element={ <ThemesLayout/> } path={ `${ GUIDS_PAGE }/*` }>
                     <Route element={ <GuidListIdPage/> } path={ `:${ GUID_ID }` }/>
                     <Route element={ <GuidListPage/> } path="*"/>
                 </Route>

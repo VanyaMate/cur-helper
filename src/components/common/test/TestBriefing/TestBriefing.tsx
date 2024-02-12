@@ -9,6 +9,7 @@ import css from './TestBriefieg.module.scss';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
 import { ThemeShortType } from '@/types/theme/theme.types.ts';
+import { TestPassingState } from '@/types/test-passing/test-passing.types.ts';
 
 
 export type TestBriefingProps = {
@@ -17,14 +18,15 @@ export type TestBriefingProps = {
     themes: ThemeShortType[];
     timeToPass: string;
     onStart: () => Promise<any>;
+    status?: TestPassingState;
     //eslint-disable-next-line react/no-unused-prop-types
     onClose: () => any;
 }
 
 const TestBriefing: React.FC<TestBriefingProps> = (props) => {
-    const { title, themes, timeToPass, description, onStart } = props;
-    const [ loading, setLoading ]                             = useState<boolean>(false);
-    const onStartCallback                                     = useCallback(() => {
+    const { title, themes, timeToPass, description, onStart, status } = props;
+    const [ loading, setLoading ]                                     = useState<boolean>(false);
+    const onStartCallback                                             = useCallback(() => {
         setLoading(true);
         onStart().finally(() => setLoading(false));
     }, [ onStart, setLoading ]);
@@ -59,7 +61,8 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                         }
                         styleType="main"
                     >
-                        Начать
+                        { status === 'process'
+                          ? 'Продолжить' : 'Начать' }
                     </Button>
                 </footer>
             </div>

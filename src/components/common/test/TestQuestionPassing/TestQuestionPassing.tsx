@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { TestQuestion } from '@/types/test/test.types.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
@@ -13,7 +12,7 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type TestQuestionPassingProps = {
-    question: TestQuestion;
+    question: any;
     onSelect: (id: string) => Promise<any>;
 }
 
@@ -49,7 +48,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                 <P>{ question.description }</P>
                 <Section item="main" type="div">
                     <OrderedList
-                        list={ question.answers.map((answer) => (
+                        list={ question.answers.map((answer: any) => (
                             <TestQuestionPassingButton
                                 answer={ answer }
                                 key={ question.id + answer.id }
@@ -64,7 +63,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                 </Section>
             </Section>
             <SpaceBetween type="div">
-                <div />
+                <div/>
                 <Button
                     disabled={ disabledSelectButton }
                     onClick={ onAcceptClick }

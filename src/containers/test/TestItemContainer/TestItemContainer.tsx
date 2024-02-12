@@ -12,8 +12,6 @@ import TestResultProgressbarCircle
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import ListTitledItemWithUrl
-    from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
@@ -23,6 +21,9 @@ import TestResultPreview
     from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
 import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
+import { useFetchCallback } from '@/hooks/useFetchCallback.ts';
+import { TestPassingType } from '@/types/test-passing/test-passing.types.ts';
+import { API_HOST } from '@/constants/api.url.ts';
 
 
 export type TestItemContainerProps = {
@@ -32,6 +33,9 @@ export type TestItemContainerProps = {
 const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
     const { id }                   = props;
     const { data, loading, error } = useFetchTestItem(id);
+    const { dispatch }             = useFetchCallback<TestPassingType, {
+        testId: string
+    }>(`${ API_HOST }/api/v1/test-passing`);
     const popupController          = useWindowPopupController();
     const navigate                 = useNavigate();
     const pageGetter               = usePageUrl();
@@ -58,10 +62,16 @@ const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
                     onStart={ async () => {
                         return new Promise(() => {
                             setTimeout(() => {
-                                navigate(pageGetter.testPassing(Math.random().toString()));
+                                dispatch({
+                                    testId: data?.id,
+                                })
+                                    .then((testPassing) =>
+                                        navigate(pageGetter.testPassing(testPassing.id)),
+                                    );
                             }, 1000);
                         });
                     } }
+                    status={ data.shortResult?.status }
                     themes={ data.themes }
                     timeToPass={ timeToPass }
                     title={ data.title }
@@ -70,7 +80,8 @@ const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
             <TestItemPageHeader
                 extra={
                     <Button onClick={ popupController.open }
-                            styleType="main">Начать</Button>
+                            styleType="main">{ data.shortResult?.status === 'process'
+                                               ? 'Продолжить' : 'Начать' }</Button>
                 }
                 title={ data.title }
             />
@@ -79,7 +90,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
                 <SpaceBetween size="small" type="div">
                     <TestResultProgressbarCircle
                         percent={ data.shortResult?.rightAnswers
-                                  ? 100 / data.shortResult.questions.length * data.shortResult.rightAnswers
+                                  ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
                                   : 0 }
                         result={ data.shortResult?.result }
                     />
@@ -88,7 +99,8 @@ const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
                             { label: 'Вопросов', value: data.questionsAmount },
                             {
                                 label: 'Правильных ответов',
-                                value: data.shortResult?.rightAnswers ?? '-',
+                                value: data.shortResult?.rightAnswers === -1 ? '-'
+                                                                             : data.shortResult?.rightAnswers ?? '-',
                             },
                             { label: 'Попыток', value: '-' },
                             { label: 'Время', value: timeToPass },

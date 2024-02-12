@@ -44,7 +44,7 @@ export const usePageUrl = function (): PageUrlGetter {
         guids (id: string): string {
             const [ themeId, guidId ] = (id ?? '').split('-');
             return `/${ GUIDS_PAGE }${ themeId ? `/${ themeId }${ guidId ? `/${ guidId }`
-                                                                        : '' }` : '' }`;
+                                                                         : '' }` : '' }`;
         },
         test (id: string): string {
             const [ themeId, testId ] = (id ?? '').split('-');
@@ -54,13 +54,13 @@ export const usePageUrl = function (): PageUrlGetter {
         tests (id: string): string {
             const [ themeId, testId ] = (id ?? '').split('-');
             return `/${ TESTS_PAGE }${ themeId ? `/${ themeId }${ testId ? `/${ testId }`
-                                                                        : '' }` : '' }`;
+                                                                         : '' }` : '' }`;
         },
         testPassing (id: string): string {
-            return `/${ TEST_PAGE }/${ TEST_PASSING_PAGE }/?id=${ id }`;
+            return `/${ TEST_PAGE }/${ TEST_PASSING_PAGE }/${ id }`;
         },
         testResult (id: string): string {
-            return `/${ TEST_PAGE }/${ TEST_RESULT_PAGE }/?id=${ id }`;
+            return `/${ TEST_PAGE }/${ TEST_RESULT_PAGE }/${ id }`;
         },
         profile (login?: string): string {
             return `/${ PROFILE_PAGE }${ login ? `/${ login }` : '' }`;

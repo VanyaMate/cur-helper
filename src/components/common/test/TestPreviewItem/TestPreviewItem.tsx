@@ -27,8 +27,8 @@ const TestPreviewItem: React.FC<TestPreviewItemProps> = (props) => {
     const timeToPass: string = useDateDeltaWithPostfix(Date.now() - test.timeToPass, Date.now(), '');
 
     return (
-        <Section className={ css.container } item="main" size="extra-small"
-                 onClick={ () => onClick(test.id) }>
+        <Section className={ css.container } item="main" onClick={ () => onClick(test.id) }
+                 size="extra-small">
             <Section size="extra-small">
                 <TestResultPreview shortResult={ test.shortResult }/>
                 <Title lines={ 2 }>{ test.title }</Title>

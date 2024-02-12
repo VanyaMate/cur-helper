@@ -9,8 +9,9 @@ import {
     ThemeChildren,
     ThemeTests,
 } from '@/types/themes/themes.types.ts';
+import { API_HOST } from '@/constants/api.url.ts';
 
 
 export const useFetchThemeById = function (id: string): Fetch<With<ThemeType, [ ThemeChildren, ThemeBreadcrumb, ThemeTests ]>> {
-    return useFetch(`http://localhost:3000/api/v1/themes/${ id }`);
+    return useFetch(`${ API_HOST }/api/v1/themes/${ id }`);
 };
