@@ -4,6 +4,7 @@ import Pages from '@/pages/Pages.tsx';
 
 export type AppProps = {}
 
+// init workflow
 const App: React.FC<AppProps> = (props) => {
     const {} = props;
 
