@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TestPassingByIdContainer
     from '@/containers/test/TestPassingByIdContainer/TestPassingByIdContainer.tsx';
+import { TEST_ID } from '@/constants/pages.ts';
 
 
 const TestPassingPage: React.FC = () => {
-    const [ searchParams ] = useSearchParams();
+    const { testId } = useParams<{ [TEST_ID]: string }>();
 
     return (
-        <TestPassingByIdContainer id={ searchParams.get('id') ?? '' }/>
+        <TestPassingByIdContainer id={ testId ?? '0' }/>
     );
 };
 

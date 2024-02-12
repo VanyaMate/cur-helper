@@ -1,15 +1,15 @@
 import React from 'react';
 import css from './TestItemLink.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import { TestResult } from '@/types/test/test.types.ts';
 import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
+import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
 
 
 export type TestItemLinkProps = {
     id: string;
     label: string;
     onClick: (id: string) => any;
-    status: TestResult;
+    status: TestPassingResult;
     disabled: boolean;
     questions: number;
     rightAnswers: number;
@@ -30,19 +30,19 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
 
     return (
         <Section
-            type={ 'article' }
-            item={ item }
             className={
                 cn(
                     css.container,
                     disabled && css.disabled,
-                    status === 'not-started' && css.not_started,
-                    status === 'unsatisfactory' && css.unsatisfactory,
-                    status === 'satisfactorily' && css.satisfactory,
+                    status === 'no-result' && css.not_started,
+                    status === 'unsatis' && css.unsatisfactory,
+                    status === 'satis' && css.satisfactory,
                     status === 'perfect' && css.perfect,
                 )
             }
+            item={ item }
             onClick={ () => onClick(id) }
+            type="article"
         >
             <div className={ css.left }>
                 <span
@@ -54,9 +54,9 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
                     }
                 >
                     {
-                        (status === 'not-started' && 'more_horiz') ||
-                        (status === 'unsatisfactory' && 'cancel') ||
-                        (status === 'satisfactorily' && 'done') ||
+                        (status === 'no-result' && 'more_horiz') ||
+                        (status === 'unsatis' && 'cancel') ||
+                        (status === 'satis' && 'done') ||
                         (status === 'perfect' && 'done_all') || 'more_horiz'
                     }
                 </span>

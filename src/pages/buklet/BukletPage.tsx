@@ -74,7 +74,7 @@ const BukletPage: React.FC<BukletPageProps> = (props) => {
             alignItems        : 'center',
             justifyContent    : 'center',
         } }>
-            <Section item={ 'main' } size={ 'large' }>
+            <Section item="main" size="large">
                 <Section>
                     <Title>Государственная помощь</Title>
                     <P style={ { color: '#777' } }>Способ решения своих проблем</P>
@@ -83,21 +83,22 @@ const BukletPage: React.FC<BukletPageProps> = (props) => {
                 <Section>
                     <div style={ { textAlign: 'left' } }>
                         <Collapse
-                            title={ 'Что нужно сделать' }
+                            item="default"
                             opened={ true }
-                            item={ 'default' }
+                            title="Что нужно сделать"
                         >
                             <OrderedList
                                 list={ [
-                                    <p>Открыть браузер</p>,
-                                    <p>Зайти на <Link to={ '#' }>gov.ru</Link></p>,
-                                    <p>Описать проблему</p>,
-                                    <p>Ждать решения</p>,
+                                    <p key="1">Открыть браузер</p>,
+                                    <p key="2">Зайти на <Link to="#">gov.ru</Link>
+                                    </p>,
+                                    <p key="3">Описать проблему</p>,
+                                    <p key="4">Ждать решения</p>,
                                 ] }
                             />
                         </Collapse>
                     </div>
-                    <Button styleType={ 'main' }>Узнать как</Button>
+                    <Button styleType="main">Узнать как</Button>
                 </Section>
             </Section>
         </Section>

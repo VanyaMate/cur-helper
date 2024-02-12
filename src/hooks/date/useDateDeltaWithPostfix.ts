@@ -2,11 +2,14 @@ import { useMemo } from 'react';
 import {
     getStringDeltaByDates,
 } from '@vanyamate/helpers/date/getStringDeltaByDates/getStringDeltaByDates';
-import { DateType, getDeltaByDates } from '@vanyamate/helpers/date/getDeltaByDates/getDeltaByDates';
+import {
+    DateType,
+    getDeltaByDates,
+} from '@vanyamate/helpers/date/getDeltaByDates/getDeltaByDates';
 
 
-export const useDateDeltaWithPostfix = function (start: DateType, finish: DateType): string {
+export const useDateDeltaWithPostfix = function (start: DateType, finish: DateType, postfix?: string): string {
     return useMemo(() => {
-        return getStringDeltaByDates(getDeltaByDates(start, finish));
-    }, [ start, finish ]);
+        return getStringDeltaByDates(getDeltaByDates(start, finish), postfix);
+    }, [ start, finish, postfix ]);
 };

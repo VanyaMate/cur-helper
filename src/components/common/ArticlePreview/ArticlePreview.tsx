@@ -16,38 +16,37 @@ export type ArticlePreviewProps = {
 };
 
 const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
-    const { image, title, description, date, type } = props;
+    const { image, title, description, date, type, url } = props;
 
     return (
         <Section
-            type={ 'article' }
-            item={ 'main' }
             className={ css.container }
-            size={ 'extra-small' }
+            item="main"
+            size="extra-small"
+            type="article"
         >
             <div
-                style={ { backgroundImage: `url(${ image })` } }
                 className={ css.image }
+                onClick={ () => console.log(url) }
+                style={ { backgroundImage: `url(${ image })` } }
             />
             <SpaceBetween>
                 {
-                    type &&
-                    <P item={ 'invisible' }>{ type }</P>
+                    type ? <P item="invisible">{ type }</P> : null
                 }
-                <P item={ 'invisible' }>{ date }</P>
+                <P item="invisible">{ date }</P>
             </SpaceBetween>
             <Title
                 className={ css.title }
-                size={ 'small' }
                 lines={ 3 }
+                size="small"
             >{ title }</Title>
             {
-                description &&
-                <P
+                description ? <P
                     className={ css.description }
-                    item={ 'invisible' }
+                    item="invisible"
                     lines={ 5 }
-                >{ description }</P>
+                >{ description }</P> : null
             }
         </Section>
     );

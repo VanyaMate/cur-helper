@@ -24,16 +24,16 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
 
     return (
         <div className={ cn(css.container, controller.opened && css.opened) }>
-            <div onClick={ controller.close } className={ css.background }/>
+            <div className={ css.background } onClick={ controller.close }/>
             <Section
-                type={ 'div' }
-                item={ 'main' }
                 className={ css.viewport }
+                item="main"
+                type="div"
             >
                 <Button
                     className={ css.closeButton }
                     onClick={ controller.close }
-                    styleType={ 'danger' }
+                    styleType="danger"
                 >
                     <span className="material-symbols-outlined">close</span>
                 </Button>

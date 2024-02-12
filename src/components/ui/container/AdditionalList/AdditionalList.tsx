@@ -19,25 +19,25 @@ const AdditionalList: React.FC<AdditionalListProps> = (props) => {
     const { list, item: sectionItem } = props;
 
     return (
-        <Section type={ 'section' } className={ css.container }>
+        <Section className={ css.container } type="section">
             {
                 list.map((item, index) => (
                     <SpaceBetween
-                        type={ 'article' }
-                        item={ sectionItem }
                         className={ css.row }
+                        item={ sectionItem }
                         key={ index }
+                        type="article"
                     >
                         <P
-                            type={ 'span' }
-                            item={ 'invisible' }
                             className={ css.label }
+                            item="invisible"
+                            type="span"
                         >
                             { item.label }:
                         </P>
                         <P
-                            type={ 'span' }
                             className={ css.value }
+                            type="span"
                         >
                             { item.value }
                         </P>

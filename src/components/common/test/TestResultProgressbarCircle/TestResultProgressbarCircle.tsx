@@ -2,13 +2,13 @@ import React, { useMemo } from 'react';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import { cn } from '@vanyamate/helpers/react/classname.ts';
 import css from './TestResultProgressbarCircle.module.scss';
-import { TestResult } from '@/types/test/test.types.ts';
 import 'react-circular-progressbar/dist/styles.css';
+import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
 
 
 export type TestResultProgressbarCircleProps = {
     percent: number;
-    result: TestResult;
+    result?: TestPassingResult;
 }
 
 const TestResultProgressbarCircle: React.FC<TestResultProgressbarCircleProps> = (props) => {
@@ -17,27 +17,27 @@ const TestResultProgressbarCircle: React.FC<TestResultProgressbarCircleProps> = 
     const styles = useMemo(() => {
         if (result === 'perfect') {
             return buildStyles({
-                textColor : '#ffde4b',
-                pathColor : '#ffde4b',
-                trailColor: '#31343a',
+                textColor : '#FFDE4B',
+                pathColor : '#FFDE4B',
+                trailColor: '#31343A',
             });
-        } else if (result === 'unsatisfactory') {
+        } else if (result === 'unsatis') {
             return buildStyles({
-                textColor : '#ef8484',
-                pathColor : '#ef8484',
-                trailColor: '#31343a',
+                textColor : '#EF8484',
+                pathColor : '#EF8484',
+                trailColor: '#31343A',
             });
-        } else if (result === 'satisfactorily') {
+        } else if (result === 'satis') {
             return buildStyles({
-                textColor : '#84a0ef',
-                pathColor : '#84a0ef',
-                trailColor: '#31343a',
+                textColor : '#84A0EF',
+                pathColor : '#84A0EF',
+                trailColor: '#31343A',
             });
         } else {
             return buildStyles({
-                textColor : '#6a7585',
-                pathColor : '#6a7585',
-                trailColor: '#31343a',
+                textColor : '#6A7585',
+                pathColor : '#6A7585',
+                trailColor: '#31343A',
             });
         }
     }, [ result ]);
@@ -47,13 +47,13 @@ const TestResultProgressbarCircle: React.FC<TestResultProgressbarCircleProps> = 
             className={ cn(
                 css.container,
                 result === 'perfect' && css.perfect,
-                result === 'satisfactorily' && css.satis,
-                result === 'unsatisfactory' && css.unsatis,
+                result === 'satis' && css.satis,
+                result === 'unsatis' && css.unsatis,
             ) }
-            text={ `${ percent }%` }
-            value={ percent }
             strokeWidth={ 4 }
             styles={ styles }
+            text={ `${ percent.toFixed(0) }%` }
+            value={ percent }
         />
     );
 };

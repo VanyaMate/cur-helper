@@ -13,10 +13,10 @@ const RoundImage: React.FC<RoundImageProps> = (props) => {
 
     return (
         <img
-            src={ src }
             alt={ alt }
-            style={ { width: size, height: size } }
             className={ css.container }
+            src={ src }
+            style={ { width: size, height: size } }
         />
     );
 };

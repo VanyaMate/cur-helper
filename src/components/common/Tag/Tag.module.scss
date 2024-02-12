@@ -1,0 +1,53 @@
+@keyframes movingBackground {
+    0% {
+        background-position : 0 0;
+    }
+    100% {
+        background-position : 200% 0;
+    }
+}
+
+.container {
+    padding       : var(--offset-small);
+    border-radius : var(--offset-small);
+    display       : inline-flex;
+    align-self    : start;
+    font-size     : 12px;
+    align-items   : center;
+
+    &.perfect {
+        background : var(--color-gold);
+        box-shadow : 0 0 15px -5px var(--color-gold-transparent);
+        color      : var(--text-color-invert);
+    }
+
+    &.danger {
+        background : var(--color-red);
+        box-shadow : 0 0 15px -5px var(--color-red-transparent);
+        color      : var(--text-color-main);
+    }
+
+    &.main {
+        background : var(--color-blue);
+        box-shadow : 0 0 15px -5px var(--color-blue-transparent);
+        color      : var(--text-color-main);
+    }
+
+    &.second {
+        background : var(--background-second);
+        box-shadow : 0 0 15px -5px var(--color-gray-transparent);
+        color      : var(--text-color-second);
+    }
+
+    &.invisible {
+        background : var(--background-second);
+        box-shadow : 0 0 15px -5px var(--color-gray-transparent);
+        color      : var(--text-color-invisible);
+    }
+
+    &.process {
+        background      : linear-gradient(to right, var(--color-red) 0%, var(--color-blue) 50%);
+        background-size : 200% 100%;
+        animation       : movingBackground 4s linear infinite;
+    }
+}

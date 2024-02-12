@@ -8,7 +8,7 @@ const HeaderCurContainer: React.FC<HeaderCurContainerProps> = (props) => {
     const {} = props;
 
     return (
-        <HeaderCur region={ 'Челябинская обл.' }/>
+        <HeaderCur region="Челябинская обл."/>
     );
 };
 

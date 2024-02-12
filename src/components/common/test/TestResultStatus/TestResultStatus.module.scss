@@ -1,0 +1,20 @@
+.container {
+    &.not_started {
+        color : var(--text-color-invisible);
+    }
+
+    &.unsatisfactory {
+        color       : var(--color-red);
+        text-shadow : 0 0 4px var(--color-red-transparent);
+    }
+
+    &.satisfactory {
+        color       : var(--color-blue);
+        text-shadow : 0 0 4px var(--color-blue-transparent);
+    }
+
+    &.perfect {
+        color       : var(--color-gold);
+        text-shadow : 0 0 4px var(--color-gold-transparent);
+    }
+}

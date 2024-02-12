@@ -1,11 +1,14 @@
-export const useTestStatusLabel = function (status: any) {
-    if (status === 'not-started') {
-        return 'Не пройден';
-    } else if (status === 'unsatisfactory') {
+import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
+
+
+export const useTestStatusLabel = function (status: TestPassingResult | null | undefined) {
+    if (status === 'unsatis') {
         return 'Неудовлетворительно';
-    } else if (status === 'satisfactorily') {
+    } else if (status === 'satis') {
         return 'Удовлетворительно';
     } else if (status === 'perfect') {
         return 'Идеально';
+    } else {
+        return 'Не пройден';
     }
 };

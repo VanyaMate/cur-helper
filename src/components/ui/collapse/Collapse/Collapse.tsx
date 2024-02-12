@@ -40,21 +40,20 @@ const Collapse: React.FC<CollapseProps> = (props) => {
 
     return (
         <Section
-            type={ 'section' }
-            size={ 'small' }
-            item={ item }
             className={ cn(css.container, open && css.opened) }
+            item={ item }
+            size="small"
+            type="section"
         >
             {
-                title &&
-                <Title size={ 'small' }
-                       className={ cn(css.title, item === 'main' && css.item) }
-                       onClick={ toggle }>
+                title ? <Title className={ cn(css.title, item === 'main' && css.item) }
+                       onClick={ toggle }
+                       size="small">
                     <span className={ css.text }>
                     { title }
                     </span>
                     <IconM className={ css.icon }>expand_more</IconM>
-                </Title>
+                </Title> : null
             }
             <div
                 className={ css.content }

@@ -43,7 +43,7 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props)
     }
 
     return (
-        <Section size={ 'small' }>
+        <Section size="small">
             <Breadcrumb
                 items={
                     [
@@ -64,10 +64,8 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props)
             />
             <TestItemPageHeader
                 title={ test.test.title }
-                status={ test.result }
-                date={ test.finishTime }
             />
-            <Section item={ 'main' } size={ 'small' }>
+            <Section item="main" size="small">
                 <AdditionalList
                     list={ [
                         {
@@ -78,10 +76,10 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props)
                         },
                     ] }
                 />
-                <SpaceBetween size={ 'small' }>
+                <SpaceBetween size="small">
                     <TestResultProgressbarCircle
-                        result={ 'satisfactorily' }
                         percent={ percent }
+                        result="satis"
                     />
                     <AdditionalList
                         list={ [

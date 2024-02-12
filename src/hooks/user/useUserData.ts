@@ -1,10 +1,9 @@
-import { User } from '@/types/user/user.types.ts';
 import { useMemo } from 'react';
 
 
 export type UseUserData = {
     process: boolean;
-    data: User;
+    data: any;
 }
 
 export const useUserData = function (): UseUserData {

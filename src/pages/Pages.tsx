@@ -16,7 +16,7 @@ import {
     PROFILE_PAGE, PROFILE_SETTINGS_PAGE, TEST_ID,
     TEST_PAGE,
     TEST_PASSING_PAGE,
-    TEST_RESULT_PAGE, THEME_ID,
+    TEST_RESULT_PAGE, TESTS_PAGE, THEME_ID,
 } from '@/constants/pages.ts';
 import ArticleItemPage from '@/pages/article/item/ArticleItemPage.tsx';
 import ArticlesPage from '@/pages/article/ArticlesPage.tsx';
@@ -27,6 +27,8 @@ import AdminHomePage from '@/pages/admin/AdminHomePage/AdminHomePage.tsx';
 import AdminTestListPage from '@/pages/admin/AdminTestListPage/AdminTestListPage.tsx';
 import GuidListIdPage from '@/pages/guid/list-id/GuidListIdPage.tsx';
 import GuidListPage from '@/pages/guid/list/GuidListPage.tsx';
+import TestsLayout from '@/layouts/tests/TestsLayout/TestsLayout.tsx';
+import ThemesLayout from '@/layouts/themes/ThemesLayout/ThemesLayout.tsx';
 
 
 export type PagesProps = {}
@@ -36,44 +38,46 @@ const Pages: React.FC<PagesProps> = (props) => {
 
     return (
         <Routes>
-            <Route path={ '/admin/*' } element={ <MobileAdminPageLayout/> }>
-                <Route path={ `${ GUID_PAGE }/:${ THEME_ID }` }
-                       element={ <AdminGuidListPage/> }/>
-                <Route path={ `${ GUID_PAGE }` } element={ <AdminGuidListPage/> }/>
-                <Route path={ `${ TEST_PAGE }/:${ TEST_ID }` }
-                       element={ <AdminTestListPage/> }/>
-                <Route path={ `${ TEST_PAGE }` } element={ <AdminTestListPage/> }/>
-                <Route path={ `${ HOME_PAGE }` } element={ <AdminHomePage/> }/>
+            <Route element={ <MobileAdminPageLayout/> } path={ '/admin/*' }>
+                <Route element={ <AdminGuidListPage/> }
+                       path={ `${ GUID_PAGE }/:${ THEME_ID }` }/>
+                <Route element={ <AdminGuidListPage/> } path={ `${ GUID_PAGE }` }/>
+                <Route element={ <AdminTestListPage/> }
+                       path={ `${ TEST_PAGE }/:${ TEST_ID }` }/>
+                <Route element={ <AdminTestListPage/> } path={ `${ TEST_PAGE }` }/>
+                <Route element={ <AdminHomePage/> } path={ `${ HOME_PAGE }` }/>
             </Route>
-            <Route path={ '/*' } element={ <MobilePageLayout/> }>
+            <Route element={ <MobilePageLayout/> } path={ '/*' }>
+                <Route element={ <TestsLayout/> } path={ `${ TESTS_PAGE }/*` }>
+                    <Route element={ <TestPage/> } path={ `${ TEST_ID }` }/>
+                    <Route element={ <TestPage/> } path="*"/>
+                </Route>
                 <Route path={ `${ TEST_PAGE }/*` }>
-                    <Route path={ TEST_PASSING_PAGE } element={ <TestPassingPage/> }/>
-                    <Route path={ TEST_RESULT_PAGE } element={ <TestResultPage/> }/>
-                    <Route path={ `:${ THEME_ID }` }>
-                        <Route path={ `:${ TEST_ID }` } element={ <TestItemPage/> }/>
-                        <Route path={ '*' } element={ <TestPage/> }/>
-                    </Route>
-                    <Route path={ '*' } element={ <TestPage/> }/>
+                    <Route element={ <TestPassingPage/> }
+                           path={ `${ TEST_PASSING_PAGE }/:${ TEST_ID }` }/>
+                    <Route element={ <TestResultPage/> }
+                           path={ `${ TEST_RESULT_PAGE }/:${ TEST_ID }` }/>
+                    <Route element={ <TestItemPage/> } path={ `:${ TEST_ID }` }/>
                 </Route>
                 <Route path={ `${ PROFILE_PAGE }/*` }>
-                    <Route path={ PROFILE_SETTINGS_PAGE } element={ <ProfilePage/> }/>
-                    <Route path={ ':login' } element={ <ProfilePage/> }/>
-                    <Route path={ '*' } element={ <ProfilePage/> }/>
+                    <Route element={ <ProfilePage/> } path={ PROFILE_SETTINGS_PAGE }/>
+                    <Route element={ <ProfilePage/> } path=":login"/>
+                    <Route element={ <ProfilePage/> } path="*"/>
                 </Route>
                 <Route path={ `${ GUID_PAGE }/*` }>
-                    <Route path={ `:${ GUID_ID }` } element={ <GuidItemPage/> }/>
-                    <Route path={ '*' } element={ <GuidListPage/> }/>
+                    <Route element={ <GuidItemPage/> } path={ `:${ GUID_ID }` }/>
+                    <Route element={ <GuidListPage/> } path="*"/>
                 </Route>
 
-                <Route path={ `${ GUIDS_PAGE }/*` }>
-                    <Route path={ `:${ GUID_ID }` } element={ <GuidListIdPage/> }/>
-                    <Route path={ '*' } element={ <GuidListPage/> }/>
+                <Route element={ <ThemesLayout/> } path={ `${ GUIDS_PAGE }/*` }>
+                    <Route element={ <GuidListIdPage/> } path={ `:${ GUID_ID }` }/>
+                    <Route element={ <GuidListPage/> } path="*"/>
                 </Route>
                 <Route path={ `${ ARTICLE_PAGE }/*` }>
-                    <Route path={ `:${ ARTICLE_ID }` } element={ <ArticleItemPage/> }/>
-                    <Route path={ '*' } element={ <ArticlesPage/> }/>
+                    <Route element={ <ArticleItemPage/> } path={ `:${ ARTICLE_ID }` }/>
+                    <Route element={ <ArticlesPage/> } path="*"/>
                 </Route>
-                <Route path={ '*' } element={ <HomePage/> }/>
+                <Route element={ <HomePage/> } path="*"/>
             </Route>
         </Routes>
     );

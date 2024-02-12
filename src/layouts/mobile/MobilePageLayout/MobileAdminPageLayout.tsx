@@ -42,40 +42,40 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
             </div>
             <nav className={ css.nav }>
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/25/25694.png' }
-                    label={ 'Общее' }
                     active={ pathname === `/${ ADMIN_PAGE }` }
+                    icon="https://cdn-icons-png.flaticon.com/512/25/25694.png"
+                    label="Общее"
                     onClick={ () => {
                         navigate(`/${ ADMIN_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/171/171322.png' }
-                    label={ 'Темы' }
-                    active={ pathnames[1] === ADMIN_PAGE && pathnames[2] === GUID_PAGE }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === GUID_PAGE : undefined }
+                    icon="https://cdn-icons-png.flaticon.com/512/171/171322.png"
+                    label="Темы"
                     onClick={ () => {
                         navigate(`/${ ADMIN_PAGE }/${ GUID_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/1950/1950630.png' }
-                    label={ 'Тесты' }
-                    active={ pathnames[1] === ADMIN_PAGE && pathnames[2] === TEST_PAGE }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === TEST_PAGE : undefined }
+                    icon="https://cdn-icons-png.flaticon.com/512/1950/1950630.png"
+                    label="Тесты"
                     onClick={ () => {
                         navigate(`/${ ADMIN_PAGE }/${ TEST_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/1077/1077114.png' }
-                    label={ 'Профили' }
-                    active={ pathnames[1] === ADMIN_PAGE && pathnames[2] === PROFILE_PAGE }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === PROFILE_PAGE : undefined }
+                    icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+                    label="Профили"
                     onClick={ () => {
                         navigate(`/${ ADMIN_PAGE }/${ PROFILE_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    icon={ 'https://cdn-icons-png.flaticon.com/512/56/56763.png' }
-                    label={ 'Меню' }
+                    icon="https://cdn-icons-png.flaticon.com/512/56/56763.png"
+                    label="Меню"
                     onClick={ () => {
                         menuController.open();
                     } }

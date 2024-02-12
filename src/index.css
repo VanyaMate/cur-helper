@@ -5,9 +5,24 @@
 @import "styles/animation.scss";
 
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Lunasima", serif;
-    line-height: 1.2em;
+    box-sizing  : border-box;
+    padding     : 0;
+    margin      : 0;
+    font-family : "Lunasima", serif;
+    line-height : 1.2em;
+
+    &::-webkit-scrollbar {
+        position : absolute;
+        width    : var(--offset-small);
+    }
+
+    &::-webkit-scrollbar-track {
+        background    : var(--background-item);
+        border-radius : calc(var(--offset-small) / 2);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background    : var(--color-blue);
+        border-radius : calc(var(--offset-small) / 2);
+    }
 }
