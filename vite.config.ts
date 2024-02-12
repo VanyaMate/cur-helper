@@ -11,7 +11,7 @@ export default defineConfig({
             registerType  : 'autoUpdate',
             workbox       : {
                 cleanupOutdatedCaches: true,
-                cacheId              : 'v0.0.1',
+                cacheId              : 'v0.0.2',
             },
             manifest      : {
                 'name'            : 'ЦУР Помощник',
