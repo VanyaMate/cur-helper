@@ -15,8 +15,8 @@ export default defineConfig({
             },
             manifest      : {
                 'name'            : 'ЦУР Помощник',
-                'short_name'      : 'ЦУР',
-                'theme_color'     : '#84A0EF',
+                'short_name'      : 'ЦУР Помощник',
+                'theme_color'     : '#23252D',
                 'background_color': '#23252D',
                 'display'         : 'standalone',
                 'orientation'     : 'portrait',
