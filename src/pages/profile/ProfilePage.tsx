@@ -1,39 +1,27 @@
 import React, { useCallback } from 'react';
 import Button from '@/components/ui/button/Button/Button.tsx';
-import { API_HOST } from '@/constants/api.url.ts';
+import { useAuthActions } from '@/hooks/auth/useAuthActions.ts';
 
 
 export type ProfilePageProps = {}
 
 const ProfilePage: React.FC<ProfilePageProps> = (props) => {
-    const {} = props;
+    const {}                = props;
+    const { login, logout } = useAuthActions();
 
-    const login = useCallback(() => {
-        fetch(`${ API_HOST }/api/v1/auth/login`, {
-            method     : 'POST',
-            headers    : {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body       : JSON.stringify({
-                'login'   : 'VanyaMate',
-                'password': '123123123',
-            }),
-        });
-    }, []);
+    const loginCallback = useCallback(() => {
+        login({ login: 'VanyaMate', password: '123123123' });
+    }, [ login ]);
 
-    const logout = useCallback(() => {
-        fetch(`${ API_HOST }/api/v1/auth/logout`, {
-            method     : 'POST',
-            credentials: 'include',
-        });
-    }, []);
+    const logoutCallback = useCallback(() => {
+        logout();
+    }, [ logout ]);
 
     return (
         <div>
             ProfilePage component
-            <Button onClick={ login }>Login</Button>
-            <Button onClick={ logout }>Logout</Button>
+            <Button onClick={ loginCallback }>Login</Button>
+            <Button onClick={ logoutCallback }>Logout</Button>
         </div>
     );
 };

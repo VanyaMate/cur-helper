@@ -11,7 +11,7 @@ $close_button_size : 40px;
     flex-direction          : column;
     justify-content         : center;
     align-items             : center;
-    z-index                 : 1000;
+    z-index                 : 3000;
 
     &.opened {
         display : flex;
