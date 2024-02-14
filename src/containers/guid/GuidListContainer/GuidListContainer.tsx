@@ -1,33 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { GUID_PAGE } from '@/constants/pages.ts';
-import { useFetchThemeList } from '@/hooks/theme/fetch/useFetchThemeList.ts';
+import { themesService } from '@/services/themes/themes.service.ts';
+import { observer } from 'mobx-react-lite';
 
 
 export type GuidListContainerProps = {};
 
-const GuidListContainer: React.FC<GuidListContainerProps> = (props) => {
-    const {}                       = props;
-    const { data, loading, error } = useFetchThemeList();
 
-    if (loading) {
-        return 'loading..';
-    }
-
-    if (error) {
-        return `Error: ${ error.message }`;
-    }
-
-    if (!data || !data.length) {
-        return 'Not found';
-    }
+const GuidListContainer: React.FC<GuidListContainerProps> = observer((props) => {
+    const {} = props;
 
     return (
         <TileBox>
             {
-                data.map((item) => (
+                themesService.themes.map((item) => (
                     <OrderedList
                         item="main"
                         key={ item.publicId }
@@ -53,6 +42,6 @@ const GuidListContainer: React.FC<GuidListContainerProps> = (props) => {
             }
         </TileBox>
     );
-};
+});
 
 export default React.memo(GuidListContainer);

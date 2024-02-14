@@ -24,30 +24,24 @@ import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem
 import { useFetchCallback } from '@/hooks/useFetchCallback.ts';
 import { TestPassingType } from '@/types/test-passing/test-passing.types.ts';
 import { API_HOST } from '@/constants/api.url.ts';
+import { testsService } from '@/services/tests/tests.service.ts';
+import { observer } from 'mobx-react-lite';
 
 
 export type TestItemContainerProps = {
     id: string;
 };
 
-const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
-    const { id }                   = props;
-    const { data, loading, error } = useFetchTestItem(id);
-    const { dispatch }             = useFetchCallback<TestPassingType, {
+const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => {
+    const { id }             = props;
+    const data               = testsService.tests.get(id);
+    const { dispatch }       = useFetchCallback<TestPassingType, {
         testId: string
     }>(`${ API_HOST }/api/v1/test-passing`);
-    const popupController          = useWindowPopupController();
-    const navigate                 = useNavigate();
-    const pageGetter               = usePageUrl();
-    const timeToPass: string       = useDateDeltaWithPostfix(Date.now() - (data?.timeToPass ?? 0), Date.now(), '');
-
-    if (loading) {
-        return 'loading..';
-    }
-
-    if (error) {
-        return 'Error';
-    }
+    const popupController    = useWindowPopupController();
+    const navigate           = useNavigate();
+    const pageGetter         = usePageUrl();
+    const timeToPass: string = useDateDeltaWithPostfix(Date.now() - (data?.timeToPass ?? 0), Date.now(), '');
 
     if (!data) {
         return 'Not found';
@@ -135,6 +129,6 @@ const TestItemContainer: React.FC<TestItemContainerProps> = (props) => {
             </Collapse>
         </Section>
     );
-};
+});
 
 export default React.memo(TestItemContainer);

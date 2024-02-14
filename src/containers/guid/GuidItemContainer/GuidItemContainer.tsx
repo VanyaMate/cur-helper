@@ -7,30 +7,22 @@ import Link from '@/components/ui/link/Link/Link.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
-import { useFetchThemeById } from '@/hooks/theme/fetch/useFetchThemeById.ts';
 import React from 'react';
 import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
+import { themesService } from '@/services/themes/themes.service.ts';
+import { observer } from 'mobx-react-lite';
 
 
 export type GuidItemContainerProps = {
     id: string
 };
 
-const GuidItemContainer: React.FC<GuidItemContainerProps> = (props) => {
+const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => {
     const { id } = props;
-
-    const { data, loading, error } = useFetchThemeById(id);
-
-    if (loading && !data) {
-        return 'Loading..';
-    }
-
-    if (error) {
-        return `Error: ${ error.message }`;
-    }
+    const data   = themesService.fullThemeData.get(id);
 
     if (!data) {
-        return '404';
+        return 'loading..';
     }
 
     return (
@@ -85,6 +77,6 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = (props) => {
             </ContentBox>
         </Section>
     );
-};
+});
 
-export default React.memo(GuidItemContainer);
+export default GuidItemContainer;
