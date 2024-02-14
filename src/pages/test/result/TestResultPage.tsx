@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import TestResultByIdContainer
-    from '@/containers/test/TestResultByIdContainer/TestResultByIdContainer.tsx';
 import { TEST_ID } from '@/constants/pages.ts';
+
+
+const TestResultByIdContainer
+          = React.lazy(() => import('@/containers/test/TestResultByIdContainer/TestResultByIdContainer.tsx'));
 
 
 export type TestResultPageProps = {}

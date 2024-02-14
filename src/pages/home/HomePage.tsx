@@ -1,5 +1,7 @@
 import React from 'react';
-import HomeContainer from '@/containers/home/HomeContainer/HomeContainer.tsx';
+
+
+const HomeContainer = React.lazy(() => import('@/containers/home/HomeContainer/HomeContainer.tsx'));
 
 
 export type HomePageProps = {}

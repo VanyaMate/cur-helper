@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
@@ -6,6 +6,7 @@ import Input from '@/components/ui/input/Input/Input.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
 import { Outlet } from 'react-router-dom';
+import Loader from '@/components/common/Loader/Loader.tsx';
 
 
 export type ThemesLayoutProps = {};
@@ -37,7 +38,9 @@ const ThemesLayout: React.FC<ThemesLayoutProps> = (props) => {
                 />
                 <Button styleType="main">Найти</Button>
             </aside>
-            <Outlet/>
+            <Suspense fallback={ <Loader/> }>
+                <Outlet/>
+            </Suspense>
         </Section>
     );
 };

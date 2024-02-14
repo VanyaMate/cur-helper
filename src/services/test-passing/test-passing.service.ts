@@ -51,7 +51,7 @@ export class TestPassingService implements ITestPassingService {
 
     async getById (token: string, testPassingId: string): Promise<TestPassingFullType> {
         return fetch(`${ API_HOST }/api/v1/test-passing/passing/${ testPassingId }`, {
-            method : 'POST',
+            method : 'GET',
             headers: {
                 'Content-Type' : 'application/json',
                 'Authorization': token ?? '',
@@ -66,7 +66,7 @@ export class TestPassingService implements ITestPassingService {
 
     async getResultById (token: string, testPassingId: string): Promise<TestResultFullType> {
         return fetch(`${ API_HOST }/api/v1/test-passing/result/${ testPassingId }`, {
-            method : 'POST',
+            method : 'GET',
             headers: {
                 'Content-Type' : 'application/json',
                 'Authorization': token ?? '',

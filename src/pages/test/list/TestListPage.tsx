@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import TestListContainer from '@/containers/test/TestListContainer/TestListContainer.tsx';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
+
+
+const TestListContainer = React.lazy(() => import('@/containers/test/TestListContainer/TestListContainer.tsx'));
 
 
 export type TestPageProps = {}

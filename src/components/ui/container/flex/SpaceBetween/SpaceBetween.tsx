@@ -4,13 +4,18 @@ import { cn } from '@vanyamate/helpers/react/classname';
 import css from './SpaceBetween.module.scss';
 
 
-export type SpaceBetweenProps = SectionProps;
+export type SpaceBetweenProps =
+    SectionProps
+    & {
+        canWrap?: boolean;
+    };
 
 const SpaceBetween: React.FC<SpaceBetweenProps> = (props) => {
-    const { className, ...other } = props;
+    const { className, canWrap, ...other } = props;
 
     return (
-        <Section { ...other } className={ cn(className, css.container) }/>
+        <Section { ...other }
+                 className={ cn(className, css.container, canWrap && css.wrap) }/>
     );
 };
 

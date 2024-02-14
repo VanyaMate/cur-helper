@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';

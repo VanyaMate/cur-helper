@@ -1,14 +1,14 @@
 import {
     ThemeBreadcrumb,
     ThemeChildren, ThemeNext, ThemePrev, ThemeRecursiveChildren,
-    ThemeTests,
+    ThemeTestsWithShortResults,
 } from '@/types/themes/themes.types.ts';
 import { ThemeShortType, ThemeType } from '@/types/theme/theme.types.ts';
 
 
 export type ThemeFullType =
     ThemeChildren
-    & ThemeTests
+    & ThemeTestsWithShortResults
     & ThemeBreadcrumb
     & ThemeNext
     & ThemePrev

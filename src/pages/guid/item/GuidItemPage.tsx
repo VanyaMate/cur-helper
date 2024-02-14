@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import GuidItemContainer from '@/containers/guid/GuidItemContainer/GuidItemContainer.tsx';
 import { GUID_ID } from '@/constants/pages.ts';
 import { useParams } from 'react-router-dom';
 import { themesService } from '@/services/themes/themes.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
+
+
+const GuidItemContainer = React.lazy(() => import('@/containers/guid/GuidItemContainer/GuidItemContainer.tsx'));
 
 
 export type GuidItemPageProps = {};

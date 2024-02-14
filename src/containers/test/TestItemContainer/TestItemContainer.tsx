@@ -1,5 +1,4 @@
 import React from 'react';
-import { useFetchTestItem } from '@/hooks/test/fetch/useFetchTestItem.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import TestBriefing from '@/components/common/test/TestBriefing/TestBriefing.tsx';
@@ -21,13 +20,12 @@ import TestResultPreview
     from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
 import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
-import { useFetchCallback } from '@/hooks/useFetchCallback.ts';
-import { TestPassingType } from '@/types/test-passing/test-passing.types.ts';
-import { API_HOST } from '@/constants/api.url.ts';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { observer } from 'mobx-react-lite';
 import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
+import Loader from '@/components/common/Loader/Loader.tsx';
+import P from '@/components/ui/p/P/P.tsx';
 
 
 export type TestItemContainerProps = {
@@ -43,7 +41,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
     const timeToPass: string = useDateDeltaWithPostfix(Date.now() - (data?.timeToPass ?? 0), Date.now(), '');
 
     if (!data) {
-        return 'Not found';
+        return <Loader/>;
     }
 
     return (
@@ -54,12 +52,10 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                     onClose={ popupController.close }
                     onStart={ async () => {
                         return new Promise(() => {
-                            setTimeout(() => {
-                                testPassingService.start(authService.token[0], data.id)
-                                    .then((testPassing) =>
-                                        navigate(pageGetter.testPassing(testPassing.id)),
-                                    );
-                            }, 1000);
+                            testPassingService.start(authService.token[0], data.id)
+                                .then((testPassing) =>
+                                    navigate(pageGetter.testPassing(testPassing.id)),
+                                );
                         });
                     } }
                     status={ data.shortResult?.status }
@@ -99,6 +95,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                     />
                 </SpaceBetween>
             </Section>
+            <P item="second">{ data.description }</P>
             <Collapse
                 opened
                 title="Что нужно повторить"

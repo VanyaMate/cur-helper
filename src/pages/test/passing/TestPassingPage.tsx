@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import TestPassingByIdContainer
-    from '@/containers/test/TestPassingByIdContainer/TestPassingByIdContainer.tsx';
 import { TEST_ID } from '@/constants/pages.ts';
 import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
+
+
+const TestPassingByIdContainer
+          = React.lazy(() => import('@/containers/test/TestPassingByIdContainer/TestPassingByIdContainer.tsx'));
 
 
 const TestPassingPage: React.FC = () => {

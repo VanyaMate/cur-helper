@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { observer } from 'mobx-react-lite';
+import Loader from '@/components/common/Loader/Loader.tsx';
 
 
 export type TestListContainerProps = {};
@@ -22,7 +23,7 @@ const TestListContainer: React.FC<TestListContainerProps> = observer((props) => 
     }, [ pageGetter, navigate ]);
 
     if (!data) {
-        return 'Loading..';
+        return <Loader/>;
     }
 
     return (
