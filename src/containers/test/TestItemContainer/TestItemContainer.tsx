@@ -26,6 +26,8 @@ import { TestPassingType } from '@/types/test-passing/test-passing.types.ts';
 import { API_HOST } from '@/constants/api.url.ts';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { observer } from 'mobx-react-lite';
+import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
+import { authService } from '@/services/auth/auth.service.ts';
 
 
 export type TestItemContainerProps = {
@@ -35,9 +37,6 @@ export type TestItemContainerProps = {
 const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => {
     const { id }             = props;
     const data               = testsService.tests.get(id);
-    const { dispatch }       = useFetchCallback<TestPassingType, {
-        testId: string
-    }>(`${ API_HOST }/api/v1/test-passing`);
     const popupController    = useWindowPopupController();
     const navigate           = useNavigate();
     const pageGetter         = usePageUrl();
@@ -56,9 +55,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                     onStart={ async () => {
                         return new Promise(() => {
                             setTimeout(() => {
-                                dispatch({
-                                    testId: data?.id,
-                                })
+                                testPassingService.start(authService.token[0], data.id)
                                     .then((testPassing) =>
                                         navigate(pageGetter.testPassing(testPassing.id)),
                                     );

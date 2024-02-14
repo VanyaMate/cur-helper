@@ -13,46 +13,36 @@ class TestsService implements ITestsService {
     }
 
     async getOneTestByIds (testId: string, token?: string): Promise<TestFullType> {
-        const cached: TestFullType | undefined = this.tests.get(testId);
-        if (cached) {
-            return cached;
-        } else {
-            return fetch(`${ API_HOST }/api/v1/tests/one/${ testId }`, {
-                method : 'GET',
-                headers: {
-                    'Content-Type' : 'application/json',
-                    'Authorization': token ?? '',
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    this.tests.set(testId, data);
-                    return data;
-                });
-        }
+        return fetch(`${ API_HOST }/api/v1/tests/one/${ testId }`, {
+            method : 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                this.tests.set(testId, data);
+                return data;
+            });
     }
 
     async getTestListByThemeId (themeId: string, token?: string): Promise<TestListType[]> {
-        const cached: TestListType[] | undefined = this.testList.get(themeId);
-        if (cached) {
-            return cached;
-        } else {
-            const url: string = themeId
-                                ? `${ API_HOST }/api/v1/tests/theme/${ themeId }`
-                                : `${ API_HOST }/api/v1/tests/list`;
-            return fetch(url, {
-                method : 'GET',
-                headers: {
-                    'Content-Type' : 'application/json',
-                    'Authorization': token ?? '',
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    this.testList.set(themeId, data);
-                    return data;
-                });
-        }
+        const url: string = themeId
+                            ? `${ API_HOST }/api/v1/tests/theme/${ themeId }`
+                            : `${ API_HOST }/api/v1/tests/list`;
+        return fetch(url, {
+            method : 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                this.testList.set(themeId, data);
+                return data;
+            });
     }
 }
 
