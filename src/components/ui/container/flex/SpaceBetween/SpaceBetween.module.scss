@@ -1,6 +1,11 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between !important;
-    align-items: center;
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between !important;
+    align-items     : center;
+
+    &.wrap {
+        flex-wrap : wrap;
+        gap       : var(--offset-small) !important;
+    }
 }

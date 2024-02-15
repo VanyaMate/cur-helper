@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import css from './MobilePageLayout.module.scss';
 import MobileSiteNavigationButton
@@ -17,6 +17,7 @@ import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import Loader from '@/components/common/Loader/Loader.tsx';
 
 
 export type MobilePageLayoutProps = {}
@@ -37,7 +38,9 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     <HeaderCurContainer/>
                 </aside>
                 <div className={ css.content_width }>
-                    <Outlet/>
+                    <Suspense fallback={ <Loader/> }>
+                        <Outlet/>
+                    </Suspense>
                 </div>
             </div>
             <nav className={ css.nav }>

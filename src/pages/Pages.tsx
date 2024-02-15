@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MobilePageLayout from '@/layouts/mobile/MobilePageLayout/MobilePageLayout.tsx';
-import TestPage from '@/pages/test/TestPage.tsx';
+import TestPage from '@/pages/test/list/TestListPage.tsx';
 import ProfilePage from '@/pages/profile/ProfilePage.tsx';
 import HomePage from '@/pages/home/HomePage.tsx';
 import GuidItemPage from '@/pages/guid/item/GuidItemPage.tsx';

@@ -7,30 +7,34 @@ import Link from '@/components/ui/link/Link/Link.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
-import { useFetchThemeById } from '@/hooks/theme/fetch/useFetchThemeById.ts';
-import React from 'react';
+import React, { useCallback } from 'react';
 import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
+import { themesService } from '@/services/themes/themes.service.ts';
+import { observer } from 'mobx-react-lite';
+import Loader from '@/components/common/Loader/Loader.tsx';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import TestPreviewItem
+    from '@/components/common/test/TestPreviewItem/TestPreviewItem.tsx';
+import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
+import { useNavigate } from 'react-router-dom';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type GuidItemContainerProps = {
     id: string
 };
 
-const GuidItemContainer: React.FC<GuidItemContainerProps> = (props) => {
-    const { id } = props;
-
-    const { data, loading, error } = useFetchThemeById(id);
-
-    if (loading && !data) {
-        return 'Loading..';
-    }
-
-    if (error) {
-        return `Error: ${ error.message }`;
-    }
+const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => {
+    const { id }           = props;
+    const data             = themesService.fullThemeData.get(id);
+    const navigate         = useNavigate();
+    const pageGetter       = usePageUrl();
+    const navigateCallback = useCallback((id: string) => {
+        navigate(pageGetter.test(id));
+    }, [ pageGetter, navigate ]);
 
     if (!data) {
-        return '404';
+        return <Loader/>;
     }
 
     return (
@@ -78,13 +82,27 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = (props) => {
                     <div>
                         <Button styleType="default">Следующая тема</Button>
                     </div>
-                    <div>// tests</div>
+                    <Collapse key={ data.publicId }
+                              opened={ true }
+                              title="Тесты">
+                        <TileBox>
+                            {
+                                data.tests.map((test) => (
+                                    <TestPreviewItem
+                                        key={ test.id }
+                                        onClick={ navigateCallback }
+                                        test={ test }
+                                    />
+                                ))
+                            }
+                        </TileBox>
+                    </Collapse>
                     <div>// FAQ</div>
                     <div>// comments</div>
                 </Section>
             </ContentBox>
         </Section>
     );
-};
+});
 
-export default React.memo(GuidItemContainer);
+export default GuidItemContainer;

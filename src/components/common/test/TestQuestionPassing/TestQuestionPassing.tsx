@@ -9,11 +9,14 @@ import SpaceBetween
     from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
+import { With } from '@/types/types.ts';
+import { QuestionSelect, QuestionType } from '@/types/question/question.types.ts';
+import { QuestionAnswerType } from '@/types/answer/answer.types.ts';
 
 
 export type TestQuestionPassingProps = {
-    question: any;
-    onSelect: (id: string) => Promise<any>;
+    question: With<QuestionType, [ QuestionSelect ]>;
+    onSelect: (id: string) => Promise<boolean>;
 }
 
 const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
@@ -28,7 +31,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
     const disabledSelectButton = useMemo(() => {
         if (process) return true;
         if (selected === '') return true;
-        return selected === question.result.answerId;
+        return selected === question.selectId;
     }, [ process, selected, question ]);
 
     const onSelectClick = useCallback((id: string) => {
@@ -37,6 +40,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
 
     const onAcceptClick = useCallback(() => {
         setProcess(true);
+        // TODO: Возможно если true -> менять, false -> не менять
         onSelect(selected)
             .finally(() => setProcess(false));
     }, [ selected, setProcess, onSelect ]);
@@ -48,14 +52,14 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                 <P>{ question.description }</P>
                 <Section item="main" type="div">
                     <OrderedList
-                        list={ question.answers.map((answer: any) => (
+                        list={ question.answers.map((answer: QuestionAnswerType) => (
                             <TestQuestionPassingButton
                                 answer={ answer }
                                 key={ question.id + answer.id }
                                 onSelect={ onSelectClick }
                                 process={ process }
                                 selected={ answer.id === selected }
-                                selectedAnswer={ answer.id === question.result.answerId }
+                                selectedAnswer={ answer.id === question.selectId }
                             />
                         )) }
                         title="Варианты"
@@ -75,7 +79,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                     styleType={
                         process
                         ? 'default'
-                        : (selected !== question.result.answerId)
+                        : (selected !== question.selectId)
                           ? 'main'
                           : 'default'
                     }

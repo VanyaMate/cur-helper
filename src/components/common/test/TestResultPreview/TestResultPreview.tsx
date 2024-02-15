@@ -25,7 +25,7 @@ const TestResultPreview: React.FC<TestResultPreviewProps> = (props) => {
     }
 
     if (shortResult && shortResult.result) {
-        return <SpaceBetween>
+        return <SpaceBetween canWrap>
             <Tag type={
                 shortResult.status === 'process' ? 'process' :
                 shortResult.result === 'perfect'
