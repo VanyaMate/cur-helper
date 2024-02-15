@@ -14,7 +14,7 @@ export class TestPassingService implements ITestPassingService {
     public resultTests: Map<string, TestResultFullType>   = new Map<string, TestResultFullType>();
 
     constructor () {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {}, { deep: true });
     }
 
     async start (token: string, testId: string): Promise<TestPassingFullType> {

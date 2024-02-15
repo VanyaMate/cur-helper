@@ -28,13 +28,14 @@ import { authService } from '@/services/auth/auth.service.ts';
 import { With } from '@/types/types.ts';
 import { QuestionSelect, QuestionType } from '@/types/question/question.types.ts';
 import Timer from '@/components/common/Timer/Timer.tsx';
+import { observer } from 'mobx-react-lite';
 
 
 export type TestPassingContainerProps = {
     test: TestPassingFullType;
 };
 
-const TestPassingContainer: React.FC<TestPassingContainerProps> = (props) => {
+const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((props) => {
     const { test } = props;
     console.log('test', test);
     const hash = useTestPassingQuestionHash(test?.questions.length ?? 0);
@@ -152,7 +153,7 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = (props) => {
                                   ? popupFinishModal.open : next }
                         postfix={ <IconM>arrow_forward</IconM> }
                         styleType={
-                            (completed || ((currentQuestion && currentQuestion.selectId !== null) && test.questions.length !== hash.current))
+                            (completed || (((currentQuestion && currentQuestion.selectId !== null) && (test.questions.length !== hash.current))))
                             ? 'hover' : test.questions.length === hash.current
                                         ? 'danger' : 'simple'
                         }
@@ -167,6 +168,6 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = (props) => {
             </Section>
         </>
     );
-};
+});
 
 export default React.memo(TestPassingContainer);
