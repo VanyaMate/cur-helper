@@ -6,11 +6,16 @@ import {
     TestResultFullType,
 } from '@/services/test-passing/test-passing.types.ts';
 import { API_HOST } from '@/constants/api.url.ts';
+import { makeAutoObservable } from 'mobx';
 
 
 export class TestPassingService implements ITestPassingService {
     public passingTests: Map<string, TestPassingFullType> = new Map<string, TestPassingFullType>();
     public resultTests: Map<string, TestResultFullType>   = new Map<string, TestResultFullType>();
+
+    constructor () {
+        makeAutoObservable(this);
+    }
 
     async start (token: string, testId: string): Promise<TestPassingFullType> {
         return fetch(`${ API_HOST }/api/v1/test-passing`, {

@@ -13,7 +13,7 @@ export interface ITestPassingQuestionPageController {
     set (questionNumber: number): void;
 }
 
-export const useTestPassingQuestionPageController = function (test: any | null, hash: TestPassingQuestionHash) {
+export const useTestPassingQuestionPageController = function (test: any | null, hash: TestPassingQuestionHash): ITestPassingQuestionPageController {
     const navigate             = useNavigate();
     const { pathname, search } = useLocation();
 

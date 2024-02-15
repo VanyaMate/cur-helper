@@ -1,12 +1,9 @@
 import { useMemo } from 'react';
+import { TestPassingFullType } from '@/services/test-passing/test-passing.types.ts';
 
 
-export const useTestCurrentQuestion = function (test: any | null, id: number) {
+export const useTestCurrentQuestion = function (test: TestPassingFullType, id: number) {
     return useMemo(() => {
-        if (test) {
-            return test.questions[id] ?? test.questions[0];
-        } else {
-            return null;
-        }
+        return test.questions[id] ?? test.questions[0];
     }, [ test, id ]);
 };
