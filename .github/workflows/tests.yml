@@ -27,6 +27,6 @@ jobs:
       - name: My telegram notificator
         uses: VanyaMate/github-action-telegram-notification@v0.20
         with:
-          success: ${{ job.status }}
+          success: ${{ job.needs.build.outcome }}
           tg_bot_token: ${{ secrets.TG_TOKEN_BOT }}
           tg_chat_id: ${{ secrets.TG_CHAT_ID }}
