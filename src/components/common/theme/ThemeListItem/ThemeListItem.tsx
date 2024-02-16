@@ -5,6 +5,7 @@ import ListTitledItemWithUrl
 import P from '@/components/ui/p/P/P.tsx';
 
 
+// TODO: Add url generator
 export type ThemeListItemProps = {
     theme: ThemeShortType;
 };
