@@ -24,18 +24,21 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
     const { questions, themeUrlGetter } = props;
 
     return (
-        <Collapse opened title={ `Вопросы (${ questions.length })` }>
+        <Collapse
+            opened
+            title={ `Вопросы (${ questions.length })` }
+        >
             <OrderedList
                 list={ questions.map((question) => (
                     <Section
-                        item="main"
                         key={ question.id }
                         size="medium"
-                        type="article"
+                        tag="article"
+                        type="main"
                     >
-                        <Section size="small" type="div">
+                        <Section size="small" tag="div">
                             <Title size="medium">{ question.title }</Title>
-                            <P item="second">{ question.description }</P>
+                            <P type="second">{ question.description }</P>
                             <OrderedList
                                 list={ question.answers.map((answer) => (
                                     <TestResultAnswer
@@ -52,9 +55,9 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                                 title="Ответы"
                             />
                             <Collapse
-                                item="default"
                                 opened={ false }
                                 title="Темы"
+                                type="default"
                             >
                                 <Section>
                                     {

@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './TestItemLink.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
+import Section, { SectionType } from '@/components/ui/container/Section/Section.tsx';
 import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
 
 
@@ -13,7 +13,7 @@ export type TestItemLinkProps = {
     disabled: boolean;
     questions: number;
     rightAnswers: number;
-    item?: SectionItem;
+    item?: SectionType;
 }
 
 const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
@@ -40,9 +40,9 @@ const TestItemLink: React.FC<TestItemLinkProps> = (props) => {
                     status === 'perfect' && css.perfect,
                 )
             }
-            item={ item }
             onClick={ () => onClick(id) }
-            type="article"
+            tag="article"
+            type={ item }
         >
             <div className={ css.left }>
                 <span

@@ -35,7 +35,7 @@ const TestResultPreview: React.FC<TestResultPreviewProps> = (props) => {
                   : 'main' }>
                 { label }
             </Tag>
-            <P item="invisible">{ timeOfFinish }</P>
+            <P type="invisible">{ timeOfFinish }</P>
         </SpaceBetween>;
     }
 };

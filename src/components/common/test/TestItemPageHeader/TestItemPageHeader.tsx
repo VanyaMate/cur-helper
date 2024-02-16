@@ -24,11 +24,11 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
                 cn(css.container)
             }
             size="medium"
-            type="section">
+            tag="section">
             <Section size="small">
                 <SpaceBetween>
                     <div>
-                        <P item="invisible" type="p">Тест на тему</P>
+                        <P type="invisible">Тест на тему</P>
                         <Title>{ title }</Title>
                     </div>
                     { extra }

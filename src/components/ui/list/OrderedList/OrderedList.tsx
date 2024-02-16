@@ -2,8 +2,8 @@ import React from 'react';
 import css from './OrderedList.module.scss';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import Section, {
-    SectionItem,
     SectionType,
+    SectionTag,
 } from '@/components/ui/container/Section/Section.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 
@@ -12,26 +12,37 @@ export type OrderedListProps = {
     title?: React.ReactNode | string;
     prefix?: string;
     list: React.ReactNode[] | string[];
-    item?: SectionItem;
-    type?: SectionType;
+    item?: SectionType;
+    type?: SectionTag;
     showPrefix?: boolean;
+    orderLabelGenerator?: (index: number) => string;
+    selfIndex?: string[];
 }
 
 const OrderedList: React.FC<OrderedListProps> = (props) => {
-    const { title, prefix, list, item, type, showPrefix } = props;
+    const {
+              title,
+              prefix,
+              list,
+              item,
+              type,
+              showPrefix,
+              orderLabelGenerator,
+              selfIndex,
+          } = props;
 
     return (
         <Section
             className={ css.container }
-            item={ item ?? undefined }
             size="small"
-            type={ type ?? 'section' }
+            tag={ type ?? 'section' }
+            type={ item ?? undefined }
         >
             {
-                title ? <Section item="default">
+                title ? <Section type="default">
                     <Title className={ css.title } size="small">
                         {
-                            showPrefix ? <P item="invisible">{ prefix }.</P> : null
+                            showPrefix ? <P type="invisible">{ prefix }.</P> : null
                         }
                         { title }
                     </Title>
@@ -44,8 +55,15 @@ const OrderedList: React.FC<OrderedListProps> = (props) => {
                         list.map((item, index) =>
                             <li className={ css.row } key={ index }>
                                 <div className={ css.number }>
-                                    { prefix ? `${ prefix }.` : '' }
-                                    { index + 1 }
+                                    {
+                                        selfIndex ? selfIndex[index] :
+                                        <>
+                                            { prefix ? `${ prefix }.` : '' }
+                                            { orderLabelGenerator
+                                              ? orderLabelGenerator(index)
+                                              : (index + 1) }
+                                        </>
+                                    }
                                 </div>
                                 <div className={ css.item }>{ item }</div>
                             </li>,

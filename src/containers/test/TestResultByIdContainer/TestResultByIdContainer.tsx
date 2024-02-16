@@ -40,13 +40,13 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = observe
     }
 
     return (
-        <Section size="small">
+        <Section size="small" tag="section">
             <TestItemPageHeader
                 title={ test.test.title }
             />
-            <Section size="extra-small" type="div">
+            <Section size="extra-small">
                 <TestResultPreview shortResult={ test }/>
-                <Section item="main" size="small">
+                <Section size="small" type="main">
                     <AdditionalList
                         list={ [
                             {

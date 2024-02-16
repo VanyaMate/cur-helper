@@ -26,6 +26,9 @@ import { testPassingService } from '@/services/test-passing/test-passing.service
 import { authService } from '@/services/auth/auth.service.ts';
 import Loader from '@/components/common/Loader/Loader.tsx';
 import P from '@/components/ui/p/P/P.tsx';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import Link from '@/components/ui/link/Link/Link.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type TestItemContainerProps = {
@@ -72,10 +75,10 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                 }
                 title={ data.title }
             />
-            <Section size="extra-small" type="div">
+            <Section size="extra-small">
                 <TestResultPreview shortResult={ data.shortResult }/>
-                <Section item="main">
-                    <SpaceBetween size="small" type="div">
+                <Section type="main">
+                    <SpaceBetween size="small">
                         <TestResultProgressbarCircle
                             percent={ data.shortResult?.rightAnswers
                                       ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
@@ -97,33 +100,33 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                     </SpaceBetween>
                 </Section>
             </Section>
-            <P item="second">{ data.description }</P>
+            <P type="second">{ data.description }</P>
             <Collapse
                 opened
                 title="Что нужно повторить"
             >
-                <OrderedList
-                    list={ data.themes.map((theme) => (
+                <Section size="extra-small">
+                    { data.themes.map((theme) => (
                         <ThemeListItem
                             key={ theme.publicId }
                             theme={ theme }
                             urlGenerator={ pageGetter.guid }
                         />
                     )) }
-                />
+                </Section>
             </Collapse>
             <Collapse
                 title="Темы затронутые в тесте"
             >
-                <OrderedList
-                    list={ data.themes.map((theme) => (
+                <Section size="extra-small">
+                    { data.themes.map((theme) => (
                         <ThemeListItem
                             key={ theme.publicId }
                             theme={ theme }
                             urlGenerator={ pageGetter.guid }
                         />
                     )) }
-                />
+                </Section>
             </Collapse>
         </Section>
     );

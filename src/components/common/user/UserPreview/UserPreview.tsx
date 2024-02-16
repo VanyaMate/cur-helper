@@ -3,10 +3,11 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import RoundImage from '@/components/ui/image/RoundImage/RoundImage.tsx';
+import { UserType } from '@/types/user/user.types.ts';
 
 
 export type UserPreviewProps = {
-    user: any;
+    user: UserType;
 };
 
 const UserPreview: React.FC<UserPreviewProps> = (props) => {
@@ -14,21 +15,21 @@ const UserPreview: React.FC<UserPreviewProps> = (props) => {
 
     return (
         <Section
-            type="section"
+            tag="section"
         >
             <SpaceBetween size="small">
                 <RoundImage
                     alt="Аватарка"
                     size="140px"
-                    src={ user.avatar }
+                    src={ user.avatarUrl }
                 />
                 <AdditionalList
                     item="main"
                     list={ [
                         { label: 'Id', value: user.id },
-                        { label: 'Имя', value: user.info.firstName },
-                        { label: 'Фамилия', value: user.info.lastName },
-                        { label: 'Роль', value: user.role },
+                        { label: 'Имя', value: user.firstName },
+                        { label: 'Фамилия', value: user.lastName },
+                        { label: 'Роль', value: user.role?.title ?? '-' },
                     ] }
                 />
             </SpaceBetween>

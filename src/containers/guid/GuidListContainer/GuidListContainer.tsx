@@ -6,13 +6,15 @@ import { GUID_PAGE } from '@/constants/pages.ts';
 import { themesService } from '@/services/themes/themes.service.ts';
 import { observer } from 'mobx-react-lite';
 import Loader from '@/components/common/Loader/Loader.tsx';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type GuidListContainerProps = {};
 
 
 const GuidListContainer: React.FC<GuidListContainerProps> = observer((props) => {
-    const {} = props;
+    const {}         = props;
+    const pageGetter = usePageUrl();
 
     if (!themesService.themes.length) {
         return <Loader/>;
@@ -21,12 +23,12 @@ const GuidListContainer: React.FC<GuidListContainerProps> = observer((props) => 
     return (
         <TileBox>
             {
-                themesService.themes.map((item) => (
+                themesService.themes.map((theme) => (
                     <OrderedList
                         item="main"
-                        key={ item.publicId }
+                        key={ theme.publicId }
                         list={
-                            item.children.map((child) => (
+                            theme.children.map((child) => (
                                 <Link
                                     key={ child.publicId }
                                     to={ `/${ GUID_PAGE }/${ child.publicId }` }>
@@ -34,12 +36,14 @@ const GuidListContainer: React.FC<GuidListContainerProps> = observer((props) => 
                                 </Link>
                             ))
                         }
-                        prefix={ item.publicId.replace(/-/gi, '.') }
+                        prefix={ theme.publicId.replace(/-/gi, '.') }
+                        selfIndex={ theme.children.map((themeChild) => themeChild.publicId.replace(/-/g, '.')) }
                         showPrefix
                         title={
                             <Link
-                                to={ `/${ GUID_PAGE }/${ item.publicId }` }>
-                                { item.title }
+                                to={ pageGetter.guid(theme.publicId) }
+                            >
+                                { theme.title }
                             </Link>
                         }
                     />

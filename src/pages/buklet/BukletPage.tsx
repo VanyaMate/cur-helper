@@ -74,7 +74,7 @@ const BukletPage: React.FC<BukletPageProps> = (props) => {
             alignItems        : 'center',
             justifyContent    : 'center',
         } }>
-            <Section item="main" size="large">
+            <Section size="large" tag="section" type="main">
                 <Section>
                     <Title>Государственная помощь</Title>
                     <P style={ { color: '#777' } }>Способ решения своих проблем</P>
@@ -83,9 +83,9 @@ const BukletPage: React.FC<BukletPageProps> = (props) => {
                 <Section>
                     <div style={ { textAlign: 'left' } }>
                         <Collapse
-                            item="default"
                             opened={ true }
                             title="Что нужно сделать"
+                            type="default"
                         >
                             <OrderedList
                                 list={ [

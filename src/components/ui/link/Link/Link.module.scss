@@ -1,16 +1,29 @@
 .container {
-    color: var(--text-color-link);
-    text-shadow: 0 0 5px var(--color-blue-transparent);
-    text-decoration: none;
-    transition: var(--transition-fast);
+    color           : var(--text-color-link);
+    text-shadow     : 0 0 5px var(--color-blue-transparent);
+    text-decoration : none;
+    transition      : var(--transition-fast);
 
     &:hover {
-        text-decoration: underline;
-        text-shadow: 0 0 10px var(--color-gold-transparent);
-        color: var(--text-color-link-hover);
+        text-decoration : underline;
+        text-shadow     : 0 0 10px var(--color-gold-transparent);
+        color           : var(--text-color-link-hover);
     }
 
     &.small {
-        font-size: 12px;
+        font-size : 12px;
+    }
+
+    &.hard {
+        & *,
+        & > * {
+            color : var(--text-color-link) !important;
+
+            &:hover {
+                text-decoration : underline !important;
+                text-shadow     : 0 0 10px var(--color-gold-transparent) !important;
+                color           : var(--text-color-link-hover) !important;
+            }
+        }
     }
 }

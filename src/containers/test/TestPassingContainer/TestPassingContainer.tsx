@@ -36,34 +36,28 @@ export type TestPassingContainerProps = {
 };
 
 const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((props) => {
-    const { test } = props;
-    console.log('test', test);
-    const hash = useTestPassingQuestionHash(test?.questions.length ?? 0);
-    console.log('hash', hash);
+    const { test }                                                = props;
+    const hash                                                    = useTestPassingQuestionHash(test?.questions.length ?? 0);
     const {
               next, set, prev,
-          } = useTestPassingQuestionPageController(test, hash);
-    console.log('hash', hash);
+          }                                                       = useTestPassingQuestionPageController(test, hash);
     const currentQuestion: With<QuestionType, [ QuestionSelect ]> = useTestCurrentQuestion(test, hash.current - 1);
-    console.log('hash', hash);
-    const completedAmount = useTestCompletedQuestions(test.questions ?? []);
-    console.log('completedAmount', completedAmount);
-    const completed = useMemo(() => completedAmount === test.questions.length, [ test, completedAmount ]);
-    console.log('completed', completed);
-    const popupQuestionListModal = useWindowPopupController();
-    const popupFinishModal       = useWindowPopupController();
-    const navigate               = useNavigate();
-    const pageGetter             = usePageUrl();
+    const completedAmount                                         = useTestCompletedQuestions(test.questions ?? []);
+    const completed                                               = useMemo(() => completedAmount === test.questions.length, [ test, completedAmount ]);
+    const popupQuestionListModal                                  = useWindowPopupController();
+    const popupFinishModal                                        = useWindowPopupController();
+    const navigate                                                = useNavigate();
+    const pageGetter                                              = usePageUrl();
 
     return (
         <>
             <WindowPopup controller={ popupQuestionListModal }>
-                <Section size="medium" type="div">
-                    <Section size="extra-small" type="div">
+                <Section size="medium">
+                    <Section size="extra-small">
                         <Title>{ test.id }</Title>
                         <SpaceBetween>
-                            <P item="invisible">Завершено { completedAmount }/{ test.questions.length }</P>
-                            <P item="second">Осталось { test.remainingTime }</P>
+                            <P type="invisible">Завершено { completedAmount }/{ test.questions.length }</P>
+                            <P type="second">Осталось { test.remainingTime }</P>
                         </SpaceBetween>
                     </Section>
                     <OrderedList
@@ -87,14 +81,14 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                 </Section>
             </WindowPopup>
             <WindowPopup controller={ popupFinishModal }>
-                <Section size="medium" type="div">
-                    <Section size="extra-small" type="div">
+                <Section size="medium">
+                    <Section size="extra-small">
                         <Title>Закончить тест?</Title>
-                        <P item="invisible">
+                        <P type="invisible">
                             Вы завершили { completedAmount }/{ test.questions.length }
                         </P>
                     </Section>
-                    <SpaceBetween type="div">
+                    <SpaceBetween>
                         <Button
                             onClick={ popupFinishModal.close }
                             prefix={ <IconM>arrow_back</IconM> }
@@ -112,8 +106,8 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                     </SpaceBetween>
                 </Section>
             </WindowPopup>
-            <Section size="large">
-                <Section size="extra-small" type="div">
+            <Section size="large" tag="section">
+                <Section size="extra-small">
                     <SpaceBetween>
                         <TestPassingProgress
                             answers={ hash.current - 1 }
@@ -127,11 +121,11 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                         </Button>
                     </SpaceBetween>
                     <SpaceBetween>
-                        <P item="invisible">Завершено { completedAmount }/{ test.questions.length }</P>
-                        <P item="second">Осталось <Timer ms={ test.remainingTime }/></P>
+                        <P type="invisible">Завершено { completedAmount }/{ test.questions.length }</P>
+                        <P type="second">Осталось <Timer ms={ test.remainingTime }/></P>
                     </SpaceBetween>
                 </Section>
-                <Section size="extra-small" type="div">
+                <Section size="extra-small">
                     {
                         currentQuestion ? <TestQuestionPassing
                             onSelect={ async (answerId) => testPassingService.setAnswer(authService.token[0], test.id, currentQuestion.id, answerId) }
@@ -139,7 +133,7 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                         /> : null
                     }
                 </Section>
-                <SpaceBetween type="div">
+                <SpaceBetween>
                     <Button
                         disabled={ (hash.current === 1 || completed) }
                         onClick={ prev }

@@ -18,6 +18,7 @@ import TestPreviewItem
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
 
 
 export type GuidItemContainerProps = {
@@ -38,16 +39,16 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
     }
 
     return (
-        <Section size="small">
+        <Section size="small" tag="section">
             <Breadcrumb
                 items={ [
                     {
                         label: <IconM>home</IconM>,
-                        url  : `/${ GUIDS_PAGE }`,
+                        url  : pageGetter.guids(),
                     },
                     ...data.breadcrumb.map((breadcrumb) => ({
                         label: breadcrumb.title,
-                        url  : `/${ GUID_PAGE }/${ breadcrumb.publicId }`,
+                        url  : pageGetter.guid(breadcrumb.publicId),
                     })),
                 ]
                 }
@@ -55,9 +56,13 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
             <ContentBox>
                 <Section size="large">
                     <Section size="extra-small">
-                        <Title>{ data.title }</Title>
+                        <ThemeTitleText
+                            publicId={ data.publicId }
+                            size="large"
+                            title={ data.title }
+                        />
                         {
-                            data.description ? <P item="second">{ data.description }</P>
+                            data.description ? <P type="second">{ data.description }</P>
                                              : null
                         }
                     </Section>
@@ -68,12 +73,13 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                             list={ data.children.map((child) => (
                                 <Link
                                     key={ child.publicId }
-                                    to={ `/${ GUID_PAGE }/${ child.publicId }` }>{ child.title }</Link>
+                                    to={ pageGetter.guid(child.publicId) }>{ child.title }</Link>
                             )) }
+                            selfIndex={ data.children.map((child) => child.publicId.replace(/-/g, '.')) }
                         /> : null
                     }
                     {
-                        data.additional ? <P item="invisible">{ data.additional }</P>
+                        data.additional ? <P type="invisible">{ data.additional }</P>
                                         : null
                     }
                     {

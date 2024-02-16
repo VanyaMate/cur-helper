@@ -37,6 +37,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
         <Section
             className={ css.container }
             size="small"
+            tag="section"
         >
             <div className={ css.header }>
                 <div className={ css.info }>
@@ -51,7 +52,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                             description ? <P className={ css.notice }>{ description }</P>
                                         : null
                         }
-                        <P className={ css.timeToPass } item="invisible">
+                        <P className={ css.timeToPass } type="invisible">
                             Время на прохождение: { timeToPass }
                         </P>
                     </div>
@@ -68,8 +69,11 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                     </Button>
                 </footer>
             </div>
-            <Collapse item="default" opened={ true }
-                      title="Темы затрагиваемые в тесте">
+            <Collapse
+                opened={ true }
+                title="Темы затрагиваемые в тесте"
+                type="default"
+            >
                 <OrderedList
                     list={
                         themes.map((theme) => (

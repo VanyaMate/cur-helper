@@ -24,7 +24,7 @@ const GuidListIdContainer: React.FC<GuidListIdContainerProps> = observer((props)
     }
 
     return (
-        <Section size="medium">
+        <Section size="medium" tag="section">
             <Breadcrumb
                 items={ data?.breadcrumb.map((item) => ({
                     label: item.title, url: `/guids/${ item.publicId }`,

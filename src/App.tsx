@@ -8,9 +8,7 @@ export type AppProps = {}
 const App: React.FC<AppProps> = (props) => {
     const {} = props;
 
-    return (
-        <Pages/>
-    );
+    return <Pages/>;
 };
 
 export default React.memo(App);

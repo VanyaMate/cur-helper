@@ -20,10 +20,10 @@ const ThemesLayout: React.FC<ThemesLayoutProps> = (props) => {
     });
 
     return (
-        <Section size="medium" type="div">
-            <Section size="extra-small" type="div">
+        <Section size="medium" tag="section">
+            <Section size="extra-small">
                 <Title size="large">Обучающие материалы</Title>
-                <P item="second">Перед вами учебник по работе с гражданами,
+                <P type="second">Перед вами учебник по работе с гражданами,
                     начиная
                     с основ, включающих в
                     себя много

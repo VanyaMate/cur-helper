@@ -18,16 +18,16 @@ const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
     return (
         <Section
             className={ css.container }
-            item
             size="extra-small"
-            type="article"
+            tag="article"
+            type="default"
         >
             {
                 title ? <Title className={ css.title } size="small">{ title }</Title>
                       : null
             }
             {
-                body ? <P className={ css.body } item="invisible">{ body }</P> : null
+                body ? <P className={ css.body } type="invisible">{ body }</P> : null
             }
             {
                 url ? <Link className={ css.link } target="_blank" to={ url }>

@@ -4,48 +4,60 @@ import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type SectionSize =
-    'small' | 'medium' | 'large' | 'extra-small';
+    'small'
+    | 'medium'
+    | 'large'
+    | 'extra-small';
+
+export type SectionTag =
+    'article'
+    | 'section'
+    | 'header'
+    | 'footer'
+    | 'div';
 
 export type SectionType =
-    'article' | 'section' | 'header' | 'footer' | 'div';
+    'main'
+    | 'second'
+    | 'default'
+    | true;
 
-export type SectionItem =
-    'main' | 'second' | 'default' | true;
-
-export type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
-    size?: SectionSize;
-    type?: SectionType;
-    item?: SectionItem;
-};
+export type SectionProps =
+    React.HTMLAttributes<HTMLDivElement>
+    & {
+        size?: SectionSize;
+        tag?: SectionTag;
+        type?: SectionType;
+    };
 
 const Section: React.FC<SectionProps> = (props) => {
-    const { className, size, item, type, ...other } = props;
+    const { className, size, type, tag, ...other } = props;
 
     const classNames = useMemo(() => {
         return cn(
             css.container,
             className,
-            item && css.item,
-            item === 'main' && css.main,
-            item === 'second' && css.second,
-            item === 'default' && css.default,
+            type && css.item,
+            type === 'main' && css.main,
+            type === 'second' && css.second,
+            type === 'default' && css.default,
             size === 'medium' && css.medium,
             size === 'large' && css.large,
             size === 'extra-small' && css.extra_small,
             (size === 'small' || !size) && css.small,
         );
-    }, [ size, item, className ]);
+    }, [ size, type, className ]);
 
-    if (type === 'article') {
+    if (tag === 'article') {
         return <article className={ classNames } { ...other }/>;
-    } else if (type === 'div') {
-        return <div className={ classNames } { ...other }/>;
-    } else if (type === 'footer') {
+    } else if (tag === 'section') {
+        return <section className={ classNames } { ...other }/>;
+    } else if (tag === 'footer') {
         return <footer className={ classNames } { ...other }/>;
-    } else if (type === 'header') {
+    } else if (tag === 'header') {
         return <header className={ classNames } { ...other }/>;
     } else {
-        return <section className={ classNames } { ...other }/>;
+        return <div className={ classNames } { ...other }/>;
     }
 };
 

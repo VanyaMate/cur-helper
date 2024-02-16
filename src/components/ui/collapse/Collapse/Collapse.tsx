@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import css from './Collapse.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
+import Section, { SectionType } from '@/components/ui/container/Section/Section.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 
 
@@ -10,7 +10,7 @@ export type CollapseProps = {
     opened?: boolean;
     title: React.ReactNode | string;
     children: React.ReactNode | string;
-    item?: SectionItem;
+    type?: SectionType;
 }
 
 const Collapse: React.FC<CollapseProps> = (props) => {
@@ -18,7 +18,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
               opened,
               title,
               children,
-              item,
+              type,
           }                 = props;
     const [ open, setOpen ] = useState<boolean>(opened ?? false);
     const toggle            = useCallback(() => {
@@ -41,14 +41,14 @@ const Collapse: React.FC<CollapseProps> = (props) => {
     return (
         <Section
             className={ cn(css.container, open && css.opened) }
-            item={ item }
             size="small"
-            type="section"
+            tag="section"
+            type={ type }
         >
             {
-                title ? <Title className={ cn(css.title, item === 'main' && css.item) }
-                       onClick={ toggle }
-                       size="small">
+                title ? <Title className={ cn(css.title, type === 'main' && css.item) }
+                               onClick={ toggle }
+                               size="small">
                     <span className={ css.text }>
                     { title }
                     </span>

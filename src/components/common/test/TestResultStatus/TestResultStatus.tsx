@@ -27,8 +27,8 @@ const TestResultStatus: React.FC<TestResultStatusProps> = (props) => {
                     result === 'perfect' && css.perfect,
                 )
             }
-            item="second"
-            type="span">
+            tag="span"
+            type="second">
             { label }
         </P>
     );
