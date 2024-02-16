@@ -25,7 +25,7 @@ jobs:
       # add tests [1]
       - run: npm run build
       - name: Params
-        run: echo ":: ${{job.status}}" >> $GITHUB_STEP_SUMMARY
+        run: echo ":: ${{job.status}} ${{job}}"
       - name: My telegram notificator
         uses: VanyaMate/github-action-telegram-notification@v0.20
         with:
