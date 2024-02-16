@@ -13,8 +13,6 @@ import {
     QuestionSelect, QuestionThemes,
     QuestionType,
 } from '@/types/question/question.types.ts';
-import TestResultPreview
-    from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
 
 
 export type TestResultQuestionsProps = {

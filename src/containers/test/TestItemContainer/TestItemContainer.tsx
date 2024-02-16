@@ -72,7 +72,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                 }
                 title={ data.title }
             />
-            <Section type={ 'div' } size={ 'extra-small' }>
+            <Section size="extra-small" type="div">
                 <TestResultPreview shortResult={ data.shortResult }/>
                 <Section item="main">
                     <SpaceBetween size="small" type="div">
