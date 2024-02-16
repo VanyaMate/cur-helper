@@ -2,11 +2,12 @@ import React, { useMemo } from 'react';
 import css from './TestResultAnswer.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import { QuestionAnswerType } from '@/types/answer/answer.types.ts';
 
 
 export type TestResultAnswerProps = {
-    answer: any;
-    result: any;
+    answer: QuestionAnswerType;
+    result: 'error' | 'selected' | 'right' | 'empty'
     onClick?: (id: string) => any;
 }
 
@@ -35,7 +36,7 @@ const TestResultAnswer: React.FC<TestResultAnswerProps> = (props) => {
                 result === 'selected' ? 'selected' :
                 result === 'right' ? 'main' : 'default'
             }>
-            { answer.body }
+            { answer.title }
         </Button>
     );
 };

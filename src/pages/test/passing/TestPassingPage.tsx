@@ -19,7 +19,7 @@ const TestPassingPage: React.FC = () => {
     }, [ testId ]);
 
     return (
-        <TestPassingByIdContainer id={ testId ?? '0' }/>
+        <TestPassingByIdContainer id={ testId ?? '' }/>
     );
 };
 

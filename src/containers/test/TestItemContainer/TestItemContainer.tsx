@@ -72,28 +72,30 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                 }
                 title={ data.title }
             />
-            <TestResultPreview shortResult={ data.shortResult }/>
-            <Section item="main">
-                <SpaceBetween size="small" type="div">
-                    <TestResultProgressbarCircle
-                        percent={ data.shortResult?.rightAnswers
-                                  ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
-                                  : 0 }
-                        result={ data.shortResult?.result }
-                    />
-                    <AdditionalList
-                        list={ [
-                            { label: 'Вопросов', value: data.questionsAmount },
-                            {
-                                label: 'Правильных ответов',
-                                value: data.shortResult?.rightAnswers === -1 ? '-'
-                                                                             : data.shortResult?.rightAnswers ?? '-',
-                            },
-                            { label: 'Попыток', value: '-' },
-                            { label: 'Время', value: timeToPass },
-                        ] }
-                    />
-                </SpaceBetween>
+            <Section type={ 'div' } size={ 'extra-small' }>
+                <TestResultPreview shortResult={ data.shortResult }/>
+                <Section item="main">
+                    <SpaceBetween size="small" type="div">
+                        <TestResultProgressbarCircle
+                            percent={ data.shortResult?.rightAnswers
+                                      ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
+                                      : 0 }
+                            result={ data.shortResult?.result }
+                        />
+                        <AdditionalList
+                            list={ [
+                                { label: 'Вопросов', value: data.questionsAmount },
+                                {
+                                    label: 'Правильных ответов',
+                                    value: data.shortResult?.rightAnswers === -1 ? '-'
+                                                                                 : data.shortResult?.rightAnswers ?? '-',
+                                },
+                                { label: 'Попыток', value: '-' },
+                                { label: 'Время', value: timeToPass },
+                            ] }
+                        />
+                    </SpaceBetween>
+                </Section>
             </Section>
             <P item="second">{ data.description }</P>
             <Collapse
@@ -105,6 +107,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                         <ThemeListItem
                             key={ theme.publicId }
                             theme={ theme }
+                            urlGenerator={ pageGetter.guid }
                         />
                     )) }
                 />
@@ -117,6 +120,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                         <ThemeListItem
                             key={ theme.publicId }
                             theme={ theme }
+                            urlGenerator={ pageGetter.guid }
                         />
                     )) }
                 />

@@ -5,6 +5,7 @@ import Link from '@/components/ui/link/Link/Link.tsx';
 import { GUID_PAGE } from '@/constants/pages.ts';
 import { themesService } from '@/services/themes/themes.service.ts';
 import { observer } from 'mobx-react-lite';
+import Loader from '@/components/common/Loader/Loader.tsx';
 
 
 export type GuidListContainerProps = {};
@@ -12,6 +13,10 @@ export type GuidListContainerProps = {};
 
 const GuidListContainer: React.FC<GuidListContainerProps> = observer((props) => {
     const {} = props;
+
+    if (!themesService.themes.length) {
+        return <Loader/>;
+    }
 
     return (
         <TileBox>

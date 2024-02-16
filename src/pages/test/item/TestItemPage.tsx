@@ -21,9 +21,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
     }, [ testId ]);
 
     return (
-        <Suspense>
-            <TestItemContainer id={ testId! }/>
-        </Suspense>
+        <TestItemContainer id={ testId! }/>
     );
 };
 

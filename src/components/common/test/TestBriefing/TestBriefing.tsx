@@ -10,6 +10,7 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
 import { ThemeShortType } from '@/types/theme/theme.types.ts';
 import { TestPassingState } from '@/types/test-passing/test-passing.types.ts';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type TestBriefingProps = {
@@ -30,6 +31,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
         setLoading(true);
         onStart().finally(() => setLoading(false));
     }, [ onStart, setLoading ]);
+    const pageGetter                                                  = usePageUrl();
 
     return (
         <Section
@@ -74,6 +76,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                             <ThemeListItem
                                 key={ theme.publicId }
                                 theme={ theme }
+                                urlGenerator={ pageGetter.guid }
                             />
                         ))
                     }

@@ -1,11 +1,7 @@
 import React from 'react';
-import {
-    useFetchTestUserResultMockData,
-} from '@/hooks/test/fetch/useFetchTestUserResultMockData.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import TestResultQuestions
     from '@/components/common/test/TestResultQuestions/TestResultQuestions.tsx';
-import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import TestItemPageHeader
     from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
 import {
@@ -19,84 +15,71 @@ import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetwe
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { useMathPercent } from '@/hooks/math/useMathPercent.ts';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
-import IconM from '@/components/ui/icon/IconM.tsx';
+import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
+import Loader from '@/components/common/Loader/Loader.tsx';
+import { observer } from 'mobx-react-lite';
+import TestResultPreview
+    from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
 
 
 export type TestPassingByIdContainerProps = {
     id: string;
 }
 
-const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = (props) => {
-    const { id }                  = props;
-    const { loading, data: test } = useFetchTestUserResultMockData(id);
-    const rightAnswers            = useTestRightAnswersCalculator(test?.test.questions ?? []);
-    const time                    = useTestTimeCalculator(test?.startTime ?? '', test?.finishTime ?? '');
-    const percent                 = useMathPercent(rightAnswers, test?.test.questions.length ?? 0);
-    const pageGetter              = usePageUrl();
+const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = observer((props) => {
+    const { id } = props;
 
-    if (loading) {
-        return 'loading...';
-    }
+    const test         = testPassingService.resultTests.get(id);
+    const rightAnswers = useTestRightAnswersCalculator(test?.questions ?? []);
+    const time         = useTestTimeCalculator(test?.startTime ?? 0, test?.finishTime ?? 0);
+    const percent      = useMathPercent(rightAnswers, test?.questions.length ?? 0);
+    const pageGetter   = usePageUrl();
 
     if (!test) {
-        return 'not found';
+        return <Loader/>;
     }
 
     return (
         <Section size="small">
-            <Breadcrumb
-                items={
-                    [
-                        {
-                            label: <IconM>home</IconM>,
-                            url  : pageGetter.test(),
-                        },
-                        {
-                            label: 'Общие правила',
-                            url  : pageGetter.test(test.test.id.split('-')[0]),
-                        },
-                        {
-                            label: test.test.title,
-                            url  : pageGetter.test(test.test.id),
-                        },
-                    ]
-                }
-            />
             <TestItemPageHeader
                 title={ test.test.title }
             />
-            <Section item="main" size="small">
-                <AdditionalList
-                    list={ [
-                        {
-                            label: 'Пользователь',
-                            value: <Link to={ pageGetter.profile(test.user.login) }>
-                                { test.user.login }
-                            </Link>,
-                        },
-                    ] }
-                />
-                <SpaceBetween size="small">
-                    <TestResultProgressbarCircle
-                        percent={ percent }
-                        result="satis"
-                    />
+            <Section size="extra-small" type="div">
+                <TestResultPreview shortResult={ test }/>
+                <Section item="main" size="small">
                     <AdditionalList
                         list={ [
-                            { label: 'Вопросов', value: test.test.questions.length },
-                            { label: 'Правильных ответов', value: rightAnswers },
-                            { label: 'Попытка', value: test.try },
-                            { label: 'Время', value: time + ' минут' },
+                            {
+                                label: 'Пользователь',
+                                value: <Link to={ pageGetter.profile(test.user.login) }>
+                                    { test.user.login }
+                                </Link>,
+                            },
                         ] }
                     />
-                </SpaceBetween>
+                    <SpaceBetween size="small">
+                        <TestResultProgressbarCircle
+                            percent={ percent }
+                            result={ test.result }
+                        />
+                        <AdditionalList
+                            list={ [
+                                { label: 'Вопросов', value: test.questions.length },
+                                { label: 'Правильных ответов', value: rightAnswers },
+                                { label: 'Попытка', value: '-' },
+                                { label: 'Время', value: time + ' минут' },
+                            ] }
+                        />
+                    </SpaceBetween>
+                </Section>
             </Section>
             <TestResultQuestions
-                questions={ test.test.questions }
+                questions={ test.questions }
                 themeUrlGetter={ pageGetter.guid }
             />
         </Section>
     );
-};
+
+});
 
 export default React.memo(TestResultByIdContainer);

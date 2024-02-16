@@ -9,10 +9,11 @@ import P from '@/components/ui/p/P/P.tsx';
 // add comment
 export type ThemeListItemProps = {
     theme: ThemeShortType;
+    urlGenerator: (id: string) => string;
 };
 
 const ThemeListItem: React.FC<ThemeListItemProps> = (props) => {
-    const { theme } = props;
+    const { theme, urlGenerator } = props;
 
     return (
         <ListTitledItemWithUrl
@@ -25,7 +26,7 @@ const ThemeListItem: React.FC<ThemeListItemProps> = (props) => {
                     { theme.title }
                 </>
             }
-            url={ `/guid/${ theme.publicId }` }
+            url={ urlGenerator(theme.publicId) }
         />
     );
 };
