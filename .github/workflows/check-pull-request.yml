@@ -1,8 +1,9 @@
-name: check
+name: check-pull-request
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - 'master'
 
 jobs:
   build:
