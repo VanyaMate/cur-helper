@@ -9,6 +9,7 @@ import P from '@/components/ui/p/P/P.tsx';
 
 export type TestItemPageHeaderProps = {
     title: string;
+    publicId: string;
     extra?: React.ReactNode | string;
 }
 
@@ -16,6 +17,7 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
     const {
               title,
               extra,
+              publicId,
           } = props;
 
     return (
@@ -28,7 +30,8 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
             <Section size="small">
                 <SpaceBetween>
                     <div>
-                        <P type="invisible">Тест на тему</P>
+                        <P type="invisible">{ publicId.replace(/-/g, '.') }. Тест на
+                            тему</P>
                         <Title>{ title }</Title>
                     </div>
                     { extra }

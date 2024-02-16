@@ -18,6 +18,7 @@ import {
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import Loader from '@/components/common/Loader/Loader.tsx';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type MobilePageLayoutProps = {}
@@ -25,6 +26,7 @@ export type MobilePageLayoutProps = {}
 const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
     const {}             = props;
     const navigate       = useNavigate();
+    const pageGetter     = usePageUrl();
     const { pathname }   = useLocation();
     const menuController = useWindowPopupController();
 
@@ -49,7 +51,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     icon="https://cdn-icons-png.flaticon.com/512/25/25694.png"
                     label="Общее"
                     onClick={ () => {
-                        navigate(`/${ HOME_PAGE }`);
+                        navigate(pageGetter.home());
                     } }
                 />
                 <MobileSiteNavigationButton
@@ -57,7 +59,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     icon="https://cdn-icons-png.flaticon.com/512/171/171322.png"
                     label="Учебник"
                     onClick={ () => {
-                        navigate(`/${ GUIDS_PAGE }`);
+                        navigate(pageGetter.guids());
                     } }
                 />
                 <MobileSiteNavigationButton
@@ -65,7 +67,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     icon="https://cdn-icons-png.flaticon.com/512/1950/1950630.png"
                     label="Тесты"
                     onClick={ () => {
-                        navigate(`/${ TESTS_PAGE }`);
+                        navigate(pageGetter.tests());
                     } }
                 />
                 <MobileSiteNavigationButton
@@ -73,7 +75,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
                     label="Профиль"
                     onClick={ () => {
-                        navigate(`/${ PROFILE_PAGE }`);
+                        navigate(pageGetter.profile());
                     } }
                 />
                 <MobileSiteNavigationButton

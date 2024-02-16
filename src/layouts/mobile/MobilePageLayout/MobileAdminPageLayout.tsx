@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import css from './MobilePageLayout.module.scss';
 import MobileSiteNavigationButton
@@ -8,14 +8,15 @@ import HeaderCurContainer
     from '@/containers/header/HeaderCurContainer/HeaderCurContainer';
 import {
     ADMIN_PAGE,
-    GUID_PAGE, HOME_PAGE, PROFILE_PAGE,
-    TEST_PAGE,
+    GUIDS_PAGE, HOME_PAGE, PROFILES_PAGE,
+    TESTS_PAGE,
 } from '@/constants/pages.ts';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import Loader from '@/components/common/Loader/Loader.tsx';
 
 
 export type MobilePageLayoutProps = {}
@@ -37,7 +38,9 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     <HeaderCurContainer/>
                 </aside>
                 <div className={ css.content_width }>
-                    <Outlet/>
+                    <Suspense fallback={ <Loader/> }>
+                        <Outlet/>
+                    </Suspense>
                 </div>
             </div>
             <nav className={ css.nav }>
@@ -50,27 +53,30 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     } }
                 />
                 <MobileSiteNavigationButton
-                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === GUID_PAGE : undefined }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === GUIDS_PAGE
+                                                         : undefined }
                     icon="https://cdn-icons-png.flaticon.com/512/171/171322.png"
                     label="Темы"
                     onClick={ () => {
-                        navigate(`/${ ADMIN_PAGE }/${ GUID_PAGE }`);
+                        navigate(`/${ ADMIN_PAGE }/${ GUIDS_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === TEST_PAGE : undefined }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === TESTS_PAGE
+                                                         : undefined }
                     icon="https://cdn-icons-png.flaticon.com/512/1950/1950630.png"
                     label="Тесты"
                     onClick={ () => {
-                        navigate(`/${ ADMIN_PAGE }/${ TEST_PAGE }`);
+                        navigate(`/${ ADMIN_PAGE }/${ TESTS_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton
-                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === PROFILE_PAGE : undefined }
+                    active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === PROFILES_PAGE
+                                                         : undefined }
                     icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
                     label="Профили"
                     onClick={ () => {
-                        navigate(`/${ ADMIN_PAGE }/${ PROFILE_PAGE }`);
+                        navigate(`/${ ADMIN_PAGE }/${ PROFILES_PAGE }`);
                     } }
                 />
                 <MobileSiteNavigationButton

@@ -73,6 +73,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             styleType="main">{ data.shortResult?.status === 'process'
                                                ? 'Продолжить' : 'Начать' }</Button>
                 }
+                publicId={ data.theme.publicId }
                 title={ data.title }
             />
             <Section size="extra-small">
