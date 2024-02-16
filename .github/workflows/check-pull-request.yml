@@ -25,13 +25,4 @@ jobs:
       - run: npm run lint
       # add tests [1]
       - run: npm run build
-      - name: Params
-        run: |
-          echo "Job : ${{job}}"
-          echo "Job status: ${{job.status}}"
-      - name: My telegram notificator
-        uses: VanyaMate/github-action-telegram-notification@v0.20
-        with:
-          success: ${{ job.status }}
-          tg_bot_token: ${{ secrets.TG_TOKEN_BOT }}
-          tg_chat_id: ${{ secrets.TG_CHAT_ID }}
+      # add notificator for request
