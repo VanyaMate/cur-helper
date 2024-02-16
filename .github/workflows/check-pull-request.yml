@@ -29,7 +29,6 @@ jobs:
         run: |
           echo "Job : ${{job}}"
           echo "Job status: ${{job.status}}"
-          echo "Jobs build result: ${{jobs.build.result}}"
       - name: My telegram notificator
         uses: VanyaMate/github-action-telegram-notification@v0.20
         with:
