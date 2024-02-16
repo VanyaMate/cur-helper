@@ -31,4 +31,3 @@ jobs:
         run: |
           echo "Job : ${{job}}"
           echo "Job status: ${{job.status}}"
-          echo "Jobs build result: ${{jobs.build.result}}"
