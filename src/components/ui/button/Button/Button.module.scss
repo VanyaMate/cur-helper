@@ -19,11 +19,40 @@
         }
     }
 
-    &.quad {
-        max-width  : var(--height-medium);
-        min-width  : var(--height-medium);
-        max-height : var(--height-medium);
-        min-height : var(--height-medium);
+    &.smallSize {
+        padding : var(--offset-small);
+        height  : var(--height-small);
+
+        &.quad {
+            max-width  : var(--height-small);
+            min-width  : var(--height-small);
+            max-height : var(--height-small);
+            min-height : var(--height-small);
+        }
+    }
+
+    &.mediumSize {
+        padding : var(--offset-medium);
+        height  : var(--height-medium);
+
+        &.quad {
+            max-width  : var(--height-medium);
+            min-width  : var(--height-medium);
+            max-height : var(--height-medium);
+            min-height : var(--height-medium);
+        }
+    }
+
+    &.largeSize {
+        padding : var(--offset-large);
+        height  : var(--height-large);
+
+        &.quad {
+            max-width  : var(--height-large);
+            min-width  : var(--height-large);
+            max-height : var(--height-large);
+            min-height : var(--height-large);
+        }
     }
 
     &.block {

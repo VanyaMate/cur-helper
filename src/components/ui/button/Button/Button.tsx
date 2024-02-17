@@ -11,11 +11,17 @@ export type ButtonType =
     | 'hover'
     | 'simple';
 
+export type ButtonSize =
+    'small'
+    | 'medium'
+    | 'large';
+
 export type ButtonProps = {
     prefix?: React.ReactNode | string;
     postfix?: React.ReactNode | string;
     children: React.ReactNode | string;
     styleType?: ButtonType;
+    size?: ButtonSize;
     onClick?: () => any;
     block?: boolean;
     disabled?: boolean;
@@ -34,6 +40,7 @@ const Button: React.FC<ButtonProps> = (props) => {
               quad,
               disabled,
               onClick,
+              size,
           } = props;
 
     return (
@@ -43,6 +50,9 @@ const Button: React.FC<ButtonProps> = (props) => {
                 onClick && css.clickable,
                 block && css.block,
                 className,
+                size === 'small' && css.smallSize,
+                size === 'large' && css.largeSize,
+                (size === 'medium' || !size) && css.mediumSize,
                 styleType === 'main' && css.main,
                 styleType === 'danger' && css.danger,
                 styleType === 'selected' && css.selected,

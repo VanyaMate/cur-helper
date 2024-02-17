@@ -1,0 +1,26 @@
+:root .dark-blue-light {
+    .tiptap {
+        transition     : .5s;
+        border-radius  : 10px;
+        border         : 2px dotted transparent;
+        outline        : 0 solid transparent;
+        padding        : var(--offset-medium);
+        display        : flex;
+        flex-direction : column;
+        gap            : var(--offset-large);
+
+        img {
+            max-width : 100%;
+        }
+
+        &:read-write {
+            border : 2px dotted var(--text-color-invisible);
+
+            &:focus,
+            &:active {
+                border     : 2px dotted var(--color-blue);
+                box-shadow : 0 0 20px -5px var(--color-blue-transparent);
+            }
+        }
+    }
+}

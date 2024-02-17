@@ -1,14 +1,31 @@
 import React from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
-import Input from '@/components/ui/input/Input/Input.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import P from '@/components/ui/p/P/P.tsx';
+import { EditorContent, useEditor } from '@tiptap/react';
+import { StarterKit } from '@tiptap/starter-kit';
+import Loader from '@/components/common/Loader/Loader.tsx';
+import { Image } from '@tiptap/extension-image';
+import ThemeFloatingMenu
+    from '@/components/tiptap/floating-menu/ThemeFloatingMenu/ThemeFloatingMenu.tsx';
+import ThemeBubbleMenu
+    from '@/components/tiptap/bubble-menu/ThemeBubbleMenu/ThemeBubbleMenu.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import {
+    TipTapTestPassing,
+} from '@/components/tiptap/components/TipTapTestPassing/TipTapTestPassing.ts';
 
 
 export type AdminThemeRedactContainerProps = {};
 
 const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (props) => {
     const {} = props;
+
+    const editor = useEditor({
+        extensions    : [ StarterKit, Image, TipTapTestPassing ],
+        content       : '<p>Hello world</p>',
+        onBeforeCreate: () => <button>hi</button>,
+        editable      : true,
+    });
 
     return (
         <Section>
@@ -31,25 +48,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
                 selfIndex={ [ '1', '', '3' ] }
             />
             <br/>
-            <br/>
-            <hr/>
-            <br/>
-            <br/>
-            <P type="invisible">Публичный ID</P>
-            <Input onChangeHandler={ () => console.log() } value="1-1"/>
-            <P type="invisible">Заголовок</P>
-            <Input onChangeHandler={ () => console.log() } value="Законы и законы"/>
-            <P type="invisible">Описание</P>
-            <Input onChangeHandler={ () => console.log() }
-                   value="Основы этики и профессионального поведения для государственных служащих. Включает примеры конфликта интересов и этическое руководство для повседневных ситуаций"/>
-            <P type="invisible">Дополнительная информация</P>
-            <Input onChangeHandler={ () => console.log() } value="На момент 2023 года"/>
-            <P type="invisible">Текст</P>
-            <Input onChangeHandler={ () => console.log() }
-                   value="Тема охватывает основные принципы этики в государственной основы этики и профессионального поведения для государственных"/>
-            <P>Editor.js / Lexical</P>
-            <P>Tiptap [headless]</P>
-            <P>Своё?</P>
+            {
+                editor ?
+                <>
+                    <Button
+                        onClick={ () => editor?.setEditable(!editor?.isEditable) }>Edit</Button>
+                    <EditorContent editor={ editor }/>
+                    <ThemeFloatingMenu editor={ editor }/>
+                    <ThemeBubbleMenu editor={ editor }/>
+                </> : <Loader/>
+            }
         </Section>
     );
 };
