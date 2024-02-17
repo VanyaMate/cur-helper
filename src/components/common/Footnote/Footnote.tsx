@@ -6,7 +6,9 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 
 
 export type FootnoteType =
-    'notify' | 'warning' | 'urgent';
+    'notify'
+    | 'warning'
+    | 'urgent';
 
 export type FootnoteProps = {
     header: React.ReactNode | string;
@@ -18,12 +20,16 @@ const Footnote: React.FC<FootnoteProps> = (props) => {
     const { type, children, header } = props;
 
     return (
-        <Section className={ cn(
-            css.container,
-            type === 'warning' && css.warning,
-            type === 'urgent' && css.urgent,
-            (type === 'notify' || !type) && css.notify,
-        ) } item="second" size="small">
+        <Section
+            className={ cn(
+                css.container,
+                type === 'warning' && css.warning,
+                type === 'urgent' && css.urgent,
+                (type === 'notify' || !type) && css.notify,
+            ) }
+            size="small"
+            type="second"
+        >
             <h6 className={ css.header }>{ header }</h6>
             <P className={ css.body }>{ children }</P>
         </Section>

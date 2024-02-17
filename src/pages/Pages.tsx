@@ -20,15 +20,18 @@ import {
 } from '@/constants/pages.ts';
 import ArticleItemPage from '@/pages/article/item/ArticleItemPage.tsx';
 import ArticlesPage from '@/pages/article/ArticlesPage.tsx';
+import GuidListIdPage from '@/pages/guid/list-id/GuidListIdPage.tsx';
+import GuidListPage from '@/pages/guid/list/GuidListPage.tsx';
+import TestsLayout from '@/layouts/tests/TestsLayout/TestsLayout.tsx';
+import ThemesLayout from '@/layouts/themes/ThemesLayout/ThemesLayout.tsx';
+
 import MobileAdminPageLayout
     from '@/layouts/mobile/MobilePageLayout/MobileAdminPageLayout.tsx';
 import AdminGuidListPage from '@/pages/admin/AdminGuidListPage/AdminGuidListPage.tsx';
 import AdminHomePage from '@/pages/admin/AdminHomePage/AdminHomePage.tsx';
 import AdminTestListPage from '@/pages/admin/AdminTestListPage/AdminTestListPage.tsx';
-import GuidListIdPage from '@/pages/guid/list-id/GuidListIdPage.tsx';
-import GuidListPage from '@/pages/guid/list/GuidListPage.tsx';
-import TestsLayout from '@/layouts/tests/TestsLayout/TestsLayout.tsx';
-import ThemesLayout from '@/layouts/themes/ThemesLayout/ThemesLayout.tsx';
+import AdminGuidRedactPage
+    from '@/pages/admin/AdminGuidRedactPage/AdminGuidRedactPage.tsx';
 
 
 export type PagesProps = {}
@@ -39,12 +42,12 @@ const Pages: React.FC<PagesProps> = (props) => {
     return (
         <Routes>
             <Route element={ <MobileAdminPageLayout/> } path={ '/admin/*' }>
-                <Route element={ <AdminGuidListPage/> }
+                <Route element={ <AdminGuidRedactPage/> }
                        path={ `${ GUID_PAGE }/:${ THEME_ID }` }/>
-                <Route element={ <AdminGuidListPage/> } path={ `${ GUID_PAGE }` }/>
+                <Route element={ <AdminGuidListPage/> } path={ `${ GUIDS_PAGE }` }/>
                 <Route element={ <AdminTestListPage/> }
                        path={ `${ TEST_PAGE }/:${ TEST_ID }` }/>
-                <Route element={ <AdminTestListPage/> } path={ `${ TEST_PAGE }` }/>
+                <Route element={ <AdminTestListPage/> } path={ `${ TESTS_PAGE }` }/>
                 <Route element={ <AdminHomePage/> } path={ `${ HOME_PAGE }` }/>
             </Route>
             <Route element={ <MobilePageLayout/> } path={ '/*' }>

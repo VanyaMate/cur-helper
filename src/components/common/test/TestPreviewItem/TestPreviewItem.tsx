@@ -27,16 +27,21 @@ const TestPreviewItem: React.FC<TestPreviewItemProps> = (props) => {
     const timeToPass: string = useDateDeltaWithPostfix(Date.now() - test.timeToPass, Date.now(), '');
 
     return (
-        <Section className={ css.container } item="main" onClick={ () => onClick(test.id) }
-                 size="extra-small">
+        <Section
+            className={ css.container }
+            onClick={ () => onClick(test.id) }
+            size="extra-small"
+            tag="article"
+            type="main"
+        >
             <Section size="extra-small">
                 <TestResultPreview shortResult={ test.shortResult }/>
                 <Title lines={ 2 }>{ test.title }</Title>
                 <P lines={ 2 }>{ test.description }</P>
             </Section>
             <SpaceBetween>
-                <P item="invisible">{ questionsString }</P>
-                <P item="invisible">{ timeToPass }</P>
+                <P type="invisible">{ questionsString }</P>
+                <P type="invisible">{ timeToPass }</P>
             </SpaceBetween>
         </Section>
     );

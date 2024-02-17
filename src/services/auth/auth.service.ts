@@ -71,7 +71,6 @@ class AuthService implements IAuthService {
                 }
             })
             .then((data: UserAuthType) => {
-                console.log(data);
                 this._setToken(data.token, remember);
                 this.authenticated = true;
                 return data;
@@ -125,12 +124,14 @@ class AuthService implements IAuthService {
             localStorage.setItem(this._authStorageName, token);
         } else {
             sessionStorage.setItem(this._authStorageName, token);
+            document.cookie = `${ this._authStorageName }=${ token }; path=/;`;
         }
     }
 
     private _removeToken () {
         localStorage.removeItem(this._authStorageName);
         sessionStorage.removeItem(this._authStorageName);
+        document.cookie = `${ this._authStorageName }=; path=/;`;
     }
 
     private _getToken (): [ string, boolean ] {
@@ -141,6 +142,10 @@ class AuthService implements IAuthService {
         const sessionStorageToken: string | null = sessionStorage.getItem(this._authStorageName);
         if (sessionStorageToken) {
             return [ sessionStorageToken, false ];
+        }
+        const cookieStorageToken = document.cookie.match(new RegExp(`${this._authStorageName}=(.+)`))?.[1].split('&')[0];
+        if (cookieStorageToken) {
+            return [ cookieStorageToken, false ];
         }
         return [ '', false ];
     }

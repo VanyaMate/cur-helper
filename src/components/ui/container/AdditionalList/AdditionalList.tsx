@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './AdditionalList.module.scss';
-import Section, { SectionItem } from '@/components/ui/container/Section/Section.tsx';
+import Section, { SectionType } from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 
@@ -12,32 +12,32 @@ export type AdditionalListItem = {
 
 export type AdditionalListProps = {
     list: AdditionalListItem[];
-    item?: SectionItem;
+    item?: SectionType;
 }
 
 const AdditionalList: React.FC<AdditionalListProps> = (props) => {
     const { list, item: sectionItem } = props;
 
     return (
-        <Section className={ css.container } type="section">
+        <Section className={ css.container } tag="section">
             {
                 list.map((item, index) => (
                     <SpaceBetween
                         className={ css.row }
-                        item={ sectionItem }
                         key={ index }
-                        type="article"
+                        tag="article"
+                        type={ sectionItem }
                     >
                         <P
                             className={ css.label }
-                            item="invisible"
-                            type="span"
+                            tag="span"
+                            type="invisible"
                         >
                             { item.label }:
                         </P>
                         <P
                             className={ css.value }
-                            type="span"
+                            tag="span"
                         >
                             { item.value }
                         </P>

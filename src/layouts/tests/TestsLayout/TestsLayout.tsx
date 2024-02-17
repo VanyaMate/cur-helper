@@ -20,10 +20,10 @@ const TestsLayout: React.FC<TestsLayoutProps> = (props) => {
     });
 
     return (
-        <Section size="medium">
-            <Section size="extra-small" type="div">
+        <Section size="medium" tag="section">
+            <Section size="extra-small">
                 <Title size="large">Тесты</Title>
-                <P item="second">Пройдите тесты чтобы проверить свои знания</P>
+                <P type="second">Пройдите тесты чтобы проверить свои знания</P>
             </Section>
             <aside style={ { display: 'flex', gap: 5 } }>
                 <Input

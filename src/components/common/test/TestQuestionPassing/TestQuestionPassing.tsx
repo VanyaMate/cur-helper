@@ -46,11 +46,11 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
     }, [ selected, setProcess, onSelect ]);
 
     return (
-        <Section>
-            <Section size="medium" type="div">
+        <Section tag="section">
+            <Section size="medium">
                 <Title>{ question.title }</Title>
                 <P>{ question.description }</P>
-                <Section item="main" type="div">
+                <Section type="main">
                     <OrderedList
                         list={ question.answers.map((answer: QuestionAnswerType) => (
                             <TestQuestionPassingButton
@@ -66,7 +66,7 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
                     />
                 </Section>
             </Section>
-            <SpaceBetween type="div">
+            <SpaceBetween>
                 <div/>
                 <Button
                     disabled={ disabledSelectButton }

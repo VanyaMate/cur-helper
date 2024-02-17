@@ -10,7 +10,6 @@ import TestResultProgressbarCircle
     from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
@@ -70,56 +69,61 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             styleType="main">{ data.shortResult?.status === 'process'
                                                ? 'Продолжить' : 'Начать' }</Button>
                 }
+                publicId={ data.theme.publicId }
                 title={ data.title }
             />
-            <TestResultPreview shortResult={ data.shortResult }/>
-            <Section item="main">
-                <SpaceBetween size="small" type="div">
-                    <TestResultProgressbarCircle
-                        percent={ data.shortResult?.rightAnswers
-                                  ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
-                                  : 0 }
-                        result={ data.shortResult?.result }
-                    />
-                    <AdditionalList
-                        list={ [
-                            { label: 'Вопросов', value: data.questionsAmount },
-                            {
-                                label: 'Правильных ответов',
-                                value: data.shortResult?.rightAnswers === -1 ? '-'
-                                                                             : data.shortResult?.rightAnswers ?? '-',
-                            },
-                            { label: 'Попыток', value: '-' },
-                            { label: 'Время', value: timeToPass },
-                        ] }
-                    />
-                </SpaceBetween>
+            <Section size="extra-small">
+                <TestResultPreview shortResult={ data.shortResult }/>
+                <Section type="main">
+                    <SpaceBetween size="small">
+                        <TestResultProgressbarCircle
+                            percent={ data.shortResult?.rightAnswers
+                                      ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
+                                      : 0 }
+                            result={ data.shortResult?.result }
+                        />
+                        <AdditionalList
+                            list={ [
+                                { label: 'Вопросов', value: data.questionsAmount },
+                                {
+                                    label: 'Правильных ответов',
+                                    value: data.shortResult?.rightAnswers === -1 ? '-'
+                                                                                 : data.shortResult?.rightAnswers ?? '-',
+                                },
+                                { label: 'Попыток', value: '-' },
+                                { label: 'Время', value: timeToPass },
+                            ] }
+                        />
+                    </SpaceBetween>
+                </Section>
             </Section>
-            <P item="second">{ data.description }</P>
+            <P type="second">{ data.description }</P>
             <Collapse
                 opened
                 title="Что нужно повторить"
             >
-                <OrderedList
-                    list={ data.themes.map((theme) => (
+                <Section size="extra-small">
+                    { data.themes.map((theme) => (
                         <ThemeListItem
                             key={ theme.publicId }
                             theme={ theme }
+                            urlGenerator={ pageGetter.guid }
                         />
                     )) }
-                />
+                </Section>
             </Collapse>
             <Collapse
                 title="Темы затронутые в тесте"
             >
-                <OrderedList
-                    list={ data.themes.map((theme) => (
+                <Section size="extra-small">
+                    { data.themes.map((theme) => (
                         <ThemeListItem
                             key={ theme.publicId }
                             theme={ theme }
+                            urlGenerator={ pageGetter.guid }
                         />
                     )) }
-                />
+                </Section>
             </Collapse>
         </Section>
     );

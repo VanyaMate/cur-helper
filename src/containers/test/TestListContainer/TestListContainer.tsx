@@ -9,6 +9,7 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { observer } from 'mobx-react-lite';
 import Loader from '@/components/common/Loader/Loader.tsx';
+import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
 
 
 export type TestListContainerProps = {};
@@ -30,8 +31,16 @@ const TestListContainer: React.FC<TestListContainerProps> = observer((props) => 
         <Section size="large">
             {
                 data.map((theme) => (
-                    <Collapse key={ theme.publicId } opened={ true }
-                              title={ theme.publicId.replace(/-/gi, '.') + ' ' + theme.title }>
+                    <Collapse
+                        key={ theme.publicId }
+                        opened={ true }
+                        title={
+                            <ThemeTitleText
+                                publicId={ theme.publicId }
+                                title={ theme.title }
+                            />
+                        }
+                    >
                         <TileBox>
                             {
                                 theme.tests.map((test) => (

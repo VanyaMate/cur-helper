@@ -10,6 +10,7 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
 import { ThemeShortType } from '@/types/theme/theme.types.ts';
 import { TestPassingState } from '@/types/test-passing/test-passing.types.ts';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type TestBriefingProps = {
@@ -30,11 +31,13 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
         setLoading(true);
         onStart().finally(() => setLoading(false));
     }, [ onStart, setLoading ]);
+    const pageGetter                                                  = usePageUrl();
 
     return (
         <Section
             className={ css.container }
             size="small"
+            tag="section"
         >
             <div className={ css.header }>
                 <div className={ css.info }>
@@ -49,7 +52,7 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                             description ? <P className={ css.notice }>{ description }</P>
                                         : null
                         }
-                        <P className={ css.timeToPass } item="invisible">
+                        <P className={ css.timeToPass } type="invisible">
                             Время на прохождение: { timeToPass }
                         </P>
                     </div>
@@ -66,14 +69,18 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                     </Button>
                 </footer>
             </div>
-            <Collapse item="default" opened={ true }
-                      title="Темы затрагиваемые в тесте">
+            <Collapse
+                opened={ true }
+                title="Темы затрагиваемые в тесте"
+                type="default"
+            >
                 <OrderedList
                     list={
                         themes.map((theme) => (
                             <ThemeListItem
                                 key={ theme.publicId }
                                 theme={ theme }
+                                urlGenerator={ pageGetter.guid }
                             />
                         ))
                     }

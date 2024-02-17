@@ -37,14 +37,10 @@ export const usePageUrl = function (): PageUrlGetter {
             return `/${ COMMON_PAGE }/${ id }`;
         },
         guid (id: string): string {
-            const [ themeId, guidId ] = (id ?? '').split('-');
-            return `/${ GUID_PAGE }${ themeId ? `/${ themeId }${ guidId ? `/${ guidId }`
-                                                                        : '' }` : '' }`;
+            return `/${ GUID_PAGE }${ id ? `/${ id }` : '' }`;
         },
         guids (id: string): string {
-            const [ themeId, guidId ] = (id ?? '').split('-');
-            return `/${ GUIDS_PAGE }${ themeId ? `/${ themeId }${ guidId ? `/${ guidId }`
-                                                                         : '' }` : '' }`;
+            return `/${ GUIDS_PAGE }${ id ? `/${ id }` : '' }`;
         },
         test (id: string): string {
             const [ themeId, testId ] = (id ?? '').split('-');

@@ -5,20 +5,25 @@ import { cn } from '@vanyamate/helpers/react/classname';
 
 
 export type LinkSize =
-    'small' | 'medium';
+    'small'
+    | 'medium';
 
-export type LinkProps = LinkRouterDomProps & {
-    size?: LinkSize;
-};
+export type LinkProps =
+    LinkRouterDomProps
+    & {
+        size?: LinkSize;
+        hardColor?: boolean;
+    };
 
 const Link: React.FC<LinkProps> = (props) => {
-    const { className, size, ...other } = props;
+    const { className, size, hardColor, ...other } = props;
 
     return (
         <LinkRouterDom { ...other } className={ cn(
             className,
             css.container,
             size === 'small' && css.small,
+            hardColor && css.hard,
         ) }/>
     );
 };

@@ -21,9 +21,9 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
     return (
         <Section
             className={ css.container }
-            item="main"
             size="extra-small"
-            type="article"
+            tag="article"
+            type="main"
         >
             <div
                 className={ css.image }
@@ -32,9 +32,9 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
             />
             <SpaceBetween>
                 {
-                    type ? <P item="invisible">{ type }</P> : null
+                    type ? <P type="invisible">{ type }</P> : null
                 }
-                <P item="invisible">{ date }</P>
+                <P type="invisible">{ date }</P>
             </SpaceBetween>
             <Title
                 className={ css.title }
@@ -44,8 +44,8 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
             {
                 description ? <P
                     className={ css.description }
-                    item="invisible"
                     lines={ 5 }
+                    type="invisible"
                 >{ description }</P> : null
             }
         </Section>

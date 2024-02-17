@@ -12,8 +12,9 @@ const HeaderCur: React.FC<HeaderCurProps> = (props) => {
     const { region } = props;
 
     return (
-        <Section className={ css.container } item="main" type="section">
+        <Section className={ css.container } tag="section" type="main">
             <img
+                alt="Logo"
                 className={ css.logo }
                 src="/cur-logo.png"
             />

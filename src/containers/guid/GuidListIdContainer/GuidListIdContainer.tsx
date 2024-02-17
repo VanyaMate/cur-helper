@@ -8,6 +8,7 @@ import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
 import { GUID_PAGE } from '@/constants/pages.ts';
 import { themesService } from '@/services/themes/themes.service.ts';
 import { observer } from 'mobx-react-lite';
+import Loader from '@/components/common/Loader/Loader.tsx';
 
 
 export type GuidListIdContainerProps = {
@@ -18,8 +19,12 @@ const GuidListIdContainer: React.FC<GuidListIdContainerProps> = observer((props)
     const { id } = props;
     const data   = themesService.themeChildren.get(id);
 
+    if (!data) {
+        return <Loader/>;
+    }
+
     return (
-        <Section size="medium">
+        <Section size="medium" tag="section">
             <Breadcrumb
                 items={ data?.breadcrumb.map((item) => ({
                     label: item.title, url: `/guids/${ item.publicId }`,

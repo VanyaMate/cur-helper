@@ -18,13 +18,13 @@ const TestPassingProgress: React.FC<TestPassingProgressProps> = (props) => {
         <div className={ cn(css.container, percent > 50 && css.halfFilled) }>
             <div className={ css.filled } style={ { width: `${ percent }%` } }>
                 <div>
-                    <P item="second">вопрос</P>
+                    <P type="second">вопрос</P>
                     <P>{ answers + 1 } из { questions }</P>
                 </div>
             </div>
             <div className={ css.text } style={ { width: `${ 100 - percent }%` } }>
                 <div>
-                    <P item="second">вопрос</P>
+                    <P type="second">вопрос</P>
                     <P>{ answers + 1 } из { questions }</P>
                 </div>
             </div>

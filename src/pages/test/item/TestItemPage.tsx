@@ -1,5 +1,5 @@
 import { TEST_ID } from '@/constants/pages.ts';
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
@@ -21,9 +21,7 @@ const TestItemPage: React.FC<TestItemPageProps> = (props) => {
     }, [ testId ]);
 
     return (
-        <Suspense>
-            <TestItemContainer id={ testId! }/>
-        </Suspense>
+        <TestItemContainer id={ testId! }/>
     );
 };
 

@@ -7,10 +7,16 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
+import { With } from '@/types/types.ts';
+import {
+    QuestionResult,
+    QuestionSelect, QuestionThemes,
+    QuestionType,
+} from '@/types/question/question.types.ts';
 
 
 export type TestResultQuestionsProps = {
-    questions: any[];
+    questions: With<QuestionType, [ QuestionSelect, QuestionResult, QuestionThemes ]>[];
     themeUrlGetter: (id: string) => string;
 }
 
@@ -18,49 +24,52 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
     const { questions, themeUrlGetter } = props;
 
     return (
-        <Collapse opened title={ `Вопросы (${ questions.length })` }>
+        <Collapse
+            opened
+            title={ `Вопросы (${ questions.length })` }
+        >
             <OrderedList
                 list={ questions.map((question) => (
                     <Section
-                        item="main"
                         key={ question.id }
                         size="medium"
-                        type="article"
+                        tag="article"
+                        type="main"
                     >
-                        <Section size="small" type="div">
+                        <Section size="small" tag="div">
                             <Title size="medium">{ question.title }</Title>
-                            <P item="second">{ question.description }</P>
+                            <P type="second">{ question.description }</P>
                             <OrderedList
-                                list={ question.answers.map((answer: any) => (
+                                list={ question.answers.map((answer) => (
                                     <TestResultAnswer
                                         answer={ answer }
                                         key={ answer.title }
                                         result={
-                                            question.result.answerId === answer.id
-                                            ? question.result.result
-                                            : 'empty'
+                                            answer.correct
+                                            ? 'right'
+                                            : (question.selectId === answer.id) ?
+                                              'error' : 'empty'
                                         }
                                     />
                                 )) }
                                 title="Ответы"
                             />
                             <Collapse
-                                item="default"
                                 opened={ false }
                                 title="Темы"
+                                type="default"
                             >
                                 <Section>
                                     {
-                                        question.themes.map((theme: any) => (
+                                        question.themes.map((theme) => (
                                             <Link
-                                                key={ theme.id }
+                                                key={ theme.publicId }
                                                 size="small"
                                                 target="_blank"
                                                 to={ theme.url ? theme.url
-                                                               : themeUrlGetter(theme.id) }
+                                                               : themeUrlGetter(theme.publicId) }
                                             >
-                                                { theme.url ? ''
-                                                            : theme.id } { theme.title }
+                                                { theme.publicId.replace(/-/g, '.') }. { theme.title }
                                             </Link>
                                         ))
                                     }

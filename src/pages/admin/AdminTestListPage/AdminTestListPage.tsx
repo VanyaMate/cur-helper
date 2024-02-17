@@ -1,5 +1,5 @@
 import AdminTestsListContainer
-    from '@/containers/admin/AdminTestsList/AdminTestsListContainer';
+    from '@/containers/admin/test/AdminTestsList/AdminTestsListContainer';
 import React from 'react';
 
 

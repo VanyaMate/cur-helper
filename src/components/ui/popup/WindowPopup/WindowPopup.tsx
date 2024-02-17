@@ -27,8 +27,7 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
             <div className={ css.background } onClick={ controller.close }/>
             <Section
                 className={ css.viewport }
-                item="main"
-                type="div"
+                type="main"
             >
                 <Button
                     className={ css.closeButton }
