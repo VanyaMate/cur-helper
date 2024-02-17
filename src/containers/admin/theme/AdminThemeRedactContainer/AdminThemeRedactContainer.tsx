@@ -47,6 +47,9 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
             <P type="invisible">Текст</P>
             <Input onChangeHandler={ () => console.log() }
                    value="Тема охватывает основные принципы этики в государственной основы этики и профессионального поведения для государственных"/>
+            <P>Editor.js / Lexical</P>
+            <P>Tiptap [headless]</P>
+            <P>Своё?</P>
         </Section>
     );
 };
