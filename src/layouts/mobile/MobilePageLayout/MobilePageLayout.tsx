@@ -8,9 +8,8 @@ import HeaderCurContainer
     from '@/containers/header/HeaderCurContainer/HeaderCurContainer';
 import {
     ADMIN_PAGE, GUID_PAGE,
-    GUIDS_PAGE,
     HOME_PAGE,
-    PROFILE_PAGE, TEST_PAGE, TESTS_PAGE,
+    PROFILE_PAGE, TEST_PAGE,
 } from '@/constants/pages.ts';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {

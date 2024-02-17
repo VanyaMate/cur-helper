@@ -10,7 +10,6 @@ import TestResultProgressbarCircle
     from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
@@ -26,9 +25,6 @@ import { testPassingService } from '@/services/test-passing/test-passing.service
 import { authService } from '@/services/auth/auth.service.ts';
 import Loader from '@/components/common/Loader/Loader.tsx';
 import P from '@/components/ui/p/P/P.tsx';
-import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Link from '@/components/ui/link/Link/Link.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type TestItemContainerProps = {

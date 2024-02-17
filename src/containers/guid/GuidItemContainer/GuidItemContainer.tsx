@@ -1,6 +1,4 @@
 import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb.tsx';
-import { GUID_PAGE, GUIDS_PAGE } from '@/constants/pages.ts';
-import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
