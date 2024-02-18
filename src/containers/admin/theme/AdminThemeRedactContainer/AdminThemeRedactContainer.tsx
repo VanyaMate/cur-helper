@@ -13,6 +13,8 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import {
     TipTapFootnote,
 } from '@/components/tiptap/components/TipTapFootnote/TipTapFootnote.tsx';
+import { Blockquote } from '@tiptap/extension-blockquote';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 
 
 export type AdminThemeRedactContainerProps = {};
@@ -21,10 +23,9 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
     const {} = props;
 
     const editor = useEditor({
-        extensions    : [ StarterKit, Image, TipTapFootnote ],
-        content       : '<p>Hello world</p>',
-        onBeforeCreate: () => <button>hi</button>,
-        editable      : true,
+        extensions: [ StarterKit, Image, TipTapFootnote ],
+        content   : localStorage.getItem('tiptap') ?? '<p>Hello world</p>',
+        editable  : true,
     });
 
     return (
@@ -51,8 +52,12 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
             {
                 editor ?
                 <>
-                    <Button
-                        onClick={ () => editor?.setEditable(!editor?.isEditable) }>Edit</Button>
+                    <Flex>
+                        <Button
+                            onClick={ () => localStorage.setItem('tiptap', editor?.getHTML()) }>Save</Button>
+                        <Button
+                            onClick={ () => editor?.setEditable(!editor?.isEditable) }>Edit</Button>
+                    </Flex>
                     <EditorContent editor={ editor }/>
                     <ThemeFloatingMenu editor={ editor }/>
                     <ThemeBubbleMenu editor={ editor }/>

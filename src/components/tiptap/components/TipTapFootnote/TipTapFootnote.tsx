@@ -1,9 +1,11 @@
 import { FootnoteType } from '@/components/common/Footnote/Footnote.tsx';
 import { Node } from '@tiptap/core';
+import { mergeAttributes } from '@tiptap/react';
 
 
 export type TipTapFootnoteOptions = {
-    type: FootnoteType
+    type: FootnoteType,
+    HTMLAttributes: Record<string, any>,
 }
 
 declare module '@tiptap/core' {
@@ -18,40 +20,66 @@ declare module '@tiptap/core' {
 
 export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
     name    : 'footnote',
-    content : 'text*',
+    content : 'block+',
     group   : 'block',
     defining: true,
+    priority: 10000,
 
     addOptions () {
         return {
-            type: 'notify',
+            type          : 'notify',
+            HTMLAttributes: {},
+        };
+    },
+
+    addAttributes () {
+        return {
+            type: {
+                default  : 'notify',
+                rendered : false,
+                parseHTML: (element) => {
+                    return element.getAttribute('data-footnote');
+                },
+            },
         };
     },
 
     parseHTML () {
         return [
-            { tag: 'p' },
+            {
+                tag: 'blockquote[data-footnote]',
+            },
         ];
     },
 
-    renderHTML ({ HTMLAttributes }) {
+    renderHTML ({ HTMLAttributes, node }) {
         return [
-            'p',
-            { class: 'footnote', ...HTMLAttributes },
+            'blockquote', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+                class            : node.attrs.type === 'warning' ? 'warning' : 'notify',
+                ['data-footnote']: node.attrs.type,
+            }), 0,
         ];
     },
 
     addCommands () {
         return {
             setFootnote   : (options) => ({ commands }) => {
-                return commands.setNode(this.name);
+                return commands.wrapIn(
+                    this.name, options,
+                );
             },
             changeFootnote: (options) => ({ commands }) => {
-                return commands.setNode(this.name);
+                return commands.wrapIn(
+                    this.name, options,
+                );
             },
             unsetFootnote : () => ({ commands }) => {
-                return commands.deleteNode(this.name);
+                return commands.lift(this.name);
             },
         };
+    },
+
+    addInputRules () {
+        return [];
     },
 });

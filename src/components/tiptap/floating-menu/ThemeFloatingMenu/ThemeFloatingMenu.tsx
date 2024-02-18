@@ -60,6 +60,14 @@ const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
                 >
                     <IconM>list</IconM>
                 </Button>
+                <Button
+                    onClick={ () => editor.chain().focus().setBlockquote().run() }
+                    quad
+                    size="small"
+                    styleType="default"
+                >
+                    <IconM>block</IconM>
+                </Button>
             </Flex>
         </FloatingMenu>
     );

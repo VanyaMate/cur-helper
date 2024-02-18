@@ -4,7 +4,7 @@
         border-radius  : 10px;
         border         : 2px dotted transparent;
         outline        : 0 solid transparent;
-        padding        : var(--offset-medium);
+        padding        : 0;
         display        : flex;
         flex-direction : column;
         gap            : var(--offset-large);
@@ -13,8 +13,24 @@
             max-width : 100%;
         }
 
+        blockquote {
+            padding       : var(--offset-medium);
+            border-radius : var(--offset-medium);
+            background    : var(--background-second);
+            color         : var(--text-color-main);
+
+            &.warning {
+                border-left : 4px solid var(--color-red);
+            }
+
+            &.default {
+                border-left : 4px solid var(--color-blue);
+            }
+        }
+
         &:read-write {
-            border : 2px dotted var(--text-color-invisible);
+            padding : var(--offset-large);
+            border  : 2px dotted var(--text-color-invisible);
 
             &:focus,
             &:active {
