@@ -55,7 +55,7 @@ export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
     renderHTML ({ HTMLAttributes, node }) {
         return [
             'blockquote', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
-                class            : node.attrs.type === 'warning' ? 'warning' : 'notify',
+                class            : node.attrs.type,
                 ['data-footnote']: node.attrs.type,
             }), 0,
         ];
@@ -63,13 +63,13 @@ export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
 
     addCommands () {
         return {
-            setFootnote   : (options) => ({ commands }) => {
+            setFootnote   : (options) => ({ commands, tr }) => {
                 return commands.wrapIn(
                     this.name, options,
                 );
             },
             changeFootnote: (options) => ({ commands }) => {
-                return commands.wrapIn(
+                return commands.updateAttributes(
                     this.name, options,
                 );
             },

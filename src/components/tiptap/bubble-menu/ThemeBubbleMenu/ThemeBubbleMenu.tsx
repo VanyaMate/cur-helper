@@ -3,6 +3,19 @@ import { BubbleMenu, Editor } from '@tiptap/react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import P from '@/components/ui/p/P/P.tsx';
+import { FootnoteType } from '@/components/common/Footnote/Footnote.tsx';
+import BubbleMenuButton
+    from '@/components/tiptap/bubble-menu/BubbleMenuButton/BubbleMenuButton.tsx';
+import {
+    isBold,
+    isItalic,
+    isStrike,
+    toggleBold, toggleItalic, toggleStrike,
+} from '@/components/tiptap/helpers/text.ts';
+import { isHeadingLevel, toggleHeading } from '@/components/tiptap/helpers/heading.ts';
+import {
+    isFootnoteType, toggleFootnote,
+} from '@/components/tiptap/components/TipTapFootnote/helpers/footnote.ts';
 
 
 export type ThemeBubbleMenuProps = {
@@ -15,65 +28,62 @@ const ThemeBubbleMenu: React.FC<ThemeBubbleMenuProps> = (props) => {
     return (
         <BubbleMenu editor={ editor }>
             <Flex size="extra-small" type="main">
-                <Button
-                    onClick={ () => editor.chain().focus().toggleBold().run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('bold') ? 'main' : 'default' }
+                <BubbleMenuButton
+                    isActive={ isBold(editor) }
+                    onClick={ () => toggleBold(editor) }
                 >
                     B
-                </Button>
-                <Button
-                    onClick={ () => editor.chain().focus().toggleItalic().run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('italic') ? 'main' : 'default' }
+                </BubbleMenuButton>
+                <BubbleMenuButton
+                    isActive={ isItalic(editor) }
+                    onClick={ () => toggleItalic(editor) }
                 >
                     I
-                </Button>
-                <Button
-                    onClick={ () => editor.chain().focus().toggleStrike().run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('strike') ? 'main' : 'default' }
+                </BubbleMenuButton>
+                <BubbleMenuButton
+                    isActive={ isStrike(editor) }
+                    onClick={ () => toggleStrike(editor) }
                 >
                     -
-                </Button>
-                <Button
-                    onClick={ () => editor.chain().focus().toggleBlockquote().run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('strike') ? 'main' : 'default' }
-                >
-                    |
-                </Button>
-                <Button
-                    onClick={ () => editor.chain().focus().toggleHeading({ level: 1 }).run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('heading', { level: 1 }) ? 'main'
-                                                                         : 'default' }
+                </BubbleMenuButton>
+                |
+                <BubbleMenuButton
+                    isActive={ isHeadingLevel(editor)(1) }
+                    onClick={ () => toggleHeading(editor)(1) }
                 >
                     <P tag="span" type="second">h1</P>
-                </Button>
-                <Button
-                    onClick={ () => editor.chain().focus().toggleHeading({ level: 2 }).run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('heading', { level: 2 }) ? 'main'
-                                                                         : 'default' }
+                </BubbleMenuButton>
+                <BubbleMenuButton
+                    isActive={ isHeadingLevel(editor)(2) }
+                    onClick={ () => toggleHeading(editor)(2) }
                 >
                     <P tag="span" type="second">h2</P>
-                </Button>
-                <Button
-                    onClick={ () => editor.chain().focus().toggleHeading({ level: 3 }).run() }
-                    quad
-                    size="small"
-                    styleType={ editor.isActive('heading', { level: 3 }) ? 'main'
-                                                                         : 'default' }
+                </BubbleMenuButton>
+                <BubbleMenuButton
+                    isActive={ isHeadingLevel(editor)(2) }
+                    onClick={ () => toggleHeading(editor)(2) }
                 >
                     <P tag="span" type="second">h3</P>
-                </Button>
+                </BubbleMenuButton>
+                |
+                <BubbleMenuButton
+                    isActive={ isFootnoteType(editor)('urgent') }
+                    onClick={ () => toggleFootnote(editor)('urgent') }
+                >
+                    <P tag="span" type="second">U</P>
+                </BubbleMenuButton>
+                <BubbleMenuButton
+                    isActive={ isFootnoteType(editor)('warning') }
+                    onClick={ () => toggleFootnote(editor)('warning') }
+                >
+                    <P tag="span" type="second">W</P>
+                </BubbleMenuButton>
+                <BubbleMenuButton
+                    isActive={ isFootnoteType(editor)('notify') }
+                    onClick={ () => toggleFootnote(editor)('notify') }
+                >
+                    <P tag="span" type="second">N</P>
+                </BubbleMenuButton>
             </Flex>
         </BubbleMenu>
     );

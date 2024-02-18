@@ -13,7 +13,6 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import {
     TipTapFootnote,
 } from '@/components/tiptap/components/TipTapFootnote/TipTapFootnote.tsx';
-import { Blockquote } from '@tiptap/extension-blockquote';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 
 

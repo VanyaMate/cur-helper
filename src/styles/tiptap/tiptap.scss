@@ -1,3 +1,5 @@
+@import "src/components/tiptap/components/TipTapFootnote/TipTapFootnote";
+
 :root .dark-blue-light {
     .tiptap {
         transition     : .5s;
@@ -11,21 +13,6 @@
 
         img {
             max-width : 100%;
-        }
-
-        blockquote {
-            padding       : var(--offset-medium);
-            border-radius : var(--offset-medium);
-            background    : var(--background-second);
-            color         : var(--text-color-main);
-
-            &.warning {
-                border-left : 4px solid var(--color-red);
-            }
-
-            &.default {
-                border-left : 4px solid var(--color-blue);
-            }
         }
 
         &:read-write {
