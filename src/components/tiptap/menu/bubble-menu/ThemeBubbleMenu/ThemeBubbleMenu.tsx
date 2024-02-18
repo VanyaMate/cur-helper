@@ -67,8 +67,8 @@ const ThemeBubbleMenu: React.FC<ThemeBubbleMenuProps> = (props) => {
                     <P tag="span" type="second">h2</P>
                 </MenuButton>
                 <MenuButton
-                    isActive={ isHeadingLevel(editor)(2) }
-                    onClick={ () => toggleHeading(editor)(2) }
+                    isActive={ isHeadingLevel(editor)(3) }
+                    onClick={ () => toggleHeading(editor)(3) }
                 >
                     <P tag="span" type="second">h3</P>
                 </MenuButton>

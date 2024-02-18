@@ -12,4 +12,4 @@ type Level =
 export const isHeading      = (editor: Editor) => editor.isActive('heading');
 export const isHeadingLevel = (editor: Editor) => (level: Level) => editor.isActive('heading', { level });
 
-export const toggleHeading = (editor: Editor) => (level: Level) => editor.chain().focus().setHeading({ level });
+export const toggleHeading = (editor: Editor) => (level: Level) => editor.chain().focus().toggleHeading({ level }).run();
