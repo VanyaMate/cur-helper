@@ -11,8 +11,8 @@ import ThemeBubbleMenu
     from '@/components/tiptap/bubble-menu/ThemeBubbleMenu/ThemeBubbleMenu.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import {
-    TipTapTestPassing,
-} from '@/components/tiptap/components/TipTapTestPassing/TipTapTestPassing.ts';
+    TipTapFootnote,
+} from '@/components/tiptap/components/TipTapFootnote/TipTapFootnote.tsx';
 
 
 export type AdminThemeRedactContainerProps = {};
@@ -21,7 +21,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
     const {} = props;
 
     const editor = useEditor({
-        extensions    : [ StarterKit, Image, TipTapTestPassing ],
+        extensions    : [ StarterKit, Image, TipTapFootnote ],
         content       : '<p>Hello world</p>',
         onBeforeCreate: () => <button>hi</button>,
         editable      : true,

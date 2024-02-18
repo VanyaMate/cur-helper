@@ -1,4 +1,4 @@
-import { Extension } from '@tiptap/react';
+import { Node } from '@tiptap/react';
 
 
 export type TipTapTestPassingOptions = {
@@ -14,7 +14,7 @@ declare module '@tiptap/core' {
     }
 }
 
-export const TipTapTestPassing = Extension.create<TipTapTestPassingOptions>({
+export const TipTapTestPassing = Node.create<TipTapTestPassingOptions>({
     name     : 'testPassing',
     draggable: true,
 
@@ -41,21 +41,26 @@ export const TipTapTestPassing = Extension.create<TipTapTestPassingOptions>({
         ];
     },
 
-    renderHTML () {
-        return [ 'div', {}, 0 ];
+    renderHTML ({ HTMLAttributes }) {
+        return [
+            'div',
+            HTMLAttributes,
+            [
+                'h1', {}, 0,
+            ],
+            [
+                'p', {}, 0,
+            ],
+        ];
     },
 
     addCommands () {
         return {
             setTestPassing: (options) => ({ commands }) => {
-                setTimeout(() => {
-                    commands.updateAttributes(this.name, {
-                        innerHTML: 'Loaded + ' + options.testId,
-                    });
-                }, 1000);
-
-
-                return commands.insertContent('<div><h3 onload="console.log(`loading`)">title</h3><p>paragraph</p></div>');
+                return commands.insertContent({
+                    type : this.name,
+                    attrs: options,
+                });
             },
         };
     },

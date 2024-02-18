@@ -53,11 +53,10 @@ const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
                     <IconM>image</IconM>
                 </Button>
                 <Button
-                    onClick={ () => editor.chain().focus().setTestPassing({ testId: '123123' }).run() }
+                    onClick={ () => editor.chain().focus().setFootnote({ type: 'warning' }).run() }
                     quad
                     size="small"
-                    styleType={ editor.isActive('heading', { level: 3 }) ? 'main'
-                                                                         : 'default' }
+                    styleType="default"
                 >
                     <IconM>list</IconM>
                 </Button>
