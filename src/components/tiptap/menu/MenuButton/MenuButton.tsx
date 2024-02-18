@@ -2,13 +2,13 @@ import React from 'react';
 import Button from '@/components/ui/button/Button/Button.tsx';
 
 
-export type BubbleMenuButtonProps = {
+export type MenuButtonProps = {
     onClick: () => void;
     isActive: boolean;
     children: React.ReactNode;
 };
 
-const BubbleMenuButton: React.FC<BubbleMenuButtonProps> = (props) => {
+const MenuButton: React.FC<MenuButtonProps> = (props) => {
     const { onClick, isActive, children } = props;
 
     return (
@@ -23,4 +23,4 @@ const BubbleMenuButton: React.FC<BubbleMenuButtonProps> = (props) => {
     );
 };
 
-export default React.memo(BubbleMenuButton);
+export default React.memo(MenuButton);

@@ -1,11 +1,9 @@
 import React from 'react';
 import { BubbleMenu, Editor } from '@tiptap/react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Button from '@/components/ui/button/Button/Button.tsx';
 import P from '@/components/ui/p/P/P.tsx';
-import { FootnoteType } from '@/components/common/Footnote/Footnote.tsx';
-import BubbleMenuButton
-    from '@/components/tiptap/bubble-menu/BubbleMenuButton/BubbleMenuButton.tsx';
+import MenuButton
+    from '@/components/tiptap/menu/MenuButton/MenuButton.tsx';
 import {
     isBold,
     isItalic,
@@ -15,7 +13,8 @@ import {
 import { isHeadingLevel, toggleHeading } from '@/components/tiptap/helpers/heading.ts';
 import {
     isFootnoteType, toggleFootnote,
-} from '@/components/tiptap/components/TipTapFootnote/helpers/footnote.ts';
+} from '@/components/tiptap/extensions/TipTapFootnote/helpers/footnote.ts';
+import { isImage } from '@/components/tiptap/helpers/image.ts';
 
 
 export type ThemeBubbleMenuProps = {
@@ -25,65 +24,73 @@ export type ThemeBubbleMenuProps = {
 const ThemeBubbleMenu: React.FC<ThemeBubbleMenuProps> = (props) => {
     const { editor } = props;
 
+    if (isImage(editor)) {
+        return (
+            <BubbleMenu editor={ editor }>
+                // ImageMenu
+            </BubbleMenu>
+        );
+    }
+
     return (
         <BubbleMenu editor={ editor }>
             <Flex size="extra-small" type="main">
-                <BubbleMenuButton
+                <MenuButton
                     isActive={ isBold(editor) }
                     onClick={ () => toggleBold(editor) }
                 >
                     B
-                </BubbleMenuButton>
-                <BubbleMenuButton
+                </MenuButton>
+                <MenuButton
                     isActive={ isItalic(editor) }
                     onClick={ () => toggleItalic(editor) }
                 >
                     I
-                </BubbleMenuButton>
-                <BubbleMenuButton
+                </MenuButton>
+                <MenuButton
                     isActive={ isStrike(editor) }
                     onClick={ () => toggleStrike(editor) }
                 >
                     -
-                </BubbleMenuButton>
+                </MenuButton>
                 |
-                <BubbleMenuButton
+                <MenuButton
                     isActive={ isHeadingLevel(editor)(1) }
                     onClick={ () => toggleHeading(editor)(1) }
                 >
                     <P tag="span" type="second">h1</P>
-                </BubbleMenuButton>
-                <BubbleMenuButton
+                </MenuButton>
+                <MenuButton
                     isActive={ isHeadingLevel(editor)(2) }
                     onClick={ () => toggleHeading(editor)(2) }
                 >
                     <P tag="span" type="second">h2</P>
-                </BubbleMenuButton>
-                <BubbleMenuButton
+                </MenuButton>
+                <MenuButton
                     isActive={ isHeadingLevel(editor)(2) }
                     onClick={ () => toggleHeading(editor)(2) }
                 >
                     <P tag="span" type="second">h3</P>
-                </BubbleMenuButton>
+                </MenuButton>
                 |
-                <BubbleMenuButton
+                <MenuButton
                     isActive={ isFootnoteType(editor)('urgent') }
                     onClick={ () => toggleFootnote(editor)('urgent') }
                 >
                     <P tag="span" type="second">U</P>
-                </BubbleMenuButton>
-                <BubbleMenuButton
+                </MenuButton>
+                <MenuButton
                     isActive={ isFootnoteType(editor)('warning') }
                     onClick={ () => toggleFootnote(editor)('warning') }
                 >
                     <P tag="span" type="second">W</P>
-                </BubbleMenuButton>
-                <BubbleMenuButton
+                </MenuButton>
+                <MenuButton
                     isActive={ isFootnoteType(editor)('notify') }
                     onClick={ () => toggleFootnote(editor)('notify') }
                 >
                     <P tag="span" type="second">N</P>
-                </BubbleMenuButton>
+                </MenuButton>
             </Flex>
         </BubbleMenu>
     );

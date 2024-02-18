@@ -6,13 +6,13 @@ import { StarterKit } from '@tiptap/starter-kit';
 import Loader from '@/components/common/Loader/Loader.tsx';
 import { Image } from '@tiptap/extension-image';
 import ThemeFloatingMenu
-    from '@/components/tiptap/floating-menu/ThemeFloatingMenu/ThemeFloatingMenu.tsx';
+    from '@/components/tiptap/menu/floating-menu/ThemeFloatingMenu/ThemeFloatingMenu.tsx';
 import ThemeBubbleMenu
-    from '@/components/tiptap/bubble-menu/ThemeBubbleMenu/ThemeBubbleMenu.tsx';
+    from '@/components/tiptap/menu/bubble-menu/ThemeBubbleMenu/ThemeBubbleMenu.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import {
     TipTapFootnote,
-} from '@/components/tiptap/components/TipTapFootnote/TipTapFootnote.tsx';
+} from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 
 
