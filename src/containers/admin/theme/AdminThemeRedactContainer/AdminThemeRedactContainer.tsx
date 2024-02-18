@@ -14,6 +14,9 @@ import {
     TipTapFootnote,
 } from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import {
+    TipTapTestPassing,
+} from '@/components/tiptap/extensions/TipTapTestPassing/TipTapTestPassing.ts';
 
 
 export type AdminThemeRedactContainerProps = {};
@@ -22,7 +25,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
     const {} = props;
 
     const editor = useEditor({
-        extensions: [ StarterKit, Image, TipTapFootnote ],
+        extensions: [ StarterKit, Image, TipTapFootnote, TipTapTestPassing ],
         content   : localStorage.getItem('tiptap') ?? '<p>Hello world</p>',
         editable  : true,
     });

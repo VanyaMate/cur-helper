@@ -24,10 +24,16 @@ export type ThemeBubbleMenuProps = {
 const ThemeBubbleMenu: React.FC<ThemeBubbleMenuProps> = (props) => {
     const { editor } = props;
 
+    // TODO: Вынести в отдельный компонент не получается. Какая-то ошибка с fiber. Пока не до этого
     if (isImage(editor)) {
         return (
             <BubbleMenu editor={ editor }>
-                // ImageMenu
+                <Flex type="main">
+                    <MenuButton isActive={ false }
+                                onClick={ () => editor.chain().focus().deleteSelection().run() }>
+                        X
+                    </MenuButton>
+                </Flex>
             </BubbleMenu>
         );
     }

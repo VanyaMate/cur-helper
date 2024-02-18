@@ -63,7 +63,7 @@ export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
 
     addCommands () {
         return {
-            setFootnote   : (options) => ({ commands, tr }) => {
+            setFootnote   : (options) => ({ commands }) => {
                 return commands.wrapIn(
                     this.name, options,
                 );

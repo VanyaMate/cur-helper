@@ -61,7 +61,7 @@ const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
                     <IconM>list</IconM>
                 </Button>
                 <Button
-                    onClick={ () => editor.chain().focus().setBlockquote().run() }
+                    onClick={ () => editor.chain().focus().addTestPassing().run() }
                     quad
                     size="small"
                     styleType="default"

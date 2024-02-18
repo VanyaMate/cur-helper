@@ -1,0 +1,15 @@
+.tiptap {
+    img {
+        &.width {
+            max-width : 100%;
+        }
+
+        &.border {
+            border : 1px solid var(--background-second);
+        }
+
+        &.radius {
+            border-radius : var(--offset-medium);
+        }
+    }
+}
