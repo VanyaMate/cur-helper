@@ -48,11 +48,12 @@ const Input: React.FC<InputProps> = (props) => {
             onValueChange(value);
             setPrevValue(value);
         }
-    }, [ value, onValueChange ]);
+        // TODO: Возможно value надо удалить, потмоу что было удалено
+    }, [ value, onValueChange, prevValue, debounce ]);
 
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
-    }, [ value ]);
+    }, []);
 
     return (
         <input
