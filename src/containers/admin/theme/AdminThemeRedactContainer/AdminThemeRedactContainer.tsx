@@ -26,10 +26,6 @@ import { TableHeader } from '@tiptap/extension-table-header';
 import { Table } from '@tiptap/extension-table';
 import { TableRow } from '@tiptap/extension-table-row';
 import { TableCell } from '@tiptap/extension-table-cell';
-import { Paragraph } from '@tiptap/extension-paragraph';
-import { Gapcursor } from '@tiptap/extension-gapcursor';
-import { Text } from '@tiptap/extension-text';
-import { Document } from '@tiptap/extension-document';
 
 
 export type AdminThemeRedactContainerProps = {};
@@ -41,15 +37,17 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
         extensions: [
             StarterKit,
             Table.configure({
-                resizable   : true,
-                cellMinWidth: 20,
-                handleWidth : 5,
+                resizable              : true,
+                cellMinWidth           : 20,
+                handleWidth            : 5,
+                lastColumnResizable    : false,
+                allowTableNodeSelection: true,
             }),
             TableRow,
             TableHeader,
             TableCell,
             Image,
-            TipTapFootnote
+            TipTapFootnote,
         ],
         content   : localStorage.getItem('tiptap') ?? '<p>Hello world</p>',
         editable  : true,

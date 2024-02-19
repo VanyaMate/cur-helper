@@ -7,6 +7,7 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import {
     IWindowPopupController,
 } from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
+import { insertTable } from '@/components/tiptap/helpers/table.ts';
 
 
 export type ThemeFloatingMenuProps = {
@@ -66,9 +67,9 @@ const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
                     <IconM>list</IconM>
                 </Button>
                 <Button
-                    onClick={ () => editor.chain().focus().insertTable({
-                        rows: 3, cols: 3, withHeaderRow: true,
-                    }).run() }
+                    onClick={ () => insertTable(editor)({
+                        rows: 2, cols: 2, withHeaderRow: true,
+                    }) }
                     quad
                     size="small"
                     styleType="default"

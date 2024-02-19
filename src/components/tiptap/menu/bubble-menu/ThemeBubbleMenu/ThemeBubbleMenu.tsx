@@ -47,26 +47,20 @@ const ThemeBubbleMenu: React.FC<ThemeBubbleMenuProps> = (props) => {
         );
     }
 
-    if (isTable(editor)) {
-        return (
-            <BubbleMenu editor={ editor }>
-                <Flex size="extra-small" type="main">
-                    <MenuButton
+    return (
+        <BubbleMenu editor={ editor } tippyOptions={ {} }>
+            <Flex size="extra-small" type="main">
+                {
+                    isTable(editor)
+                    ? <><MenuButton
                         isActive={ false }
                         onClick={ () => insertTable(editor)({
-                            cols: 1, rows: 1, withHeaderRow: true,
+                            cols: 2, rows: 2, withHeaderRow: true,
                         }) }
                     >
                         +
-                    </MenuButton>
-                </Flex>
-            </BubbleMenu>
-        );
-    }
-
-    return (
-        <BubbleMenu editor={ editor }>
-            <Flex size="extra-small" type="main">
+                    </MenuButton>|</> : null
+                }
                 <MenuButton
                     isActive={ isBold(editor) }
                     onClick={ () => toggleBold(editor) }

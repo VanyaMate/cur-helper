@@ -23,7 +23,6 @@ export const TipTapFootnote = Blockquote.extend<TipTapFootnoteOptions>({
     content  : 'block+',
     group    : 'block',
     defining : true,
-    isolating: true,
     priority : 1000,
 
     addOptions () {

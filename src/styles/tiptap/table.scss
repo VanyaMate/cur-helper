@@ -1,0 +1,66 @@
+:root body.dark-blue-light {
+    .tableWrapper {
+        max-width : 100%;
+    }
+
+    table {
+        border-collapse : collapse;
+        margin          : 0;
+        overflow        : hidden;
+        table-layout    : fixed;
+        max-width       : 100% !important;
+        min-width       : auto !important;
+        width           : 100% !important;
+
+        td,
+        th {
+            border         : 2px solid var(--border-color-invisible);
+            box-sizing     : border-box;
+            min-width      : 1em;
+            padding        : var(--offset-small);
+            position       : relative;
+            vertical-align : top;
+
+            > * {
+                margin-bottom : 0;
+            }
+        }
+
+        th {
+            background-color : var(--background-item);
+            font-weight      : bold;
+            text-align       : left;
+        }
+
+        .selectedCell:after {
+            background     : var(--background-second);
+            content        : "";
+            left           : 0;
+            right          : 0;
+            top            : 0;
+            bottom         : 0;
+            pointer-events : none;
+            position       : absolute;
+            z-index        : 2;
+            opacity        : .8;
+        }
+
+        .column-resize-handle {
+            background-color : #ADF;
+            bottom           : -2px;
+            position         : absolute;
+            right            : -2px;
+            pointer-events   : none;
+            top              : 0;
+            width            : 4px;
+        }
+
+        p {
+            margin : 0;
+        }
+    }
+
+    .resize-cursor {
+        cursor : col-resize;
+    }
+}
