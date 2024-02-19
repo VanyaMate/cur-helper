@@ -1,0 +1,19 @@
+.tiptap {
+    img {
+        border-radius : var(--offset-medium);
+        max-width     : 100%;
+        width         : 100%;
+
+        &.width {
+            max-width : 100%;
+        }
+
+        &.border {
+            border : 1px solid var(--background-second);
+        }
+
+        &.radius {
+            border-radius : var(--offset-medium);
+        }
+    }
+}

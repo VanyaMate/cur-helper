@@ -1,0 +1,27 @@
+.container {
+    outline       : none;
+    border        : 1px solid var(--border-color-invisible);
+    background    : var(--background-main);
+    padding       : var(--offset-medium);
+    color         : var(--text-color-main);
+    font-size     : 16px;
+    border-radius : var(--offset-small);
+    transition    : var(--transition-slow);
+
+    &:active,
+    &:focus,
+    &:not(:placeholder-shown) {
+        border     : 1px solid var(--text-color-link);
+        box-shadow : 0 0 14px 0 var(--color-blue-transparent);
+    }
+
+    &.block {
+        display : flex;
+        width   : 100%;
+    }
+
+    &.loading {
+        animation      : none;
+        pointer-events : none;
+    }
+}

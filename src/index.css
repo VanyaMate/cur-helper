@@ -4,6 +4,8 @@
 @import "styles/sizes.scss";
 @import "styles/animation.scss";
 
+@import "styles/tiptap/tiptap.scss";
+
 * {
     box-sizing  : border-box;
     padding     : 0;
