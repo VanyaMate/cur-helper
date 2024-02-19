@@ -60,8 +60,13 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                             title={ data.title }
                         />
                         {
-                            data.description ? <P type="second">{ data.description }</P>
-                                             : null
+                            data.description
+                            ? <P
+                                className="tiptap"
+                                dangerouslySetInnerHTML={ { __html: data.description } }
+                                type="second"
+                            />
+                            : null
                         }
                     </Section>
                     {
@@ -77,11 +82,20 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                         /> : null
                     }
                     {
-                        data.additional ? <P type="invisible">{ data.additional }</P>
-                                        : null
+                        data.additional
+                        ? <P
+                            className="tiptap"
+                            dangerouslySetInnerHTML={ { __html: data.additional } }
+                            type="invisible"
+                        />
+                        : null
                     }
                     {
-                        data.body ? <P>{ data.body }</P> : null
+                        data.body
+                        ? <P
+                            className="tiptap"
+                            dangerouslySetInnerHTML={ { __html: data.body } }
+                        /> : null
                     }
                     <div>
                         <Button styleType="default">Следующая тема</Button>

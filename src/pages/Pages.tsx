@@ -43,7 +43,7 @@ const Pages: React.FC<PagesProps> = (props) => {
         <Routes>
             <Route element={ <MobileAdminPageLayout/> } path={ '/admin/*' }>
                 <Route element={ <AdminGuidRedactPage/> }
-                       path={ `${ GUID_PAGE }/:${ THEME_ID }` }/>
+                       path={ `${ GUID_PAGE }/:${ GUID_ID }` }/>
                 <Route element={ <AdminGuidListPage/> } path={ `${ GUIDS_PAGE }` }/>
                 <Route element={ <AdminTestListPage/> }
                        path={ `${ TEST_PAGE }/:${ TEST_ID }` }/>

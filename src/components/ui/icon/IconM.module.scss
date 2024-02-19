@@ -1,0 +1,21 @@
+.container {
+    &.small {
+        font-size : 14px;
+    }
+
+    &.medium {
+        font-size : 18px;
+    }
+
+    &.large {
+        font-size : 22px;
+    }
+
+    &.invisible {
+        color : var(--text-color-invisible);
+
+        &:hover {
+            color : var(--text-color-second);
+        }
+    }
+}

@@ -1,114 +1,116 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
-import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
-import { EditorContent, useEditor } from '@tiptap/react';
+import RedactorItem from '@/containers/redactor/RedactorItem/RedactorItem.tsx';
 import { StarterKit } from '@tiptap/starter-kit';
-import Loader from '@/components/common/Loader/Loader.tsx';
+import { Table } from '@tiptap/extension-table';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TableHeader } from '@tiptap/extension-table-header';
+import { TableCell } from '@tiptap/extension-table-cell';
 import { Image } from '@tiptap/extension-image';
-import ThemeFloatingMenu
-    from '@/components/tiptap/menu/floating-menu/ThemeFloatingMenu/ThemeFloatingMenu.tsx';
-import ThemeBubbleMenu
-    from '@/components/tiptap/menu/bubble-menu/ThemeBubbleMenu/ThemeBubbleMenu.tsx';
-import Button from '@/components/ui/button/Button/Button.tsx';
 import {
     TipTapFootnote,
 } from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.ts';
-import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import TipTapChangeImagePopup
-    from '@/containers/admin/tiptap/forms/TipTapChangeImagePopup/TipTapChangeImagePopup.tsx';
-import TipTapCreateImagePopup
-    from '@/containers/admin/tiptap/forms/TipTapCreateImagePopup/TipTapCreateImagePopup.tsx';
-import {
-    useWindowPopupController,
-} from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
-import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
-import { TableHeader } from '@tiptap/extension-table-header';
-import { Table } from '@tiptap/extension-table';
-import { TableRow } from '@tiptap/extension-table-row';
-import { TableCell } from '@tiptap/extension-table-cell';
+import TextFormattingRedactMenu
+    from '@/components/tiptap/menu/redact-menu/TextFormattingRedactMenu/TextFormattingRedactMenu.tsx';
+import ImageRedactMenu
+    from '@/components/tiptap/menu/redact-menu/ImageRedactMenu/ImageRedactMenu.tsx';
+import TableRedactMenu
+    from '@/components/tiptap/menu/redact-menu/TableRedactMenu/TableRedactMenu.tsx';
+import HeadingRedactMenu
+    from '@/components/tiptap/menu/redact-menu/HeadingRedactMenu/HeadingRedactMenu.tsx';
+import FootnoteRedactMenu
+    from '@/components/tiptap/menu/redact-menu/FootnoteRedactMenu/FootnoteRedactMenu.tsx';
+import ImageAddMenu
+    from '@/components/tiptap/menu/add-menu/ImageAddMenu/ImageAddMenu.tsx';
+import Loader from '@/components/common/Loader/Loader.tsx';
+import { observer } from 'mobx-react-lite';
+import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
+import { authService } from '@/services/auth/auth.service.ts';
+import { reaction } from 'mobx';
 
 
-export type AdminThemeRedactContainerProps = {};
+export type AdminThemeRedactContainerProps = {
+    id: string;
+};
 
-const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (props) => {
-    const {} = props;
+const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = observer((props) => {
+    const { id } = props;
+    const theme  = adminThemeService.themes.get(id);
 
-    const editor = useEditor({
-        extensions: [
-            StarterKit,
-            Table.configure({
-                resizable              : true,
-                cellMinWidth           : 20,
-                handleWidth            : 5,
-                lastColumnResizable    : false,
-                allowTableNodeSelection: true,
-            }),
-            TableRow,
-            TableHeader,
-            TableCell,
-            Image,
-            TipTapFootnote,
-        ],
-        content   : localStorage.getItem('tiptap') ?? '<p>Hello world</p>',
-        editable  : true,
-    });
-
-    const createImagePopup = useWindowPopupController();
-    const updateImagePopup = useWindowPopupController();
+    if (!theme) {
+        return <Loader/>;
+    }
 
     return (
         <Section>
-            <OrderedList
-                item="main"
-                list={ [
-                    'Короткая информация о теме',
-                    <OrderedList
-                        item
-                        key="item"
-                        list={ [
-                            'Редактирование',
-                            'Добавить тему (ребенка)',
-                            'Добавить тест',
-                        ] }
-                        title="Кнопки для управления"
-                    />,
-                    'Информация о теме (связанная с пользователями)',
-                ] }
-                selfIndex={ [ '1', '', '3' ] }
+            <RedactorItem
+                editable={ false }
+                extensions={ [ StarterKit ] }
+                html={ theme.title }
+                id={ `title_${ theme.id }` }
+                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { title: html }).then() }
+                title="Заголовок темы"
             />
-            <br/>
-            {
-                editor ?
-                <>
-                    <TipTapChangeImagePopup
-                        controller={ updateImagePopup }
-                        editor={ editor }
-                    />
-                    <TipTapCreateImagePopup
-                        controller={ createImagePopup }
-                        editor={ editor }
-                    />
-                    <Flex>
-                        <Button
-                            onClick={ () => localStorage.setItem('tiptap', editor?.getHTML()) }>Save</Button>
-                        <Button
-                            onClick={ () => editor?.setEditable(!editor?.isEditable) }>Edit</Button>
-                    </Flex>
-                    <ContentBox>
-                        <EditorContent editor={ editor }/>
-                    </ContentBox>
-                    <ThemeFloatingMenu
-                        editor={ editor }
-                        imageCreatePopup={ createImagePopup }
-                    />
-                    <ThemeBubbleMenu
-                        editor={ editor }
-                        imageRedactorController={ updateImagePopup }
-                    />
-                </> : <Loader/>
-            }
+
+            <RedactorItem
+                bubbleMenu={ [
+                    TextFormattingRedactMenu,
+                ] }
+                editable={ false }
+                extensions={ [ StarterKit ] }
+                html={ theme.description }
+                id={ `desc_${ theme.id }` }
+                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { description: html }).then() }
+                title="Описание темы темы"
+            />
+
+            <RedactorItem
+                bubbleMenu={ [
+                    TextFormattingRedactMenu,
+                ] }
+                editable={ false }
+                extensions={ [ StarterKit ] }
+                html={ theme.additional }
+                id={ `additional_${ theme.id }` }
+                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { additional: html }).then() }
+                title="Дополнительная информация темы"
+            />
+
+            <RedactorItem
+                bubbleMenu={ [
+                    TableRedactMenu,
+                    ImageRedactMenu,
+                    TextFormattingRedactMenu,
+                    HeadingRedactMenu,
+                    FootnoteRedactMenu,
+                ] }
+                editable={ false }
+                extensions={ [
+                    StarterKit,
+                    Table.configure({
+                        resizable              : true,
+                        cellMinWidth           : 20,
+                        handleWidth            : 5,
+                        lastColumnResizable    : false,
+                        allowTableNodeSelection: true,
+                    }),
+                    TableRow,
+                    TableHeader,
+                    TableCell,
+                    Image,
+                    TipTapFootnote,
+                ] }
+                floatingMenu={ [
+                    HeadingRedactMenu,
+                    ImageAddMenu,
+                ] }
+                html={ theme.body }
+                id={ `body_${ theme.id }` }
+                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { body: html }).then() }
+                title="Текст темы"
+            />
         </Section>
     );
-};
+});
 
-export default React.memo(AdminThemeRedactContainer);
+export default AdminThemeRedactContainer;
