@@ -29,8 +29,8 @@ const Input: React.FC<InputProps> = (props) => {
     const [ prevValue, setPrevValue ] = useState<string>(defaultValue ?? '');
 
     useEffect(() => {
-        setPrevValue(defaultValue ?? value);
-        setValue(defaultValue ?? value);
+        setPrevValue((prev) => defaultValue ?? prev);
+        setValue((prev) => defaultValue ?? prev);
     }, [ defaultValue ]);
 
     useEffect(() => {
@@ -57,10 +57,10 @@ const Input: React.FC<InputProps> = (props) => {
     return (
         <input
             { ...other }
-            placeholder={ placeholder }
-            onChange={ onChange }
-            value={ value }
             className={ cn(css.container, block && css.block, className, loading && css.loading) }
+            onChange={ onChange }
+            placeholder={ placeholder }
+            value={ value }
         />
     );
 };
