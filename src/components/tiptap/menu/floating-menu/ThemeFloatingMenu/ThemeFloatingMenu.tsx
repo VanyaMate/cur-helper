@@ -4,14 +4,18 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
+import {
+    IWindowPopupController,
+} from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 
 
 export type ThemeFloatingMenuProps = {
     editor: Editor;
+    imageCreatePopup: IWindowPopupController;
 };
 
 const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
-    const { editor } = props;
+    const { editor, imageCreatePopup } = props;
 
     return (
         <FloatingMenu editor={ editor } tippyOptions={ { duration: 100 } }>
@@ -44,11 +48,12 @@ const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
                     <P tag="span" type="second">h3</P>
                 </Button>
                 <Button
-                    onClick={ () => editor.chain().focus().setImage({ src: 'https://i.ytimg.com/vi/zhXtTE7OSa0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCLYz2QSx9mIAsFTRmXBTnQ4UJyEw' }).run() }
+                    onClick={
+                        () => imageCreatePopup.open()
+                    }
                     quad
                     size="small"
-                    styleType={ editor.isActive('heading', { level: 3 }) ? 'main'
-                                                                         : 'default' }
+                    styleType="default"
                 >
                     <IconM>image</IconM>
                 </Button>
@@ -61,12 +66,14 @@ const ThemeFloatingMenu: React.FC<ThemeFloatingMenuProps> = (props) => {
                     <IconM>list</IconM>
                 </Button>
                 <Button
-                    onClick={ () => editor.chain().focus().addTestPassing().run() }
+                    onClick={ () => editor.chain().focus().insertTable({
+                        rows: 3, cols: 3, withHeaderRow: true,
+                    }).run() }
                     quad
                     size="small"
                     styleType="default"
                 >
-                    <IconM>block</IconM>
+                    <IconM>table</IconM>
                 </Button>
             </Flex>
         </FloatingMenu>

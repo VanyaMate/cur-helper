@@ -1,6 +1,6 @@
 import { FootnoteType } from '@/components/common/Footnote/Footnote.tsx';
-import { Node } from '@tiptap/core';
-import { mergeAttributes } from '@tiptap/react';
+import { mergeAttributes, wrappingInputRule } from '@tiptap/react';
+import { Blockquote } from '@tiptap/extension-blockquote';
 
 
 export type TipTapFootnoteOptions = {
@@ -18,12 +18,13 @@ declare module '@tiptap/core' {
     }
 }
 
-export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
-    name    : 'footnote',
-    content : 'block+',
-    group   : 'block',
-    defining: true,
-    priority: 10000,
+export const TipTapFootnote = Blockquote.extend<TipTapFootnoteOptions>({
+    name     : 'footnote',
+    content  : 'block+',
+    group    : 'block',
+    defining : true,
+    isolating: true,
+    priority : 1000,
 
     addOptions () {
         return {
@@ -47,7 +48,7 @@ export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
     parseHTML () {
         return [
             {
-                tag: 'blockquote[data-footnote]',
+                tag: 'blockquote',
             },
         ];
     },
@@ -80,6 +81,11 @@ export const TipTapFootnote = Node.create<TipTapFootnoteOptions>({
     },
 
     addInputRules () {
-        return [];
+        return [
+            wrappingInputRule({
+                find: /^\s*>\s$/,
+                type: this.type,
+            }),
+        ];
     },
 });

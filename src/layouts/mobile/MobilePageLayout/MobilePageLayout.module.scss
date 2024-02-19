@@ -57,7 +57,7 @@ $page_padding  : var(--offset-medium);
         width           : calc(100% - var(--offset-medium) * 2);
         max-width       : $max_width;
         position        : fixed;
-        z-index         : 1000;
+        z-index         : 21000;
         left            : 50%;
         transform       : translateX(-50%);
         bottom          : var(--offset-small);

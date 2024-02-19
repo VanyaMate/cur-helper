@@ -1,5 +1,9 @@
 .tiptap {
     img {
+        border-radius : var(--offset-medium);
+        max-width     : 100%;
+        width         : 100%;
+
         &.width {
             max-width : 100%;
         }

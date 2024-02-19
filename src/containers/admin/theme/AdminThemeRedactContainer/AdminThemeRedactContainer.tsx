@@ -12,11 +12,24 @@ import ThemeBubbleMenu
 import Button from '@/components/ui/button/Button/Button.tsx';
 import {
     TipTapFootnote,
-} from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.tsx';
+} from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.ts';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import TipTapChangeImagePopup
+    from '@/containers/admin/tiptap/forms/TipTapChangeImagePopup/TipTapChangeImagePopup.tsx';
+import TipTapCreateImagePopup
+    from '@/containers/admin/tiptap/forms/TipTapCreateImagePopup/TipTapCreateImagePopup.tsx';
 import {
-    TipTapTestPassing,
-} from '@/components/tiptap/extensions/TipTapTestPassing/TipTapTestPassing.ts';
+    useWindowPopupController,
+} from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
+import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
+import { TableHeader } from '@tiptap/extension-table-header';
+import { Table } from '@tiptap/extension-table';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TableCell } from '@tiptap/extension-table-cell';
+import { Paragraph } from '@tiptap/extension-paragraph';
+import { Gapcursor } from '@tiptap/extension-gapcursor';
+import { Text } from '@tiptap/extension-text';
+import { Document } from '@tiptap/extension-document';
 
 
 export type AdminThemeRedactContainerProps = {};
@@ -25,10 +38,25 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
     const {} = props;
 
     const editor = useEditor({
-        extensions: [ StarterKit, Image, TipTapFootnote, TipTapTestPassing ],
+        extensions: [
+            StarterKit,
+            Table.configure({
+                resizable   : true,
+                cellMinWidth: 20,
+                handleWidth : 5,
+            }),
+            TableRow,
+            TableHeader,
+            TableCell,
+            Image,
+            TipTapFootnote
+        ],
         content   : localStorage.getItem('tiptap') ?? '<p>Hello world</p>',
         editable  : true,
     });
+
+    const createImagePopup = useWindowPopupController();
+    const updateImagePopup = useWindowPopupController();
 
     return (
         <Section>
@@ -54,15 +82,31 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = (pro
             {
                 editor ?
                 <>
+                    <TipTapChangeImagePopup
+                        controller={ updateImagePopup }
+                        editor={ editor }
+                    />
+                    <TipTapCreateImagePopup
+                        controller={ createImagePopup }
+                        editor={ editor }
+                    />
                     <Flex>
                         <Button
                             onClick={ () => localStorage.setItem('tiptap', editor?.getHTML()) }>Save</Button>
                         <Button
                             onClick={ () => editor?.setEditable(!editor?.isEditable) }>Edit</Button>
                     </Flex>
-                    <EditorContent editor={ editor }/>
-                    <ThemeFloatingMenu editor={ editor }/>
-                    <ThemeBubbleMenu editor={ editor }/>
+                    <ContentBox>
+                        <EditorContent editor={ editor }/>
+                    </ContentBox>
+                    <ThemeFloatingMenu
+                        editor={ editor }
+                        imageCreatePopup={ createImagePopup }
+                    />
+                    <ThemeBubbleMenu
+                        editor={ editor }
+                        imageRedactorController={ updateImagePopup }
+                    />
                 </> : <Loader/>
             }
         </Section>

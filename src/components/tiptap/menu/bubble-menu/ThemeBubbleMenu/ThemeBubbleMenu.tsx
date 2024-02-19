@@ -15,23 +15,49 @@ import {
     isFootnoteType, toggleFootnote,
 } from '@/components/tiptap/extensions/TipTapFootnote/helpers/footnote.ts';
 import { isImage } from '@/components/tiptap/helpers/image.ts';
+import {
+    IWindowPopupController,
+} from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
+import { insertTable, isTable } from '@/components/tiptap/helpers/table.ts';
 
 
 export type ThemeBubbleMenuProps = {
     editor: Editor;
+    imageRedactorController: IWindowPopupController;
 };
 
 const ThemeBubbleMenu: React.FC<ThemeBubbleMenuProps> = (props) => {
-    const { editor } = props;
+    const { editor, imageRedactorController } = props;
 
     // TODO: Вынести в отдельный компонент не получается. Какая-то ошибка с fiber. Пока не до этого
     if (isImage(editor)) {
         return (
             <BubbleMenu editor={ editor }>
-                <Flex type="main">
+                <Flex size="extra-small" type="main">
+                    <MenuButton isActive={ false }
+                                onClick={ () => imageRedactorController.open() }>
+                        R
+                    </MenuButton>
                     <MenuButton isActive={ false }
                                 onClick={ () => editor.chain().focus().deleteSelection().run() }>
                         X
+                    </MenuButton>
+                </Flex>
+            </BubbleMenu>
+        );
+    }
+
+    if (isTable(editor)) {
+        return (
+            <BubbleMenu editor={ editor }>
+                <Flex size="extra-small" type="main">
+                    <MenuButton
+                        isActive={ false }
+                        onClick={ () => insertTable(editor)({
+                            cols: 1, rows: 1, withHeaderRow: true,
+                        }) }
+                    >
+                        +
                     </MenuButton>
                 </Flex>
             </BubbleMenu>
