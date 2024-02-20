@@ -1,0 +1,96 @@
+$sizeOfPoint : .9;
+$width       : 1.5;
+
+.container {
+    background : var(--background-item);
+    position   : relative;
+    cursor     : pointer;
+
+    &.disabled {
+        pointer-events : none;
+        opacity        : .8;
+    }
+
+    &.loading {
+        pointer-events : none;
+
+        &:after {
+            animation : .5s infinite ease-in-out var(--rotate360);
+            color     : var(--text-color-main);
+        }
+    }
+
+    &:after {
+        content         : '\e86a';
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        color           : transparent;
+        transition      : var(--transition-fast);
+        border-radius   : 50%;
+        position        : absolute;
+        background      : var(--background-second);
+    }
+
+    &.active {
+        background : var(--background-second);
+
+        &:after {
+            background : var(--color-blue);
+        }
+    }
+
+    &.small {
+        height        : var(--height-small);
+        width         : calc(var(--height-small) * $width);
+        border-radius : calc(var(--height-small) / 2);
+
+        &.active:after {
+            left : calc(var(--height-small) * $width - var(--height-small) * $sizeOfPoint - var(--height-small) / 2 * (1 - $sizeOfPoint));
+        }
+
+        &:after {
+            font-size: 12px;
+            width  : calc(var(--height-small) * $sizeOfPoint);
+            height : calc(var(--height-small) * $sizeOfPoint);
+            left   : calc(var(--height-small) / 2 * (1 - $sizeOfPoint));
+            top    : calc(var(--height-small) / 2 * (1 - $sizeOfPoint));
+        }
+    }
+
+    &.medium {
+        height        : var(--height-medium);
+        width         : calc(var(--height-medium) * $width);
+        border-radius : calc(var(--height-medium) / 2);
+
+        &.active:after {
+            left : calc(var(--height-medium) * $width - var(--height-medium) * $sizeOfPoint - var(--height-medium) / 2 * (1 - $sizeOfPoint));
+        }
+
+        &:after {
+            font-size: 22px;
+            width  : calc(var(--height-medium) * $sizeOfPoint);
+            height : calc(var(--height-medium) * $sizeOfPoint);
+            left   : calc(var(--height-medium) / 2 * (1 - $sizeOfPoint));
+            top    : calc(var(--height-medium) / 2 * (1 - $sizeOfPoint));
+        }
+    }
+
+    &.large {
+        height        : var(--height-large);
+        width         : calc(var(--height-large) * $width);
+        border-radius : calc(var(--height-large) / 2);
+
+        &.active:after {
+            left : calc(var(--height-large) * $width - var(--height-large) * $sizeOfPoint - var(--height-large) / 2 * (1 - $sizeOfPoint));
+        }
+
+        &:after {
+            font-size: 32px;
+            width  : calc(var(--height-large) * $sizeOfPoint);
+            height : calc(var(--height-large) * $sizeOfPoint);
+            left   : calc(var(--height-large) / 2 * (1 - $sizeOfPoint));
+            top    : calc(var(--height-large) / 2 * (1 - $sizeOfPoint));
+        }
+    }
+}

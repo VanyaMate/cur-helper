@@ -17,6 +17,7 @@ import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
+import { isNotEmptyHtml } from '@/helpers/in-not-empty-html.helper.ts';
 
 
 export type GuidItemContainerProps = {
@@ -60,10 +61,11 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                             title={ data.title }
                         />
                         {
-                            data.description
+                            isNotEmptyHtml(data.description)
                             ? <P
                                 className="tiptap"
                                 dangerouslySetInnerHTML={ { __html: data.description } }
+                                tag="div"
                                 type="second"
                             />
                             : null
@@ -82,20 +84,21 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                         /> : null
                     }
                     {
-                        // TODO: Сделать это функцией
-                        data.additional && Object.assign(document.createElement('div'), { innerHTML: data.additional }).textContent!.trim().length
+                        isNotEmptyHtml(data.additional)
                         ? <P
                             className="tiptap"
                             dangerouslySetInnerHTML={ { __html: data.additional } }
+                            tag="div"
                             type="invisible"
                         />
                         : null
                     }
                     {
-                        data.body
+                        isNotEmptyHtml(data.body)
                         ? <P
                             className="tiptap"
                             dangerouslySetInnerHTML={ { __html: data.body } }
+                            tag="div"
                         /> : null
                     }
                     <div>

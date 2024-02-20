@@ -1,5 +1,5 @@
 .container {
-    font-size   : 14px;
+    font-size   : 16px;
     line-height : 1.2em;
 
     &.invisible {
@@ -8,25 +8,25 @@
     }
 
     &.second {
-        font-size : 12px;
+        font-size : 14px;
         color     : var(--text-color-second);
     }
 
     &.main {
-        font-size   : 14px;
+        font-size   : 16px;
         color       : var(--text-color-main);
         font-weight : bold;
     }
 
     &.danger {
-        font-size   : 14px;
+        font-size   : 16px;
         color       : var(--color-red) !important;;
         text-shadow : 0 0 10px var(--color-red-transparent) !important;;
         font-weight : bold;
     }
 
     &.primary {
-        font-size   : 14px;
+        font-size   : 16px;
         color       : var(--color-gold) !important;
         text-shadow : 0 0 10px var(--color-gold-transparent) !important;;
         font-weight : bold;

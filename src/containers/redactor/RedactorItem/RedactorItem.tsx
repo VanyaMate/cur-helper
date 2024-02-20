@@ -24,11 +24,13 @@ export type RedactorItemProps = {
     html: string;
     editable: boolean;
     onSave: (html: string) => Promise<void>;
+    type?: 'html' | 'text';
 };
 
 const RedactorItem: React.FC<RedactorItemProps> = (props) => {
     const {
-              id, editable, extensions, html, title, onSave, floatingMenu, bubbleMenu,
+              id, editable, extensions, html, title, type, onSave, floatingMenu,
+              bubbleMenu,
           } = props;
 
     const editor = useEditor({
@@ -36,7 +38,8 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
         extensions,
         editable,
         onUpdate: ({ editor }) => {
-            localStorage.setItem(id, editor.getHTML());
+            localStorage.setItem(id, type === 'text' ? editor.getText()
+                                                     : editor.getHTML());
         },
     });
 
@@ -44,8 +47,9 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
         return <Loader/>;
     }
 
-    const isChanged = localStorage.getItem(id) ? (localStorage.getItem(id) !== html)
-                                               : false;
+    const isChanged = localStorage.getItem(id)
+                      ? (localStorage.getItem(id) !== html)
+                      : false;
 
     return (
         <ContentBox>
@@ -56,7 +60,8 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                         <Button
                             disabled={ !isChanged }
                             onClick={ () => {
-                                onSave(editor.getHTML()).then();
+                                onSave(type === 'text' ? editor.getText()
+                                                       : editor.getHTML()).then();
                             } }
                             quad
                             size="small"

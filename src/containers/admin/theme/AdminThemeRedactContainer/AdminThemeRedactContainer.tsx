@@ -26,6 +26,13 @@ import Loader from '@/components/common/Loader/Loader.tsx';
 import { observer } from 'mobx-react-lite';
 import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import Toggle from '@/components/ui/input/checkbox/toggle/Toggle.tsx';
+import P from '@/components/ui/p/P/P.tsx';
+import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
+import Link from '@/components/ui/link/Link/Link.tsx';
+import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -33,8 +40,9 @@ export type AdminThemeRedactContainerProps = {
 };
 
 const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = observer((props) => {
-    const { id } = props;
-    const theme  = adminThemeService.themes.get(id);
+    const { id }     = props;
+    const theme      = adminThemeService.themes.get(id);
+    const pageGetter = usePageUrl();
 
     if (!theme) {
         return <Loader/>;
@@ -42,6 +50,36 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
 
     return (
         <Section>
+            <ContentBox>
+                <SpaceBetween>
+                    <Flex>
+                        <P type="invisible">Публичный ID:</P>
+                        <P>{ theme.publicId }</P>
+                    </Flex>
+                    <Flex>
+                        <P type="invisible">{ theme.enabled ? 'Активна'
+                                                            : 'Не активна' }</P>
+                        <Toggle
+                            active={ theme.enabled }
+                            onToggleAsync={ (value) => adminThemeService.update(authService.token[0], theme.id, {
+                                enabled: value,
+                            }).then() }
+                            size="small"
+                        />
+                    </Flex>
+                </SpaceBetween>
+                <Flex>
+                    <P type="invisible">
+                        <Link
+                            target="_blank"
+                            to={ pageGetter.guid(theme.publicId) }
+                        >
+                            Ссылка на тему
+                        </Link>
+                    </P>
+                </Flex>
+            </ContentBox>
+
             <RedactorItem
                 editable={ false }
                 extensions={ [ StarterKit ] }
@@ -49,6 +87,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                 id={ `title_${ theme.id }` }
                 onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { title: html }).then() }
                 title="Заголовок темы"
+                type="text"
             />
 
             <RedactorItem
