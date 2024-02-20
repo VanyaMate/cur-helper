@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@/components/ui/link/Link/Link.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
