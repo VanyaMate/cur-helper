@@ -2,14 +2,12 @@ import React from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
-import { With } from '@/types/types.ts';
-import { TestType } from '@/types/test/test.types.ts';
-import { TestShortResult } from '@/types/tests/tests.types.ts';
 import TestResultPreview from '../TestResultPreview/TestResultPreview';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import css from './TestPreviewItem.module.scss';
 import { useStringEndingByNumber } from '@/hooks/string/useStringEndingByNumber.ts';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
+import { TestShortResult, TestType, With } from '@vanyamate/cur-helper-types';
 
 
 export type TestPreviewItemProps = {

@@ -1,9 +1,9 @@
 import {
     IAdminThemeService,
 } from '@/services/admin-theme/admin-theme-service.interface.ts';
-import { ThemeType } from '@/types/theme/theme.types';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
+import { ThemeType } from '@vanyamate/cur-helper-types';
 
 
 export class AdminThemeService implements IAdminThemeService {
@@ -38,7 +38,7 @@ export class AdminThemeService implements IAdminThemeService {
     }
 
     async getOne (token: string, publicId: string): Promise<ThemeType> {
-        return fetch(`${ API_HOST }/api/v1/themes/${ publicId }`, {
+        return fetch(`${ API_HOST }/api/v1/admin/themes/${ publicId }`, {
             method : 'GET',
             headers: {
                 'Content-Type' : 'application/json',

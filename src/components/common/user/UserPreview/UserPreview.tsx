@@ -3,7 +3,7 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import RoundImage from '@/components/ui/image/RoundImage/RoundImage.tsx';
-import { UserType } from '@/types/user/user.types.ts';
+import { UserType } from '@vanyamate/cur-helper-types';
 
 
 export type UserPreviewProps = {

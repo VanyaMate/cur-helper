@@ -2,7 +2,6 @@ import React from 'react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import MenuButton from '@/components/tiptap/menu/MenuButton/MenuButton.tsx';
 import {
-    isFootnote,
     isFootnoteType,
     toggleFootnote,
 } from '@/components/tiptap/extensions/TipTapFootnote/helpers/footnote.ts';

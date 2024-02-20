@@ -1,4 +1,4 @@
-import { TestFullType, TestListType } from '@/services/tests/tests.types.ts';
+import { TestFullType, TestListType } from '@vanyamate/cur-helper-types';
 
 
 export interface ITestsService {

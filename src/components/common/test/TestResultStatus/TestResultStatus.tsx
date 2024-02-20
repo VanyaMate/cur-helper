@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-    TestPassingResult,
-} from '@/types/test-passing/test-passing.types.ts';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
 import css from './TestResultStatus.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname.ts';
 import P from '@/components/ui/p/P/P.tsx';
+import { TestPassingResult } from '@vanyamate/cur-helper-types';
 
 
 export type TestResultStatusProps = {

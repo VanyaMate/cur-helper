@@ -1,8 +1,7 @@
 import {
-    LoginDataType,
-    RegistrationDataType,
     UserAuthType,
 } from '@/types/auth/auth.types.ts';
+import { LoginDataType, RegistrationDataType } from '@vanyamate/cur-helper-types';
 
 
 export interface IAuthService {

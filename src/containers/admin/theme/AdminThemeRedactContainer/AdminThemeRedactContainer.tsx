@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import RedactorItem from '@/containers/redactor/RedactorItem/RedactorItem.tsx';
 import { StarterKit } from '@tiptap/starter-kit';

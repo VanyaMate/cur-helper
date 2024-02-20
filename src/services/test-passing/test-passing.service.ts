@@ -1,12 +1,9 @@
 import {
     ITestPassingService,
 } from '@/services/test-passing/test-passing-service.interface.ts';
-import {
-    TestPassingFullType,
-    TestResultFullType,
-} from '@/services/test-passing/test-passing.types.ts';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
+import { TestPassingFullType, TestResultFullType } from '@vanyamate/cur-helper-types';
 
 
 export class TestPassingService implements ITestPassingService {

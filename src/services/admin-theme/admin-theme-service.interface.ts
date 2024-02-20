@@ -1,5 +1,4 @@
-import { ThemeType, ThemeUpdateType } from '@/types/theme/theme.types.ts';
-
+import { ThemeType, ThemeUpdateType } from "@vanyamate/cur-helper-types";
 
 export interface IAdminThemeService {
     themes: Map<string, ThemeType>;

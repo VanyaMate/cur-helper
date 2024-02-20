@@ -1,21 +1,5 @@
-import { UserType } from '@/types/user/user.types.ts';
+import { UserType } from '@vanyamate/cur-helper-types';
 
-
-export type RegistrationDataType = {
-    email: string;
-    login: string;
-    password: string;
-}
-
-export type LoginDataType =
-    {
-        email: string;
-        password: string;
-    }
-    | {
-        login: string;
-        password: string;
-    }
 
 export type UserAuthType = {
     user: UserType;

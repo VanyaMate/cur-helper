@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { TestPassingFullType } from '@/services/test-passing/test-passing.types.ts';
 import { useTestPassingQuestionHash } from '@/hooks/test/useTestPassingQuestionHash.ts';
 import {
     useTestPassingQuestionPageController,
@@ -25,10 +24,14 @@ import TestQuestionPassing
     from '@/components/common/test/TestQuestionPassing/TestQuestionPassing.tsx';
 import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
-import { With } from '@/types/types.ts';
-import { QuestionSelect, QuestionType } from '@/types/question/question.types.ts';
 import Timer from '@/components/common/Timer/Timer.tsx';
 import { observer } from 'mobx-react-lite';
+import {
+    QuestionSelect,
+    QuestionType,
+    TestPassingFullType,
+    With,
+} from '@vanyamate/cur-helper-types';
 
 
 export type TestPassingContainerProps = {

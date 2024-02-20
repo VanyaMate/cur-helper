@@ -1,7 +1,7 @@
-import { TestFullType, TestListType } from '@/services/tests/tests.types.ts';
 import { ITestsService } from '@/services/tests/tests-service.interface.ts';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
+import { TestFullType, TestListType } from '@vanyamate/cur-helper-types';
 
 
 class TestsService implements ITestsService {

@@ -1,9 +1,10 @@
 import { Fetch, useFetch } from '@/hooks/useFetch.ts';
-import { With } from '@/types/types.ts';
 import {
+    ThemeBreadcrumb,
+    ThemeRecursiveChildren,
     ThemeShortType,
-} from '@/types/theme/theme.types.ts';
-import { ThemeBreadcrumb, ThemeRecursiveChildren } from '@/types/themes/themes.types.ts';
+    With,
+} from '@vanyamate/cur-helper-types';
 import { API_HOST } from '@/constants/api.url.ts';
 
 

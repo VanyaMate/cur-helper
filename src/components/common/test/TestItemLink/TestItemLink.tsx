@@ -2,7 +2,7 @@ import React from 'react';
 import css from './TestItemLink.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Section, { SectionType } from '@/components/ui/container/Section/Section.tsx';
-import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
+import { TestPassingResult } from '@vanyamate/cur-helper-types';
 
 
 export type TestItemLinkProps = {

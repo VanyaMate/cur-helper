@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import css from './TestResultAnswer.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Button from '@/components/ui/button/Button/Button.tsx';
-import { QuestionAnswerType } from '@/types/answer/answer.types.ts';
+import { QuestionAnswerType } from '@vanyamate/cur-helper-types';
 
 
 export type TestResultAnswerProps = {
