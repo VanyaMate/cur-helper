@@ -26,7 +26,6 @@ import Loader from '@/components/common/Loader/Loader.tsx';
 import { observer } from 'mobx-react-lite';
 import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
-import { reaction } from 'mobx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -76,6 +75,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                 title="Дополнительная информация темы"
             />
 
+            { /** TODO: Если editable=false - перестает работать Table.resize, но если true - он работает всегда */ }
             <RedactorItem
                 bubbleMenu={ [
                     TableRedactMenu,
@@ -102,7 +102,9 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                 ] }
                 floatingMenu={ [
                     HeadingRedactMenu,
+                    FootnoteRedactMenu,
                     ImageAddMenu,
+                    TableRedactMenu,
                 ] }
                 html={ theme.body }
                 id={ `body_${ theme.id }` }

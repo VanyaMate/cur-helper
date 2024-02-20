@@ -61,7 +61,7 @@ const ImageAddMenu: React.FC<ImageAddMenuProps> = (props) => {
                 size="small"
                 styleType="default"
             >
-                <IconM>image</IconM>
+                <IconM size="small">image</IconM>
             </Button>
         </Flex>
     );

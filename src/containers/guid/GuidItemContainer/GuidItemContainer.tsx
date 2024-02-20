@@ -82,7 +82,8 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                         /> : null
                     }
                     {
-                        data.additional
+                        // TODO: Сделать это функцией
+                        data.additional && Object.assign(document.createElement('div'), { innerHTML: data.additional }).textContent!.trim().length
                         ? <P
                             className="tiptap"
                             dangerouslySetInnerHTML={ { __html: data.additional } }

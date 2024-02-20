@@ -17,7 +17,7 @@ const TableRedactMenu: React.FC<TableRedactMenuProps> = (props) => {
             <MenuButton
                 isActive={ false }
                 onClick={ () => insertTable(editor)({
-                    cols: 2, rows: 2, withHeaderRow: true,
+                    cols: 3, rows: 3, withHeaderRow: true,
                 }) }
             >
                 +
