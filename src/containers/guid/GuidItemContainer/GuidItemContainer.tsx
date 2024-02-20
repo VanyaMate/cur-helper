@@ -17,6 +17,7 @@ import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
+import { isNotEmptyHtml } from '@/helpers/in-not-empty-html.helper.ts';
 
 
 export type GuidItemContainerProps = {
@@ -60,8 +61,14 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                             title={ data.title }
                         />
                         {
-                            data.description ? <P type="second">{ data.description }</P>
-                                             : null
+                            isNotEmptyHtml(data.description)
+                            ? <P
+                                className="tiptap"
+                                dangerouslySetInnerHTML={ { __html: data.description } }
+                                tag="div"
+                                type="second"
+                            />
+                            : null
                         }
                     </Section>
                     {
@@ -77,11 +84,22 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                         /> : null
                     }
                     {
-                        data.additional ? <P type="invisible">{ data.additional }</P>
-                                        : null
+                        isNotEmptyHtml(data.additional)
+                        ? <P
+                            className="tiptap"
+                            dangerouslySetInnerHTML={ { __html: data.additional } }
+                            tag="div"
+                            type="invisible"
+                        />
+                        : null
                     }
                     {
-                        data.body ? <P>{ data.body }</P> : null
+                        isNotEmptyHtml(data.body)
+                        ? <P
+                            className="tiptap"
+                            dangerouslySetInnerHTML={ { __html: data.body } }
+                            tag="div"
+                        /> : null
                     }
                     <div>
                         <Button styleType="default">Следующая тема</Button>

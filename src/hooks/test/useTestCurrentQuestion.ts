@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { TestPassingFullType } from '@/services/test-passing/test-passing.types.ts';
+import { TestPassingFullType } from '@vanyamate/cur-helper-types';
 
 
 export const useTestCurrentQuestion = function (test: TestPassingFullType, id: number) {

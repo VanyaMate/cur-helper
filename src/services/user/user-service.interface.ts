@@ -1,4 +1,4 @@
-import { UserType } from '@/types/user/user.types.ts';
+import { UserType } from '@vanyamate/cur-helper-types';
 
 
 export interface IUserService {

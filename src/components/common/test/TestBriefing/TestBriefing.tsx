@@ -8,9 +8,8 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import css from './TestBriefieg.module.scss';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
-import { ThemeShortType } from '@/types/theme/theme.types.ts';
-import { TestPassingState } from '@/types/test-passing/test-passing.types.ts';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import { TestPassingState, ThemeShortType } from '@vanyamate/cur-helper-types';
 
 
 export type TestBriefingProps = {

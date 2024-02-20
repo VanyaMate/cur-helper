@@ -1,10 +1,10 @@
 import React from 'react';
-import { TestPassingShortInfo } from '@/types/test-passing/test-passing.types.ts';
 import Tag from '@/components/common/Tag/Tag.tsx';
 import { useTestStatusLabel } from '@/hooks/test/useTestStatusLabel.ts';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
+import { TestPassingShortInfo } from '@vanyamate/cur-helper-types';
 
 
 export type TestResultPreviewProps = {

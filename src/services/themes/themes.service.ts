@@ -1,11 +1,7 @@
 import { IThemesService } from '@/services/themes/themes-service.interface.ts';
-import {
-    ThemeChildrenType,
-    ThemeFullType,
-    ThemesType,
-} from '@/services/themes/themes.types.ts';
 import { makeAutoObservable } from 'mobx';
 import { API_HOST } from '@/constants/api.url.ts';
+import { ThemeChildrenType, ThemeFullType, ThemesType } from '@vanyamate/cur-helper-types';
 
 
 class ThemesService implements IThemesService {

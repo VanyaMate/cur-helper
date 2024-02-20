@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 import { IAuthService } from '@/services/auth/auth-service.interface.ts';
 import {
-    LoginDataType,
     UserAuthType,
-    RegistrationDataType,
 } from '@/types/auth/auth.types';
 import { API_HOST } from '@/constants/api.url.ts';
+import { LoginDataType, RegistrationDataType } from '@vanyamate/cur-helper-types';
 
 
 class AuthService implements IAuthService {

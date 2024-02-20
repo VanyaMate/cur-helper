@@ -9,9 +9,12 @@ import SpaceBetween
     from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
-import { With } from '@/types/types.ts';
-import { QuestionSelect, QuestionType } from '@/types/question/question.types.ts';
-import { QuestionAnswerType } from '@/types/answer/answer.types.ts';
+import {
+    QuestionAnswerType,
+    QuestionSelect,
+    QuestionType,
+    With,
+} from '@vanyamate/cur-helper-types';
 
 
 export type TestQuestionPassingProps = {

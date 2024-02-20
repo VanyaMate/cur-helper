@@ -1,12 +1,14 @@
 import {
-    LoginDataType,
-    RegistrationDataType,
     UserAuthType,
 } from '@/types/auth/auth.types.ts';
 import { useCallback } from 'react';
 import { authService } from '@/services/auth/auth.service.ts';
 import { userService } from '@/services/user/user.service.ts';
-import { UserType } from '@/types/user/user.types.ts';
+import {
+    LoginDataType,
+    RegistrationDataType,
+    UserType,
+} from '@vanyamate/cur-helper-types';
 
 
 export type AuthActions = {

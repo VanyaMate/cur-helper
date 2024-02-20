@@ -7,12 +7,12 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import TestResultAnswer
     from '@/components/common/test/TestResultQuestions/TestResultAnswer/TestResultAnswer.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
-import { With } from '@/types/types.ts';
 import {
     QuestionResult,
     QuestionSelect, QuestionThemes,
     QuestionType,
-} from '@/types/question/question.types.ts';
+    With,
+} from '@vanyamate/cur-helper-types';
 
 
 export type TestResultQuestionsProps = {

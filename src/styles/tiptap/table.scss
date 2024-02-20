@@ -3,17 +3,19 @@
         max-width : 100%;
     }
 
+    $borderSize : 2px;
+
     table {
         border-collapse : collapse;
         border-radius   : var(--offset-medium);
         border-style    : hidden;
-        box-shadow      : 0 0 0 2px var(--border-color-invisible);
-        margin          : 0;
+        box-shadow      : 0 0 0 $borderSize var(--border-color-invisible);
+        margin          : $borderSize;
         overflow        : hidden;
         table-layout    : fixed;
         max-width       : 100% !important;
-        width           : 100% !important;
-        min-width       : 100% !important;
+        width           : calc(100% - $borderSize * 2) !important;
+        min-width       : calc(100% - $borderSize * 2) !important;
 
         &:first-child {
 
@@ -21,7 +23,7 @@
 
         td,
         th {
-            border         : 2px solid var(--border-color-invisible);
+            border         : $borderSize solid var(--border-color-invisible);
             box-sizing     : border-box;
             min-width      : 1em;
             padding        : var(--offset-medium);

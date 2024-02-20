@@ -1,7 +1,4 @@
-import {
-    TestPassingFullType,
-    TestResultFullType,
-} from '@/services/test-passing/test-passing.types.ts';
+import { TestPassingFullType, TestResultFullType } from '@vanyamate/cur-helper-types';
 
 
 export interface ITestPassingService {

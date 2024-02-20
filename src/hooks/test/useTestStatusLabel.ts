@@ -1,5 +1,4 @@
-import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
-
+import { TestPassingResult } from "@vanyamate/cur-helper-types";
 
 export const useTestStatusLabel = function (status: TestPassingResult | null | undefined) {
     if (status === 'unsatis') {

@@ -1,5 +1,5 @@
 import { IUserService } from '@/services/user/user-service.interface.ts';
-import { UserType } from '@/types/user/user.types';
+import { UserType } from '@vanyamate/cur-helper-types';
 
 
 class UserService implements IUserService {

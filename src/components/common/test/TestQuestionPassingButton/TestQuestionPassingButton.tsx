@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import Button from '@/components/ui/button/Button/Button.tsx';
-import { QuestionAnswerType } from '@/types/answer/answer.types.ts';
+import { QuestionAnswerType } from '@vanyamate/cur-helper-types';
 
 
 export type TestQuestionPassingButtonProps = {

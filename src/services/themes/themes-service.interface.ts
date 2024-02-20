@@ -1,15 +1,11 @@
-import { With } from '@/types/types.ts';
-import { ThemeShortType, ThemeType } from '@/types/theme/theme.types.ts';
-import {
-    ThemeBreadcrumb,
-    ThemeChildren, ThemeNext, ThemePrev, ThemeRecursiveChildren,
-    ThemeTests,
-} from '@/types/themes/themes.types.ts';
 import {
     ThemeChildrenType,
     ThemeFullType,
+    ThemeRecursiveChildren,
+    ThemeShortType,
     ThemesType,
-} from '@/services/themes/themes.types.ts';
+    With,
+} from '@vanyamate/cur-helper-types';
 
 
 export interface IThemesService {
@@ -17,9 +13,9 @@ export interface IThemesService {
     themeChildren: Map<string, ThemeChildrenType>;
     themes: ThemesType[];
 
-    getThemeFullDataByPublicId (publicId: string, token?: string): Promise<With<ThemeType, [ ThemeChildren, ThemeTests, ThemeBreadcrumb, ThemeNext, ThemePrev ]>>;
+    getThemeFullDataByPublicId (publicId: string, token?: string): Promise<ThemeFullType>;
 
-    getThemeListById (publicId: string, token?: string): Promise<With<ThemeShortType, [ ThemeRecursiveChildren ]> & ThemeBreadcrumb>;
+    getThemeListById (publicId: string, token?: string): Promise<ThemeChildrenType>;
 
     getThemesList (token?: string): Promise<With<ThemeShortType, [ ThemeRecursiveChildren ]>[]>;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ThemeShortType } from '@/types/theme/theme.types.ts';
 import ListTitledItemWithUrl
     from '@/components/ui/list/ListTitledItemWithUrl/ListTitledItemWithUrl.tsx';
 import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
+import { ThemeShortType } from '@vanyamate/cur-helper-types';
 
 
 export type ThemeListItemProps = {

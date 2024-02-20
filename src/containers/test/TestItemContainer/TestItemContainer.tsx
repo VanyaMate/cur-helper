@@ -77,9 +77,11 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                 <Section type="main">
                     <SpaceBetween size="small">
                         <TestResultProgressbarCircle
-                            percent={ data.shortResult?.rightAnswers
-                                      ? 100 / data.shortResult.questions.length * Math.max(data.shortResult.rightAnswers, 0)
-                                      : 0 }
+                            percent={
+                                data.shortResult?.rightAnswers
+                                ? 100 / data.shortResult.questionsAmount * Math.max(data.shortResult.rightAnswers, 0)
+                                : 0
+                            }
                             result={ data.shortResult?.result }
                         />
                         <AdditionalList

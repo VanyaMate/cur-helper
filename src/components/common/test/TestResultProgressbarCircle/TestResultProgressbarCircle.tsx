@@ -3,7 +3,7 @@ import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import { cn } from '@vanyamate/helpers/react/classname.ts';
 import css from './TestResultProgressbarCircle.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
-import { TestPassingResult } from '@/types/test-passing/test-passing.types.ts';
+import { TestPassingResult } from '@vanyamate/cur-helper-types';
 
 
 export type TestResultProgressbarCircleProps = {
