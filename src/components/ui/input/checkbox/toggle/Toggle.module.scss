@@ -5,6 +5,12 @@ $width       : 1.5;
     background : var(--background-item);
     position   : relative;
     cursor     : pointer;
+    box-shadow : 0 0 0 1px var(--background-second);
+    transition : var(--transition-fast);
+
+    &:hover {
+        box-shadow : 0 0 0 1px var(--background-item);
+    }
 
     &.disabled {
         pointer-events : none;
@@ -34,6 +40,11 @@ $width       : 1.5;
 
     &.active {
         background : var(--background-second);
+        box-shadow : 0 0 0 1px var(--background-main);
+
+        &:hover {
+            box-shadow : 0 0 0 1px var(--background-second);
+        }
 
         &:after {
             background : var(--color-blue);
@@ -46,15 +57,16 @@ $width       : 1.5;
         border-radius : calc(var(--height-small) / 2);
 
         &.active:after {
-            left : calc(var(--height-small) * $width - var(--height-small) * $sizeOfPoint - var(--height-small) / 2 * (1 - $sizeOfPoint));
+            left       : calc(var(--height-small) * $width - var(--height-small) * $sizeOfPoint - var(--height-small) / 2 * (1 - $sizeOfPoint));
+            box-shadow : 0 0 20px -5px var(--color-blue);
         }
 
         &:after {
-            font-size: 12px;
-            width  : calc(var(--height-small) * $sizeOfPoint);
-            height : calc(var(--height-small) * $sizeOfPoint);
-            left   : calc(var(--height-small) / 2 * (1 - $sizeOfPoint));
-            top    : calc(var(--height-small) / 2 * (1 - $sizeOfPoint));
+            font-size : 12px;
+            width     : calc(var(--height-small) * $sizeOfPoint);
+            height    : calc(var(--height-small) * $sizeOfPoint);
+            left      : calc(var(--height-small) / 2 * (1 - $sizeOfPoint));
+            top       : calc(var(--height-small) / 2 * (1 - $sizeOfPoint));
         }
     }
 
@@ -64,15 +76,16 @@ $width       : 1.5;
         border-radius : calc(var(--height-medium) / 2);
 
         &.active:after {
-            left : calc(var(--height-medium) * $width - var(--height-medium) * $sizeOfPoint - var(--height-medium) / 2 * (1 - $sizeOfPoint));
+            left       : calc(var(--height-medium) * $width - var(--height-medium) * $sizeOfPoint - var(--height-medium) / 2 * (1 - $sizeOfPoint));
+            box-shadow : 0 0 20px -10px var(--color-blue);
         }
 
         &:after {
-            font-size: 22px;
-            width  : calc(var(--height-medium) * $sizeOfPoint);
-            height : calc(var(--height-medium) * $sizeOfPoint);
-            left   : calc(var(--height-medium) / 2 * (1 - $sizeOfPoint));
-            top    : calc(var(--height-medium) / 2 * (1 - $sizeOfPoint));
+            font-size : 22px;
+            width     : calc(var(--height-medium) * $sizeOfPoint);
+            height    : calc(var(--height-medium) * $sizeOfPoint);
+            left      : calc(var(--height-medium) / 2 * (1 - $sizeOfPoint));
+            top       : calc(var(--height-medium) / 2 * (1 - $sizeOfPoint));
         }
     }
 
@@ -82,15 +95,16 @@ $width       : 1.5;
         border-radius : calc(var(--height-large) / 2);
 
         &.active:after {
-            left : calc(var(--height-large) * $width - var(--height-large) * $sizeOfPoint - var(--height-large) / 2 * (1 - $sizeOfPoint));
+            left       : calc(var(--height-large) * $width - var(--height-large) * $sizeOfPoint - var(--height-large) / 2 * (1 - $sizeOfPoint));
+            box-shadow : 0 0 20px -10px var(--color-blue);
         }
 
         &:after {
-            font-size: 32px;
-            width  : calc(var(--height-large) * $sizeOfPoint);
-            height : calc(var(--height-large) * $sizeOfPoint);
-            left   : calc(var(--height-large) / 2 * (1 - $sizeOfPoint));
-            top    : calc(var(--height-large) / 2 * (1 - $sizeOfPoint));
+            font-size : 32px;
+            width     : calc(var(--height-large) * $sizeOfPoint);
+            height    : calc(var(--height-large) * $sizeOfPoint);
+            left      : calc(var(--height-large) / 2 * (1 - $sizeOfPoint));
+            top       : calc(var(--height-large) / 2 * (1 - $sizeOfPoint));
         }
     }
 }

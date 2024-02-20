@@ -1,20 +1,61 @@
 import React from 'react';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
+import Section from '@/components/ui/container/Section/Section.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
+import P from '@/components/ui/p/P/P.tsx';
+import { observer } from 'mobx-react-lite';
+import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import Toggle from '@/components/ui/input/checkbox/toggle/Toggle.tsx';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import IconM from '@/components/ui/icon/IconM.tsx';
+import { useNavigate } from 'react-router-dom';
 
 
 export type AdminThemeListContainerProps = {};
 
-const AdminThemeListContainer: React.FC<AdminThemeListContainerProps> = (props) => {
+const AdminThemeListContainer: React.FC<AdminThemeListContainerProps> = observer((props) => {
     const {}         = props;
     const pageGetter = usePageUrl();
+    const navigate   = useNavigate();
+    const themeList  = adminThemeService.themesList;
 
     return (
-        <div>
-            // list of themes
-            <Link to={ `/admin${ pageGetter.guid('1') }` }>to theme</Link>
-        </div>
+        <Section>
+            {
+                themeList.list.map((theme) => (
+                    <Section key={ theme.id } size="extra-small" type="main">
+                        <SpaceBetween>
+                            <P type="invisible">Тема: { theme.publicId }</P>
+                            <Flex>
+                                <P type="invisible">{ theme.enabled ? 'Активна'
+                                                                    : 'Не активна' }</P>
+                                <Toggle active={ theme.enabled } size="small"/>
+                                <Button
+                                    onClick={ () => {
+                                        navigate(`/admin${ pageGetter.guid(theme.publicId) }`);
+                                    } }
+                                    quad
+                                    size="small"
+                                    styleType="default"
+                                >
+                                    <IconM size="small" type="invisible">edit</IconM>
+                                </Button>
+                            </Flex>
+                        </SpaceBetween>
+                        <Title lines={ 2 }>{ theme.title }</Title>
+                        <P
+                            dangerouslySetInnerHTML={ { __html: theme.description } }
+                            lines={ 2 }
+                            type="second"
+                        />
+                    </Section>
+                ))
+            }
+        </Section>
     );
-};
+});
 
 export default React.memo(AdminThemeListContainer);
