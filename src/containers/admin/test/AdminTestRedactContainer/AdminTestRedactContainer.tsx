@@ -32,7 +32,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
     }
 
     return (
-        <Section>
+        <Section size="medium">
             <Section size="extra-small">
                 <SpaceBetween>
                     <Flex>
@@ -57,7 +57,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                             target="_blank"
                             to={ pageGetter.test(test.id) }
                         >
-                            Ссылка на тему
+                            Ссылка на тест
                         </Link>
                     </P>
                 </Flex>
@@ -68,7 +68,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                 html={ test.title }
                 id={ `title_${ test.id }` }
                 onSave={ async (html: string) => adminTestService.update(authService.token[0], test.id, { title: html }).then() }
-                title="Заголовок темы"
+                title="Заголовок теста"
                 type="text"
             />
 
@@ -81,7 +81,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                 html={ test.description }
                 id={ `desc_${ test.id }` }
                 onSave={ async (html: string) => adminTestService.update(authService.token[0], test.id, { description: html }).then() }
-                title="Описание темы темы"
+                title="Описание теста"
             />
         </Section>
     );

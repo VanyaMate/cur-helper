@@ -50,7 +50,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
 
     return (
         <ContentBox>
-            <Section>
+            <Section size="medium">
                 <Section size="extra-small">
                     <SpaceBetween>
                         <Flex>
