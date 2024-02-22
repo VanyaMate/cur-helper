@@ -1,5 +1,4 @@
 import {
-    ThemeType,
     ThemeUpdateType,
     MultiplyResponse,
     AdminThemeShortType,
@@ -8,7 +7,7 @@ import {
 
 
 export interface IAdminThemeService {
-    themes: Map<string, ThemeType>;
+    themes: Map<string, AdminThemeType>;
     themesList: MultiplyResponse<AdminThemeShortType>;
 
     create (): void;

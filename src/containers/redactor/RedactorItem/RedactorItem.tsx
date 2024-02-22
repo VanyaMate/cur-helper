@@ -52,62 +52,61 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                       : false;
 
     return (
-        <ContentBox>
-            <Section>
-                <SpaceBetween>
-                    <P type="invisible">{ title }</P>
-                    <Flex>
-                        <Button
-                            disabled={ !isChanged }
-                            onClick={ () => {
-                                onSave(type === 'text' ? editor.getText()
-                                                       : editor.getHTML()).then();
-                            } }
-                            quad
-                            size="small"
-                            styleType={ isChanged ? 'main' : 'default' }
-                        >
-                            <IconM size="small">save</IconM>
-                        </Button>
-                        <Button
-                            disabled={ !isChanged }
-                            onClick={ () => {
-                                localStorage.removeItem(id);
-                                editor.commands.setContent(html);
-                            } }
-                            quad
-                            size="small"
-                            styleType={ isChanged ? 'main' : 'default' }
-                        >
-                            <IconM size="small">scan_delete</IconM>
-                        </Button>
-                        <Button
-                            onClick={ () => editor.setEditable(!editor.isEditable) }
-                            quad
-                            size="small"
-                        >
-                            <IconM size="small">edit</IconM>
-                        </Button>
-                    </Flex>
-                </SpaceBetween>
-                <EditorContent editor={ editor }/>
-                {
-                    (floatingMenu || bubbleMenu)
-                    ? <RedactorEditorContext.Provider value={ editor }>
-                        {
-                            bubbleMenu
-                            ? <RedactorBubbleMenu menu={ bubbleMenu }/> : null
-                        }
-                        {
-                            floatingMenu
-                            ? <RedactorFloatingMenu menu={ floatingMenu }/>
-                            : null
-                        }
-                    </RedactorEditorContext.Provider>
-                    : null
-                }
-            </Section>
-        </ContentBox>
+        // TODO: Temp type='main'
+        <Section type="main">
+            <SpaceBetween>
+                <P type="invisible">{ title }</P>
+                <Flex>
+                    <Button
+                        disabled={ !isChanged }
+                        onClick={ () => {
+                            onSave(type === 'text' ? editor.getText()
+                                                   : editor.getHTML()).then();
+                        } }
+                        quad
+                        size="small"
+                        styleType={ isChanged ? 'main' : 'default' }
+                    >
+                        <IconM size="small">save</IconM>
+                    </Button>
+                    <Button
+                        disabled={ !isChanged }
+                        onClick={ () => {
+                            localStorage.removeItem(id);
+                            editor.commands.setContent(html);
+                        } }
+                        quad
+                        size="small"
+                        styleType={ isChanged ? 'main' : 'default' }
+                    >
+                        <IconM size="small">scan_delete</IconM>
+                    </Button>
+                    <Button
+                        onClick={ () => editor.setEditable(!editor.isEditable) }
+                        quad
+                        size="small"
+                    >
+                        <IconM size="small">edit</IconM>
+                    </Button>
+                </Flex>
+            </SpaceBetween>
+            <EditorContent editor={ editor }/>
+            {
+                (floatingMenu || bubbleMenu)
+                ? <RedactorEditorContext.Provider value={ editor }>
+                    {
+                        bubbleMenu
+                        ? <RedactorBubbleMenu menu={ bubbleMenu }/> : null
+                    }
+                    {
+                        floatingMenu
+                        ? <RedactorFloatingMenu menu={ floatingMenu }/>
+                        : null
+                    }
+                </RedactorEditorContext.Provider>
+                : null
+            }
+        </Section>
     );
 };
 

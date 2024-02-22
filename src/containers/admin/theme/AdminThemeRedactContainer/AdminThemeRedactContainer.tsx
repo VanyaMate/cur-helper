@@ -49,108 +49,110 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
     }
 
     return (
-        <Section>
-            <ContentBox>
-                <SpaceBetween>
+        <ContentBox>
+            <Section>
+                <Section size="extra-small">
+                    <SpaceBetween>
+                        <Flex>
+                            <P type="invisible">Публичный ID:</P>
+                            <P>{ theme.publicId }</P>
+                        </Flex>
+                        <Flex>
+                            <P type="invisible">{ theme.enabled ? 'Активна'
+                                                                : 'Не активна' }</P>
+                            <Toggle
+                                active={ theme.enabled }
+                                onToggleAsync={ (value) => adminThemeService.update(authService.token[0], theme.id, {
+                                    enabled: value,
+                                }).then() }
+                                size="small"
+                            />
+                        </Flex>
+                    </SpaceBetween>
                     <Flex>
-                        <P type="invisible">Публичный ID:</P>
-                        <P>{ theme.publicId }</P>
+                        <P type="invisible">
+                            <Link
+                                target="_blank"
+                                to={ pageGetter.guid(theme.publicId) }
+                            >
+                                Ссылка на тему
+                            </Link>
+                        </P>
                     </Flex>
-                    <Flex>
-                        <P type="invisible">{ theme.enabled ? 'Активна'
-                                                            : 'Не активна' }</P>
-                        <Toggle
-                            active={ theme.enabled }
-                            onToggleAsync={ (value) => adminThemeService.update(authService.token[0], theme.id, {
-                                enabled: value,
-                            }).then() }
-                            size="small"
-                        />
-                    </Flex>
-                </SpaceBetween>
-                <Flex>
-                    <P type="invisible">
-                        <Link
-                            target="_blank"
-                            to={ pageGetter.guid(theme.publicId) }
-                        >
-                            Ссылка на тему
-                        </Link>
-                    </P>
-                </Flex>
-            </ContentBox>
+                </Section>
 
-            <RedactorItem
-                editable={ false }
-                extensions={ [ StarterKit ] }
-                html={ theme.title }
-                id={ `title_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { title: html }).then() }
-                title="Заголовок темы"
-                type="text"
-            />
+                <RedactorItem
+                    editable={ false }
+                    extensions={ [ StarterKit ] }
+                    html={ theme.title }
+                    id={ `title_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { title: html }).then() }
+                    title="Заголовок темы"
+                    type="text"
+                />
 
-            <RedactorItem
-                bubbleMenu={ [
-                    TextFormattingRedactMenu,
-                ] }
-                editable={ false }
-                extensions={ [ StarterKit ] }
-                html={ theme.description }
-                id={ `desc_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { description: html }).then() }
-                title="Описание темы темы"
-            />
+                <RedactorItem
+                    bubbleMenu={ [
+                        TextFormattingRedactMenu,
+                    ] }
+                    editable={ false }
+                    extensions={ [ StarterKit ] }
+                    html={ theme.description }
+                    id={ `desc_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { description: html }).then() }
+                    title="Описание темы темы"
+                />
 
-            <RedactorItem
-                bubbleMenu={ [
-                    TextFormattingRedactMenu,
-                ] }
-                editable={ false }
-                extensions={ [ StarterKit ] }
-                html={ theme.additional }
-                id={ `additional_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { additional: html }).then() }
-                title="Дополнительная информация темы"
-            />
+                <RedactorItem
+                    bubbleMenu={ [
+                        TextFormattingRedactMenu,
+                    ] }
+                    editable={ false }
+                    extensions={ [ StarterKit ] }
+                    html={ theme.additional }
+                    id={ `additional_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { additional: html }).then() }
+                    title="Дополнительная информация темы"
+                />
 
-            { /** TODO: Если editable=false - перестает работать Table.resize, но если true - он работает всегда */ }
-            <RedactorItem
-                bubbleMenu={ [
-                    TableRedactMenu,
-                    ImageRedactMenu,
-                    TextFormattingRedactMenu,
-                    HeadingRedactMenu,
-                    FootnoteRedactMenu,
-                ] }
-                editable={ false }
-                extensions={ [
-                    StarterKit,
-                    Table.configure({
-                        resizable              : true,
-                        cellMinWidth           : 20,
-                        handleWidth            : 5,
-                        lastColumnResizable    : false,
-                        allowTableNodeSelection: true,
-                    }),
-                    TableRow,
-                    TableHeader,
-                    TableCell,
-                    Image,
-                    TipTapFootnote,
-                ] }
-                floatingMenu={ [
-                    HeadingRedactMenu,
-                    FootnoteRedactMenu,
-                    ImageAddMenu,
-                    TableRedactMenu,
-                ] }
-                html={ theme.body }
-                id={ `body_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { body: html }).then() }
-                title="Текст темы"
-            />
-        </Section>
+                { /** TODO: Если editable=false - перестает работать Table.resize, но если true - он работает всегда */ }
+                <RedactorItem
+                    bubbleMenu={ [
+                        TableRedactMenu,
+                        ImageRedactMenu,
+                        TextFormattingRedactMenu,
+                        HeadingRedactMenu,
+                        FootnoteRedactMenu,
+                    ] }
+                    editable={ false }
+                    extensions={ [
+                        StarterKit,
+                        Table.configure({
+                            resizable              : true,
+                            cellMinWidth           : 20,
+                            handleWidth            : 5,
+                            lastColumnResizable    : false,
+                            allowTableNodeSelection: true,
+                        }),
+                        TableRow,
+                        TableHeader,
+                        TableCell,
+                        Image,
+                        TipTapFootnote,
+                    ] }
+                    floatingMenu={ [
+                        HeadingRedactMenu,
+                        FootnoteRedactMenu,
+                        ImageAddMenu,
+                        TableRedactMenu,
+                    ] }
+                    html={ theme.body }
+                    id={ `body_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { body: html }).then() }
+                    title="Текст темы"
+                />
+            </Section>
+        </ContentBox>
     );
 });
 
