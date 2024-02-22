@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Editor, EditorContent, Extensions, useEditor } from '@tiptap/react';
-import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
@@ -13,6 +12,7 @@ import RedactorFloatingMenu
     from '@/containers/redactor/tiptap/RedactorFloatingMenu/RedactorFloatingMenu.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import { RedactorEditorContext } from './RedactorItemContext';
+import { EditorEvents } from '@tiptap/core';
 
 
 export type RedactorItemProps = {
@@ -29,18 +29,31 @@ export type RedactorItemProps = {
 
 const RedactorItem: React.FC<RedactorItemProps> = (props) => {
     const {
-              id, editable, extensions, html, title, type, onSave, floatingMenu,
+              id,
+              editable,
+              extensions,
+              html,
+              title,
+              type,
+              onSave,
+              floatingMenu,
               bubbleMenu,
-          } = props;
+          }                               = props;
+    const [ redactState, setRedactState ] = useState<boolean>(editable);
+    const onUpdateHandler                 = useCallback<(props: EditorEvents['update']) => void>(({ editor }) => {
+        localStorage.setItem(
+            id,
+            type === 'text'
+            ? editor.getText()
+            : editor.getHTML(),
+        );
+    }, [ id, type ]);
 
     const editor = useEditor({
-        content : localStorage.getItem(id) ?? html,
+        content   : localStorage.getItem(id) ?? html,
         extensions,
         editable,
-        onUpdate: ({ editor }) => {
-            localStorage.setItem(id, type === 'text' ? editor.getText()
-                                                     : editor.getHTML());
-        },
+        onUpdate  : onUpdateHandler,
     });
 
     if (!editor) {
@@ -52,9 +65,8 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                       : false;
 
     return (
-        // TODO: Temp type='main'
-        <Section type="main">
-            <SpaceBetween>
+        <Section>
+            <SpaceBetween type="main">
                 <P type="invisible">{ title }</P>
                 <Flex>
                     <Button
@@ -82,9 +94,13 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                         <IconM size="small">scan_delete</IconM>
                     </Button>
                     <Button
-                        onClick={ () => editor.setEditable(!editor.isEditable) }
+                        onClick={ () => {
+                            editor.setEditable(!editor.isEditable);
+                            setRedactState((prev) => !prev);
+                        } }
                         quad
                         size="small"
+                        styleType={ redactState ? 'main' : 'default' }
                     >
                         <IconM size="small">edit</IconM>
                     </Button>

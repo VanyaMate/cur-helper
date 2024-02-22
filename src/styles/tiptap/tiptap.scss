@@ -14,13 +14,14 @@
         gap            : var(--offset-large);
 
         &:read-write {
-            padding : var(--offset-large);
-            outline : 2px dotted var(--text-color-invisible);
+            // padding    : var(--offset-large);
+            // outline    : 2px dotted var(--text-color-invisible);
+            // background : var(--background-item);
 
             &:focus,
             &:active {
-                outline    : 2px dotted var(--color-blue);
-                box-shadow : 0 0 20px -5px var(--color-blue-transparent);
+                // outline    : 2px dotted var(--color-blue);
+                // box-shadow : 0 0 20px -5px var(--color-blue-transparent);
             }
         }
     }
