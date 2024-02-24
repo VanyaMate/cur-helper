@@ -16,7 +16,6 @@ import TestPreviewItem
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
-import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
 import { isNotEmptyHtml } from '@/helpers/in-not-empty-html.helper.ts';
 import Title from '@/components/ui/title/Title/Title.tsx';
 

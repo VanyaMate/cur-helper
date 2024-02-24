@@ -17,7 +17,6 @@ import TextFormattingRedactMenu
 import Title from '@/components/ui/title/Title/Title.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
-import Input from '@/components/ui/input/Input/Input.tsx';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';

@@ -1,8 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Editor, EditorContent, Extensions, useEditor } from '@tiptap/react';
-import Section from '@/components/ui/container/Section/Section.tsx';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
-import P from '@/components/ui/p/P/P.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import Loader from '@/components/common/Loader/Loader.tsx';
