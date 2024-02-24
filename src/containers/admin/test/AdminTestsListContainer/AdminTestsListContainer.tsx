@@ -24,7 +24,20 @@ const AdminTestsListContainer: React.FC<AdminTestsListContainerProps> = observer
     const testsList  = adminTestService.testsList;
 
     return (
-        <TitleSection title="Список тестов">
+        <TitleSection
+            extra={
+                <Flex>
+                    <Button
+                        quad
+                        size="small"
+                        styleType="default"
+                    >
+                        <IconM size="small">add</IconM>
+                    </Button>
+                </Flex>
+            }
+            title="Список тестов"
+        >
             <TileBox>
                 {
                     testsList.list.map((test) => (
@@ -43,7 +56,7 @@ const AdminTestsListContainer: React.FC<AdminTestsListContainerProps> = observer
                                         size="small"
                                         styleType="default"
                                     >
-                                        <IconM size="small" type="invisible">edit</IconM>
+                                        <IconM size="small">edit</IconM>
                                     </Button>
                                 </Flex>
                             </SpaceBetween>

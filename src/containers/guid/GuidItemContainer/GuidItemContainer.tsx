@@ -55,15 +55,15 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                                 })),
                             ] }
                         />
-                        <Section size="extra-small" type="second">
-                            <P type="invisible">Тема: { data.publicId.replace(/-/g, '.') }</P>
+                        <Section size="extra-small" type="mark">
+                            <P type="second">Тема: { data.publicId.replace(/-/g, '.') }</P>
                             {
                                 isNotEmptyHtml(data.additional)
                                 ? <P
                                     className="tiptap"
                                     dangerouslySetInnerHTML={ { __html: data.additional } }
                                     tag="div"
-                                    type="invisible"
+                                    type="second"
                                 />
                                 : null
                             }

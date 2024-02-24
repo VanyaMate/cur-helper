@@ -24,7 +24,20 @@ const AdminThemeListContainer: React.FC<AdminThemeListContainerProps> = observer
     const themeList  = adminThemeService.themesList;
 
     return (
-        <TitleSection title={ 'Список тем' }>
+        <TitleSection
+            extra={
+                <Flex>
+                    <Button
+                        quad
+                        size="small"
+                        styleType="default"
+                    >
+                        <IconM size="small">add</IconM>
+                    </Button>
+                </Flex>
+            }
+            title="Список тем"
+        >
             <TileBox>
                 {
                     themeList.list.map((theme) => (
@@ -43,7 +56,7 @@ const AdminThemeListContainer: React.FC<AdminThemeListContainerProps> = observer
                                         size="small"
                                         styleType="default"
                                     >
-                                        <IconM size="small" type="invisible">edit</IconM>
+                                        <IconM size="small">edit</IconM>
                                     </Button>
                                 </Flex>
                             </SpaceBetween>

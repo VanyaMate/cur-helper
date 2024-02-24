@@ -20,6 +20,7 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import Input from '@/components/ui/input/Input/Input.tsx';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 
 
 export type AdminTestRedactContainerProps = {
@@ -73,7 +74,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                 html={ test.title }
                 id={ `title_${ test.id }` }
                 onSave={ async (html: string) => adminTestService.update(authService.token[0], test.id, { title: html }).then() }
-                title="Заголовок теста"
+                title="Заголовок"
                 type="text"
             />
 
@@ -86,54 +87,45 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                 html={ test.description }
                 id={ `desc_${ test.id }` }
                 onSave={ async (html: string) => adminTestService.update(authService.token[0], test.id, { description: html }).then() }
-                title="Описание теста"
+                title="Описание"
             />
 
             <TitleSection
+                tag="section"
                 title="Настройки"
                 type="main"
             >
                 <TileBox>
-                    <Section size="extra-small">
-                        <P type="invisible">Количество вопросов</P>
-                        <Input
-                            defaultValue={ test.questionsAmount }
-                            inputSize="small"
-                            onChangeHandler={ () => {
-                            } }
-                            type="number"
-                        />
-                    </Section>
-                    <Section size="extra-small">
-                        <P type="invisible">Неудовлетворительно</P>
-                        <Input
-                            defaultValue={ test.unsatisfactoryScore }
-                            inputSize="small"
-                            onChangeHandler={ () => {
-                            } }
-                            type="number"
-                        />
-                    </Section>
-                    <Section size="extra-small">
-                        <P type="invisible">Удовлетворительно</P>
-                        <Input
-                            defaultValue={ test.satisfactoryScore }
-                            inputSize="small"
-                            onChangeHandler={ () => {
-                            } }
-                            type="number"
-                        />
-                    </Section>
-                    <Section size="extra-small">
-                        <P type="invisible">Идеально</P>
-                        <Input
-                            defaultValue={ test.perfectScore }
-                            inputSize="small"
-                            onChangeHandler={ () => {
-                            } }
-                            type="number"
-                        />
-                    </Section>
+                    <SaveInput
+                        defaultValue={ Math.ceil(test.timeToPass / 1000 / 60) }
+                        label="Время на выполнение (мин)"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { timeToPass: Number(value) * 60 * 1000 }).then() }
+                        type="number"
+                    />
+                    <SaveInput
+                        defaultValue={ test.questionsAmount }
+                        label="Количество вопросов"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { questionsAmount: Number(value) * 60 * 1000 }).then() }
+                        type="number"
+                    />
+                    <SaveInput
+                        defaultValue={ test.unsatisfactoryScore }
+                        label="Неудовлетворительно"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { unsatisfactoryScore: Number(value) * 60 * 1000 }).then() }
+                        type="number"
+                    />
+                    <SaveInput
+                        defaultValue={ test.satisfactoryScore }
+                        label="Удовлетворительно"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { satisfactoryScore: Number(value) * 60 * 1000 }).then() }
+                        type="number"
+                    />
+                    <SaveInput
+                        defaultValue={ test.perfectScore }
+                        label="Идеально"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { perfectScore: Number(value) * 60 * 1000 }).then() }
+                        type="number"
+                    />
                 </TileBox>
             </TitleSection>
 
@@ -143,6 +135,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                         <IconM size="small">add</IconM>
                     </Button>
                 }
+                tag="section"
                 title={ `Вопросы (${ test.questions.length })` }
             >
                 <TileBox>
@@ -151,11 +144,21 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                             <Section
                                 key={ question.id }
                                 size="extra-small"
+                                tag="article"
                                 type="main"
                             >
                                 <SpaceBetween>
                                     <Toggle active={ true } size="small"/>
-                                    <Toggle active={ question.enabled } size="small"/>
+                                    <Flex>
+                                        <Toggle active={ question.enabled } size="small"/>
+                                        <Button
+                                            quad
+                                            size="small"
+                                            styleType="default"
+                                        >
+                                            <IconM size="small">edit</IconM>
+                                        </Button>
+                                    </Flex>
                                 </SpaceBetween>
                                 <Title lines={ 1 } size="small">{ question.title }</Title>
                                 <P

@@ -20,6 +20,7 @@ export type SectionType =
     'main'
     | 'second'
     | 'default'
+    | 'mark'
     | true;
 
 export type SectionProps =
@@ -28,10 +29,11 @@ export type SectionProps =
         size?: SectionSize;
         tag?: SectionTag;
         type?: SectionType;
+        block?: boolean;
     };
 
 const Section: React.FC<SectionProps> = (props) => {
-    const { className, size, type, tag, ...other } = props;
+    const { className, size, type, tag, block, ...other } = props;
 
     const classNames = useMemo(() => {
         return cn(
@@ -41,12 +43,14 @@ const Section: React.FC<SectionProps> = (props) => {
             type === 'main' && css.main,
             type === 'second' && css.second,
             type === 'default' && css.default,
+            type === 'mark' && css.mark,
             size === 'medium' && css.medium,
             size === 'large' && css.large,
             size === 'extra-small' && css.extra_small,
+            block && css.block,
             (size === 'small' || !size) && css.small,
         );
-    }, [ size, type, className ]);
+    }, [ className, type, size, block ]);
 
     if (tag === 'article') {
         return <article className={ classNames } { ...other }/>;
