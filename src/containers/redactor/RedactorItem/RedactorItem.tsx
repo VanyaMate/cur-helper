@@ -13,6 +13,7 @@ import RedactorFloatingMenu
 import IconM from '@/components/ui/icon/IconM.tsx';
 import { RedactorEditorContext } from './RedactorItemContext';
 import { EditorEvents } from '@tiptap/core';
+import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 
 
 export type RedactorItemProps = {
@@ -50,10 +51,10 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
     }, [ id, type ]);
 
     const editor = useEditor({
-        content   : localStorage.getItem(id) ?? html,
+        content : localStorage.getItem(id) ?? html,
         extensions,
         editable,
-        onUpdate  : onUpdateHandler,
+        onUpdate: onUpdateHandler,
     });
 
     if (!editor) {
@@ -65,9 +66,8 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                       : false;
 
     return (
-        <Section>
-            <SpaceBetween type="main">
-                <P type="invisible">{ title }</P>
+        <TitleSection
+            extra={
                 <Flex>
                     <Button
                         disabled={ !isChanged }
@@ -105,7 +105,9 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                         <IconM size="small">edit</IconM>
                     </Button>
                 </Flex>
-            </SpaceBetween>
+            }
+            title={ title }
+        >
             <EditorContent editor={ editor }/>
             {
                 (floatingMenu || bubbleMenu)
@@ -122,7 +124,7 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                 </RedactorEditorContext.Provider>
                 : null
             }
-        </Section>
+        </TitleSection>
     );
 };
 

@@ -11,6 +11,8 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import { observer } from 'mobx-react-lite';
+import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 
 
 export type AdminTestsListContainerProps = {};
@@ -22,33 +24,35 @@ const AdminTestsListContainer: React.FC<AdminTestsListContainerProps> = observer
     const testsList  = adminTestService.testsList;
 
     return (
-        <Section>
-            {
-                testsList.list.map((test) => (
-                    <Section key={ test.id } size="extra-small" type="main">
-                        <SpaceBetween>
-                            <P type="invisible">Тема: { test.themeId }</P>
-                            <Flex>
-                                <P type="invisible">{ test.enabled ? 'Активен'
-                                                                   : 'Не активен' }</P>
-                                <Toggle active={ test.enabled } size="small"/>
-                                <Button
-                                    onClick={ () => {
-                                        navigate(`/admin${ pageGetter.test(test.id) }`);
-                                    } }
-                                    quad
-                                    size="small"
-                                    styleType="default"
-                                >
-                                    <IconM size="small" type="invisible">edit</IconM>
-                                </Button>
-                            </Flex>
-                        </SpaceBetween>
-                        <Title lines={ 2 }>{ test.title }</Title>
-                    </Section>
-                ))
-            }
-        </Section>
+        <TitleSection title="Список тестов">
+            <TileBox>
+                {
+                    testsList.list.map((test) => (
+                        <Section key={ test.id } size="extra-small" type="main">
+                            <SpaceBetween>
+                                <P type="invisible">Тема: '---'</P>
+                                <Flex>
+                                    <P type="invisible">{ test.enabled ? 'Активен'
+                                                                       : 'Не активен' }</P>
+                                    <Toggle active={ test.enabled } size="small"/>
+                                    <Button
+                                        onClick={ () => {
+                                            navigate(`/admin${ pageGetter.test(test.id) }`);
+                                        } }
+                                        quad
+                                        size="small"
+                                        styleType="default"
+                                    >
+                                        <IconM size="small" type="invisible">edit</IconM>
+                                    </Button>
+                                </Flex>
+                            </SpaceBetween>
+                            <Title lines={ 2 }>{ test.title }</Title>
+                        </Section>
+                    ))
+                }
+            </TileBox>
+        </TitleSection>
     );
 });
 

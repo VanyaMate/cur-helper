@@ -11,6 +11,8 @@ import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import { useNavigate } from 'react-router-dom';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 
 
 export type AdminThemeListContainerProps = {};
@@ -22,38 +24,40 @@ const AdminThemeListContainer: React.FC<AdminThemeListContainerProps> = observer
     const themeList  = adminThemeService.themesList;
 
     return (
-        <Section>
-            {
-                themeList.list.map((theme) => (
-                    <Section key={ theme.id } size="extra-small" type="main">
-                        <SpaceBetween>
-                            <P type="invisible">Тема: { theme.publicId }</P>
-                            <Flex>
-                                <P type="invisible">{ theme.enabled ? 'Активна'
-                                                                    : 'Не активна' }</P>
-                                <Toggle active={ theme.enabled } size="small"/>
-                                <Button
-                                    onClick={ () => {
-                                        navigate(`/admin${ pageGetter.guid(theme.publicId) }`);
-                                    } }
-                                    quad
-                                    size="small"
-                                    styleType="default"
-                                >
-                                    <IconM size="small" type="invisible">edit</IconM>
-                                </Button>
-                            </Flex>
-                        </SpaceBetween>
-                        <Title lines={ 2 }>{ theme.title }</Title>
-                        <P
-                            dangerouslySetInnerHTML={ { __html: theme.description } }
-                            lines={ 2 }
-                            type="second"
-                        />
-                    </Section>
-                ))
-            }
-        </Section>
+        <TitleSection title={ 'Список тем' }>
+            <TileBox>
+                {
+                    themeList.list.map((theme) => (
+                        <Section key={ theme.id } size="extra-small" type="main">
+                            <SpaceBetween>
+                                <P type="invisible">Тема: { theme.publicId }</P>
+                                <Flex>
+                                    <P type="invisible">{ theme.enabled ? 'Активна'
+                                                                        : 'Не активна' }</P>
+                                    <Toggle active={ theme.enabled } size="small"/>
+                                    <Button
+                                        onClick={ () => {
+                                            navigate(`/admin${ pageGetter.guid(theme.publicId) }`);
+                                        } }
+                                        quad
+                                        size="small"
+                                        styleType="default"
+                                    >
+                                        <IconM size="small" type="invisible">edit</IconM>
+                                    </Button>
+                                </Flex>
+                            </SpaceBetween>
+                            <Title lines={ 2 }>{ theme.title }</Title>
+                            <P
+                                dangerouslySetInnerHTML={ { __html: theme.description } }
+                                lines={ 2 }
+                                type="second"
+                            />
+                        </Section>
+                    ))
+                }
+            </TileBox>
+        </TitleSection>
     );
 });
 

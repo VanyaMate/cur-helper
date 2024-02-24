@@ -12,7 +12,7 @@ export type InputSizeType =
 
 export type InputProps =
     {
-        size?: InputSizeType;
+        inputSize?: InputSizeType;
         onChangeHandler: OnInputChangeHandler;
     }
     & React.InputHTMLAttributes<HTMLInputElement>;
