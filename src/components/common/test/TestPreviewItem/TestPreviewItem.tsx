@@ -35,7 +35,7 @@ const TestPreviewItem: React.FC<TestPreviewItemProps> = (props) => {
             <Section size="extra-small">
                 <TestResultPreview shortResult={ test.shortResult }/>
                 <Title lines={ 2 }>{ test.title }</Title>
-                <P lines={ 2 }>{ test.description }</P>
+                <P dangerouslySetInnerHTML={ { __html: test.description } } lines={ 2 }/>
             </Section>
             <SpaceBetween>
                 <P type="invisible">{ questionsString }</P>

@@ -7,6 +7,7 @@ import Button from '@/components/ui/button/Button/Button.tsx';
 import { useInput } from '@/hooks/ui/input/useInput.ts';
 import { Outlet } from 'react-router-dom';
 import Loader from '@/components/common/Loader/Loader.tsx';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 
 
 export type ThemesLayoutProps = {};
@@ -29,7 +30,7 @@ const ThemesLayout: React.FC<ThemesLayoutProps> = (props) => {
                     себя много
                     тонкостей и фишек</P>
             </Section>
-            <aside style={ { display: 'flex', gap: 5 } }>
+            <Flex block size="extra-small">
                 <Input
                     onChangeHandler={ onChange }
                     placeholder="Поиск"
@@ -37,7 +38,7 @@ const ThemesLayout: React.FC<ThemesLayoutProps> = (props) => {
                     value={ value }
                 />
                 <Button styleType="main">Найти</Button>
-            </aside>
+            </Flex>
             <Suspense fallback={ <Loader/> }>
                 <Outlet/>
             </Suspense>

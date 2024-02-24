@@ -1,40 +1,48 @@
 .container {
-    display: flex;
-    flex-direction: column;
+    display        : flex;
+    flex-direction : column;
+
+    &.block {
+        width : 100%;
+    }
 
     &.extra_small {
-        gap: var(--offset-small);
+        gap : var(--offset-small);
     }
 
     &.small {
-        gap: var(--offset-medium);
+        gap : var(--offset-medium);
     }
 
     &.medium {
-        gap: var(--offset-large);
+        gap : var(--offset-large);
     }
 
     &.large {
-        gap: var(--offset-large-plus);
+        gap : var(--offset-large-plus);
     }
 
     &.item {
-        border-radius: var(--offset-medium);
-        padding: var(--offset-medium);
+        border-radius : var(--offset-medium);
+        padding       : var(--offset-medium);
 
         &.default {
-            background: var(--background-main);
-            box-shadow: 0 0 10px 0 var(--background-main-transprent);
+            background : var(--background-main);
+            box-shadow : 0 0 10px 0 var(--background-main-transprent);
         }
 
         &.main {
-            background: var(--background-item);
-            box-shadow: 0 0 10px 0 var(--background-item-transprent);
+            background : var(--background-item);
+            box-shadow : 0 0 10px 0 var(--background-item-transprent);
         }
 
         &.second {
-            background: var(--background-second);
-            box-shadow: 0 0 10px 0 var(--background-second-transprent);
+            background : var(--background-second);
+            box-shadow : 0 0 10px 0 var(--background-second-transprent);
+        }
+
+        &.mark {
+            background : var(--color-blue-transparent);
         }
     }
 }

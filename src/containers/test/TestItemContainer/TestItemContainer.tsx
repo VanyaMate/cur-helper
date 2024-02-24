@@ -99,7 +99,8 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                     </SpaceBetween>
                 </Section>
             </Section>
-            <P type="second">{ data.description }</P>
+            <P dangerouslySetInnerHTML={ { __html: data.description } }
+               type="second"/>
             <Collapse
                 opened
                 title="Что нужно повторить"

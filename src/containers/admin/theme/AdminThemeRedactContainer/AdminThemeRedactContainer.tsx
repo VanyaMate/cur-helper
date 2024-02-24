@@ -33,6 +33,11 @@ import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetwe
 import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import IconM from '@/components/ui/icon/IconM.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -49,8 +54,8 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
     }
 
     return (
-        <Section>
-            <ContentBox>
+        <Section size="medium">
+            <Section size="extra-small">
                 <SpaceBetween>
                     <Flex>
                         <P type="invisible">Публичный ID:</P>
@@ -78,78 +83,167 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         </Link>
                     </P>
                 </Flex>
+            </Section>
+
+            <ContentBox>
+                <RedactorItem
+                    editable={ false }
+                    extensions={ [ StarterKit ] }
+                    html={ theme.title }
+                    id={ `title_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { title: html }).then() }
+                    title="Заголовок"
+                    type="text"
+                />
             </ContentBox>
 
-            <RedactorItem
-                editable={ false }
-                extensions={ [ StarterKit ] }
-                html={ theme.title }
-                id={ `title_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { title: html }).then() }
-                title="Заголовок темы"
-                type="text"
-            />
+            <ContentBox>
+                <RedactorItem
+                    bubbleMenu={ [
+                        TextFormattingRedactMenu,
+                    ] }
+                    editable={ false }
+                    extensions={ [ StarterKit ] }
+                    html={ theme.description }
+                    id={ `desc_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { description: html }).then() }
+                    title="Описание"
+                />
+            </ContentBox>
 
-            <RedactorItem
-                bubbleMenu={ [
-                    TextFormattingRedactMenu,
-                ] }
-                editable={ false }
-                extensions={ [ StarterKit ] }
-                html={ theme.description }
-                id={ `desc_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { description: html }).then() }
-                title="Описание темы темы"
-            />
+            <ContentBox>
+                <RedactorItem
+                    bubbleMenu={ [
+                        TextFormattingRedactMenu,
+                    ] }
+                    editable={ false }
+                    extensions={ [ StarterKit ] }
+                    html={ theme.additional }
+                    id={ `additional_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { additional: html }).then() }
+                    title="Дополнительная информация"
+                />
+            </ContentBox>
 
-            <RedactorItem
-                bubbleMenu={ [
-                    TextFormattingRedactMenu,
-                ] }
-                editable={ false }
-                extensions={ [ StarterKit ] }
-                html={ theme.additional }
-                id={ `additional_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { additional: html }).then() }
-                title="Дополнительная информация темы"
-            />
+            <ContentBox>
+                <RedactorItem
+                    bubbleMenu={ [
+                        TableRedactMenu,
+                        ImageRedactMenu,
+                        TextFormattingRedactMenu,
+                        HeadingRedactMenu,
+                        FootnoteRedactMenu,
+                    ] }
+                    editable={ false }
+                    extensions={ [
+                        StarterKit,
+                        Table.configure({
+                            resizable              : true,
+                            cellMinWidth           : 20,
+                            handleWidth            : 5,
+                            lastColumnResizable    : false,
+                            allowTableNodeSelection: true,
+                        }),
+                        TableRow,
+                        TableHeader,
+                        TableCell,
+                        Image,
+                        TipTapFootnote,
+                    ] }
+                    floatingMenu={ [
+                        HeadingRedactMenu,
+                        FootnoteRedactMenu,
+                        ImageAddMenu,
+                        TableRedactMenu,
+                    ] }
+                    html={ theme.body }
+                    id={ `body_${ theme.id }` }
+                    onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { body: html }).then() }
+                    title="Текст"
+                />
+            </ContentBox>
 
-            { /** TODO: Если editable=false - перестает работать Table.resize, но если true - он работает всегда */ }
-            <RedactorItem
-                bubbleMenu={ [
-                    TableRedactMenu,
-                    ImageRedactMenu,
-                    TextFormattingRedactMenu,
-                    HeadingRedactMenu,
-                    FootnoteRedactMenu,
-                ] }
-                editable={ false }
-                extensions={ [
-                    StarterKit,
-                    Table.configure({
-                        resizable              : true,
-                        cellMinWidth           : 20,
-                        handleWidth            : 5,
-                        lastColumnResizable    : false,
-                        allowTableNodeSelection: true,
-                    }),
-                    TableRow,
-                    TableHeader,
-                    TableCell,
-                    Image,
-                    TipTapFootnote,
-                ] }
-                floatingMenu={ [
-                    HeadingRedactMenu,
-                    FootnoteRedactMenu,
-                    ImageAddMenu,
-                    TableRedactMenu,
-                ] }
-                html={ theme.body }
-                id={ `body_${ theme.id }` }
-                onSave={ async (html: string) => adminThemeService.update(authService.token[0], theme.id, { body: html }).then() }
-                title="Текст темы"
-            />
+            <TitleSection
+                extra={
+                    <Flex>
+                        <Button
+                            quad
+                            size="small"
+                            styleType="default"
+                        >
+                            <IconM size="small">add</IconM>
+                        </Button>
+                    </Flex>
+                }
+                title={ `Тесты (${ theme.tests.length })` }
+            >
+                <TileBox>
+                    {
+                        theme.tests.map((test) => (
+                            <Section key={ test.id } size="extra-small" type="main">
+                                <SpaceBetween>
+                                    <Toggle active={ true } size="small"/>
+                                    <Flex>
+                                        <P type="invisible">{ test.enabled ? 'Активен'
+                                                                           : 'Не активен' }</P>
+                                        <Toggle active={ test.enabled } size="small"/>
+                                        <Button
+                                            quad
+                                            size="small"
+                                            styleType="default"
+                                        >
+                                            <IconM size="small">edit</IconM>
+                                        </Button>
+                                    </Flex>
+                                </SpaceBetween>
+                                <Title lines={ 2 }>{ test.title }</Title>
+                            </Section>
+                        ))
+                    }
+                </TileBox>
+            </TitleSection>
+
+            <TitleSection
+                extra={
+                    <Flex>
+                        <Button
+                            quad
+                            size="small"
+                            styleType="default"
+                        >
+                            <IconM size="small">add</IconM>
+                        </Button>
+                    </Flex>
+                }
+                title={ `Вопросы (${ theme.questions.length })` }
+            >
+                <TileBox>
+                    {
+                        theme.questions.map((question) => (
+                            <Section key={ question.id } size="extra-small" type="main">
+                                <SpaceBetween>
+                                    <Toggle active={ true } size="small"/>
+                                    <Flex>
+                                        <P type="invisible">{ question.enabled ? 'Активен'
+                                                                               : 'Не активен' }</P>
+                                        <Toggle active={ question.enabled } size="small"/>
+                                        <Button
+                                            quad
+                                            size="small"
+                                            styleType="default"
+                                        >
+                                            <IconM size="small">edit</IconM>
+                                        </Button>
+                                    </Flex>
+                                </SpaceBetween>
+                                <Title lines={ 2 }>{ question.title }</Title>
+                                <P lines={ 2 }
+                                   type="invisible">{ question.description }</P>
+                            </Section>
+                        ))
+                    }
+                </TileBox>
+            </TitleSection>
         </Section>
     );
 });

@@ -16,8 +16,8 @@ import TestPreviewItem
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
-import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
 import { isNotEmptyHtml } from '@/helpers/in-not-empty-html.helper.ts';
+import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type GuidItemContainerProps = {
@@ -39,27 +39,37 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
 
     return (
         <Section size="small" tag="section">
-            <Breadcrumb
-                items={ [
-                    {
-                        label: <IconM>home</IconM>,
-                        url  : pageGetter.guids(),
-                    },
-                    ...data.breadcrumb.map((breadcrumb) => ({
-                        label: breadcrumb.title,
-                        url  : pageGetter.guid(breadcrumb.publicId),
-                    })),
-                ]
-                }
-            />
             <ContentBox>
-                <Section size="large">
+                <Section size="medium">
                     <Section size="extra-small">
-                        <ThemeTitleText
-                            publicId={ data.publicId }
-                            size="large"
-                            title={ data.title }
+                        <Breadcrumb
+                            items={ [
+                                {
+                                    label: <IconM>home</IconM>,
+                                    url  : pageGetter.guids(),
+                                },
+                                ...data.breadcrumb.map((breadcrumb) => ({
+                                    label: breadcrumb.title,
+                                    url  : pageGetter.guid(breadcrumb.publicId),
+                                })),
+                            ] }
                         />
+                        <Section size="extra-small" type="mark">
+                            <P type="second">Тема: { data.publicId.replace(/-/g, '.') }</P>
+                            {
+                                isNotEmptyHtml(data.additional)
+                                ? <P
+                                    className="tiptap"
+                                    dangerouslySetInnerHTML={ { __html: data.additional } }
+                                    tag="div"
+                                    type="second"
+                                />
+                                : null
+                            }
+                        </Section>
+                    </Section>
+                    <Section size="extra-small">
+                        <Title>{ data.title }</Title>
                         {
                             isNotEmptyHtml(data.description)
                             ? <P
@@ -84,22 +94,14 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                         /> : null
                     }
                     {
-                        isNotEmptyHtml(data.additional)
-                        ? <P
-                            className="tiptap"
-                            dangerouslySetInnerHTML={ { __html: data.additional } }
-                            tag="div"
-                            type="invisible"
-                        />
-                        : null
-                    }
-                    {
                         isNotEmptyHtml(data.body)
-                        ? <P
-                            className="tiptap"
-                            dangerouslySetInnerHTML={ { __html: data.body } }
-                            tag="div"
-                        /> : null
+                        ? <Section>
+                            <P
+                                className="tiptap"
+                                dangerouslySetInnerHTML={ { __html: data.body } }
+                                tag="div"
+                            />
+                        </Section> : null
                     }
                     <div>
                         <Button styleType="default">Следующая тема</Button>
