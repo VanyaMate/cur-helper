@@ -28,38 +28,43 @@ export interface PageUrlGetter {
     profile (login?: string): string;
 }
 
-export const usePageUrl = function (): PageUrlGetter {
+export const usePageUrl = function (prefix?: string): PageUrlGetter {
+    const _prefix = prefix ? prefix + '/' : '';
     return useMemo(() => ({
         home (): string {
-            return `/${ HOME_PAGE }`;
+            return `/${ _prefix }${ HOME_PAGE }`;
         },
         common (id: string): string {
-            return `/${ COMMON_PAGE }/${ id }`;
+            return `/${ _prefix }${ COMMON_PAGE }/${ id }`;
         },
         guid (id: string): string {
-            return `/${ GUID_PAGE }${ id ? `/${ id }` : '' }`;
+            return `/${ _prefix }${ GUID_PAGE }${ id ? `/${ id }` : '' }`;
         },
         guids (id: string): string {
-            return `/${ GUIDS_PAGE }${ id ? `/${ id }` : '' }`;
+            return `/${ _prefix }${ GUIDS_PAGE }${ id ? `/${ id }` : '' }`;
         },
         test (id: string): string {
             const [ themeId, testId ] = (id ?? '').split('-');
-            return `/${ TEST_PAGE }${ themeId ? `/${ themeId }${ testId ? `/${ testId }`
-                                                                        : '' }` : '' }`;
+            return `/${ _prefix }${ TEST_PAGE }${ themeId ? `/${ themeId }${ testId
+                                                                             ? `/${ testId }`
+                                                                             : '' }`
+                                                          : '' }`;
         },
         tests (id: string): string {
             const [ themeId, testId ] = (id ?? '').split('-');
-            return `/${ TESTS_PAGE }${ themeId ? `/${ themeId }${ testId ? `/${ testId }`
-                                                                         : '' }` : '' }`;
+            return `/${ _prefix }${ TESTS_PAGE }${ themeId ? `/${ themeId }${ testId
+                                                                              ? `/${ testId }`
+                                                                              : '' }`
+                                                           : '' }`;
         },
         testPassing (id: string): string {
-            return `/${ TEST_PAGE }/${ TEST_PASSING_PAGE }/${ id }`;
+            return `/${ _prefix }${ TEST_PAGE }/${ TEST_PASSING_PAGE }/${ id }`;
         },
         testResult (id: string): string {
-            return `/${ TEST_PAGE }/${ TEST_RESULT_PAGE }/${ id }`;
+            return `/${ _prefix }${ TEST_PAGE }/${ TEST_RESULT_PAGE }/${ id }`;
         },
         profile (login?: string): string {
-            return `/${ PROFILE_PAGE }${ login ? `/${ login }` : '' }`;
+            return `/${ _prefix }${ PROFILE_PAGE }${ login ? `/${ login }` : '' }`;
         },
-    }), []);
+    }), [ _prefix ]);
 };

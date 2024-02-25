@@ -6,7 +6,7 @@ import {
     AdminTestQuestionsShort,
     TestType,
     MultiplyResponse,
-    AdminTestShortType,
+    AdminTestShortType, TestCreateType, With,
 } from '@vanyamate/cur-helper-types';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
@@ -24,8 +24,20 @@ export class AdminTestService implements IAdminTestService {
         makeAutoObservable(this);
     }
 
-    create (): void {
-        throw new Error('Method not implemented.');
+
+    async create (token: string, data: TestCreateType): Promise<With<TestType, [ AdminTestThemeShort, AdminTestQuestionsShort ]>> {
+        return fetch(`${ API_HOST }/api/v1/test`, {
+            method : 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+            body   : JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            });
     }
 
     async update (token: string, id: string, data: Partial<TestType>): Promise<TestType> {
