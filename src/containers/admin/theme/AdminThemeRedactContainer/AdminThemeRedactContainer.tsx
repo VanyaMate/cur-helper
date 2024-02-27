@@ -38,6 +38,10 @@ import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
+import AdminTestListHeaderExtraWidget
+    from '@/widgets/admin/test/AdminTestListHeaderExtraWidget/AdminTestListHeaderExtraWidget.tsx';
+import EditTestButtonFeature
+    from '@/features/admin/test/AdminEditTestButtonFeature/AdminEditTestButtonFeature.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -165,15 +169,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
 
             <TitleSection
                 extra={
-                    <Flex>
-                        <Button
-                            quad
-                            size="small"
-                            styleType="default"
-                        >
-                            <IconM size="small">add</IconM>
-                        </Button>
-                    </Flex>
+                    <AdminTestListHeaderExtraWidget themeId={ theme.publicId }/>
                 }
                 title={ `Тесты (${ theme.tests.length })` }
             >
@@ -182,18 +178,14 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         theme.tests.map((test) => (
                             <Section key={ test.id } size="extra-small" type="main">
                                 <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
+                                    <Link hardColor target="_blank" to="#">
+                                        <P type="invisible">Ссылка</P>
+                                    </Link>
                                     <Flex>
                                         <P type="invisible">{ test.enabled ? 'Активен'
                                                                            : 'Не активен' }</P>
                                         <Toggle active={ test.enabled } size="small"/>
-                                        <Button
-                                            quad
-                                            size="small"
-                                            styleType="default"
-                                        >
-                                            <IconM size="small">edit</IconM>
-                                        </Button>
+                                        <EditTestButtonFeature testId={ test.id }/>
                                     </Flex>
                                 </SpaceBetween>
                                 <Title lines={ 2 }>{ test.title }</Title>
@@ -222,7 +214,15 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         theme.questions.map((question) => (
                             <Section key={ question.id } size="extra-small" type="main">
                                 <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
+                                    <Toggle
+                                        active={ true }
+                                        onToggleAsync={ async () => {
+                                            return new Promise<void>((resolve) => {
+                                                setTimeout(() => resolve(), 1000);
+                                            }).then();
+                                        } }
+                                        size="small"
+                                    />
                                     <Flex>
                                         <P type="invisible">{ question.enabled ? 'Активен'
                                                                                : 'Не активен' }</P>

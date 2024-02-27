@@ -24,6 +24,9 @@ const AdminTestRedactPage: React.FC<AdminTestRedactPageProps> = (props) => {
         return null;
     }
 
+    {
+        // TODO: Вынести это в lazy
+    }
     return <AdminTestRedactContainer id={ guidId }/>;
 };
 

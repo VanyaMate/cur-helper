@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Editor } from '@tiptap/react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import MenuButton from '@/components/tiptap/menu/MenuButton/MenuButton.tsx';
-import { createPortal } from 'react-dom';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {
     useWindowPopupController,
@@ -29,31 +28,26 @@ const ImageRedactMenu: React.FC<ImageBubbleMenuProps> = (props) => {
 
     return (
         <>
-            {
-                createPortal(
-                    <WindowPopup controller={ imageRedactorController }>
-                        <Section>
-                            <Input
-                                defaultValue={ src }
-                                onChangeHandler={ setSrc }
-                            />
-                            <Input
-                                defaultValue={ alt }
-                                onChangeHandler={ setAlt }
-                            />
-                            <Button onClick={
-                                () => {
-                                    updateImage(editor)({ src, alt });
-                                    imageRedactorController.close();
-                                } }
-                            >
-                                Изменить
-                            </Button>
-                        </Section>
-                    </WindowPopup>,
-                    document.body,
-                )
-            }
+            <WindowPopup controller={ imageRedactorController }>
+                <Section>
+                    <Input
+                        defaultValue={ src }
+                        onChangeHandler={ setSrc }
+                    />
+                    <Input
+                        defaultValue={ alt }
+                        onChangeHandler={ setAlt }
+                    />
+                    <Button onClick={
+                        () => {
+                            updateImage(editor)({ src, alt });
+                            imageRedactorController.close();
+                        } }
+                    >
+                        Изменить
+                    </Button>
+                </Section>
+            </WindowPopup>
             <Flex size="extra-small">
                 <MenuButton isActive={ false }
                             onClick={ () => imageRedactorController.open() }>

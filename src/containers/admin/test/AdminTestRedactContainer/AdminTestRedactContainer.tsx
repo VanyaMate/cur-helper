@@ -104,25 +104,25 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                     <SaveInput
                         defaultValue={ test.questionsAmount }
                         label="Количество вопросов"
-                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { questionsAmount: Number(value) * 60 * 1000 }).then() }
-                        type="number"
-                    />
-                    <SaveInput
-                        defaultValue={ test.unsatisfactoryScore }
-                        label="Неудовлетворительно"
-                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { unsatisfactoryScore: Number(value) * 60 * 1000 }).then() }
-                        type="number"
-                    />
-                    <SaveInput
-                        defaultValue={ test.satisfactoryScore }
-                        label="Удовлетворительно"
-                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { satisfactoryScore: Number(value) * 60 * 1000 }).then() }
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { questionsAmount: Number(value) }).then() }
                         type="number"
                     />
                     <SaveInput
                         defaultValue={ test.perfectScore }
                         label="Идеально"
-                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { perfectScore: Number(value) * 60 * 1000 }).then() }
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { perfectScore: Number(value) }).then() }
+                        type="number"
+                    />
+                    <SaveInput
+                        defaultValue={ test.satisfactoryScore }
+                        label="Удовлетворительно"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { satisfactoryScore: Number(value) }).then() }
+                        type="number"
+                    />
+                    <SaveInput
+                        defaultValue={ test.unsatisfactoryScore }
+                        label="Неудовлетворительно"
+                        onSave={ async (value: string) => adminTestService.update(authService.token[0], test.id, { unsatisfactoryScore: Number(value) }).then() }
                         type="number"
                     />
                 </TileBox>

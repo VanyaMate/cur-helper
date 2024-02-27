@@ -6,7 +6,7 @@ import { makeAutoObservable } from 'mobx';
 import {
     AdminThemeShortType,
     AdminThemeType,
-    MultiplyResponse,
+    MultiplyResponse, ThemeCreateType,
     ThemeType,
 } from '@vanyamate/cur-helper-types';
 
@@ -23,8 +23,27 @@ export class AdminThemeService implements IAdminThemeService {
         makeAutoObservable(this, {}, { deep: true });
     }
 
-    create (): void {
-        throw new Error('Method not implemented.');
+    async create (token: string, data: ThemeCreateType): Promise<AdminThemeType> {
+        return fetch(`${ API_HOST }/api/v1/theme`, {
+            method : 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+            body   : JSON.stringify(data),
+        })
+            .then(async (response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    const error = await response.json();
+                    return Promise.reject(error);
+                }
+            })
+            .then((theme) => {
+                // this.themes.set(theme.publicId, theme);
+                return theme;
+            });
     }
 
     async update (token: string, id: string, data: Partial<ThemeType>): Promise<AdminThemeType> {

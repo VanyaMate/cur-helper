@@ -3,6 +3,7 @@ import {
     MultiplyResponse,
     AdminThemeShortType,
     AdminThemeType,
+    ThemeCreateType,
 } from '@vanyamate/cur-helper-types';
 
 
@@ -10,7 +11,7 @@ export interface IAdminThemeService {
     themes: Map<string, AdminThemeType>;
     themesList: MultiplyResponse<AdminThemeShortType>;
 
-    create (): void;
+    create (token: string, data: ThemeCreateType): Promise<AdminThemeType>;
 
     update (token: string, id: string, data: ThemeUpdateType): Promise<AdminThemeType>;
 

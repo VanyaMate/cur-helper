@@ -3,6 +3,7 @@ import css from './WindowPopup.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import { createPortal } from 'react-dom';
 
 
 export interface IWindowPopupController {
@@ -22,7 +23,7 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
               controller,
           } = props;
 
-    return (
+    return createPortal(
         <div className={ cn(css.container, controller.opened && css.opened) }>
             <div className={ css.background } onClick={ controller.close }/>
             <Section
@@ -41,6 +42,7 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
                 </div>
             </Section>
         </div>
+        , document.body,
     );
 };
 
