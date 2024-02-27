@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 export type CreateThemeButtonFeatureProps = {};
 
-const CreateThemeButtonFeature: React.FC<CreateThemeButtonFeatureProps> = (props) => {
+const OpenCreateThemeFormButtonFeature: React.FC<CreateThemeButtonFeatureProps> = (props) => {
     const {}                  = props;
     const createThemePopup    = useWindowPopupController();
     const [ id, setId ]       = useState<string>('');
@@ -71,4 +71,4 @@ const CreateThemeButtonFeature: React.FC<CreateThemeButtonFeatureProps> = (props
     );
 };
 
-export default React.memo(CreateThemeButtonFeature);
+export default React.memo(OpenCreateThemeFormButtonFeature);

@@ -41,7 +41,11 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 import AdminTestListHeaderExtraWidget
     from '@/widgets/admin/test/AdminTestListHeaderExtraWidget/AdminTestListHeaderExtraWidget.tsx';
 import EditTestButtonFeature
-    from '@/features/admin/test/EditTestButtonFeature/EditTestButtonFeature';
+    from '@/features/admin/test/AdminEditTestButtonFeature/AdminEditTestButtonFeature.tsx';
+import OpenCreateTestFormButtonFeature
+    from '@/features/admin/test/AdminOpenCreateTestFormButtonFeature/AdminOpenCreateTestFormButtonFeature.tsx';
+import OpenAddTestToThemeFormButtonFeature
+    from '@/features/admin/test/AdminOpenAddTestToThemeFormButtonFeature/AdminOpenAddTestToThemeFormButtonFeature.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -178,7 +182,9 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         theme.tests.map((test) => (
                             <Section key={ test.id } size="extra-small" type="main">
                                 <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
+                                    <Link hardColor target="_blank" to="#">
+                                        <P type="invisible">Ссылка</P>
+                                    </Link>
                                     <Flex>
                                         <P type="invisible">{ test.enabled ? 'Активен'
                                                                            : 'Не активен' }</P>
@@ -212,7 +218,15 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         theme.questions.map((question) => (
                             <Section key={ question.id } size="extra-small" type="main">
                                 <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
+                                    <Toggle
+                                        active={ true }
+                                        onToggleAsync={ async () => {
+                                            return new Promise<void>((resolve) => {
+                                                setTimeout(() => resolve(), 1000);
+                                            }).then();
+                                        } }
+                                        size="small"
+                                    />
                                     <Flex>
                                         <P type="invisible">{ question.enabled ? 'Активен'
                                                                                : 'Не активен' }</P>

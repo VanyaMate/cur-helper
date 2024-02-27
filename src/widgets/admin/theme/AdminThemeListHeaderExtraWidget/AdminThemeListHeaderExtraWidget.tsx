@@ -1,7 +1,7 @@
 import React from 'react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import CreateThemeButtonFeature
-    from '@/features/admin/theme/CreateThemeButtonFeature/CreateThemeButtonFeature.tsx';
+    from '@/features/admin/theme/OpenCreateThemeFormButtonFeature/OpenCreateThemeFormButtonFeature.tsx';
 
 
 export type AdminThemeListHeaderExtraWidgetProps = {};

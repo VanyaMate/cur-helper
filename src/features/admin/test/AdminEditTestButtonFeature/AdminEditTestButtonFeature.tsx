@@ -5,11 +5,11 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { useNavigate } from 'react-router-dom';
 
 
-export type EditTestButtonFeatureProps = {
+export type AdminEditTestButtonFeatureProps = {
     testId: string;
 };
 
-const EditTestButtonFeature: React.FC<EditTestButtonFeatureProps> = (props) => {
+const AdminEditTestButtonFeature: React.FC<AdminEditTestButtonFeatureProps> = (props) => {
     const { testId } = props;
     const pageGetter = usePageUrl('admin');
     const navigate   = useNavigate();
@@ -26,4 +26,4 @@ const EditTestButtonFeature: React.FC<EditTestButtonFeatureProps> = (props) => {
     );
 };
 
-export default React.memo(EditTestButtonFeature);
+export default React.memo(AdminEditTestButtonFeature);

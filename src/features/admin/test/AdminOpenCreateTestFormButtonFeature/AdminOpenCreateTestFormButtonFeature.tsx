@@ -13,11 +13,11 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { useNavigate } from 'react-router-dom';
 
 
-export type CreateTestButtonFeatureProps = {
+export type AdminOpenCreateTestFormButtonFeatureProps = {
     themeId?: string;
 };
 
-const CreateTestButtonFeature: React.FC<CreateTestButtonFeatureProps> = (props) => {
+const AdminOpenCreateTestFormButtonFeature: React.FC<AdminOpenCreateTestFormButtonFeatureProps> = (props) => {
     const { themeId }                         = props;
     const [ publicThemeId, setPublicThemeId ] = useState<string>(themeId ?? '');
     const [ title, setTitle ]                 = useState<string>('');
@@ -72,4 +72,4 @@ const CreateTestButtonFeature: React.FC<CreateTestButtonFeatureProps> = (props) 
     );
 };
 
-export default React.memo(CreateTestButtonFeature);
+export default React.memo(AdminOpenCreateTestFormButtonFeature);

@@ -24,7 +24,6 @@ export class AdminTestService implements IAdminTestService {
         makeAutoObservable(this);
     }
 
-
     async create (token: string, data: TestCreateType): Promise<With<TestType, [ AdminTestThemeShort, AdminTestQuestionsShort ]>> {
         return fetch(`${ API_HOST }/api/v1/test`, {
             method : 'POST',

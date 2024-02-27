@@ -1,7 +1,7 @@
 import React from 'react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import CreateTestButtonFeature
-    from '@/features/admin/test/CreateTestButtonFeature/CreateTestButtonFeature';
+    from '@/features/admin/test/AdminOpenCreateTestFormButtonFeature/AdminOpenCreateTestFormButtonFeature.tsx';
 
 
 export type AdminTestListHeaderExtraWidgetProps = {
