@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Editor } from '@tiptap/react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import MenuButton from '@/components/tiptap/menu/MenuButton/MenuButton.tsx';
-import { createPortal } from 'react-dom';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {
     useWindowPopupController,

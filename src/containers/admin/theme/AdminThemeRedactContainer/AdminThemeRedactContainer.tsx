@@ -42,10 +42,6 @@ import AdminTestListHeaderExtraWidget
     from '@/widgets/admin/test/AdminTestListHeaderExtraWidget/AdminTestListHeaderExtraWidget.tsx';
 import EditTestButtonFeature
     from '@/features/admin/test/AdminEditTestButtonFeature/AdminEditTestButtonFeature.tsx';
-import OpenCreateTestFormButtonFeature
-    from '@/features/admin/test/AdminOpenCreateTestFormButtonFeature/AdminOpenCreateTestFormButtonFeature.tsx';
-import OpenAddTestToThemeFormButtonFeature
-    from '@/features/admin/test/AdminOpenAddTestToThemeFormButtonFeature/AdminOpenAddTestToThemeFormButtonFeature.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
