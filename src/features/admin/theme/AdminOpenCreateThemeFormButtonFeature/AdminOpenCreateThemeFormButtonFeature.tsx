@@ -13,9 +13,9 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { useNavigate } from 'react-router-dom';
 
 
-export type CreateThemeButtonFeatureProps = {};
+export type AdminOpenCreateThemeFormButtonFeatureProps = {};
 
-const OpenCreateThemeFormButtonFeature: React.FC<CreateThemeButtonFeatureProps> = (props) => {
+const AdminOpenCreateThemeFormButtonFeature: React.FC<AdminOpenCreateThemeFormButtonFeatureProps> = (props) => {
     const {}                  = props;
     const createThemePopup    = useWindowPopupController();
     const [ id, setId ]       = useState<string>('');
@@ -71,4 +71,4 @@ const OpenCreateThemeFormButtonFeature: React.FC<CreateThemeButtonFeatureProps> 
     );
 };
 
-export default React.memo(OpenCreateThemeFormButtonFeature);
+export default React.memo(AdminOpenCreateThemeFormButtonFeature);

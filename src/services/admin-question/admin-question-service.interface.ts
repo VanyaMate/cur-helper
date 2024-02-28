@@ -1,11 +1,26 @@
+import {
+    QuestionType,
+    With,
+    QuestionAnswers,
+    QuestionCreateType,
+    QuestionUpdateType,
+    AdminQuestionShortType,
+    Filter, MultiplyResponse,
+} from '@vanyamate/cur-helper-types';
+import { QuestionFullType, QuestionThemes } from '@vanyamate/cur-helper-types/types/question';
+
+
 export interface IAdminQuestionService {
-    create (): void;
+    questions: Map<string, QuestionFullType>;
+    questionList: MultiplyResponse<AdminQuestionShortType>;
 
-    update (): void;
+    create (token: string, data: QuestionCreateType): Promise<QuestionType>;
 
-    delete (): void;
+    update (token: string, id: string, data: QuestionUpdateType): Promise<QuestionType>;
 
-    findOne (): void;
+    delete (token: string, id: string): Promise<boolean>;
 
-    findMany (): void;
+    findOne (token: string, id: string): Promise<QuestionFullType>;
+
+    findMany (token: string, filter: Filter<QuestionType>): Promise<MultiplyResponse<AdminQuestionShortType>>;
 }
