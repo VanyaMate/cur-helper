@@ -23,4 +23,4 @@ const MenuButton: React.FC<MenuButtonProps> = (props) => {
     );
 };
 
-export default React.memo(MenuButton);
+export default MenuButton;

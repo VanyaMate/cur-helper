@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BubbleMenu, Editor } from '@tiptap/react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import {
-    RedactorEditorContext
+    RedactorEditorContext,
 } from '@/containers/redactor/RedactorItem/RedactorItemContext.ts';
 
 
@@ -22,7 +22,10 @@ const RedactorBubbleMenu: React.FC<RedactorBubbleMenuProps> = (props) => {
         <BubbleMenu editor={ editor }>
             <Flex size="extra-small" type="main">
                 {
-                    menu.map((Menu) => <Menu editor={ editor } key={ Menu.name }/>)
+                    // TODO: Временное решение с таким divider-ом
+                    menu.map((Menu) => (
+                        <Menu editor={ editor } key={ Menu.name }/>
+                    ))
                 }
             </Flex>
         </BubbleMenu>

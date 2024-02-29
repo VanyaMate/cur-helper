@@ -44,6 +44,11 @@ import EditTestButtonFeature
     from '@/features/admin/test/AdminEditTestButtonFeature/AdminEditTestButtonFeature.tsx';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
+import { Highlight } from '@tiptap/extension-highlight';
+import TextColorRedactMenu
+    from '@/components/tiptap/menu/redact-menu/TextColorRedactMenu/TextColorRedactMenu.tsx';
+import { Color } from '@tiptap/extension-color';
+import { TextStyle } from '@tiptap/extension-text-style';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -141,11 +146,14 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         TableRedactMenu,
                         ImageRedactMenu,
                         TextFormattingRedactMenu,
+                        TextColorRedactMenu,
                         HeadingRedactMenu,
                         FootnoteRedactMenu,
                     ] }
-                    editable={ false }
+                    editable={ true }
                     extensions={ [
+                        TextStyle,
+                        Color,
                         StarterKit,
                         Table.configure({
                             resizable              : true,
@@ -159,6 +167,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         TableCell,
                         Image,
                         TipTapFootnote,
+                        Highlight.configure({ multicolor: true }),
                     ] }
                     floatingMenu={ [
                         HeadingRedactMenu,
