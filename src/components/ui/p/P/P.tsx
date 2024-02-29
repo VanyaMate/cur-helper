@@ -6,6 +6,7 @@ import { cn } from '@vanyamate/helpers/react/classname';
 export type PType =
     'invisible'
     | 'main'
+    | 'blue'
     | 'danger'
     | 'primary'
     | 'second';
@@ -32,6 +33,7 @@ const P: React.FC<PProps> = (props) => {
             !!lines && css.lines,
             type === 'invisible' && css.invisible,
             type === 'second' && css.second,
+            type === 'blue' && css.blue,
             type === 'main' && css.main,
             type === 'danger' && css.danger,
             type === 'primary' && css.primary,

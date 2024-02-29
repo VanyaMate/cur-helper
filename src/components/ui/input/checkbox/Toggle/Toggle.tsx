@@ -17,7 +17,7 @@ export type ToggleProps = {
 
 const Toggle: React.FC<ToggleProps> = (props) => {
     const { active, size, onToggle, onToggleAsync } = props;
-    const [ loading, setLoading ]                   = useState<boolean>(false);
+    const [ loading, setLoading ]                                             = useState<boolean>(false);
 
     return (
         <div

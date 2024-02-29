@@ -1,0 +1,8 @@
+.container {
+    &.left {
+    }
+
+    &.right {
+        flex-direction : row-reverse;
+    }
+}

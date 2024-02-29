@@ -23,7 +23,7 @@ const AdminOpenQuestionCreateFormButtonFeature: React.FC<AdminOpenQuestionCreate
                 quad
                 size="small"
             >
-                <IconM size="small">edit</IconM>
+                <IconM size="small">add</IconM>
             </Button>
         </>
     );

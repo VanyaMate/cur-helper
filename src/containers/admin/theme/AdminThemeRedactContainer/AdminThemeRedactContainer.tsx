@@ -27,7 +27,7 @@ import { observer } from 'mobx-react-lite';
 import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Toggle from '@/components/ui/input/checkbox/toggle/Toggle.tsx';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
@@ -42,6 +42,8 @@ import AdminTestListHeaderExtraWidget
     from '@/widgets/admin/test/AdminTestListHeaderExtraWidget/AdminTestListHeaderExtraWidget.tsx';
 import EditTestButtonFeature
     from '@/features/admin/test/AdminEditTestButtonFeature/AdminEditTestButtonFeature.tsx';
+import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
+import Tag from '@/components/common/Tag/Tag.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -66,14 +68,18 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         <P>{ theme.publicId }</P>
                     </Flex>
                     <Flex>
-                        <P type="invisible">{ theme.enabled ? 'Активна'
-                                                            : 'Не активна' }</P>
-                        <Toggle
+                        <LabelToggle
                             active={ theme.enabled }
+                            activeText={
+                                <Tag type="main">Активна</Tag>
+                            }
                             onToggleAsync={ (value) => adminThemeService.update(authService.token[0], theme.id, {
                                 enabled: value,
                             }).then() }
                             size="small"
+                            unActiveText={
+                                <Tag type="invisible">Не активна</Tag>
+                            }
                         />
                     </Flex>
                 </SpaceBetween>
@@ -182,9 +188,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                         <P type="invisible">Ссылка</P>
                                     </Link>
                                     <Flex>
-                                        <P type="invisible">{ test.enabled ? 'Активен'
-                                                                           : 'Не активен' }</P>
-                                        <Toggle active={ test.enabled } size="small"/>
+                                        <LabelToggle
+                                            active={ test.enabled }
+                                            activeText={
+                                                <Tag type="main">Активен</Tag>
+                                            }
+                                            size="small"
+                                            unActiveText={
+                                                <Tag type="invisible">Не активен</Tag>
+                                            }
+                                        />
                                         <EditTestButtonFeature testId={ test.id }/>
                                     </Flex>
                                 </SpaceBetween>
@@ -224,9 +237,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                         size="small"
                                     />
                                     <Flex>
-                                        <P type="invisible">{ question.enabled ? 'Активен'
-                                                                               : 'Не активен' }</P>
-                                        <Toggle active={ question.enabled } size="small"/>
+                                        <LabelToggle
+                                            active={ question.enabled }
+                                            activeText={
+                                                <Tag type="main">Активен</Tag>
+                                            }
+                                            size="small"
+                                            unActiveText={
+                                                <Tag type="invisible">Не активен</Tag>
+                                            }
+                                        />
                                         <Button
                                             quad
                                             size="small"
