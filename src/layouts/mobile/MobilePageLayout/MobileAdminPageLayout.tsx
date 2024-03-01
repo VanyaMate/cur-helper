@@ -8,7 +8,7 @@ import HeaderCurContainer
     from '@/containers/header/HeaderCurContainer/HeaderCurContainer';
 import {
     ADMIN_PAGE,
-    GUIDS_PAGE, HOME_PAGE, PROFILES_PAGE, QUESTIONS_PAGE,
+    GUIDS_PAGE, HOME_PAGE, QUESTIONS_PAGE,
     TESTS_PAGE,
 } from '@/constants/pages.ts';
 import {

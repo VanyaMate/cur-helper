@@ -8,8 +8,6 @@ import { observer } from 'mobx-react-lite';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import P from '@/components/ui/p/P/P.tsx';
-import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import { authService } from '@/services/auth/auth.service.ts';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import RedactorItem from '@/containers/redactor/RedactorItem/RedactorItem.tsx';
@@ -31,6 +29,8 @@ export type AdminQuestionRedactContainerProps = {
 const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> = observer((props) => {
     const { id }                                 = props;
     const question: QuestionFullType | undefined = adminQuestionService.questions.get(id);
+
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
     const pageGetter                             = usePageUrl();
 
     if (!question) {

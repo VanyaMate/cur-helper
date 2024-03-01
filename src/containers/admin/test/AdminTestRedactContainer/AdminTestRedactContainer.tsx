@@ -23,9 +23,6 @@ import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
-import {
-    adminQuestionService,
-} from '@/services/admin-question/admin-question.service.ts';
 
 
 export type AdminTestRedactContainerProps = {

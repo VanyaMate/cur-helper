@@ -74,7 +74,7 @@ export const usePageUrl = function (prefix?: string): PageUrlGetter {
         question (id?: string): string {
             return `/${ _prefix }${ QUESTION_PAGE }${ id ? `/${ id }` : '' }`;
         },
-        questions (id?: string): string {
+        questions (): string {
             return `/${ _prefix }${ QUESTIONS_PAGE }`;
         },
     }), [ _prefix ]);

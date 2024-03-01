@@ -3,7 +3,6 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
@@ -13,8 +12,6 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { useNavigate } from 'react-router-dom';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
-import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
-import { authService } from '@/services/auth/auth.service.ts';
 
 
 export type AdminThemeListWidgetProps = {

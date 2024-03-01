@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import MenuButton from '@/components/tiptap/menu/MenuButton/MenuButton.tsx';
 import {
     highlightColor,
-    isHighlight, setColor, textColor, toggleHighlight,
+    setColor, textColor, toggleHighlight,
 } from '@/components/tiptap/helpers/text.ts';
 import { Editor } from '@tiptap/react';
 import ColorPicker from '@/components/ui/input/ColorPicker/ColorPicker.tsx';

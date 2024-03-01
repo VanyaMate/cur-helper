@@ -1,13 +1,11 @@
 import {
     QuestionType,
-    With,
-    QuestionAnswers,
     QuestionCreateType,
     QuestionUpdateType,
     AdminQuestionShortType,
     Filter, MultiplyResponse,
 } from '@vanyamate/cur-helper-types';
-import { QuestionFullType, QuestionThemes } from '@vanyamate/cur-helper-types/types/question';
+import { QuestionFullType } from '@vanyamate/cur-helper-types/types/question';
 
 
 export interface IAdminQuestionService {
