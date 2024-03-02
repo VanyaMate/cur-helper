@@ -11,6 +11,7 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import { RedactorEditorContext } from './RedactorItemContext';
 import { EditorEvents } from '@tiptap/core';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
+import { SectionType } from '@/components/ui/container/Section/Section.tsx';
 
 
 export type RedactorItemProps = {
@@ -23,6 +24,7 @@ export type RedactorItemProps = {
     editable: boolean;
     onSave: (html: string) => Promise<void>;
     type?: 'html' | 'text';
+    blockType?: SectionType;
 };
 
 const RedactorItem: React.FC<RedactorItemProps> = (props) => {
@@ -32,6 +34,7 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
               extensions,
               html,
               title,
+              blockType,
               type,
               onSave,
               floatingMenu,
@@ -68,9 +71,9 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                 <Flex>
                     <Button
                         disabled={ !isChanged }
-                        onClick={ () => {
-                            onSave(type === 'text' ? editor.getText()
-                                                   : editor.getHTML()).then();
+                        onClickAsync={ async () => {
+                            return onSave(type === 'text' ? editor.getText()
+                                                          : editor.getHTML()).then();
                         } }
                         quad
                         size="small"
@@ -104,6 +107,7 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                 </Flex>
             }
             title={ title }
+            type={ blockType }
         >
             <EditorContent editor={ editor }/>
             {

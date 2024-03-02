@@ -7,6 +7,7 @@ import { TableRow } from '@tiptap/extension-table-row';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { Image } from '@tiptap/extension-image';
+import { Link as TiptapLink } from '@tiptap/extension-link';
 import {
     TipTapFootnote,
 } from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.ts';
@@ -27,7 +28,7 @@ import { observer } from 'mobx-react-lite';
 import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Toggle from '@/components/ui/input/checkbox/toggle/Toggle.tsx';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
@@ -42,6 +43,18 @@ import AdminTestListHeaderExtraWidget
     from '@/widgets/admin/test/AdminTestListHeaderExtraWidget/AdminTestListHeaderExtraWidget.tsx';
 import EditTestButtonFeature
     from '@/features/admin/test/AdminEditTestButtonFeature/AdminEditTestButtonFeature.tsx';
+import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
+import Tag from '@/components/common/Tag/Tag.tsx';
+import { Highlight } from '@tiptap/extension-highlight';
+import TextColorRedactMenu
+    from '@/components/tiptap/menu/redact-menu/TextColorRedactMenu/TextColorRedactMenu.tsx';
+import { Color } from '@tiptap/extension-color';
+import { TextStyle } from '@tiptap/extension-text-style';
+import BulletList from '@tiptap/extension-bullet-list';
+import { ListItem } from '@tiptap/extension-list-item';
+import ListAddMenu from '@/components/tiptap/menu/add-menu/ListAddMenu/ListAddMenu.tsx';
+import LinkRedactMenu
+    from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -66,14 +79,18 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         <P>{ theme.publicId }</P>
                     </Flex>
                     <Flex>
-                        <P type="invisible">{ theme.enabled ? 'Активна'
-                                                            : 'Не активна' }</P>
-                        <Toggle
+                        <LabelToggle
                             active={ theme.enabled }
+                            activeText={
+                                <Tag type="main">Активна</Tag>
+                            }
                             onToggleAsync={ (value) => adminThemeService.update(authService.token[0], theme.id, {
                                 enabled: value,
                             }).then() }
                             size="small"
+                            unActiveText={
+                                <Tag type="invisible">Не активна</Tag>
+                            }
                         />
                     </Flex>
                 </SpaceBetween>
@@ -135,11 +152,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         TableRedactMenu,
                         ImageRedactMenu,
                         TextFormattingRedactMenu,
+                        TextColorRedactMenu,
                         HeadingRedactMenu,
                         FootnoteRedactMenu,
+                        ListAddMenu,
+                        LinkRedactMenu,
                     ] }
-                    editable={ false }
+                    editable={ true }
                     extensions={ [
+                        TextStyle,
+                        Color,
                         StarterKit,
                         Table.configure({
                             resizable              : true,
@@ -148,17 +170,26 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                             lastColumnResizable    : false,
                             allowTableNodeSelection: true,
                         }),
+                        TiptapLink.configure({
+                            linkOnPaste: true,
+                            autolink   : true,
+                            protocols  : [ 'http', 'https' ],
+                        }),
                         TableRow,
                         TableHeader,
                         TableCell,
                         Image,
                         TipTapFootnote,
+                        Highlight.configure({ multicolor: true }),
+                        BulletList,
+                        ListItem,
                     ] }
                     floatingMenu={ [
                         HeadingRedactMenu,
                         FootnoteRedactMenu,
                         ImageAddMenu,
                         TableRedactMenu,
+                        ListAddMenu,
                     ] }
                     html={ theme.body }
                     id={ `body_${ theme.id }` }
@@ -182,9 +213,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                         <P type="invisible">Ссылка</P>
                                     </Link>
                                     <Flex>
-                                        <P type="invisible">{ test.enabled ? 'Активен'
-                                                                           : 'Не активен' }</P>
-                                        <Toggle active={ test.enabled } size="small"/>
+                                        <LabelToggle
+                                            active={ test.enabled }
+                                            activeText={
+                                                <Tag type="main">Активен</Tag>
+                                            }
+                                            size="small"
+                                            unActiveText={
+                                                <Tag type="invisible">Не активен</Tag>
+                                            }
+                                        />
                                         <EditTestButtonFeature testId={ test.id }/>
                                     </Flex>
                                 </SpaceBetween>
@@ -224,9 +262,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                         size="small"
                                     />
                                     <Flex>
-                                        <P type="invisible">{ question.enabled ? 'Активен'
-                                                                               : 'Не активен' }</P>
-                                        <Toggle active={ question.enabled } size="small"/>
+                                        <LabelToggle
+                                            active={ question.enabled }
+                                            activeText={
+                                                <Tag type="main">Активен</Tag>
+                                            }
+                                            size="small"
+                                            unActiveText={
+                                                <Tag type="invisible">Не активен</Tag>
+                                            }
+                                        />
                                         <Button
                                             quad
                                             size="small"

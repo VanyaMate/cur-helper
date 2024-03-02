@@ -11,9 +11,12 @@ export const PROFILES_PAGE         = 'profiles';
 export const PROFILE_SETTINGS_PAGE = 'settings';
 export const ARTICLE_PAGE          = 'article';
 export const ADMIN_PAGE            = 'admin';
+export const QUESTION_PAGE         = 'question';
+export const QUESTIONS_PAGE        = 'questions';
 
-export const THEME_ID   = 'themeId';
-export const TEST_ID    = 'testId';
-export const GUID_ID    = 'guidId';
-export const LOGIN      = 'login';
-export const ARTICLE_ID = 'articleId';
+export const THEME_ID    = 'themeId';
+export const TEST_ID     = 'testId';
+export const GUID_ID     = 'guidId';
+export const LOGIN       = 'login';
+export const ARTICLE_ID  = 'articleId';
+export const QUESTION_ID = 'questionId';

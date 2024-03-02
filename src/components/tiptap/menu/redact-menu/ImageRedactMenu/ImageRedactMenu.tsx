@@ -10,6 +10,7 @@ import Input from '@/components/ui/input/Input/Input.tsx';
 import { imageAttrs, isImage, updateImage } from '@/components/tiptap/helpers/image.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
+import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type ImageBubbleMenuProps = {
@@ -48,14 +49,14 @@ const ImageRedactMenu: React.FC<ImageBubbleMenuProps> = (props) => {
                     </Button>
                 </Section>
             </WindowPopup>
-            <Flex size="extra-small">
+            <Flex size="extra-small" type="main">
                 <MenuButton isActive={ false }
                             onClick={ () => imageRedactorController.open() }>
-                    R
+                    <IconM size="small">edit</IconM>
                 </MenuButton>
                 <MenuButton isActive={ false }
                             onClick={ () => editor.chain().focus().deleteNode('image').run() }>
-                    X
+                    <IconM size="small">close</IconM>
                 </MenuButton>
             </Flex>
         </>

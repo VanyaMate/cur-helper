@@ -18,9 +18,16 @@
         font-weight : bold;
     }
 
+    &.blue {
+        font-size   : 16px;
+        color       : var(--color-blue);
+        text-shadow : 0 0 10px var(--color-blue-transparent) !important;;
+        font-weight : bold;
+    }
+
     &.danger {
         font-size   : 16px;
-        color       : var(--color-red) !important;;
+        color       : var(--color-red) !important;
         text-shadow : 0 0 10px var(--color-red-transparent) !important;;
         font-weight : bold;
     }

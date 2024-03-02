@@ -32,6 +32,7 @@ import {
     TestPassingFullType,
     With,
 } from '@vanyamate/cur-helper-types';
+import { QuestionAnswers } from '@vanyamate/cur-helper-types/types/question';
 
 
 export type TestPassingContainerProps = {
@@ -39,18 +40,18 @@ export type TestPassingContainerProps = {
 };
 
 const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((props) => {
-    const { test }                                                = props;
-    const hash                                                    = useTestPassingQuestionHash(test?.questions.length ?? 0);
+    const { test }                                                                 = props;
+    const hash                                                                     = useTestPassingQuestionHash(test?.questions.length ?? 0);
     const {
               next, set, prev,
-          }                                                       = useTestPassingQuestionPageController(test, hash);
-    const currentQuestion: With<QuestionType, [ QuestionSelect ]> = useTestCurrentQuestion(test, hash.current - 1);
-    const completedAmount                                         = useTestCompletedQuestions(test.questions ?? []);
-    const completed                                               = useMemo(() => completedAmount === test.questions.length, [ test, completedAmount ]);
-    const popupQuestionListModal                                  = useWindowPopupController();
-    const popupFinishModal                                        = useWindowPopupController();
-    const navigate                                                = useNavigate();
-    const pageGetter                                              = usePageUrl();
+          }                                                                        = useTestPassingQuestionPageController(test, hash);
+    const currentQuestion: With<QuestionType, [ QuestionSelect, QuestionAnswers ]> = useTestCurrentQuestion(test, hash.current - 1);
+    const completedAmount                                                          = useTestCompletedQuestions(test.questions ?? []);
+    const completed                                                                = useMemo(() => completedAmount === test.questions.length, [ test, completedAmount ]);
+    const popupQuestionListModal                                                   = useWindowPopupController();
+    const popupFinishModal                                                         = useWindowPopupController();
+    const navigate                                                                 = useNavigate();
+    const pageGetter                                                               = usePageUrl();
 
     return (
         <>
@@ -65,7 +66,7 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                     </Section>
                     <OrderedList
                         list={
-                            test.questions.map((question: With<QuestionType, [ QuestionSelect ]>, index: number) => (
+                            test.questions.map((question: With<QuestionType, [ QuestionSelect, QuestionAnswers ]>, index: number) => (
                                 <Button
                                     block
                                     key={ question.title }

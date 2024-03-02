@@ -12,7 +12,7 @@ import { authService } from '@/services/auth/auth.service.ts';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
-import Toggle from '@/components/ui/input/checkbox/toggle/Toggle.tsx';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 

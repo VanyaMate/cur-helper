@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import AdminTestRedactContainer
-    from '@/containers/admin/test/AdminTestRedactContainer/AdminTestRedactContainer.tsx';
 import { TEST_ID } from '@/constants/pages.ts';
 import { useParams } from 'react-router-dom';
 import { authService } from '@/services/auth/auth.service.ts';
 import { adminTestService } from '@/services/admin-tests/admin-test.service.ts';
+
+
+const AdminTestRedactContainer
+          = React.lazy(() => import('@/containers/admin/test/AdminTestRedactContainer/AdminTestRedactContainer.tsx'));
 
 
 export type AdminTestRedactPageProps = {};

@@ -11,9 +11,9 @@
     padding       : var(--offset-small);
     border-radius : var(--offset-small);
     display       : inline-flex;
-    align-self    : start;
     font-size     : 12px;
     align-items   : center;
+    width         : fit-content;
 
     &.perfect {
         background : var(--color-gold);

@@ -17,7 +17,7 @@ const FootnoteRedactMenu: React.FC<FootnoteRedactMenuProps> = (props) => {
     const { editor } = props;
 
     return (
-        <Flex size="extra-small">
+        <Flex size="extra-small" type="main">
             <MenuButton
                 isActive={ isFootnoteType(editor)('urgent') }
                 onClick={ () => toggleFootnote(editor)('urgent') }

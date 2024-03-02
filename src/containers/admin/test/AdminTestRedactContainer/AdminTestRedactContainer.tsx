@@ -7,7 +7,7 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import P from '@/components/ui/p/P/P.tsx';
-import Toggle from '@/components/ui/input/checkbox/toggle/Toggle.tsx';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import { authService } from '@/services/auth/auth.service.ts';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import RedactorItem from '@/containers/redactor/RedactorItem/RedactorItem.tsx';
@@ -20,6 +20,14 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
 import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
+import { useNavigate } from 'react-router-dom';
+import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
+import Tag from '@/components/common/Tag/Tag.tsx';
+import AdminOpenQuestionCreateFormButtonFeature
+    from '@/features/admin/question/AdminOpenQuestionCreateFormButtonFeature/AdminOpenQuestionCreateFormButtonFeature.tsx';
+import {
+    adminTestQuestionService,
+} from '@/services/admin-test-question/admin-test-question.service.ts';
 
 
 export type AdminTestRedactContainerProps = {
@@ -27,9 +35,11 @@ export type AdminTestRedactContainerProps = {
 };
 
 const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observer((props) => {
-    const { id }     = props;
-    const test       = adminTestService.tests.get(id);
-    const pageGetter = usePageUrl();
+    const { id }          = props;
+    const test            = adminTestService.tests.get(id);
+    const pageGetter      = usePageUrl();
+    const adminPageGetter = usePageUrl('admin');
+    const navigate        = useNavigate();
 
     if (!test) {
         return <Loader/>;
@@ -44,14 +54,14 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                         <P>{ test.theme.publicId }</P>
                     </Flex>
                     <Flex>
-                        <P type="invisible">{ test.enabled ? 'Активен'
-                                                           : 'Не активен' }</P>
-                        <Toggle
+                        <LabelToggle
                             active={ test.enabled }
+                            activeText={ <Tag type="main">Активен</Tag> }
                             onToggleAsync={ (value) => adminTestService.update(authService.token[0], test.id, {
                                 enabled: value,
                             }).then() }
                             size="small"
+                            unActiveText={ <Tag type="invisible">Не активен</Tag> }
                         />
                     </Flex>
                 </SpaceBetween>
@@ -130,9 +140,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
 
             <TitleSection
                 extra={
-                    <Button quad size="small">
-                        <IconM size="small">add</IconM>
-                    </Button>
+                    <AdminOpenQuestionCreateFormButtonFeature testId={ test.id }/>
                 }
                 tag="section"
                 title={ `Вопросы (${ test.questions.length })` }
@@ -147,10 +155,34 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                                 type="main"
                             >
                                 <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
+                                    <Toggle
+                                        active={ true }
+                                        onToggleAsync={ async () =>
+                                            adminTestQuestionService
+                                                .removeQuestionFromTest(authService.token[0], test.id, question.id)
+                                                .then((value: boolean) => {
+                                                    if (value) {
+                                                        const deletedQuestion: string = question.id;
+                                                        test.questions                = test.questions.filter((question) => {
+                                                            return question.id !== deletedQuestion;
+                                                        });
+                                                    }
+                                                })
+                                                .then()
+                                        }
+                                        size="small"
+                                    />
                                     <Flex>
-                                        <Toggle active={ question.enabled } size="small"/>
+                                        <LabelToggle
+                                            active={ question.enabled }
+                                            activeText={ <Tag type="main">Активен</Tag> }
+                                            size="small"
+                                            unActiveText={
+                                                <Tag type="invisible">Не активен</Tag>
+                                            }
+                                        />
                                         <Button
+                                            onClick={ () => navigate(adminPageGetter.question(question.id)) }
                                             quad
                                             size="small"
                                             styleType="default"

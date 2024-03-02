@@ -106,9 +106,7 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                     <div>
                         <Button styleType="default">Следующая тема</Button>
                     </div>
-                    <Collapse key={ data.publicId }
-                              opened={ true }
-                              title="Тесты">
+                    <Collapse opened={ true } title="Тесты">
                         <TileBox>
                             {
                                 data.tests.map((test) => (

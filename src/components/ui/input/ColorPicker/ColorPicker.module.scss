@@ -1,0 +1,14 @@
+.container {
+    outline : none;
+    border  : none;
+
+    &.small {
+        width  : var(--height-small);
+        height : var(--height-small);
+    }
+
+    &.medium {
+        width  : var(--height-medium);
+        height : var(--height-medium);
+    }
+}

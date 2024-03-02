@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import css from '@/components/ui/container/Section/Section.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
+import css from './Section.module.scss';
 
 
 export type SectionSize =

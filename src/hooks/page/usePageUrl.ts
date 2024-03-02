@@ -1,7 +1,7 @@
 import {
     COMMON_PAGE,
     GUID_PAGE, GUIDS_PAGE,
-    HOME_PAGE, PROFILE_PAGE,
+    HOME_PAGE, PROFILE_PAGE, QUESTION_PAGE, QUESTIONS_PAGE,
     TEST_PAGE,
     TEST_PASSING_PAGE, TEST_RESULT_PAGE, TESTS_PAGE,
 } from '@/constants/pages.ts';
@@ -26,6 +26,10 @@ export interface PageUrlGetter {
     testPassing (id: string): string;
 
     profile (login?: string): string;
+
+    question (id?: string): string;
+
+    questions (id?: string): string;
 }
 
 export const usePageUrl = function (prefix?: string): PageUrlGetter {
@@ -65,6 +69,13 @@ export const usePageUrl = function (prefix?: string): PageUrlGetter {
         },
         profile (login?: string): string {
             return `/${ _prefix }${ PROFILE_PAGE }${ login ? `/${ login }` : '' }`;
+        },
+
+        question (id?: string): string {
+            return `/${ _prefix }${ QUESTION_PAGE }${ id ? `/${ id }` : '' }`;
+        },
+        questions (): string {
+            return `/${ _prefix }${ QUESTIONS_PAGE }`;
         },
     }), [ _prefix ]);
 };

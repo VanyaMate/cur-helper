@@ -18,7 +18,7 @@ const TextFormattingRedactMenu: React.FC<TextFormattingRedactMenuProps> = (props
     const { editor } = props;
 
     return (
-        <Flex size="extra-small">
+        <Flex size="extra-small" type="main">
             <MenuButton
                 isActive={ isBold(editor) }
                 onClick={ () => toggleBold(editor) }

@@ -1,5 +1,5 @@
 export interface IAdminTestQuestionService {
-    addQuestionToTest (): void;
+    addQuestionToTest (token: string, testId: string, questionId: string): Promise<boolean>;
 
-    removeQuestionFromTest (): void;
+    removeQuestionFromTest (token: string, testId: string, questionId: string): Promise<boolean>;
 }

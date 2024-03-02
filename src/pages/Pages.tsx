@@ -12,11 +12,19 @@ import {
     ARTICLE_ID,
     ARTICLE_PAGE,
     GUID_ID,
-    GUID_PAGE, GUIDS_PAGE, HOME_PAGE,
-    PROFILE_PAGE, PROFILE_SETTINGS_PAGE, TEST_ID,
+    GUID_PAGE,
+    GUIDS_PAGE,
+    HOME_PAGE,
+    PROFILE_PAGE,
+    PROFILE_SETTINGS_PAGE,
+    QUESTION_ID,
+    QUESTION_PAGE,
+    QUESTIONS_PAGE,
+    TEST_ID,
     TEST_PAGE,
     TEST_PASSING_PAGE,
-    TEST_RESULT_PAGE, TESTS_PAGE,
+    TEST_RESULT_PAGE,
+    TESTS_PAGE,
 } from '@/constants/pages.ts';
 import ArticleItemPage from '@/pages/article/item/ArticleItemPage.tsx';
 import ArticlesPage from '@/pages/article/ArticlesPage.tsx';
@@ -36,9 +44,14 @@ import AdminGuidRedactPage
     from '@/pages/admin/guid/AdminGuidRedactPage/AdminGuidRedactPage.tsx';
 import AdminTestRedactPage
     from '@/pages/admin/test/AdminTestRedactPage/AdminTestRedactPage.tsx';
+import AdminQuestionRedactPage
+    from '@/pages/admin/question/AdminQuestionRedactPage/AdminQuestionRedactPage.tsx';
+import AdminQuestionListPage
+    from '@/pages/admin/question/AdminQuestionListPage/AdminQuestionListPage.tsx';
 
 
 export type PagesProps = {}
+
 
 const Pages: React.FC<PagesProps> = (props) => {
     const {} = props;
@@ -52,6 +65,9 @@ const Pages: React.FC<PagesProps> = (props) => {
                 <Route element={ <AdminTestRedactPage/> }
                        path={ `${ TEST_PAGE }/:${ TEST_ID }` }/>
                 <Route element={ <AdminTestListPage/> } path={ `${ TESTS_PAGE }` }/>
+                <Route element={ <AdminQuestionListPage/> } path={ QUESTIONS_PAGE }/>
+                <Route element={ <AdminQuestionRedactPage/> }
+                       path={ `${ QUESTION_PAGE }/:${ QUESTION_ID }` }/>
                 <Route element={ <AdminHomePage/> } path={ `${ HOME_PAGE }` }/>
             </Route>
             <Route element={ <MobilePageLayout/> } path={ '/*' }>
