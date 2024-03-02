@@ -64,7 +64,7 @@ const AdminOpenCreateQuestionAnswerFormButtonFeature: React.FC<AdminOpenCreateQu
                                     answerCreatePopup.close();
                                 });
                         } }
-                        prefix={ <IconM size={'large'}>add</IconM> }
+                        prefix={ <IconM size="large">add</IconM> }
                     >
                         Добавить
                     </Button>
