@@ -5,6 +5,7 @@ import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetwe
 import P from '@/components/ui/p/P/P.tsx';
 import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
 import { TestPassingShortInfo } from '@vanyamate/cur-helper-types';
+import Timer from '@/components/common/Timer/Timer.tsx';
 
 
 export type TestResultPreviewProps = {

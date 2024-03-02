@@ -15,10 +15,11 @@ import {
     QuestionType,
     With,
 } from '@vanyamate/cur-helper-types';
+import { QuestionAnswers } from '@vanyamate/cur-helper-types/types/question';
 
 
 export type TestQuestionPassingProps = {
-    question: With<QuestionType, [ QuestionSelect ]>;
+    question: With<QuestionType, [ QuestionSelect, QuestionAnswers ]>;
     onSelect: (id: string) => Promise<boolean>;
 }
 
@@ -52,7 +53,10 @@ const TestQuestionPassing: React.FC<TestQuestionPassingProps> = (props) => {
         <Section tag="section">
             <Section size="medium">
                 <Title>{ question.title }</Title>
-                <P>{ question.description }</P>
+                <P
+                    className="tiptap"
+                    dangerouslySetInnerHTML={ { __html: question.body } }
+                />
                 <Section type="main">
                     <OrderedList
                         list={ question.answers.map((answer: QuestionAnswerType) => (

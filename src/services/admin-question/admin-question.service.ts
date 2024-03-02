@@ -13,12 +13,13 @@ import { API_HOST } from '@/constants/api.url.ts';
 
 
 export class AdminQuestionService implements IAdminQuestionService {
-    public questions: Map<string, QuestionFullType>               = new Map<string, QuestionFullType>();
-    public questionList: MultiplyResponse<AdminQuestionShortType> = {
+    public questions: Map<string, QuestionFullType>                               = new Map<string, QuestionFullType>();
+    public questionList: MultiplyResponse<AdminQuestionShortType>                 = {
         options: {},
         list   : [],
         count  : 0,
     };
+    public unlinkedForTest: Map<string, MultiplyResponse<AdminQuestionShortType>> = new Map<string, MultiplyResponse<AdminQuestionShortType>>();
 
     constructor () {
         makeAutoObservable(this);
@@ -101,6 +102,27 @@ export class AdminQuestionService implements IAdminQuestionService {
             .then((response) => response.json())
             .then((list: MultiplyResponse<AdminQuestionShortType>) => {
                 this.questionList = list;
+                return list;
+            });
+    }
+
+    async findManyUnlinkedForTest (token: string, testId: string): Promise<MultiplyResponse<AdminQuestionShortType>> {
+        return fetch(`${ API_HOST }/api/v1/admin/questions/unlinked-for-test/${ testId }`, {
+            method : 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json())
+            .then((list: MultiplyResponse<AdminQuestionShortType>) => {
+                const cached: MultiplyResponse<AdminQuestionShortType> | undefined = this.unlinkedForTest.get(testId);
+                if (cached) {
+                    // slice
+                    // else
+                    // add
+                }
+                this.unlinkedForTest.set(testId, list);
                 return list;
             });
     }

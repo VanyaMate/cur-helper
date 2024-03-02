@@ -43,7 +43,7 @@ const AdminOpenCreateTestFormButtonFeature: React.FC<AdminOpenCreateTestFormButt
                     />
                     <Button
                         disabled={ publicThemeId.trim() === '' || title.trim() === '' }
-                        onClick={ () =>
+                        onClickAsync={ async () =>
                             adminTestService
                                 .create(authService.token[0], {
                                     themeId: publicThemeId, title,
@@ -55,6 +55,7 @@ const AdminOpenCreateTestFormButtonFeature: React.FC<AdminOpenCreateTestFormButt
                                     setTitle('');
                                 })
                         }
+                        prefix={ <IconM>add</IconM> }
                     >
                         Создать
                     </Button>

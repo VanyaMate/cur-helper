@@ -36,10 +36,11 @@ const TextColorRedactMenu: React.FC<TextColorRedactMenuProps> = (props) => {
                 value={ textColor(editor) }
             />
             <MenuButton
+                activeType="danger"
                 isActive={ isColor(editor) }
                 onClick={ () => unsetColor(editor) }
             >
-                <IconM>remove</IconM>
+                <IconM>close</IconM>
             </MenuButton>
             |
             <ColorPicker
@@ -47,10 +48,11 @@ const TextColorRedactMenu: React.FC<TextColorRedactMenuProps> = (props) => {
                 value={ highlightColor(editor) }
             />
             <MenuButton
+                activeType="danger"
                 isActive={ isHighlight(editor) }
                 onClick={ () => unsetHighlight(editor) }
             >
-                <IconM>remove</IconM>
+                <IconM>close</IconM>
             </MenuButton>
         </Flex>
     );

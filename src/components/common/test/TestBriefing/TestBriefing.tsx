@@ -48,8 +48,9 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                 <footer className={ css.footer }>
                     <div className={ css.footer_info }>
                         {
-                            description ? <P className={ css.notice }>{ description }</P>
-                                        : null
+                            description
+                            ? <P className={ css.notice }>{ description }</P>
+                            : null
                         }
                         <P className={ css.timeToPass } type="invisible">
                             Время на прохождение: { timeToPass }
@@ -57,14 +58,14 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                     </div>
                     <Button
                         onClick={ onStartCallback }
-                        postfix={ loading ?
-                                  <IconM className="loading">cached</IconM> :
-                                  <IconM>arrow_forward</IconM>
+                        postfix={
+                            loading
+                            ? <IconM className="loading">cached</IconM>
+                            : <IconM>arrow_forward</IconM>
                         }
                         styleType="main"
                     >
-                        { status === 'process'
-                          ? 'Продолжить' : 'Начать' }
+                        { status === 'process' ? 'Продолжить' : 'Начать' }
                     </Button>
                 </footer>
             </div>

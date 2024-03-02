@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './Button.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
+import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type ButtonType =
@@ -23,6 +24,7 @@ export type ButtonProps = {
     styleType?: ButtonType;
     size?: ButtonSize;
     onClick?: () => any;
+    onClickAsync?: () => Promise<any>;
     block?: boolean;
     disabled?: boolean;
     quad?: boolean;
@@ -40,14 +42,27 @@ const Button: React.FC<ButtonProps> = (props) => {
               quad,
               disabled,
               onClick,
+              onClickAsync,
               size,
           } = props;
+
+    const [ loading, setLoading ] = useState<boolean>(false);
+    const onClickHandler          = () => {
+        if (onClickAsync) {
+            setLoading(true);
+            onClickAsync().finally(() => {
+                setLoading(false);
+            });
+        } else if (onClick) {
+            onClick();
+        }
+    };
 
     return (
         <button
             className={ cn(
                 css.container,
-                onClick && css.clickable,
+                (onClick || onClickAsync) && css.clickable,
                 block && css.block,
                 className,
                 size === 'small' && css.smallSize,
@@ -61,15 +76,37 @@ const Button: React.FC<ButtonProps> = (props) => {
                 disabled && css.disabled,
                 quad && css.quad,
             ) }
-            onClick={ onClick }
+            onClick={ onClickHandler }
             type="button"
         >
             {
-                prefix ? <span>{ prefix }</span> : null
+                prefix
+                ? <span className={ loading ? 'loading' : '' }>
+                   {
+                       loading
+                       ? <IconM className="loading">cached</IconM>
+                       : prefix
+                   }
+                </span>
+                : null
             }
-            <span>{ children }</span>
+            <span>
+                {
+                    (quad && loading)
+                    ? <IconM className="loading" size="small">cached</IconM>
+                    : children
+                }
+            </span>
             {
-                postfix ? <span>{ postfix }</span> : null
+                postfix
+                ? <span className={ loading ? 'loading' : '' }>
+                   {
+                       loading
+                       ? <IconM className="loading">cached</IconM>
+                       : postfix
+                   }
+                </span>
+                : null
             }
         </button>
     );

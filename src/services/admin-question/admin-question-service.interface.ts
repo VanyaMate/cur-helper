@@ -21,4 +21,6 @@ export interface IAdminQuestionService {
     findOne (token: string, id: string): Promise<QuestionFullType>;
 
     findMany (token: string, filter: Filter<QuestionType>): Promise<MultiplyResponse<AdminQuestionShortType>>;
+
+    findManyUnlinkedForTest (token: string, testId: string, filter: Filter<QuestionType>): Promise<MultiplyResponse<AdminQuestionShortType>>;
 }

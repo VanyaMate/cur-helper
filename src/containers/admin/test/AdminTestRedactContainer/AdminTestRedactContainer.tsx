@@ -23,6 +23,11 @@ import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
+import AdminOpenQuestionCreateFormButtonFeature
+    from '@/features/admin/question/AdminOpenQuestionCreateFormButtonFeature/AdminOpenQuestionCreateFormButtonFeature.tsx';
+import {
+    adminTestQuestionService,
+} from '@/services/admin-test-question/admin-test-question.service.ts';
 
 
 export type AdminTestRedactContainerProps = {
@@ -135,9 +140,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
 
             <TitleSection
                 extra={
-                    <Button quad size="small">
-                        <IconM size="small">add</IconM>
-                    </Button>
+                    <AdminOpenQuestionCreateFormButtonFeature testId={ test.id }/>
                 }
                 tag="section"
                 title={ `Вопросы (${ test.questions.length })` }
@@ -152,7 +155,23 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                                 type="main"
                             >
                                 <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
+                                    <Toggle
+                                        active={ true }
+                                        onToggleAsync={ async () =>
+                                            adminTestQuestionService
+                                                .removeQuestionFromTest(authService.token[0], test.id, question.id)
+                                                .then((value: boolean) => {
+                                                    if (value) {
+                                                        const deletedQuestion: string = question.id;
+                                                        test.questions                = test.questions.filter((question) => {
+                                                            return question.id !== deletedQuestion;
+                                                        });
+                                                    }
+                                                })
+                                                .then()
+                                        }
+                                        size="small"
+                                    />
                                     <Flex>
                                         <LabelToggle
                                             active={ question.enabled }

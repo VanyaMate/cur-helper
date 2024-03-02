@@ -53,6 +53,8 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import BulletList from '@tiptap/extension-bullet-list';
 import { ListItem } from '@tiptap/extension-list-item';
 import ListAddMenu from '@/components/tiptap/menu/add-menu/ListAddMenu/ListAddMenu.tsx';
+import LinkRedactMenu
+    from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -154,6 +156,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         HeadingRedactMenu,
                         FootnoteRedactMenu,
                         ListAddMenu,
+                        LinkRedactMenu,
                     ] }
                     editable={ true }
                     extensions={ [

@@ -71,9 +71,9 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                 <Flex>
                     <Button
                         disabled={ !isChanged }
-                        onClick={ () => {
-                            onSave(type === 'text' ? editor.getText()
-                                                   : editor.getHTML()).then();
+                        onClickAsync={ async () => {
+                            return onSave(type === 'text' ? editor.getText()
+                                                          : editor.getHTML()).then();
                         } }
                         quad
                         size="small"

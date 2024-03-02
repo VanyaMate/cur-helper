@@ -20,6 +20,9 @@ import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import AdminOpenCreateQuestionAnswerFormButtonFeature
     from '@/features/admin/question-answer/AdminOpenCreateQuestionAnswerFormButtonFeature/AdminOpenCreateQuestionAnswerFormButtonFeature';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
+import {
+    adminQuestionAnswerService,
+} from '@/services/admin-question-answer/admin-question-answer.service.ts';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -31,7 +34,7 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
     const question: QuestionFullType | undefined = adminQuestionService.questions.get(id);
 
     //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const pageGetter                             = usePageUrl();
+    const pageGetter = usePageUrl();
 
     if (!question) {
         return <Loader/>;
@@ -67,6 +70,16 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
             />
 
             <RedactorItem
+                editable={ false }
+                extensions={ [ StarterKit ] }
+                html={ question.description }
+                id={ `description_${ question.id }` }
+                onSave={ async (html: string) => adminQuestionService.update(authService.token[0], question.id, { description: html }).then() }
+                title="Заголовок"
+                type="text"
+            />
+
+            <RedactorItem
                 bubbleMenu={ [ TextFormattingRedactMenu ] }
                 editable={ false }
                 extensions={ [ StarterKit ] }
@@ -79,7 +92,9 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
             <TitleSection
                 extra={
                     <Flex>
-                        <AdminOpenCreateQuestionAnswerFormButtonFeature/>
+                        <AdminOpenCreateQuestionAnswerFormButtonFeature
+                            questionId={ question.id }
+                        />
                     </Flex>
                 }
                 title="Ответы"
@@ -98,6 +113,13 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                                         <LabelToggle
                                             active={ answer.enabled }
                                             activeText={ <Tag type="main">Активен</Tag> }
+                                            onToggleAsync={ async (value: boolean) => {
+                                                return adminQuestionAnswerService
+                                                    .update(authService.token[0], answer.id, {
+                                                        enabled: value,
+                                                    })
+                                                    .then((data) => answer.enabled = data.enabled);
+                                            } }
                                             size="small"
                                             unActiveText={
                                                 <Tag type="invisible">Не активен</Tag>
@@ -113,7 +135,12 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                                     id={ `answer-title_${ answer.id }` }
                                     key={ 1 }
                                     onSave={ async (html: string) => {
-                                        console.log(html);
+                                        return adminQuestionAnswerService
+                                            .update(authService.token[0], answer.id, {
+                                                title: html,
+                                            })
+                                            .then((data) => answer.title = data.title)
+                                            .then();
                                     } }
                                     title="Заголовок"
                                     type="text"
@@ -127,7 +154,11 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                                     id={ `answer-description_${ answer.id }` }
                                     key={ 2 }
                                     onSave={ async (html: string) => {
-                                        console.log(html);
+                                        adminQuestionAnswerService
+                                            .update(authService.token[0], answer.id, {
+                                                description: html,
+                                            })
+                                            .then((data) => answer.description = data.description);
                                     } }
                                     title="Описание"
                                 />

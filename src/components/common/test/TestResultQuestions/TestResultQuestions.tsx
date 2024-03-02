@@ -13,10 +13,11 @@ import {
     QuestionType,
     With,
 } from '@vanyamate/cur-helper-types';
+import { QuestionAnswers } from '@vanyamate/cur-helper-types/types/question';
 
 
 export type TestResultQuestionsProps = {
-    questions: With<QuestionType, [ QuestionSelect, QuestionResult, QuestionThemes ]>[];
+    questions: With<QuestionType, [ QuestionSelect, QuestionResult, QuestionThemes, QuestionAnswers ]>[];
     themeUrlGetter: (id: string) => string;
 }
 
@@ -39,6 +40,12 @@ const TestResultQuestions: React.FC<TestResultQuestionsProps> = (props) => {
                         <Section size="small" tag="div">
                             <Title size="medium">{ question.title }</Title>
                             <P type="second">{ question.description }</P>
+                            {
+                                question.selectId
+                                ? <Section type="mark">
+                                    <P dangerouslySetInnerHTML={ { __html: question.answers.find((answer) => answer.id === question.selectId)?.description ?? '-' } }/>
+                                </Section> : null
+                            }
                             <OrderedList
                                 list={ question.answers.map((answer) => (
                                     <TestResultAnswer

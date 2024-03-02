@@ -10,12 +10,21 @@ import Input from '@/components/ui/input/Input/Input.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
+import {
+    adminQuestionAnswerService,
+} from '@/services/admin-question-answer/admin-question-answer.service.ts';
+import { authService } from '@/services/auth/auth.service.ts';
+import {
+    adminQuestionService,
+} from '@/services/admin-question/admin-question.service.ts';
 
 
-export type AdminOpenCreateQuestionAnswerFormButtonFeatureProps = {};
+export type AdminOpenCreateQuestionAnswerFormButtonFeatureProps = {
+    questionId: string;
+};
 
 const AdminOpenCreateQuestionAnswerFormButtonFeature: React.FC<AdminOpenCreateQuestionAnswerFormButtonFeatureProps> = (props) => {
-    const {}                                  = props;
+    const { questionId }                      = props;
     const answerCreatePopup                   = useWindowPopupController();
     const [ title, setTitle ]                 = useState<string>('');
     const [ correctAnswer, setCorrectAnswer ] = useState<boolean>(false);
@@ -40,6 +49,25 @@ const AdminOpenCreateQuestionAnswerFormButtonFeature: React.FC<AdminOpenCreateQu
                         placeholder="Введите вариант ответа"
                         value={ title }
                     />
+                    <Button
+                        disabled={ !title.trim() }
+                        onClickAsync={ async () => {
+                            return adminQuestionAnswerService
+                                .create(authService.token[0], {
+                                    correct   : correctAnswer,
+                                    enabled   : false,
+                                    title     : title,
+                                    questionId: questionId,
+                                })
+                                .then((answer) => {
+                                    adminQuestionService.questions.get(questionId)?.answers.push(answer);
+                                    answerCreatePopup.close();
+                                });
+                        } }
+                        prefix={ <IconM size={'large'}>add</IconM> }
+                    >
+                        Добавить
+                    </Button>
                 </Section>
             </WindowPopup>
             <Button
