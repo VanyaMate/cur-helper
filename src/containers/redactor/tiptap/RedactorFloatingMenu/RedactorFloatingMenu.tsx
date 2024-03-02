@@ -20,7 +20,7 @@ const RedactorBubbleMenu: React.FC<RedactorBubbleMenuProps> = (props) => {
 
     return (
         <FloatingMenu editor={ editor }>
-            <Flex size="extra-small" type="main">
+            <Flex size="extra-small" type="default">
                 {
                     menu.map((Menu) => <Menu editor={ editor } key={ Menu.name }/>)
                 }

@@ -1,4 +1,5 @@
 import { Editor } from '@tiptap/react';
+import { toHex } from '@/helpers/color/toHex.ts';
 
 
 export const isBold      = (editor: Editor) => editor.isActive('bold');
@@ -23,11 +24,11 @@ export const textColor = (editor: Editor): string => {
     const { $from } = editor.state.selection;
     const node      = editor.state.doc.nodeAt($from.pos);
     const colorMark = node?.marks.find((mark) => mark.type.name === 'textStyle');
-    console.log(node);
 
     if (colorMark) {
         console.log('es', colorMark.attrs['color']);
-        return colorMark.attrs['color'];
+        console.log('to hex', toHex(colorMark.attrs['color']));
+        return toHex(colorMark.attrs['color']);
     } else {
         return 'transparent';
     }

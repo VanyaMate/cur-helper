@@ -20,7 +20,7 @@ const RedactorBubbleMenu: React.FC<RedactorBubbleMenuProps> = (props) => {
 
     return (
         <BubbleMenu editor={ editor }>
-            <Flex size="extra-small" type="main">
+            <Flex size="extra-small" type="default">
                 {
                     // TODO: Временное решение с таким divider-ом
                     menu.map((Menu) => (

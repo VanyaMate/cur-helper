@@ -13,7 +13,7 @@ const TableRedactMenu: React.FC<TableRedactMenuProps> = (props) => {
     const { editor } = props;
 
     return (
-        <Flex size="extra-small">
+        <Flex size="extra-small" type="main">
             <MenuButton
                 isActive={ false }
                 onClick={ () => insertTable(editor)({

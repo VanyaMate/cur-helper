@@ -14,7 +14,7 @@ const HeadingRedactMenu: React.FC<HeadingRedactMenuProps> = (props) => {
     const { editor } = props;
 
     return (
-        <Flex size="extra-small">
+        <Flex size="extra-small" type="main">
             <MenuButton
                 isActive={ isHeadingLevel(editor)(1) }
                 onClick={ () => toggleHeading(editor)(1) }

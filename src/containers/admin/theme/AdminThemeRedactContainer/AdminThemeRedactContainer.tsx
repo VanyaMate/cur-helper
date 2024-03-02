@@ -7,6 +7,7 @@ import { TableRow } from '@tiptap/extension-table-row';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { Image } from '@tiptap/extension-image';
+import { Link as TiptapLink } from '@tiptap/extension-link';
 import {
     TipTapFootnote,
 } from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.ts';
@@ -49,6 +50,9 @@ import TextColorRedactMenu
     from '@/components/tiptap/menu/redact-menu/TextColorRedactMenu/TextColorRedactMenu.tsx';
 import { Color } from '@tiptap/extension-color';
 import { TextStyle } from '@tiptap/extension-text-style';
+import BulletList from '@tiptap/extension-bullet-list';
+import { ListItem } from '@tiptap/extension-list-item';
+import ListAddMenu from '@/components/tiptap/menu/add-menu/ListAddMenu/ListAddMenu.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -149,6 +153,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         TextColorRedactMenu,
                         HeadingRedactMenu,
                         FootnoteRedactMenu,
+                        ListAddMenu,
                     ] }
                     editable={ true }
                     extensions={ [
@@ -162,18 +167,26 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                             lastColumnResizable    : false,
                             allowTableNodeSelection: true,
                         }),
+                        TiptapLink.configure({
+                            linkOnPaste: true,
+                            autolink   : true,
+                            protocols  : [ 'http', 'https' ],
+                        }),
                         TableRow,
                         TableHeader,
                         TableCell,
                         Image,
                         TipTapFootnote,
                         Highlight.configure({ multicolor: true }),
+                        BulletList,
+                        ListItem,
                     ] }
                     floatingMenu={ [
                         HeadingRedactMenu,
                         FootnoteRedactMenu,
                         ImageAddMenu,
                         TableRedactMenu,
+                        ListAddMenu,
                     ] }
                     html={ theme.body }
                     id={ `body_${ theme.id }` }

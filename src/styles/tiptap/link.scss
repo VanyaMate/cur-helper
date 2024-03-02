@@ -1,0 +1,11 @@
+.tiptap {
+    a {
+        color       : var(--color-blue);
+        text-shadow : 0 0 10px 0 var(--color-blue-transparent);
+
+        &:hover {
+            color       : var(--color-gold);
+            text-shadow : 0 0 15px 0 var(--color-gold-transparent);
+        }
+    }
+}

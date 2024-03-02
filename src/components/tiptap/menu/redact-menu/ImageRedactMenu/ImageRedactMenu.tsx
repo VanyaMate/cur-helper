@@ -49,7 +49,7 @@ const ImageRedactMenu: React.FC<ImageBubbleMenuProps> = (props) => {
                     </Button>
                 </Section>
             </WindowPopup>
-            <Flex size="extra-small">
+            <Flex size="extra-small" type="main">
                 <MenuButton isActive={ false }
                             onClick={ () => imageRedactorController.open() }>
                     <IconM size="small">edit</IconM>
