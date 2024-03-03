@@ -49,7 +49,8 @@ const TestBriefing: React.FC<TestBriefingProps> = (props) => {
                     <div className={ css.footer_info }>
                         {
                             description
-                            ? <P className={ css.notice }>{ description }</P>
+                            ? <P className={ css.notice }
+                                 dangerouslySetInnerHTML={ { __html: description } }/>
                             : null
                         }
                         <P className={ css.timeToPass } type="invisible">
