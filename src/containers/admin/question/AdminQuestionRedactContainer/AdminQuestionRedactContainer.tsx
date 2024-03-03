@@ -75,7 +75,7 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                 html={ question.description }
                 id={ `description_${ question.id }` }
                 onSave={ async (html: string) => adminQuestionService.update(authService.token[0], question.id, { description: html }).then() }
-                title="Заголовок"
+                title="Описание"
                 type="text"
             />
 
