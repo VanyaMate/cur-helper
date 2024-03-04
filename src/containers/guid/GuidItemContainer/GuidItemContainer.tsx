@@ -18,6 +18,10 @@ import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { isNotEmptyHtml } from '@/helpers/in-not-empty-html.helper.ts';
 import Title from '@/components/ui/title/Title/Title.tsx';
+import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import ThemeItemPagePaginatorWidget
+    from '@/widgets/theme/ThemeItemPagePaginatorWidget/ThemeItemPagePaginatorWidget.tsx';
 
 
 export type GuidItemContainerProps = {
@@ -103,9 +107,7 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                             />
                         </Section> : null
                     }
-                    <div>
-                        <Button styleType="default">Следующая тема</Button>
-                    </div>
+                    <ThemeItemPagePaginatorWidget next={ data.next } prev={ data.prev }/>
                     <Collapse opened={ true } title="Тесты">
                         <TileBox>
                             {
@@ -119,8 +121,6 @@ const GuidItemContainer: React.FC<GuidItemContainerProps> = observer((props) => 
                             }
                         </TileBox>
                     </Collapse>
-                    <div>// FAQ</div>
-                    <div>// comments</div>
                 </Section>
             </ContentBox>
         </Section>

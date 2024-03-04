@@ -23,8 +23,8 @@ import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
-import AdminOpenQuestionCreateFormButtonFeature
-    from '@/features/admin/question/AdminOpenQuestionCreateFormButtonFeature/AdminOpenQuestionCreateFormButtonFeature.tsx';
+import AdminOpenQuestionAddFormButtonFeature
+    from '@/features/admin/question/AdminOpenQuestionAddFormButtonFeature/AdminOpenQuestionAddFormButtonFeature.tsx';
 import {
     adminTestQuestionService,
 } from '@/services/admin-test-question/admin-test-question.service.ts';
@@ -140,7 +140,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
 
             <TitleSection
                 extra={
-                    <AdminOpenQuestionCreateFormButtonFeature testId={ test.id }/>
+                    <AdminOpenQuestionAddFormButtonFeature testId={ test.id }/>
                 }
                 tag="section"
                 title={ `Вопросы (${ test.questions.length })` }
