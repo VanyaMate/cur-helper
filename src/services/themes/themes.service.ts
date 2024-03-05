@@ -4,115 +4,62 @@ import { API_HOST } from '@/constants/api.url.ts';
 import {
     ThemeChildrenType,
     ThemeFullType,
-    ThemesType,
+    ThemeRecursiveType,
 } from '@vanyamate/cur-helper-types';
+import { FetchData } from '@/services/types.ts';
+import { fetchService } from '@/services/fetch-service.ts';
 
 
 class ThemesService implements IThemesService {
-    public fullThemeData: Map<string, ThemeFullType>     = new Map();
-    public themeChildren: Map<string, ThemeChildrenType> = new Map();
-    public themes: ThemesType[]                          = [];
+    public fullThemeData: Record<string, FetchData<ThemeFullType>>     = {};
+    public themeChildren: Record<string, FetchData<ThemeChildrenType>> = {};
+    public themes: FetchData<ThemeRecursiveType[]>                     = {
+        pending: false,
+        data   : null,
+        error  : null,
+    };
 
     constructor () {
         makeAutoObservable(this);
     }
 
     async getThemeFullDataByPublicId (publicId: string, token?: string): Promise<ThemeFullType> {
-        /*        const cached: ThemeFullType | undefined = this.fullThemeData.get(publicId);
-         if (cached) {
-         return cached;
-         } else {
-         return fetch(`${ API_HOST }/api/v1/themes/${ publicId }`, {
-         method : 'GET',
-         headers: {
-         'Content-Type' : 'application/json',
-         'Authorization': token ?? '',
-         },
-         })
-         .then((response) => response.json())
-         .then((data) => {
-         this.fullThemeData.set(publicId, data);
-         return data;
-         });
-         }*/
-
-        return fetch(`${ API_HOST }/api/v1/themes/${ publicId }`, {
-            method : 'GET',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Authorization': token ?? '',
+        return fetchService({
+            url    : `${ API_HOST }/api/v1/themes/${ publicId }`,
+            options: {
+                method: 'GET',
             },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                this.fullThemeData.set(publicId, data);
-                return data;
-            });
+            token  : token,
+        }, {
+            record: this.fullThemeData,
+            id    : publicId,
+        });
     }
 
     async getThemeListById (publicId: string, token?: string): Promise<ThemeChildrenType> {
-        /*        const cached: ThemeChildrenType | undefined = this.themeChildren.get(publicId);
-         if (cached) {
-         return cached;
-         } else {
-         return fetch(`${ API_HOST }/api/v1/themes/list/${ publicId }`, {
-         method : 'GET',
-         headers: {
-         'Content-Type' : 'application/json',
-         'Authorization': token ?? '',
-         },
-         })
-         .then((response) => response.json())
-         .then((data) => {
-         this.themeChildren.set(publicId, data);
-         return data;
-         });
-         }*/
-
-        return fetch(`${ API_HOST }/api/v1/themes/list/${ publicId }`, {
-            method : 'GET',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Authorization': token ?? '',
+        return fetchService({
+            url    : `${ API_HOST }/api/v1/themes/list/${ publicId }`,
+            token  : token,
+            options: {
+                method: 'GET',
             },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                this.themeChildren.set(publicId, data);
-                return data;
-            });
+        }, {
+            record: this.themeChildren,
+            id    : publicId,
+        });
     }
 
-    async getThemesList (token?: string): Promise<ThemesType[]> {
-        /*        if (this.themes.length) {
-         return this.themes;
-         } else {
-         return fetch(`${ API_HOST }/api/v1/themes/list`, {
-         method : 'GET',
-         headers: {
-         'Content-Type' : 'application/json',
-         'Authorization': token ?? '',
-         },
-         })
-         .then((response) => response.json())
-         .then((data) => {
-         this.themes = data;
-         return data;
-         });
-         }*/
-
-        return fetch(`${ API_HOST }/api/v1/themes/list`, {
-            method : 'GET',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Authorization': token ?? '',
+    async getThemesList (token?: string): Promise<ThemeRecursiveType[]> {
+        return fetchService({
+            url    : `${ API_HOST }/api/v1/themes/list`,
+            token  : token,
+            options: {
+                method: 'GET',
             },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                this.themes = data;
-                return data;
-            });
+        }, {
+            record: this as Record<string, any>,
+            id    : 'themes',
+        });
     }
 }
 

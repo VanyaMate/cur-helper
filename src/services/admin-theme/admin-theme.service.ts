@@ -90,8 +90,15 @@ export class AdminThemeService implements IAdminThemeService {
                 'Authorization': token ?? '',
             },
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw Promise.reject(response.json());
+                }
+            })
             .then((multiplyResponse) => {
+                console.log('here', multiplyResponse);
                 this.themesList = multiplyResponse;
                 return multiplyResponse;
             });

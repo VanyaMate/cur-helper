@@ -18,7 +18,7 @@ const AdminGuidRedactPage: React.FC<AdminGuidRedactPageProps> = (props) => {
     // TODO: Add admin service
     useEffect(() => {
         if (guidId) {
-            adminThemeService.getOne(authService.token[0], guidId);
+            adminThemeService.getOne(authService.token[0], guidId).then();
         }
     }, [ guidId ]);
 
