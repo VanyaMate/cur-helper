@@ -13,11 +13,7 @@ import { fetchService } from '@/services/fetch-service.ts';
 class ThemesService implements IThemesService {
     public fullThemeData: Record<string, FetchData<ThemeFullType>>     = {};
     public themeChildren: Record<string, FetchData<ThemeChildrenType>> = {};
-    public themes: FetchData<ThemeRecursiveType[]>                     = {
-        pending: false,
-        data   : null,
-        error  : null,
-    };
+    public themes: Record<string, FetchData<ThemeRecursiveType[]>>     = {};
 
     constructor () {
         makeAutoObservable(this);
@@ -57,8 +53,8 @@ class ThemesService implements IThemesService {
                 method: 'GET',
             },
         }, {
-            record: this as Record<string, any>,
-            id    : 'themes',
+            record: this.themes,
+            id    : '',
         });
     }
 }

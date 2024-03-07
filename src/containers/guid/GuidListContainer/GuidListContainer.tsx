@@ -15,10 +15,11 @@ export type GuidListContainerProps = {};
 const GuidListContainer: React.FC<GuidListContainerProps> = observer((props) => {
     const {}         = props;
     const pageGetter = usePageUrl();
-    const data       = themesService.themes.data;
+    const fetch      = themesService.themes[''];
+    const data       = fetch?.data;
 
     return (
-        <FetchShow fetch={ themesService.themes }>
+        <FetchShow fetch={ fetch }>
             {
                 data
                 ? <TileBox>

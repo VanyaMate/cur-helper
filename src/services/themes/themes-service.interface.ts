@@ -9,7 +9,7 @@ import { FetchData } from '@/services/types.ts';
 export interface IThemesService {
     fullThemeData: Record<string, FetchData<ThemeFullType>>;
     themeChildren: Record<string, FetchData<ThemeChildrenType>>;
-    themes: FetchData<ThemeRecursiveType[]>;
+    themes: Record<string, FetchData<ThemeRecursiveType[]>>;
 
     getThemeFullDataByPublicId (publicId: string, token?: string): Promise<ThemeFullType>;
 
