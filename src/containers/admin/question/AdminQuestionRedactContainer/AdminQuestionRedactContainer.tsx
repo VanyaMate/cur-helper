@@ -23,6 +23,35 @@ import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.
 import {
     adminQuestionAnswerService,
 } from '@/services/admin-question-answer/admin-question-answer.service.ts';
+import TableRedactMenu
+    from '@/components/tiptap/menu/redact-menu/TableRedactMenu/TableRedactMenu.tsx';
+import ImageRedactMenu
+    from '@/components/tiptap/menu/redact-menu/ImageRedactMenu/ImageRedactMenu.tsx';
+import TextColorRedactMenu
+    from '@/components/tiptap/menu/redact-menu/TextColorRedactMenu/TextColorRedactMenu.tsx';
+import HeadingRedactMenu
+    from '@/components/tiptap/menu/redact-menu/HeadingRedactMenu/HeadingRedactMenu.tsx';
+import FootnoteRedactMenu
+    from '@/components/tiptap/menu/redact-menu/FootnoteRedactMenu/FootnoteRedactMenu.tsx';
+import ListAddMenu from '@/components/tiptap/menu/add-menu/ListAddMenu/ListAddMenu.tsx';
+import LinkRedactMenu
+    from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
+import { TextStyle } from '@tiptap/extension-text-style';
+import { Color } from '@tiptap/extension-color';
+import { Table } from '@tiptap/extension-table';
+import { Link as TiptapLink } from '@tiptap/extension-link';
+import { TableRow } from '@tiptap/extension-table-row';
+import { TableHeader } from '@tiptap/extension-table-header';
+import { TableCell } from '@tiptap/extension-table-cell';
+import { Image } from '@tiptap/extension-image';
+import {
+    TipTapFootnote,
+} from '@/components/tiptap/extensions/TipTapFootnote/TipTapFootnote.ts';
+import { Highlight } from '@tiptap/extension-highlight';
+import BulletList from '@tiptap/extension-bullet-list';
+import { ListItem } from '@tiptap/extension-list-item';
+import ImageAddMenu
+    from '@/components/tiptap/menu/add-menu/ImageAddMenu/ImageAddMenu.tsx';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -80,9 +109,49 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
             />
 
             <RedactorItem
-                bubbleMenu={ [ TextFormattingRedactMenu ] }
+                bubbleMenu={ [
+                    TableRedactMenu,
+                    ImageRedactMenu,
+                    TextFormattingRedactMenu,
+                    TextColorRedactMenu,
+                    HeadingRedactMenu,
+                    FootnoteRedactMenu,
+                    ListAddMenu,
+                    LinkRedactMenu,
+                ] }
                 editable={ false }
-                extensions={ [ StarterKit ] }
+                extensions={ [
+                    TextStyle,
+                    Color,
+                    StarterKit,
+                    Table.configure({
+                        resizable              : true,
+                        cellMinWidth           : 20,
+                        handleWidth            : 5,
+                        lastColumnResizable    : false,
+                        allowTableNodeSelection: true,
+                    }),
+                    TiptapLink.configure({
+                        linkOnPaste: true,
+                        autolink   : true,
+                        protocols  : [ 'http', 'https' ],
+                    }),
+                    TableRow,
+                    TableHeader,
+                    TableCell,
+                    Image,
+                    TipTapFootnote,
+                    Highlight.configure({ multicolor: true }),
+                    BulletList,
+                    ListItem,
+                ] }
+                floatingMenu={ [
+                    HeadingRedactMenu,
+                    FootnoteRedactMenu,
+                    ImageAddMenu,
+                    TableRedactMenu,
+                    ListAddMenu,
+                ] }
                 html={ question.body }
                 id={ `body_${ question.id }` }
                 onSave={ async (html: string) => adminQuestionService.update(authService.token[0], question.id, { body: html }).then() }
