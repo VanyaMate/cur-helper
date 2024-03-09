@@ -12,6 +12,10 @@ import { RedactorEditorContext } from './RedactorItemContext';
 import { EditorEvents } from '@tiptap/core';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 import { SectionType } from '@/components/ui/container/Section/Section.tsx';
+import css from './RedactorItem.module.scss';
+import { cn } from '@vanyamate/helpers/react/classname';
+import { Simulate } from 'react-dom/test-utils';
+import change = Simulate.change;
 
 
 export type RedactorItemProps = {
@@ -61,12 +65,18 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
         return <Loader/>;
     }
 
-    const isChanged = localStorage.getItem(id)
-                      ? (localStorage.getItem(id) !== html)
-                      : false;
+    const cached: string | null = localStorage.getItem(id);
+    const isChanged             = cached ? cached !== html : false;
 
     return (
         <TitleSection
+            className={
+                cn(
+                    css.container,
+                    redactState && css.redacted,
+                    isChanged && css.changed,
+                )
+            }
             extra={
                 <Flex>
                     <Button
