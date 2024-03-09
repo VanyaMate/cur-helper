@@ -14,9 +14,11 @@ import TitleSection from '@/components/ui/container/TitleSection/TitleSection.ts
 import { SectionType } from '@/components/ui/container/Section/Section.tsx';
 import css from './RedactorItem.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import { Simulate } from 'react-dom/test-utils';
-import change = Simulate.change;
 
+
+export type RedactorItemSaveType =
+    'html'
+    | 'text';
 
 export type RedactorItemProps = {
     id: string;
@@ -27,7 +29,7 @@ export type RedactorItemProps = {
     html: string;
     editable: boolean;
     onSave: (html: string) => Promise<void>;
-    type?: 'html' | 'text';
+    type?: RedactorItemSaveType;
     blockType?: SectionType;
 };
 
@@ -67,6 +69,11 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
 
     const cached: string | null = localStorage.getItem(id);
     const isChanged             = cached ? cached !== html : false;
+    const getTextForSave        = function (type: RedactorItemSaveType | undefined) {
+        return type === 'text'
+               ? editor.getText()
+               : editor.getHTML();
+    };
 
     return (
         <TitleSection
@@ -82,8 +89,7 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
                     <Button
                         disabled={ !isChanged }
                         onClickAsync={ async () => {
-                            return onSave(type === 'text' ? editor.getText()
-                                                          : editor.getHTML()).then();
+                            return onSave(getTextForSave(type)).then();
                         } }
                         quad
                         size="small"

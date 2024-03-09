@@ -98,7 +98,6 @@ export class AdminThemeService implements IAdminThemeService {
                 }
             })
             .then((multiplyResponse) => {
-                console.log('here', multiplyResponse);
                 this.themesList = multiplyResponse;
                 return multiplyResponse;
             });
