@@ -43,15 +43,12 @@ export const fetchService = async function <Data> (options: FetchServiceRequestO
         .then(async (response) => {
             if (response.ok) {
                 const body: Data = await response.json();
-                console.log('update data', body);
-                console.log(save.id);
                 save.record[save.id] = {
                     pending        : false,
                     error          : null,
                     data           : body,
                     abortController: abortController,
                 };
-                console.log(save.record[save.id]);
                 return body;
             } else {
                 const error: ErrorResponseType = await response.json();
