@@ -8,12 +8,12 @@ export type FetchServiceRequestOptions = {
     options: RequestInit;
 };
 
-export type FetchServiceSaveOptions<Data> = {
+export type FetchServiceSaveMethod<Data> = {
     record: Record<string, FetchData<Data>>;
     id: string;
 };
 
-export const fetchService = async function <Data> (options: FetchServiceRequestOptions, save: FetchServiceSaveOptions<Data>): Promise<Data> {
+export const fetchService = async function <Data> (options: FetchServiceRequestOptions, save: FetchServiceSaveMethod<Data>): Promise<Data> {
     const cacheData       = save.record[save.id];
     const abortController = new AbortController();
 
@@ -33,22 +33,25 @@ export const fetchService = async function <Data> (options: FetchServiceRequestO
     }
 
     return fetch(options.url, {
-        method : options.options.method,
         headers: {
             'Content-Type' : 'application/json',
             'Authorization': options.token ?? '',
         },
         signal : abortController.signal,
+        ...options.options,
     })
         .then(async (response) => {
             if (response.ok) {
-                const body: Data     = await response.json();
+                const body: Data = await response.json();
+                console.log('update data', body);
+                console.log(save.id);
                 save.record[save.id] = {
                     pending        : false,
                     error          : null,
                     data           : body,
                     abortController: abortController,
                 };
+                console.log(save.record[save.id]);
                 return body;
             } else {
                 const error: ErrorResponseType = await response.json();

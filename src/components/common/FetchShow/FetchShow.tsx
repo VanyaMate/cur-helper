@@ -15,7 +15,7 @@ const FetchShow: React.FC<FetchShowProps> = (props) => {
         return 'Not found';
     }
 
-    if (fetch.pending) {
+    if (fetch.pending && !fetch.data) {
         return <Loader/>;
     }
 

@@ -13,7 +13,7 @@ export type SaveInputProps =
         onSave: (value: string) => Promise<void>,
         onDiscard?: () => void,
         onChangeHandler?: OnInputChangeHandler,
-        label: React.ReactNode,
+        label?: React.ReactNode,
     }
     & Omit<InputProps, 'onChangeHandler'>
 
