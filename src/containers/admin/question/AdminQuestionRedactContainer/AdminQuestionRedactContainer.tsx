@@ -52,6 +52,18 @@ import BulletList from '@tiptap/extension-bullet-list';
 import { ListItem } from '@tiptap/extension-list-item';
 import ImageAddMenu
     from '@/components/tiptap/menu/add-menu/ImageAddMenu/ImageAddMenu.tsx';
+import AdminOpenQuestionAddFormButtonFeature
+    from '@/features/admin/question/AdminOpenQuestionAddFormButtonFeature/AdminOpenQuestionAddFormButtonFeature.tsx';
+import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
+import {
+    adminTestQuestionService,
+} from '@/services/admin-test-question/admin-test-question.service.ts';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import IconM from '@/components/ui/icon/IconM.tsx';
+import Title from '@/components/ui/title/Title/Title.tsx';
+import P from '@/components/ui/p/P/P.tsx';
+import { useNavigate } from 'react-router-dom';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -61,9 +73,8 @@ export type AdminQuestionRedactContainerProps = {
 const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> = observer((props) => {
     const { id }                                 = props;
     const question: QuestionFullType | undefined = adminQuestionService.questions.get(id);
-
-    //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const pageGetter = usePageUrl();
+    const adminPageGetter                        = usePageUrl('admin');
+    const navigate                               = useNavigate();
 
     if (!question) {
         return <Loader/>;
@@ -237,12 +248,100 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                 />
             </TitleSection>
 
-            <TitleSection title="Темы">
-                // Themes
+            <TitleSection
+                extra={
+                    <AdminOpenQuestionAddFormButtonFeature testId={ question.id }/>
+                }
+                tag="section"
+                title={ `Темы (${ question.themes.length })` }
+            >
+                <TileBox>
+                    {
+                        question.themes.map((theme) => (
+                            <Section
+                                key={ theme.id }
+                                size="extra-small"
+                                tag="article"
+                                type="main"
+                            >
+                                <SpaceBetween>
+                                    <Toggle
+                                        active={ true }
+                                        onToggleAsync={ async () => {
+                                            return true;
+                                        } }
+                                        size="small"
+                                    />
+                                    <Flex>
+                                        <LabelToggle
+                                            active={ theme.enabled }
+                                            activeText={ <Tag type="main">Активен</Tag> }
+                                            size="small"
+                                            unActiveText={
+                                                <Tag type="invisible">Не активен</Tag>
+                                            }
+                                        />
+                                        <Button
+                                            onClick={ () => navigate(adminPageGetter.guid(theme.publicId)) }
+                                            quad
+                                            size="small"
+                                            styleType="default"
+                                        >
+                                            <IconM size="small">edit</IconM>
+                                        </Button>
+                                    </Flex>
+                                </SpaceBetween>
+                                <Title lines={ 1 } size="small">{ theme.title }</Title>
+                                <P
+                                    dangerouslySetInnerHTML={ { __html: theme.description } }
+                                    lines={ 2 }
+                                    type="invisible"
+                                />
+                            </Section>
+                        ))
+                    }
+                </TileBox>
             </TitleSection>
 
-            <TitleSection title="Тесты">
-                // Tests
+            <TitleSection
+                extra={
+                    <AdminOpenQuestionAddFormButtonFeature testId={ question.id }/>
+                }
+                tag="section"
+                title={ `Тесты (${ question.tests.length })` }
+            >
+                <TileBox>
+                    {
+                        question.tests.map((test) => (
+                            <Section
+                                key={ test.id }
+                                size="small"
+                                tag="article"
+                                type="main"
+                            >
+                                <SpaceBetween>
+                                    <LabelToggle
+                                        active={ test.enabled }
+                                        activeText={ <Tag type="main">Активен</Tag> }
+                                        size="small"
+                                        unActiveText={
+                                            <Tag type="invisible">Не активен</Tag>
+                                        }
+                                    />
+                                    <Button
+                                        onClick={ () => navigate(adminPageGetter.test(test.id)) }
+                                        quad
+                                        size="small"
+                                        styleType="default"
+                                    >
+                                        <IconM size="small">edit</IconM>
+                                    </Button>
+                                </SpaceBetween>
+                                <Title lines={ 1 } size="small">{ test.title }</Title>
+                            </Section>
+                        ))
+                    }
+                </TileBox>
             </TitleSection>
         </Section>
     );

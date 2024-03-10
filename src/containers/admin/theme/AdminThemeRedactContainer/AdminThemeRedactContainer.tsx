@@ -55,6 +55,8 @@ import { ListItem } from '@tiptap/extension-list-item';
 import ListAddMenu from '@/components/tiptap/menu/add-menu/ListAddMenu/ListAddMenu.tsx';
 import LinkRedactMenu
     from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
+import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
+import { useNavigate } from 'react-router-dom';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -62,9 +64,11 @@ export type AdminThemeRedactContainerProps = {
 };
 
 const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = observer((props) => {
-    const { id }     = props;
-    const theme      = adminThemeService.themes.get(id);
-    const pageGetter = usePageUrl();
+    const { id }          = props;
+    const theme           = adminThemeService.themes[id];
+    const pageGetter      = usePageUrl();
+    const adminPageGetter = usePageUrl('admin');
+    const navigate        = useNavigate();
 
     if (!theme) {
         return <Loader/>;
@@ -75,8 +79,14 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
             <Section size="extra-small">
                 <SpaceBetween>
                     <Flex>
-                        <P type="invisible">Публичный ID:</P>
-                        <P>{ theme.publicId }</P>
+                        <P type="invisible">
+                            <Link
+                                target="_blank"
+                                to={ pageGetter.guid(theme.publicId) }
+                            >
+                                Ссылка на тему
+                            </Link>
+                        </P>
                     </Flex>
                     <Flex>
                         <LabelToggle
@@ -94,17 +104,21 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                         />
                     </Flex>
                 </SpaceBetween>
-                <Flex>
-                    <P type="invisible">
-                        <Link
-                            target="_blank"
-                            to={ pageGetter.guid(theme.publicId) }
-                        >
-                            Ссылка на тему
-                        </Link>
-                    </P>
-                </Flex>
             </Section>
+
+            <ContentBox>
+                <SaveInput
+                    defaultValue={ theme.publicId }
+                    label="Публичный ID"
+                    onSave={
+                        async (value) => adminThemeService
+                            .update(authService.token[0], theme.id, {
+                                publicId: value,
+                            })
+                            .then((data) => navigate(adminPageGetter.guid(data.publicId)))
+                    }
+                />
+            </ContentBox>
 
             <ContentBox>
                 <RedactorItem

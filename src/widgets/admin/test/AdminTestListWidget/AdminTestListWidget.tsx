@@ -54,6 +54,7 @@ const AdminTestListWidget: React.FC<AdminTestListWidgetProps> = (props) => {
                             </Flex>
                         </SpaceBetween>
                         <Title lines={ 2 }>{ test.title }</Title>
+                        <P lines={ 2 } type="invisible">{ test.title }</P>
                     </Section>
                 ))
             }

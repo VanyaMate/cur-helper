@@ -8,7 +8,7 @@ import {
 
 
 export interface IAdminThemeService {
-    themes: Map<string, AdminThemeType>;
+    themes: Record<string, AdminThemeType>;
     themesList: MultiplyResponse<AdminThemeShortType>;
 
     create (token: string, data: ThemeCreateType): Promise<AdminThemeType>;

@@ -12,7 +12,7 @@ import {
 
 
 export class AdminThemeService implements IAdminThemeService {
-    public themes: Map<string, AdminThemeType>               = new Map<string, AdminThemeType>();
+    public themes: Record<string, AdminThemeType>            = {};
     public themesList: MultiplyResponse<AdminThemeShortType> = {
         list   : [],
         count  : 0,
@@ -41,12 +41,12 @@ export class AdminThemeService implements IAdminThemeService {
                 }
             })
             .then((theme) => {
-                // this.themes.set(theme.publicId, theme);
                 return theme;
             });
     }
 
     async update (token: string, id: string, data: Partial<ThemeType>): Promise<AdminThemeType> {
+        const cachedThemePublicId = Object.keys(this.themes).find((publicId) => this.themes[publicId]?.id === id) ?? '';
         return fetch(`${ API_HOST }/api/v1/theme/${ id }`, {
             method : 'PATCH',
             headers: {
@@ -57,8 +57,8 @@ export class AdminThemeService implements IAdminThemeService {
         })
             .then((response) => response.json())
             .then((theme) => {
-                const adminTheme: AdminThemeType = { ...this.themes.get(theme.publicId), ...theme };
-                this.themes.set(theme.publicId, adminTheme);
+                const adminTheme: AdminThemeType = { ...(this.themes[cachedThemePublicId] ?? {}), ...theme };
+                this.themes[theme.publicId]      = adminTheme;
                 return adminTheme;
             });
     }
@@ -77,7 +77,7 @@ export class AdminThemeService implements IAdminThemeService {
         })
             .then((response) => response.json())
             .then((theme) => {
-                this.themes.set(publicId, theme);
+                this.themes[publicId] = theme;
                 return theme;
             });
     }

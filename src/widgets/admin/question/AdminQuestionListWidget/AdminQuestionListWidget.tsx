@@ -6,11 +6,12 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import { AdminQuestionShortType, MultiplyResponse } from '@vanyamate/cur-helper-types';
+import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
+import Tag from '@/components/common/Tag/Tag.tsx';
 
 
 export type AdminQuestionListWidgetProps = {
@@ -30,9 +31,16 @@ const AdminQuestionListWidget: React.FC<AdminQuestionListWidgetProps> = (props) 
                         <SpaceBetween>
                             <P type="invisible">Тема: '---'</P>
                             <Flex>
-                                <P type="invisible">{ question.enabled ? 'Активен'
-                                                                       : 'Не активен' }</P>
-                                <Toggle active={ question.enabled } size="small"/>
+                                <LabelToggle
+                                    active={ question.enabled }
+                                    activeText={
+                                        <Tag type="main">Активен</Tag>
+                                    }
+                                    size="small"
+                                    unActiveText={
+                                        <Tag type="invisible">Не активен</Tag>
+                                    }
+                                />
                                 <Button
                                     onClick={ () => {
                                         navigate(pageGetter.question(question.id));
@@ -46,6 +54,7 @@ const AdminQuestionListWidget: React.FC<AdminQuestionListWidgetProps> = (props) 
                             </Flex>
                         </SpaceBetween>
                         <Title lines={ 2 }>{ question.title }</Title>
+                        <P lines={ 2 } type="invisible">{ question.description }</P>
                     </Section>
                 ))
             }

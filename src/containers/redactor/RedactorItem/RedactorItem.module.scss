@@ -3,10 +3,10 @@
     transition    : box-shadow var(--transition-fast);
 
     &.changed {
-        box-shadow : 0 0 0 4px var(--background-main), 0 0 0 6px var(--border-color-invisible);
+        box-shadow : 0 0 0 4px var(--background-main), 0 0 0 6px var(--border-color-invisible) !important;
     }
 
     &.redacted {
-        box-shadow : 0 0 0 4px var(--background-main), 0 0 0 6px var(--color-blue-transparent);
+        box-shadow : 0 0 0 4px var(--background-main), 0 0 0 6px var(--color-blue-transparent) !important;
     }
 }
