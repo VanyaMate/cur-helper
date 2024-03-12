@@ -28,6 +28,7 @@ import AdminOpenQuestionAddFormButtonFeature
 import {
     adminTestQuestionService,
 } from '@/services/admin-test-question/admin-test-question.service.ts';
+import DeleteTestButton from '@/features/test/DeleteTestButton/DeleteTestButton.tsx';
 
 
 export type AdminTestRedactContainerProps = {
@@ -63,6 +64,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                             size="small"
                             unActiveText={ <Tag type="invisible">Не активен</Tag> }
                         />
+                        <DeleteTestButton testId={ test.id }/>
                     </Flex>
                 </SpaceBetween>
                 <Flex>

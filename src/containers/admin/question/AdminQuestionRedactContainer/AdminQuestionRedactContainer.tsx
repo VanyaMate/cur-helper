@@ -64,6 +64,8 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import { useNavigate } from 'react-router-dom';
+import DeleteQuestionButton
+    from '@/features/question/DeleteQuestionButton/DeleteQuestionButton.tsx';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -95,6 +97,7 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                             size="small"
                             unActiveText={ <Tag type="invisible">Не активен</Tag> }
                         />
+                        <DeleteQuestionButton questionId={ question.id }/>
                     </Flex>
                 </SpaceBetween>
             </Section>

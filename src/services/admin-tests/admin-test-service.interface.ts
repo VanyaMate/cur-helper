@@ -18,7 +18,7 @@ export interface IAdminTestService {
 
     update (token: string, id: string, data: TestUpdateType): Promise<TestType>;
 
-    delete (): void;
+    delete (token: string, id: string): Promise<boolean>;
 
     getOne (token: string, id: string): Promise<With<TestType, [ AdminTestThemeShort, AdminTestQuestionsShort ]>>;
 

@@ -63,8 +63,15 @@ export class AdminThemeService implements IAdminThemeService {
             });
     }
 
-    delete (): void {
-        throw new Error('Method not implemented.');
+    async delete (token: string, themeId: string): Promise<boolean> {
+        return fetch(`${ API_HOST }/api/v1/theme/${ themeId }`, {
+            method : 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json());
     }
 
     async getOne (token: string, publicId: string): Promise<AdminThemeType> {

@@ -15,7 +15,7 @@ export interface IAdminThemeService {
 
     update (token: string, id: string, data: ThemeUpdateType): Promise<AdminThemeType>;
 
-    delete (): void;
+    delete (token: string, id: string): Promise<boolean>;
 
     getOne (token: string, id: string): Promise<AdminThemeType>;
 

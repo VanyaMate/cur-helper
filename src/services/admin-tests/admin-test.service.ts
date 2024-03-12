@@ -58,8 +58,15 @@ export class AdminTestService implements IAdminTestService {
             });
     }
 
-    delete (): void {
-        throw new Error('Method not implemented.');
+    async delete (token: string, id: string): Promise<boolean> {
+        return fetch(`${ API_HOST }/api/v1/test/${ id }`, {
+            method : 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json());
     }
 
     async getOne (token: string, id: string): Promise<AdminTestThemeShort & AdminTestQuestionsShort & TestType> {

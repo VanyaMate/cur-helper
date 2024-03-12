@@ -57,6 +57,7 @@ import LinkRedactMenu
     from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
 import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
+import DeleteThemeButton from '@/features/theme/DeleteThemeButton/DeleteThemeButton.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -102,6 +103,7 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                 <Tag type="invisible">Не активна</Tag>
                             }
                         />
+                        <DeleteThemeButton themeId={ theme.id }/>
                     </Flex>
                 </SpaceBetween>
             </Section>
