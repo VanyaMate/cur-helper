@@ -66,6 +66,11 @@ import P from '@/components/ui/p/P/P.tsx';
 import { useNavigate } from 'react-router-dom';
 import DeleteQuestionButton
     from '@/features/question/DeleteQuestionButton/DeleteQuestionButton.tsx';
+import ThemePreviewItemWithConnect
+    from '@/widgets/admin/theme/AdminThemePreviewItemWithConnect/AdminThemePreviewItemWithConnect.tsx';
+import {
+    adminThemeQuestionService,
+} from '@/services/admin-theme-question/admin-theme-question.service.ts';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -261,46 +266,23 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                 <TileBox>
                     {
                         question.themes.map((theme) => (
-                            <Section
+                            <ThemePreviewItemWithConnect
                                 key={ theme.id }
-                                size="extra-small"
-                                tag="article"
-                                type="main"
-                            >
-                                <SpaceBetween>
-                                    <Toggle
-                                        active={ true }
-                                        onToggleAsync={ async () => {
-                                            return true;
-                                        } }
-                                        size="small"
-                                    />
-                                    <Flex>
-                                        <LabelToggle
-                                            active={ theme.enabled }
-                                            activeText={ <Tag type="main">Активен</Tag> }
-                                            size="small"
-                                            unActiveText={
-                                                <Tag type="invisible">Не активен</Tag>
+                                onConnect={ async (_, themeId) => {
+                                    return adminThemeQuestionService.removeQuestionFromTheme(authService.token[0], {
+                                        themeId,
+                                        questionId: question.id,
+                                    })
+                                        .then((result) => {
+                                            if (result) {
+                                                question.themes = question.themes.filter((theme) => theme.publicId !== themeId);
                                             }
-                                        />
-                                        <Button
-                                            onClick={ () => navigate(adminPageGetter.guid(theme.publicId)) }
-                                            quad
-                                            size="small"
-                                            styleType="default"
-                                        >
-                                            <IconM size="small">edit</IconM>
-                                        </Button>
-                                    </Flex>
-                                </SpaceBetween>
-                                <Title lines={ 1 } size="small">{ theme.title }</Title>
-                                <P
-                                    dangerouslySetInnerHTML={ { __html: theme.description } }
-                                    lines={ 2 }
-                                    type="invisible"
-                                />
-                            </Section>
+
+                                            return result;
+                                        });
+                                } }
+                                theme={ theme }
+                            />
                         ))
                     }
                 </TileBox>

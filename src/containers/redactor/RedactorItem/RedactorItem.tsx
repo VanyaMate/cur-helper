@@ -127,18 +127,13 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
         >
             <EditorContent editor={ editor }/>
             {
-                (floatingMenu || bubbleMenu)
-                ? <RedactorEditorContext.Provider value={ editor }>
-                    {
-                        bubbleMenu
-                        ? <RedactorBubbleMenu menu={ bubbleMenu }/> : null
-                    }
-                    {
-                        floatingMenu
-                        ? <RedactorFloatingMenu menu={ floatingMenu }/>
-                        : null
-                    }
-                </RedactorEditorContext.Provider>
+                bubbleMenu
+                ? <RedactorBubbleMenu editor={ editor } menu={ bubbleMenu }/>
+                : null
+            }
+            {
+                floatingMenu
+                ? <RedactorFloatingMenu editor={ editor } menu={ floatingMenu }/>
                 : null
             }
         </TitleSection>
