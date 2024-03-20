@@ -4,6 +4,7 @@ import {
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
 import {
+    AdminQuestionShortType,
     AdminThemeShortType,
     AdminThemeType,
     MultiplyResponse, ThemeCreateType,
@@ -12,12 +13,13 @@ import {
 
 
 export class AdminThemeService implements IAdminThemeService {
-    public themes: Record<string, AdminThemeType>            = {};
-    public themesList: MultiplyResponse<AdminThemeShortType> = {
+    public themes: Record<string, AdminThemeType>                                  = {};
+    public themesList: MultiplyResponse<AdminThemeShortType>                       = {
         list   : [],
         count  : 0,
         options: {},
     };
+    public unlinkedForQuestion: Map<string, MultiplyResponse<AdminThemeShortType>> = new Map<string, MultiplyResponse<AdminThemeShortType>>();
 
     constructor () {
         makeAutoObservable(this, {}, { deep: true });
@@ -107,6 +109,27 @@ export class AdminThemeService implements IAdminThemeService {
             .then((multiplyResponse) => {
                 this.themesList = multiplyResponse;
                 return multiplyResponse;
+            });
+    }
+
+    async getManyUnlinkedForQuestion (token: string, questionId: string): Promise<MultiplyResponse<AdminThemeShortType>> {
+        return fetch(`${ API_HOST }/api/v1/admin/themes/unlinked-for-question/${ questionId }`, {
+            method : 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json())
+            .then((list: MultiplyResponse<AdminThemeShortType>) => {
+                const cached: MultiplyResponse<AdminThemeShortType> | undefined = this.unlinkedForQuestion.get(questionId);
+                if (cached) {
+                    // slice
+                    // else
+                    // add
+                }
+                this.unlinkedForQuestion.set(questionId, list);
+                return list;
             });
     }
 }

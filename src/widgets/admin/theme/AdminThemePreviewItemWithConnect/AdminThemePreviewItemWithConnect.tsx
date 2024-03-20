@@ -14,20 +14,21 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 
 export type AdminThemePreviewItemWithConnectProps = {
     theme: AdminThemeShortType;
-    onConnect: (state: boolean, themeId: string) => Promise<boolean>
+    onConnect: (state: boolean, themeId: string) => Promise<boolean>;
+    defaultState?: boolean;
 };
 
 const AdminThemePreviewItemWithConnect: React.FC<AdminThemePreviewItemWithConnectProps> = (props) => {
-    const { theme, onConnect } = props;
-    const adminPageGetter      = usePageUrl('admin');
-    const navigate             = useNavigate();
+    const { theme, onConnect, defaultState } = props;
+    const adminPageGetter                    = usePageUrl('admin');
+    const navigate                           = useNavigate();
 
     return (
         <ThemePreviewItem
             extra={
                 <SpaceBetween>
                     <Toggle
-                        active={ true }
+                        active={ defaultState ?? true }
                         onToggleAsync={ async (value: boolean) => onConnect(value, theme.id) }
                         size="small"
                     />

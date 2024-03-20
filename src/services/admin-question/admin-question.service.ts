@@ -13,13 +13,14 @@ import { API_HOST } from '@/constants/api.url.ts';
 
 
 export class AdminQuestionService implements IAdminQuestionService {
-    public questions: Map<string, QuestionFullType>                               = new Map<string, QuestionFullType>();
-    public questionList: MultiplyResponse<AdminQuestionShortType>                 = {
+    public questions: Map<string, QuestionFullType>                                = new Map<string, QuestionFullType>();
+    public questionList: MultiplyResponse<AdminQuestionShortType>                  = {
         options: {},
         list   : [],
         count  : 0,
     };
-    public unlinkedForTest: Map<string, MultiplyResponse<AdminQuestionShortType>> = new Map<string, MultiplyResponse<AdminQuestionShortType>>();
+    public unlinkedForTest: Map<string, MultiplyResponse<AdminQuestionShortType>>  = new Map<string, MultiplyResponse<AdminQuestionShortType>>();
+    public unlinkedForTheme: Map<string, MultiplyResponse<AdminQuestionShortType>> = new Map<string, MultiplyResponse<AdminQuestionShortType>>();
 
     constructor () {
         makeAutoObservable(this);
@@ -123,6 +124,27 @@ export class AdminQuestionService implements IAdminQuestionService {
                     // add
                 }
                 this.unlinkedForTest.set(testId, list);
+                return list;
+            });
+    }
+
+    async findManyUnlinkedForTheme (token: string, themeId: string): Promise<MultiplyResponse<AdminQuestionShortType>> {
+        return fetch(`${ API_HOST }/api/v1/admin/questions/unlinked-for-theme/${ themeId }`, {
+            method : 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json())
+            .then((list: MultiplyResponse<AdminQuestionShortType>) => {
+                const cached: MultiplyResponse<AdminQuestionShortType> | undefined = this.unlinkedForTheme.get(themeId);
+                if (cached) {
+                    // slice
+                    // else
+                    // add
+                }
+                this.unlinkedForTheme.set(themeId, list);
                 return list;
             });
     }

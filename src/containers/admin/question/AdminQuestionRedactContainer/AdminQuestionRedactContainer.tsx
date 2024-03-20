@@ -55,10 +55,6 @@ import ImageAddMenu
 import AdminOpenQuestionAddFormButtonFeature
     from '@/features/admin/question/AdminOpenQuestionAddFormButtonFeature/AdminOpenQuestionAddFormButtonFeature.tsx';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
-import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
-import {
-    adminTestQuestionService,
-} from '@/services/admin-test-question/admin-test-question.service.ts';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
@@ -71,6 +67,8 @@ import ThemePreviewItemWithConnect
 import {
     adminThemeQuestionService,
 } from '@/services/admin-theme-question/admin-theme-question.service.ts';
+import AdminOpenAddThemeToQuestionFormButtonFeature
+    from '@/features/admin/question-theme/AdminOpenAddThemeToQuestionFormButtonFeature/AdminOpenAddThemeToQuestionFormButtonFeature.tsx';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -258,7 +256,9 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
 
             <TitleSection
                 extra={
-                    <AdminOpenQuestionAddFormButtonFeature testId={ question.id }/>
+                    <AdminOpenAddThemeToQuestionFormButtonFeature
+                        questionId={ question.id }
+                    />
                 }
                 tag="section"
                 title={ `Темы (${ question.themes.length })` }
