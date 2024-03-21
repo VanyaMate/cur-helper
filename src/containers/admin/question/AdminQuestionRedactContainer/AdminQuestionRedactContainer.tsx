@@ -61,7 +61,7 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import { useNavigate } from 'react-router-dom';
 import DeleteQuestionButton
-    from '@/features/question/DeleteQuestionButton/DeleteQuestionButton.tsx';
+    from '@/features/admin/question/AdminDeleteQuestionButton/AdminDeleteQuestionButton.tsx';
 import ThemePreviewItemWithConnect
     from '@/widgets/admin/theme/AdminThemePreviewItemWithConnect/AdminThemePreviewItemWithConnect.tsx';
 import {
@@ -69,6 +69,8 @@ import {
 } from '@/services/admin-theme-question/admin-theme-question.service.ts';
 import AdminOpenAddThemeToQuestionFormButtonFeature
     from '@/features/admin/question-theme/AdminOpenAddThemeToQuestionFormButtonFeature/AdminOpenAddThemeToQuestionFormButtonFeature.tsx';
+import AdminOpenAddTestToQuestionFormButtonFeature
+    from '@/features/admin/test/AdminOpenAddTestToQuestionFormButtonFeature/AdminOpenAddTestToQuestionFormButtonFeature.tsx';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -275,7 +277,7 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                                     })
                                         .then((result) => {
                                             if (result) {
-                                                question.themes = question.themes.filter((theme) => theme.publicId !== themeId);
+                                                question.themes = question.themes.filter((theme) => theme.id !== themeId);
                                             }
 
                                             return result;
@@ -290,7 +292,9 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
 
             <TitleSection
                 extra={
-                    <AdminOpenQuestionAddFormButtonFeature testId={ question.id }/>
+                    <AdminOpenAddTestToQuestionFormButtonFeature
+                        questionId={ question.id }
+                    />
                 }
                 tag="section"
                 title={ `Тесты (${ question.tests.length })` }

@@ -1,48 +1,48 @@
 import React from 'react';
-import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
+import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
-import Section from '@/components/ui/container/Section/Section.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import { authService } from '@/services/auth/auth.service.ts';
-import { adminTestService } from '@/services/admin-tests/admin-test.service.ts';
-import { useNavigate } from 'react-router-dom';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import { useNavigate } from 'react-router-dom';
+import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
+import { authService } from '@/services/auth/auth.service.ts';
+import Title from '@/components/ui/title/Title/Title.tsx';
 
 
-export type DeleteTestButtonProps = {
-    testId: string;
+export type AdminDeleteThemeButtonProps = {
+    themeId: string;
 };
 
-const DeleteTestButton: React.FC<DeleteTestButtonProps> = (props) => {
-    const { testId }            = props;
-    const acceptDeleteTestPopup = useWindowPopupController();
+const AdminDeleteThemeButton: React.FC<AdminDeleteThemeButtonProps> = (props) => {
+    const { themeId }           = props;
+    const acceptDeleteFormPopup = useWindowPopupController();
     const pageGetter            = usePageUrl('admin');
     const navigate              = useNavigate();
 
     return (
         <>
-            <WindowPopup controller={ acceptDeleteTestPopup }>
+            <WindowPopup controller={ acceptDeleteFormPopup }>
                 <Section>
-                    <Title>Вы уверены что хотите удалить этот тест?</Title>
+                    <Title>Вы уверены что хотите удалить эту тему?</Title>
                     <Flex>
                         <Button
                             block
-                            onClick={ () => acceptDeleteTestPopup.close() }
+                            onClick={ () => acceptDeleteFormPopup.close() }
                             styleType="default"
                         >
                             Нет
                         </Button>
                         <Button
                             onClickAsync={ async () =>
-                                adminTestService
-                                    .delete(authService.token[0], testId)
+                                adminThemeService
+                                    .delete(authService.token[0], themeId)
                                     .then((deleted: boolean) =>
-                                        deleted ? navigate(pageGetter.tests()) : '',
+                                        deleted ? navigate(pageGetter.guids()) : '',
                                     )
                             }
                             quad
@@ -54,7 +54,7 @@ const DeleteTestButton: React.FC<DeleteTestButtonProps> = (props) => {
                 </Section>
             </WindowPopup>
             <Button
-                onClick={ acceptDeleteTestPopup.open }
+                onClick={ acceptDeleteFormPopup.open }
                 quad
                 size="small"
                 styleType="danger"
@@ -65,4 +65,4 @@ const DeleteTestButton: React.FC<DeleteTestButtonProps> = (props) => {
     );
 };
 
-export default React.memo(DeleteTestButton);
+export default React.memo(AdminDeleteThemeButton);

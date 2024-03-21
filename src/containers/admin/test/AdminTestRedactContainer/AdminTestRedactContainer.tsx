@@ -28,7 +28,7 @@ import AdminOpenQuestionAddFormButtonFeature
 import {
     adminTestQuestionService,
 } from '@/services/admin-test-question/admin-test-question.service.ts';
-import DeleteTestButton from '@/features/test/DeleteTestButton/DeleteTestButton.tsx';
+import DeleteTestButton from '@/features/admin/test/AdminDeleteTestButton/AdminDeleteTestButton.tsx';
 
 
 export type AdminTestRedactContainerProps = {

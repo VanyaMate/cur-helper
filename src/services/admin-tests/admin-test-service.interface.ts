@@ -13,6 +13,7 @@ import {
 export interface IAdminTestService {
     tests: Map<string, With<TestType, [ AdminTestThemeShort, AdminTestQuestionsShort ]>>;
     testsList: MultiplyResponse<AdminTestShortType>;
+    unlinkedForQuestion: Map<string, MultiplyResponse<AdminTestShortType>>;
 
     create (token: string, data: TestCreateType): Promise<With<TestType, [ AdminTestThemeShort, AdminTestQuestionsShort ]>>;
 
@@ -23,4 +24,6 @@ export interface IAdminTestService {
     getOne (token: string, id: string): Promise<With<TestType, [ AdminTestThemeShort, AdminTestQuestionsShort ]>>;
 
     getMany (token: string): Promise<MultiplyResponse<AdminTestShortType>>;
+
+    getManyUnlinkedForQuestion (token: string, questionId: string): Promise<MultiplyResponse<AdminTestShortType>>;
 }

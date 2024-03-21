@@ -6,7 +6,7 @@ import {
     AdminTestQuestionsShort,
     TestType,
     MultiplyResponse,
-    AdminTestShortType, TestCreateType, With,
+    AdminTestShortType, TestCreateType, With, AdminQuestionShortType,
 } from '@vanyamate/cur-helper-types';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
@@ -19,6 +19,7 @@ export class AdminTestService implements IAdminTestService {
         count  : 0,
         list   : [],
     };
+    public unlinkedForQuestion: Map<string, MultiplyResponse<AdminTestShortType>>       = new Map<string, MultiplyResponse<AdminTestShortType>>();
 
     constructor () {
         makeAutoObservable(this);
@@ -96,6 +97,27 @@ export class AdminTestService implements IAdminTestService {
             .then((multiplyResponse) => {
                 this.testsList = multiplyResponse;
                 return multiplyResponse;
+            });
+    }
+
+    async getManyUnlinkedForQuestion (token: string, questionId: string): Promise<MultiplyResponse<AdminTestShortType>> {
+        return fetch(`${ API_HOST }/api/v1/admin/tests/unlinked-for-question/${ questionId }`, {
+            method : 'GET',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+        })
+            .then((response) => response.json())
+            .then((list: MultiplyResponse<AdminTestShortType>) => {
+                const cached: MultiplyResponse<AdminTestShortType> | undefined = this.unlinkedForQuestion.get(questionId);
+                if (cached) {
+                    // slice
+                    // else
+                    // add
+                }
+                this.unlinkedForQuestion.set(questionId, list);
+                return list;
             });
     }
 }

@@ -57,7 +57,12 @@ import LinkRedactMenu
     from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
 import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
-import DeleteThemeButton from '@/features/theme/DeleteThemeButton/DeleteThemeButton.tsx';
+import DeleteThemeButton from '@/features/admin/theme/AdminDeleteThemeButton/AdminDeleteThemeButton.tsx';
+import AdminOpenAddQuestionToThemeFormButtonFeature
+    from '@/features/admin/theme/AdminOpenAddThemeToQuestionFormButtonFeature/AdminOpenAddThemeToQuestionFormButtonFeature.tsx';
+import {
+    adminThemeQuestionService,
+} from '@/services/admin-theme-question/admin-theme-question.service.ts';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -251,15 +256,9 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
 
             <TitleSection
                 extra={
-                    <Flex>
-                        <Button
-                            quad
-                            size="small"
-                            styleType="default"
-                        >
-                            <IconM size="small">add</IconM>
-                        </Button>
-                    </Flex>
+                    <AdminOpenAddQuestionToThemeFormButtonFeature
+                        themeId={ theme.publicId }
+                    />
                 }
                 title={ `Вопросы (${ theme.questions.length })` }
             >
@@ -270,11 +269,21 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                 <SpaceBetween>
                                     <Toggle
                                         active={ true }
-                                        onToggleAsync={ async () => {
-                                            return new Promise<void>((resolve) => {
-                                                setTimeout(() => resolve(), 1000);
-                                            }).then();
-                                        } }
+                                        onToggleAsync={ async () =>
+                                            adminThemeQuestionService
+                                                .removeQuestionFromTheme(authService.token[0], {
+                                                    themeId   : theme.id,
+                                                    questionId: question.id,
+                                                })
+                                                .then((result) => {
+                                                    const deletedQuestionId: string = question.id;
+                                                    if (result) {
+                                                        theme.questions = theme.questions.filter((question) => question.id !== deletedQuestionId);
+                                                    }
+
+                                                    return result;
+                                                })
+                                        }
                                         size="small"
                                     />
                                     <Flex>

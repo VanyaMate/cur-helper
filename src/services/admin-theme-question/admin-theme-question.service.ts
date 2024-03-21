@@ -6,6 +6,30 @@ import { QuestionToThemeType } from '@vanyamate/cur-helper-types';
 
 
 export class AdminThemeQuestionService implements IAdminThemeQuestionService {
+    async addQuestionToThemeByPublicId (token: string, data: QuestionToThemeType): Promise<boolean> {
+        return fetch(`${ API_HOST }/api/v1/question-to-theme/public`, {
+            method : 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+            body   : JSON.stringify(data),
+        })
+            .then((response) => response.json());
+    }
+
+    async removeQuestionFromThemeByPublicId (token: string, data: QuestionToThemeType): Promise<boolean> {
+        return fetch(`${ API_HOST }/api/v1/question-to-theme/public`, {
+            method : 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization': token ?? '',
+            },
+            body   : JSON.stringify(data),
+        })
+            .then((response) => response.json());
+    }
+
     async addQuestionToTheme (token: string, data: QuestionToThemeType): Promise<boolean> {
         return fetch(`${ API_HOST }/api/v1/question-to-theme`, {
             method : 'POST',

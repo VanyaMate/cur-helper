@@ -6,10 +6,8 @@ import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import IconM from '@/components/ui/icon/IconM.tsx';
-import { useNavigate } from 'react-router-dom';
-import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import AdminEditThemeButtonFeature
+    from '@/features/admin/theme/AdminEditThemeButtonFeature/AdminEditThemeButtonFeature.tsx';
 
 
 export type AdminThemePreviewItemWithConnectProps = {
@@ -20,8 +18,6 @@ export type AdminThemePreviewItemWithConnectProps = {
 
 const AdminThemePreviewItemWithConnect: React.FC<AdminThemePreviewItemWithConnectProps> = (props) => {
     const { theme, onConnect, defaultState } = props;
-    const adminPageGetter                    = usePageUrl('admin');
-    const navigate                           = useNavigate();
 
     return (
         <ThemePreviewItem
@@ -41,14 +37,7 @@ const AdminThemePreviewItemWithConnect: React.FC<AdminThemePreviewItemWithConnec
                                 <Tag type="invisible">Не активен</Tag>
                             }
                         />
-                        <Button
-                            onClick={ () => navigate(adminPageGetter.guid(theme.publicId)) }
-                            quad
-                            size="small"
-                            styleType="default"
-                        >
-                            <IconM size="small">edit</IconM>
-                        </Button>
+                        <AdminEditThemeButtonFeature themeId={ theme.id }/>
                     </Flex>
                 </SpaceBetween>
             }

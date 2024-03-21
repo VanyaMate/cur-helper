@@ -1,25 +1,27 @@
 import React from 'react';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import IconM from '@/components/ui/icon/IconM.tsx';
-import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
-import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Section from '@/components/ui/container/Section/Section.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { useNavigate } from 'react-router-dom';
-import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
-import { authService } from '@/services/auth/auth.service.ts';
+import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
+import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
+import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
+import Button from '@/components/ui/button/Button/Button.tsx';
+import { authService } from '@/services/auth/auth.service.ts';
+import IconM from '@/components/ui/icon/IconM.tsx';
+import {
+    adminQuestionService,
+} from '@/services/admin-question/admin-question.service.ts';
 
 
-export type DeleteThemeButtonProps = {
-    themeId: string;
+export type AdminDeleteQuestionButtonProps = {
+    questionId: string;
 };
 
-const DeleteThemeButton: React.FC<DeleteThemeButtonProps> = (props) => {
-    const { themeId }           = props;
+const AdminDeleteQuestionButton: React.FC<AdminDeleteQuestionButtonProps> = (props) => {
+    const { questionId }        = props;
     const acceptDeleteFormPopup = useWindowPopupController();
     const pageGetter            = usePageUrl('admin');
     const navigate              = useNavigate();
@@ -28,7 +30,7 @@ const DeleteThemeButton: React.FC<DeleteThemeButtonProps> = (props) => {
         <>
             <WindowPopup controller={ acceptDeleteFormPopup }>
                 <Section>
-                    <Title>Вы уверены что хотите удалить эту тему?</Title>
+                    <Title>Вы уверены что хотите удалить этот вопрос?</Title>
                     <Flex>
                         <Button
                             block
@@ -39,10 +41,10 @@ const DeleteThemeButton: React.FC<DeleteThemeButtonProps> = (props) => {
                         </Button>
                         <Button
                             onClickAsync={ async () =>
-                                adminThemeService
-                                    .delete(authService.token[0], themeId)
+                                adminQuestionService
+                                    .delete(authService.token[0], questionId)
                                     .then((deleted: boolean) =>
-                                        deleted ? navigate(pageGetter.guids()) : '',
+                                        deleted ? navigate(pageGetter.questions()) : '',
                                     )
                             }
                             quad
@@ -65,4 +67,4 @@ const DeleteThemeButton: React.FC<DeleteThemeButtonProps> = (props) => {
     );
 };
 
-export default React.memo(DeleteThemeButton);
+export default React.memo(AdminDeleteQuestionButton);

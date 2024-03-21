@@ -105,35 +105,37 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             </SpaceBetween>
                         </Section>
                     </Section>
-                    <P dangerouslySetInnerHTML={ { __html: data.description } }
-                       type="second"/>
-                    <Collapse
-                        opened
-                        title="Что нужно повторить"
-                    >
-                        <Section size="extra-small">
-                            { data.themes.map((theme) => (
-                                <ThemeListItem
-                                    key={ theme.publicId }
-                                    theme={ theme }
-                                    urlGenerator={ pageGetter.guid }
-                                />
-                            )) }
-                        </Section>
-                    </Collapse>
-                    <Collapse
-                        title="Темы затронутые в тесте"
-                    >
-                        <Section size="extra-small">
-                            { data.themes.map((theme) => (
-                                <ThemeListItem
-                                    key={ theme.publicId }
-                                    theme={ theme }
-                                    urlGenerator={ pageGetter.guid }
-                                />
-                            )) }
-                        </Section>
-                    </Collapse>
+                    <Section size={ 'large' }>
+                        <P dangerouslySetInnerHTML={ { __html: data.description } }
+                           type="second"/>
+                        <Collapse
+                            opened
+                            title="Что нужно повторить"
+                        >
+                            <Section size="extra-small">
+                                { data.themes.map((theme) => (
+                                    <ThemeListItem
+                                        key={ theme.publicId }
+                                        theme={ theme }
+                                        urlGenerator={ pageGetter.guid }
+                                    />
+                                )) }
+                            </Section>
+                        </Collapse>
+                        <Collapse
+                            title="Темы затронутые в тесте"
+                        >
+                            <Section size="extra-small">
+                                { data.themes.map((theme) => (
+                                    <ThemeListItem
+                                        key={ theme.publicId }
+                                        theme={ theme }
+                                        urlGenerator={ pageGetter.guid }
+                                    />
+                                )) }
+                            </Section>
+                        </Collapse>
+                    </Section>
                 </Section>
                 : null
             }

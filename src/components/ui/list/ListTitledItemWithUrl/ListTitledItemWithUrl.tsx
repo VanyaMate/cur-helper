@@ -20,7 +20,7 @@ const ListTitledItemWithUrl: React.FC<ListTitledItemWithUrlProps> = (props) => {
             className={ css.container }
             size="extra-small"
             tag="article"
-            type="default"
+            type="main"
         >
             {
                 title
