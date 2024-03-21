@@ -21,7 +21,7 @@ const AdminQuestionListContainer: React.FC<AdminQuestionListContainerProps> = ob
             extra={ <AdminOpenQuestionCreateFormButtonFeature/> }
             title="Список вопросов"
         >
-            <AdminQuestionListWidget data={ questionList }/>
+            <AdminQuestionListWidget questions={ questionList.list }/>
         </TitleSection>
     );
 });

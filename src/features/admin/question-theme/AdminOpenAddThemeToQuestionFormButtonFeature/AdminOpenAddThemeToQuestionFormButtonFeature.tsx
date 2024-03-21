@@ -64,7 +64,7 @@ const AdminOpenAddThemeToQuestionFormButtonFeature: React.FC<AdminOpenAddThemeTo
         <>
             <WindowPopup controller={ themeToQuestionFormPopup }>
                 <TitleSection
-                    title="Не подключенные темы"
+                    title="Неподключенные темы"
                     type="default"
                 >
                     {

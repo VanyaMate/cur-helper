@@ -12,6 +12,8 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { useNavigate } from 'react-router-dom';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
+import AdminTestPreviewItem
+    from '@/widgets/admin/test/AdminTestPreviewItem/AdminTestPreviewItem.tsx';
 
 
 export type AdminTestListWidgetProps = {
@@ -19,43 +21,13 @@ export type AdminTestListWidgetProps = {
 };
 
 const AdminTestListWidget: React.FC<AdminTestListWidgetProps> = (props) => {
-    const { data }   = props;
-    const pageGetter = usePageUrl('admin');
-    const navigate   = useNavigate();
+    const { data } = props;
 
     return (
         <TileBox>
             {
                 data.list.map((test) => (
-                    <Section key={ test.id } size="extra-small" type="main">
-                        <SpaceBetween>
-                            <P type="invisible">Тема: '---'</P>
-                            <Flex>
-                                <LabelToggle
-                                    active={ test.enabled }
-                                    activeText={
-                                        <Tag type="main">Активен</Tag>
-                                    }
-                                    size="small"
-                                    unActiveText={
-                                        <Tag type="invisible">Не активен</Tag>
-                                    }
-                                />
-                                <Button
-                                    onClick={ () => {
-                                        navigate(pageGetter.test(test.id));
-                                    } }
-                                    quad
-                                    size="small"
-                                    styleType="default"
-                                >
-                                    <IconM size="small">edit</IconM>
-                                </Button>
-                            </Flex>
-                        </SpaceBetween>
-                        <Title lines={ 2 }>{ test.title }</Title>
-                        <P lines={ 2 } type="invisible">{ test.title }</P>
-                    </Section>
+                    <AdminTestPreviewItem key={ test.id } test={ test }/>
                 ))
             }
         </TileBox>

@@ -49,7 +49,7 @@ export const TipTapImage = Node.create<TipTapImageOptions>({
 
     parseHTML () {
         return [
-            { tag: 'img[data-ext]' },
+            { tag: 'img[questions-ext]' },
         ];
     },
 
@@ -57,7 +57,7 @@ export const TipTapImage = Node.create<TipTapImageOptions>({
         return [
             'img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
                 class     : cn(this.options.width && 'rounded', this.options.width && 'width'),
-                'data-ext': true,
+                'questions-ext': true,
             }),
         ];
     },

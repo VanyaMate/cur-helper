@@ -27,6 +27,8 @@ import Tag from '@/components/common/Tag/Tag.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import { adminTestService } from '@/services/admin-tests/admin-test.service.ts';
+import AdminUnlinkedQuestionListWidget
+    from '@/widgets/admin/question/AdminUnlinkedQuestionListWidget/AdminUnlinkedQuestionListWidget.tsx';
 
 
 export type AdminOpenQuestionAddFormButtonFeatureProps = {
@@ -107,64 +109,11 @@ const AdminOpenQuestionAddFormButtonFeature: React.FC<AdminOpenQuestionAddFormBu
                         ? <Section>
                             <Input label="Поиск по названию" onChangeHandler={ () => {
                             } }/>
-                            <TitleSection title="Неподключенные вопросы" type="default">
-                                {
-                                    (unlinkedForTest && unlinkedForTest.list.length)
-                                    ? unlinkedForTest.list.map((question) => (
-                                        <Section
-                                            key={ question.id }
-                                            size="extra-small"
-                                            type="main"
-                                        >
-                                            <SpaceBetween>
-                                                <Toggle
-                                                    active={ false }
-                                                    onToggleAsync={ async () =>
-                                                        adminTestQuestionService
-                                                            .addQuestionToTest(authService.token[0], testId, question.id)
-                                                            .then((status) => {
-                                                                if (status) {
-                                                                    const questionIndex = unlinkedForTest.list.findIndex((que) => que.id === question.id);
-                                                                    const [ que ]       = unlinkedForTest.list.splice(questionIndex, 1);
-                                                                    const test          = adminTestService.tests.get(testId);
-                                                                    if (test) {
-                                                                        test.questions.push(que);
-                                                                    }
-                                                                }
-                                                            })
-                                                            .then()
-                                                    }
-                                                    size="small"
-                                                />
-                                                <Flex>
-                                                    <LabelToggle
-                                                        active={ question.enabled }
-                                                        activeText={
-                                                            <Tag type="main">
-                                                                Активен
-                                                            </Tag>
-                                                        }
-                                                        side="left"
-                                                        size="small"
-                                                        unActiveText={
-                                                            <Tag type="danger">
-                                                                Не активен
-                                                            </Tag>
-                                                        }
-                                                    />
-                                                    [e]
-                                                </Flex>
-                                            </SpaceBetween>
-                                            <Title>{ question.title }</Title>
-                                            <P
-                                                dangerouslySetInnerHTML={ { __html: question.description } }
-                                                type="invisible"
-                                            />
-                                        </Section>
-                                    ))
-                                    : <Loader/>
-                                }
-                            </TitleSection>
+                            <AdminUnlinkedQuestionListWidget
+                                onConnect={ (question) => adminTestService.tests.get(testId)?.questions.push(question) }
+                                testId={ testId }
+                                unlinkedQuestionsList={ unlinkedForTest?.list ?? [] }
+                            />
                         </Section> : null
                     }
                 </Section>

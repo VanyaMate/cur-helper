@@ -28,7 +28,6 @@ import { observer } from 'mobx-react-lite';
 import { adminThemeService } from '@/services/admin-theme/admin-theme.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import ContentBox from '@/components/common/ContentBox/ContentBox.tsx';
@@ -36,8 +35,6 @@ import Link from '@/components/ui/link/Link/Link.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import IconM from '@/components/ui/icon/IconM.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import AdminTestListHeaderExtraWidget
     from '@/widgets/admin/test/AdminTestListHeaderExtraWidget/AdminTestListHeaderExtraWidget.tsx';
@@ -57,12 +54,16 @@ import LinkRedactMenu
     from '@/components/tiptap/menu/redact-menu/LinkRedactMenu/LinkRedactMenu.tsx';
 import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
-import DeleteThemeButton from '@/features/admin/theme/AdminDeleteThemeButton/AdminDeleteThemeButton.tsx';
+import DeleteThemeButton
+    from '@/features/admin/theme/AdminDeleteThemeButton/AdminDeleteThemeButton.tsx';
 import AdminOpenAddQuestionToThemeFormButtonFeature
     from '@/features/admin/theme/AdminOpenAddThemeToQuestionFormButtonFeature/AdminOpenAddThemeToQuestionFormButtonFeature.tsx';
+import AdminQuestionPreviewItemWidget
+    from '@/widgets/admin/question/AdminQuestionPreviewItemWidget/AdminQuestionPreviewItemWidget';
 import {
     adminThemeQuestionService,
 } from '@/services/admin-theme-question/admin-theme-question.service.ts';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
 
 
 export type AdminThemeRedactContainerProps = {
@@ -257,16 +258,20 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
             <TitleSection
                 extra={
                     <AdminOpenAddQuestionToThemeFormButtonFeature
-                        themeId={ theme.publicId }
+                        onConnect={ (question) => {
+                            theme.questions.push(question);
+                        } }
+                        publicThemeId={ theme.publicId }
+                        themeId={ theme.id }
                     />
                 }
                 title={ `Вопросы (${ theme.questions.length })` }
             >
                 <TileBox>
                     {
-                        theme.questions.map((question) => (
-                            <Section key={ question.id } size="extra-small" type="main">
-                                <SpaceBetween>
+                        theme.questions.map((question) =>
+                            <AdminQuestionPreviewItemWidget
+                                extra={
                                     <Toggle
                                         active={ true }
                                         onToggleAsync={ async () =>
@@ -280,37 +285,16 @@ const AdminThemeRedactContainer: React.FC<AdminThemeRedactContainerProps> = obse
                                                     if (result) {
                                                         theme.questions = theme.questions.filter((question) => question.id !== deletedQuestionId);
                                                     }
-
                                                     return result;
                                                 })
                                         }
                                         size="small"
                                     />
-                                    <Flex>
-                                        <LabelToggle
-                                            active={ question.enabled }
-                                            activeText={
-                                                <Tag type="main">Активен</Tag>
-                                            }
-                                            size="small"
-                                            unActiveText={
-                                                <Tag type="invisible">Не активен</Tag>
-                                            }
-                                        />
-                                        <Button
-                                            quad
-                                            size="small"
-                                            styleType="default"
-                                        >
-                                            <IconM size="small">edit</IconM>
-                                        </Button>
-                                    </Flex>
-                                </SpaceBetween>
-                                <Title lines={ 2 }>{ question.title }</Title>
-                                <P lines={ 2 }
-                                   type="invisible">{ question.description }</P>
-                            </Section>
-                        ))
+                                }
+                                key={ question.id }
+                                question={ question }
+                            />,
+                        )
                     }
                 </TileBox>
             </TitleSection>

@@ -71,6 +71,12 @@ import AdminOpenAddThemeToQuestionFormButtonFeature
     from '@/features/admin/question-theme/AdminOpenAddThemeToQuestionFormButtonFeature/AdminOpenAddThemeToQuestionFormButtonFeature.tsx';
 import AdminOpenAddTestToQuestionFormButtonFeature
     from '@/features/admin/test/AdminOpenAddTestToQuestionFormButtonFeature/AdminOpenAddTestToQuestionFormButtonFeature.tsx';
+import AdminTestPreviewItem
+    from '@/widgets/admin/test/AdminTestPreviewItem/AdminTestPreviewItem.tsx';
+import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
+import {
+    adminTestQuestionService,
+} from '@/services/admin-test-question/admin-test-question.service.ts';
 
 
 export type AdminQuestionRedactContainerProps = {
@@ -294,6 +300,7 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                 extra={
                     <AdminOpenAddTestToQuestionFormButtonFeature
                         questionId={ question.id }
+                        onConnect={ (test) => question.tests.push(test) }
                     />
                 }
                 tag="section"
@@ -302,32 +309,26 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
                 <TileBox>
                     {
                         question.tests.map((test) => (
-                            <Section
-                                key={ test.id }
-                                size="small"
-                                tag="article"
-                                type="main"
-                            >
-                                <SpaceBetween>
-                                    <LabelToggle
-                                        active={ test.enabled }
-                                        activeText={ <Tag type="main">Активен</Tag> }
+                            <AdminTestPreviewItem
+                                extra={
+                                    <Toggle
+                                        active={ true }
+                                        onToggleAsync={ async () => {
+                                            return adminTestQuestionService
+                                                .removeQuestionFromTest(authService.token[0], test.id, question.id)
+                                                .then((removed) => {
+                                                    if (removed) {
+                                                        question.tests = question.tests.filter((connectedTest) => connectedTest.id !== test.id);
+                                                    }
+                                                    return removed;
+                                                });
+                                        } }
                                         size="small"
-                                        unActiveText={
-                                            <Tag type="invisible">Не активен</Tag>
-                                        }
                                     />
-                                    <Button
-                                        onClick={ () => navigate(adminPageGetter.test(test.id)) }
-                                        quad
-                                        size="small"
-                                        styleType="default"
-                                    >
-                                        <IconM size="small">edit</IconM>
-                                    </Button>
-                                </SpaceBetween>
-                                <Title lines={ 1 } size="small">{ test.title }</Title>
-                            </Section>
+                                }
+                                key={ test.id }
+                                test={ test }
+                            />
                         ))
                     }
                 </TileBox>

@@ -37,7 +37,7 @@ const AdminThemePreviewItemWithConnect: React.FC<AdminThemePreviewItemWithConnec
                                 <Tag type="invisible">Не активен</Tag>
                             }
                         />
-                        <AdminEditThemeButtonFeature themeId={ theme.id }/>
+                        <AdminEditThemeButtonFeature themeId={ theme.publicId }/>
                     </Flex>
                 </SpaceBetween>
             }

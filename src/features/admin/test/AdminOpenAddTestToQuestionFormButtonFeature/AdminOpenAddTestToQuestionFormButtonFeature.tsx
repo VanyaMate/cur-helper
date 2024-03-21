@@ -9,24 +9,24 @@ import { observer } from 'mobx-react-lite';
 import { adminTestService } from '@/services/admin-tests/admin-test.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
-import Section from '@/components/ui/container/Section/Section.tsx';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
-import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import P from '@/components/ui/p/P/P.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
+import AdminTestPreviewItem
+    from '@/widgets/admin/test/AdminTestPreviewItem/AdminTestPreviewItem.tsx';
+import { AdminTestShortType } from '@vanyamate/cur-helper-types';
+import {
+    adminTestQuestionService,
+} from '@/services/admin-test-question/admin-test-question.service.ts';
 
 
 export type AdminOpenAddTestToQuestionFormButtonFeatureProps = {
     questionId: string;
+    onConnect?: (test: AdminTestShortType) => void;
 };
 
 const AdminOpenAddTestToQuestionFormButtonFeature: React.FC<AdminOpenAddTestToQuestionFormButtonFeatureProps> = observer((props) => {
-    const { questionId }      = props;
-    const addTestToThemeModal = useWindowPopupController();
-    const testList            = adminTestService.unlinkedForQuestion.get(questionId);
-
-    console.log(testList);
+    const { questionId, onConnect } = props;
+    const addTestToThemeModal       = useWindowPopupController();
+    const testList                  = adminTestService.unlinkedForQuestion.get(questionId);
 
     const onClickHandler = useCallback(() => {
         addTestToThemeModal.open();
@@ -40,20 +40,31 @@ const AdminOpenAddTestToQuestionFormButtonFeature: React.FC<AdminOpenAddTestToQu
     return (
         <>
             <WindowPopup controller={ addTestToThemeModal }>
-                <TitleSection title="Темы" titleType="default">
+                <TitleSection title="Неподключенные тесты" type="default">
                     {
                         testList ? testList.list.map((test) => (
-                            <Section key={ test.id } size="extra-small" type="default">
-                                <SpaceBetween>
-                                    <Toggle active={ true } size="small"/>
-                                    <Flex>
-                                        <P type="invisible">{ test.enabled ? 'Активен'
-                                                                           : 'Не активен' }</P>
-                                        <Toggle active={ test.enabled } size="small"/>
-                                    </Flex>
-                                </SpaceBetween>
-                                <Title lines={ 2 }>{ test.title }</Title>
-                            </Section>
+                            <AdminTestPreviewItem
+                                extra={
+                                    <Toggle
+                                        active={ false }
+                                        onToggleAsync={ async () => {
+                                            return adminTestQuestionService
+                                                .addQuestionToTest(authService.token[0], test.id, questionId)
+                                                .then((connected) => {
+                                                    if (connected) {
+                                                        onConnect && onConnect(test);
+                                                        testList.list = testList.list.filter((unlinkedTest) => unlinkedTest.id !== test.id);
+                                                    }
+
+                                                    return connected;
+                                                });
+                                        } }
+                                        size="small"
+                                    />
+                                }
+                                key={ test.id }
+                                test={ test }
+                            />
                         )) : null
                     }
                 </TitleSection>

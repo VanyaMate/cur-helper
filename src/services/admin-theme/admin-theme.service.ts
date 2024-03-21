@@ -4,7 +4,6 @@ import {
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
 import {
-    AdminQuestionShortType,
     AdminThemeShortType,
     AdminThemeType,
     MultiplyResponse, ThemeCreateType,
