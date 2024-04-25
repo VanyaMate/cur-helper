@@ -19,7 +19,7 @@ export const fetchService = async function <Data> (options: FetchServiceRequestO
 
     if (cacheData) {
         if (cacheData.abortController) {
-            cacheData.abortController.abort();
+            cacheData.abortController.abort('Repeated');
         }
         cacheData.pending         = true;
         cacheData.abortController = abortController;
@@ -42,7 +42,7 @@ export const fetchService = async function <Data> (options: FetchServiceRequestO
     })
         .then(async (response) => {
             if (response.ok) {
-                const body: Data = await response.json();
+                const body: Data     = await response.json();
                 save.record[save.id] = {
                     pending        : false,
                     error          : null,
@@ -65,9 +65,7 @@ export const fetchService = async function <Data> (options: FetchServiceRequestO
             }
         })
         .catch((error) => {
-            if (error.toString() === 'AbortError: The user aborted a request.') {
-                return Promise.reject();
-            } else {
+            if (error.toString() !== 'Repeated') {
                 save.record[save.id] = {
                     pending        : false,
                     error          :
@@ -84,21 +82,6 @@ export const fetchService = async function <Data> (options: FetchServiceRequestO
                     abortController: abortController,
                 };
             }
-            save.record[save.id] = {
-                pending        : false,
-                error          :
-                    {
-                        code  : ErrorCode.NOT_FOUND,
-                        errors: [
-                            {
-                                target  : 'server',
-                                messages: [ 'Сервер не отвечает' ],
-                            },
-                        ],
-                    },
-                data           : null,
-                abortController: abortController,
-            };
-            return Promise.reject(error);
+            return Promise.reject();
         });
 };
