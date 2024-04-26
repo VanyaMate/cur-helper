@@ -100,7 +100,6 @@ class AuthService implements IAuthService {
                 }
             })
             .then((data: UserAuthType) => {
-                console.log(data);
                 this._setToken(data.token, remember);
                 this.authenticated = true;
                 return data;

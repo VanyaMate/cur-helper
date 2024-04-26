@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from './WindowPopup.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Section from '@/components/ui/container/Section/Section.tsx';
@@ -22,6 +22,19 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
               children,
               controller,
           } = props;
+
+    useEffect(() => {
+        const root = document.body.querySelector('#root');
+        if (root) {
+            if (controller.opened) {
+                document.body.classList.add('block-scroll');
+                root.setAttribute('inert', 'true');
+            } else {
+                document.body.classList.remove('block-scroll');
+                root.removeAttribute('inert');
+            }
+        }
+    }, [ controller.opened ]);
 
     return createPortal(
         <div className={ cn(css.container, controller.opened && css.opened) }>

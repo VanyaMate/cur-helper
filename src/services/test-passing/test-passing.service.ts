@@ -6,6 +6,7 @@ import { makeAutoObservable } from 'mobx';
 import { TestPassingFullType, TestResultFullType } from '@vanyamate/cur-helper-types';
 
 
+// TODO: Convert to fetchService
 export class TestPassingService implements ITestPassingService {
     public passingTests: Map<string, TestPassingFullType> = new Map<string, TestPassingFullType>();
     public resultTests: Map<string, TestResultFullType>   = new Map<string, TestResultFullType>();

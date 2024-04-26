@@ -3,6 +3,7 @@
 @import "styles/transition.scss";
 @import "styles/sizes.scss";
 @import "styles/animation.scss";
+@import "styles/index.scss";
 
 @import "styles/tiptap/tiptap.scss";
 

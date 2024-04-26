@@ -21,9 +21,13 @@
         "noUnusedLocals": false,
         "noUnusedParameters": false,
         "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
         "paths": {
             "@/*": [
                 "./src/*"
+            ],
+            "$/*": [
+                "./*"
             ]
         }
     },
@@ -34,5 +38,10 @@
         {
             "path": "./tsconfig.node.json"
         }
-    ]
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    }
 }

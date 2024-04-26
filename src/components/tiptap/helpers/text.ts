@@ -26,8 +26,6 @@ export const textColor = (editor: Editor): string => {
     const colorMark = node?.marks.find((mark) => mark.type.name === 'textStyle');
 
     if (colorMark) {
-        console.log('es', colorMark.attrs['color']);
-        console.log('to hex', toHex(colorMark.attrs['color']));
         return toHex(colorMark.attrs['color']);
     } else {
         return 'transparent';

@@ -8,11 +8,16 @@ import RedactorBubbleMenu
 import RedactorFloatingMenu
     from '@/containers/redactor/tiptap/RedactorFloatingMenu/RedactorFloatingMenu.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
-import { RedactorEditorContext } from './RedactorItemContext';
 import { EditorEvents } from '@tiptap/core';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 import { SectionType } from '@/components/ui/container/Section/Section.tsx';
+import css from './RedactorItem.module.scss';
+import { cn } from '@vanyamate/helpers/react/classname';
 
+
+export type RedactorItemSaveType =
+    'html'
+    | 'text';
 
 export type RedactorItemProps = {
     id: string;
@@ -23,7 +28,7 @@ export type RedactorItemProps = {
     html: string;
     editable: boolean;
     onSave: (html: string) => Promise<void>;
-    type?: 'html' | 'text';
+    type?: RedactorItemSaveType;
     blockType?: SectionType;
 };
 
@@ -61,19 +66,29 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
         return <Loader/>;
     }
 
-    const isChanged = localStorage.getItem(id)
-                      ? (localStorage.getItem(id) !== html)
-                      : false;
+    const cached: string | null = localStorage.getItem(id);
+    const isChanged             = cached ? cached !== html : false;
+    const getTextForSave        = function (type: RedactorItemSaveType | undefined) {
+        return type === 'text'
+               ? editor.getText()
+               : editor.getHTML();
+    };
 
     return (
         <TitleSection
+            className={
+                cn(
+                    css.container,
+                    redactState && css.redacted,
+                    isChanged && css.changed,
+                )
+            }
             extra={
                 <Flex>
                     <Button
                         disabled={ !isChanged }
                         onClickAsync={ async () => {
-                            return onSave(type === 'text' ? editor.getText()
-                                                          : editor.getHTML()).then();
+                            return onSave(getTextForSave(type)).then();
                         } }
                         quad
                         size="small"
@@ -111,18 +126,13 @@ const RedactorItem: React.FC<RedactorItemProps> = (props) => {
         >
             <EditorContent editor={ editor }/>
             {
-                (floatingMenu || bubbleMenu)
-                ? <RedactorEditorContext.Provider value={ editor }>
-                    {
-                        bubbleMenu
-                        ? <RedactorBubbleMenu menu={ bubbleMenu }/> : null
-                    }
-                    {
-                        floatingMenu
-                        ? <RedactorFloatingMenu menu={ floatingMenu }/>
-                        : null
-                    }
-                </RedactorEditorContext.Provider>
+                bubbleMenu
+                ? <RedactorBubbleMenu editor={ editor } menu={ bubbleMenu }/>
+                : null
+            }
+            {
+                floatingMenu
+                ? <RedactorFloatingMenu editor={ editor } menu={ floatingMenu }/>
                 : null
             }
         </TitleSection>

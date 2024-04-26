@@ -70,15 +70,6 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                         navigate(`/${ ADMIN_PAGE }/${ TESTS_PAGE }`);
                     } }
                 />
-                {/*<MobileSiteNavigationButton
-                 active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === PROFILES_PAGE
-                 : undefined }
-                 icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                 label="Профили"
-                 onClick={ () => {
-                 navigate(`/${ ADMIN_PAGE }/${ PROFILES_PAGE }`);
-                 } }
-                 />*/ }
                 <MobileSiteNavigationButton
                     active={ pathnames[1] === ADMIN_PAGE ? pathnames[2] === QUESTIONS_PAGE
                                                          : undefined }

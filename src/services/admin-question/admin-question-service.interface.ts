@@ -11,6 +11,8 @@ import { QuestionFullType } from '@vanyamate/cur-helper-types/types/question';
 export interface IAdminQuestionService {
     questions: Map<string, QuestionFullType>;
     questionList: MultiplyResponse<AdminQuestionShortType>;
+    unlinkedForTest: Map<string, MultiplyResponse<AdminQuestionShortType>>;
+    unlinkedForTheme: Map<string, MultiplyResponse<AdminQuestionShortType>>;
 
     create (token: string, data: QuestionCreateType): Promise<QuestionType>;
 

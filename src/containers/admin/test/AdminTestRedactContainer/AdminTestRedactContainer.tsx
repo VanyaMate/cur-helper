@@ -23,11 +23,12 @@ import SaveInput from '@/components/ui/input/SaveInput/SaveInput.tsx';
 import { useNavigate } from 'react-router-dom';
 import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
 import Tag from '@/components/common/Tag/Tag.tsx';
-import AdminOpenQuestionCreateFormButtonFeature
-    from '@/features/admin/question/AdminOpenQuestionCreateFormButtonFeature/AdminOpenQuestionCreateFormButtonFeature.tsx';
+import AdminOpenQuestionAddFormButtonFeature
+    from '@/features/admin/question/AdminOpenQuestionAddFormButtonFeature/AdminOpenQuestionAddFormButtonFeature.tsx';
 import {
     adminTestQuestionService,
 } from '@/services/admin-test-question/admin-test-question.service.ts';
+import DeleteTestButton from '@/features/admin/test/AdminDeleteTestButton/AdminDeleteTestButton.tsx';
 
 
 export type AdminTestRedactContainerProps = {
@@ -63,6 +64,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
                             size="small"
                             unActiveText={ <Tag type="invisible">Не активен</Tag> }
                         />
+                        <DeleteTestButton testId={ test.id }/>
                     </Flex>
                 </SpaceBetween>
                 <Flex>
@@ -140,7 +142,7 @@ const AdminTestRedactContainer: React.FC<AdminTestRedactContainerProps> = observ
 
             <TitleSection
                 extra={
-                    <AdminOpenQuestionCreateFormButtonFeature testId={ test.id }/>
+                    <AdminOpenQuestionAddFormButtonFeature testId={ test.id }/>
                 }
                 tag="section"
                 title={ `Вопросы (${ test.questions.length })` }

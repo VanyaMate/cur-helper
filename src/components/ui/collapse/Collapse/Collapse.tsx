@@ -24,7 +24,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
     const toggle            = useCallback(() => {
         setOpen((prev) => !prev);
     }, [ setOpen ]);
-    /*    const ref                                 = useRef<HTMLDivElement | null>(null);
+/*        const ref                                 = useRef<HTMLDivElement | null>(null);
      const [ contentHeight, setContentHeight ] = useState<number>(0);
 
      useEffect(() => {
@@ -57,7 +57,7 @@ const Collapse: React.FC<CollapseProps> = (props) => {
             }
             <div
                 className={ css.content }
-                /*ref={ ref }
+/*                ref={ ref }
                  style={ { height: open ? `${ contentHeight }px` : '0px' } }*/
             >
                 { children }

@@ -18,7 +18,9 @@ export type LabelToggleProps =
     & ToggleProps;
 
 const LabelToggle: React.FC<LabelToggleProps> = (props) => {
-    const { activeText, unActiveText, side, active, ...other } = props;
+    const {
+              activeText, unActiveText, side, active, onToggle, onToggleAsync, ...other
+          } = props;
 
     return (
         <Flex className={ cn(
@@ -27,7 +29,16 @@ const LabelToggle: React.FC<LabelToggleProps> = (props) => {
         ) }>
             { active ? activeText : null }
             { !active ? unActiveText : null }
-            <Toggle active={ active } { ...other }/>
+            {
+                (onToggle || onToggleAsync)
+                ? <Toggle
+                    active={ active }
+                    onToggle={ onToggle }
+                    onToggleAsync={ onToggleAsync }
+                    { ...other }
+                />
+                : null
+            }
         </Flex>
     );
 };

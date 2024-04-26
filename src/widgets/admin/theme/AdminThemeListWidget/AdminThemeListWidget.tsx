@@ -57,7 +57,7 @@ const AdminThemeListWidget: React.FC<AdminThemeListWidgetProps> = (props) => {
                         <P
                             dangerouslySetInnerHTML={ { __html: theme.description } }
                             lines={ 2 }
-                            type="second"
+                            type="invisible"
                         />
                     </Section>
                 ))
