@@ -8,7 +8,6 @@ import RedactorBubbleMenu
 import RedactorFloatingMenu
     from '@/containers/redactor/tiptap/RedactorFloatingMenu/RedactorFloatingMenu.tsx';
 import IconM from '@/components/ui/icon/IconM.tsx';
-import { RedactorEditorContext } from './RedactorItemContext';
 import { EditorEvents } from '@tiptap/core';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
 import { SectionType } from '@/components/ui/container/Section/Section.tsx';

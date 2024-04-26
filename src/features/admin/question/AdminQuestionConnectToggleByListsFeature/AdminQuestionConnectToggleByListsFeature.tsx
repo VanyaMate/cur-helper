@@ -77,7 +77,7 @@ const AdminQuestionConnectToggleByListsFeature: React.FC<AdminQuestionConnectTog
             }
             return false;
         }
-    }, []);
+    }, [ connectedList, questionId, testId, themeId, unlinkedList ]);
 
     return (
         <Toggle

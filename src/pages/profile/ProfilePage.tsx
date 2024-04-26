@@ -42,10 +42,10 @@ const ProfilePage: React.FC<ProfilePageProps> = (props) => {
                     value={ passwordValue }
                 />
                 <Button
+                    disabled={ !loginValue.length || !passwordValue.length }
                     onClickAsync={ loginCallback }
                     postfix={ <IconM>arrow_right</IconM> }
-                    disabled={ !loginValue.length || !passwordValue.length }
-                    styleType={ 'main' }
+                    styleType="main"
                 >
                     Войти
                 </Button>

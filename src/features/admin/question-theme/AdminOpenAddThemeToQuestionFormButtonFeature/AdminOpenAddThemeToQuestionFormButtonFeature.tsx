@@ -33,7 +33,7 @@ const AdminOpenAddThemeToQuestionFormButtonFeature: React.FC<AdminOpenAddThemeTo
     const onOpenPopupHandler = useCallback(() => {
         themeToQuestionFormPopup.open();
         adminThemeService.getManyUnlinkedForQuestion(authService.token[0], questionId);
-    }, []);
+    }, [ questionId, themeToQuestionFormPopup ]);
 
     // TODO: Refucktoring ( Kakoy ujas )
     const onConnectHandler: (state: boolean, themeId: string) => Promise<boolean> = useCallback(async (_: boolean, themeId: string) => {

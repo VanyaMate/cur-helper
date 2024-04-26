@@ -9,7 +9,6 @@ import Section from '@/components/ui/container/Section/Section.tsx';
 import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
 import { authService } from '@/services/auth/auth.service.ts';
-import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import RedactorItem from '@/containers/redactor/RedactorItem/RedactorItem.tsx';
 import { StarterKit } from '@tiptap/starter-kit';
 import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
@@ -52,14 +51,7 @@ import BulletList from '@tiptap/extension-bullet-list';
 import { ListItem } from '@tiptap/extension-list-item';
 import ImageAddMenu
     from '@/components/tiptap/menu/add-menu/ImageAddMenu/ImageAddMenu.tsx';
-import AdminOpenQuestionAddFormButtonFeature
-    from '@/features/admin/question/AdminOpenQuestionAddFormButtonFeature/AdminOpenQuestionAddFormButtonFeature.tsx';
 import TileBox from '@/components/ui/container/TileBox/TileBox.tsx';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import IconM from '@/components/ui/icon/IconM.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
-import P from '@/components/ui/p/P/P.tsx';
-import { useNavigate } from 'react-router-dom';
 import DeleteQuestionButton
     from '@/features/admin/question/AdminDeleteQuestionButton/AdminDeleteQuestionButton.tsx';
 import ThemePreviewItemWithConnect
@@ -86,8 +78,6 @@ export type AdminQuestionRedactContainerProps = {
 const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> = observer((props) => {
     const { id }                                 = props;
     const question: QuestionFullType | undefined = adminQuestionService.questions.get(id);
-    const adminPageGetter                        = usePageUrl('admin');
-    const navigate                               = useNavigate();
 
     if (!question) {
         return <Loader/>;
@@ -299,8 +289,8 @@ const AdminQuestionRedactContainer: React.FC<AdminQuestionRedactContainerProps> 
             <TitleSection
                 extra={
                     <AdminOpenAddTestToQuestionFormButtonFeature
-                        questionId={ question.id }
                         onConnect={ (test) => question.tests.push(test) }
+                        questionId={ question.id }
                     />
                 }
                 tag="section"

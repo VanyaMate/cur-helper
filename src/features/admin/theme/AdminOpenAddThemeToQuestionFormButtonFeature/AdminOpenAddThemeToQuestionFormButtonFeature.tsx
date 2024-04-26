@@ -32,7 +32,7 @@ const AdminOpenAddThemeToQuestionFormButtonFeature: React.FC<AdminOpenAddThemeTo
     const onClickHandler = useCallback(() => {
         addQuestionToThemeForm.open();
         adminQuestionService.findManyUnlinkedForTheme(authService.token[0], themeId);
-    }, []);
+    }, [ themeId, addQuestionToThemeForm ]);
 
     return (
         <>
@@ -42,9 +42,9 @@ const AdminOpenAddThemeToQuestionFormButtonFeature: React.FC<AdminOpenAddThemeTo
                         defaultThemePublicId={ publicThemeId }
                     />
                     <AdminUnlinkedQuestionListWidget
+                        onConnect={ onConnect }
                         themeId={ themeId }
                         unlinkedQuestionsList={ unlinkedQuestions }
-                        onConnect={ onConnect }
                     />
                 </Section>
             </WindowPopup>

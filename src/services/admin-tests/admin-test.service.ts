@@ -6,7 +6,7 @@ import {
     AdminTestQuestionsShort,
     TestType,
     MultiplyResponse,
-    AdminTestShortType, TestCreateType, With, AdminQuestionShortType,
+    AdminTestShortType, TestCreateType, With,
 } from '@vanyamate/cur-helper-types';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';

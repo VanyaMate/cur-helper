@@ -16,16 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import {
     adminTestQuestionService,
 } from '@/services/admin-test-question/admin-test-question.service.ts';
-import TitleSection from '@/components/ui/container/TitleSection/TitleSection.tsx';
-import Loader from '@/components/common/Loader/Loader.tsx';
 import { observer } from 'mobx-react-lite';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
-import Toggle from '@/components/ui/input/checkbox/Toggle/Toggle.tsx';
-import Flex from '@/components/ui/container/flex/Flex/Flex.tsx';
-import LabelToggle from '@/components/ui/input/checkbox/LabelToggle/LabelToggle.tsx';
-import Tag from '@/components/common/Tag/Tag.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
-import P from '@/components/ui/p/P/P.tsx';
 import { adminTestService } from '@/services/admin-tests/admin-test.service.ts';
 import AdminUnlinkedQuestionListWidget
     from '@/widgets/admin/question/AdminUnlinkedQuestionListWidget/AdminUnlinkedQuestionListWidget.tsx';

@@ -31,7 +31,7 @@ const AdminOpenAddTestToQuestionFormButtonFeature: React.FC<AdminOpenAddTestToQu
     const onClickHandler = useCallback(() => {
         addTestToThemeModal.open();
         adminTestService.getManyUnlinkedForQuestion(authService.token[0], questionId);
-    }, [ questionId ]);
+    }, [ addTestToThemeModal, questionId ]);
 
     useEffect(() => {
         adminTestService.getMany(authService.token[0]).then();

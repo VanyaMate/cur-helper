@@ -105,7 +105,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             </SpaceBetween>
                         </Section>
                     </Section>
-                    <Section size={ 'large' }>
+                    <Section size="large">
                         <P dangerouslySetInnerHTML={ { __html: data.description } }
                            type="second"/>
                         <Collapse
