@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './MobileSiteNavigationButton.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
+import Button from '@/components/ui/button/Button/Button.tsx';
 
 
 export type MobileSiteNavigationButtonProps = {
@@ -14,10 +15,13 @@ const MobileSiteNavigationButton: React.FC<MobileSiteNavigationButtonProps> = (p
     const { icon, label, active, onClick } = props;
 
     return (
-        <div className={ cn(css.container, active && css.active) } onClick={ onClick }>
-            <div className={ css.icon } style={ { backgroundImage: `url('${ icon }')` } }/>
-            <span className={ css.label }>{ label }</span>
-        </div>
+        <Button className={ cn(css.container, active && css.active) } onClick={ onClick }>
+            <span className={ css.box }>
+                <span className={ css.icon }
+                      style={ { backgroundImage: `url('${ icon }')` } }/>
+                <span className={ css.label }>{ label }</span>
+            </span>
+        </Button>
     );
 };
 

@@ -6,11 +6,21 @@
     justify-content : center;
     padding         : var(--offset-small);
     border-radius   : var(--offset-medium);
-    width           : 60px;
-    height          : 60px;
+    width           : 60px !important;
+    height          : 60px !important;
     cursor          : pointer;
     transition      : var(--transition-fast);
     border          : 1px solid transparent;
+
+    .box {
+        display         : flex;
+        flex-direction  : column;
+        gap             : var(--offset-small);
+        align-items     : center;
+        justify-content : center;
+        width           : 60px;
+        height          : 60px;
+    }
 
     &:hover:not(.active) {
         .icon {

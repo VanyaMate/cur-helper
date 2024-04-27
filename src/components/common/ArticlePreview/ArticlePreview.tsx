@@ -44,7 +44,7 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
             {
                 description ? <P
                     className={ css.description }
-                    lines={ 5 }
+                    lines={ 2 }
                     type="invisible"
                 >{ description }</P> : null
             }
