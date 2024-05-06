@@ -1,23 +1,17 @@
 import { useMemo } from 'react';
+import { userService } from '@/services/user/user.service.ts';
+import { UserType } from '@vanyamate/cur-helper-types';
+import { authService } from '@/services/auth/auth.service.ts';
 
 
 export type UseUserData = {
     process: boolean;
-    data: any;
+    data: UserType | null;
 }
 
 export const useUserData = function (): UseUserData {
-    return useMemo(() => ({
-        process: false,
-        data   : {
-            id    : '1',
-            login : 'VanyaMate',
-            avatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
-            role  : 'admin',
-            info  : {
-                firstName: 'Иван',
-                lastName : 'Иванович',
-            },
-        },
-    }), []);
+    const process = authService.pending;
+    const user    = userService.user;
+
+    return useMemo(() => ({ process, data: user }), [ process, user ]);
 };
