@@ -15,7 +15,10 @@ const MobileSiteNavigationButton: React.FC<MobileSiteNavigationButtonProps> = (p
     const { icon, label, active, onClick } = props;
 
     return (
-        <Button className={ cn(css.container, active && css.active) } onClick={ onClick }>
+        <Button className={ cn(css.container, active && css.active) }
+                onClick={ onClick }
+                styleType={ active ? 'main' : 'simple' }
+        >
             <span className={ css.box }>
                 <span className={ css.icon }
                       style={ { backgroundImage: `url('${ icon }')` } }/>

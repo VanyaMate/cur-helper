@@ -3,7 +3,8 @@ import Title from '@/components/ui/title/Title/Title.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import css from './TestItemPageHeader.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 
 
@@ -30,7 +31,8 @@ const TestItemPageHeader: React.FC<TestItemPageHeaderProps> = (props) => {
             <Section size="small">
                 <SpaceBetween>
                     <div>
-                        <P type="invisible">{ publicId.replace(/-/g, '.') }. Тест на
+                        <P type="invisible">{ publicId.replace(/-/g, '.') } Тест
+                            на
                             тему</P>
                         <Title>{ title }</Title>
                     </div>

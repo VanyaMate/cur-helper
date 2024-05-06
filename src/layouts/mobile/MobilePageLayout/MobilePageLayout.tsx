@@ -18,6 +18,7 @@ import {
 import Button from '@/components/ui/button/Button/Button.tsx';
 import Loader from '@/components/common/Loader/Loader.tsx';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
+import { userService } from '@/services/user/user.service.ts';
 
 
 export type MobilePageLayoutProps = {}
@@ -32,7 +33,8 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
     return (
         <div className={ css.container }>
             <WindowPopup controller={ menuController }>
-                <Button onClick={ () => navigate(`/${ ADMIN_PAGE }`) }>Admin</Button>
+                <Button
+                    onClick={ () => navigate(`/${ ADMIN_PAGE }`) }>Admin</Button>
             </WindowPopup>
             <div className={ cn(css.content, menuController.opened && 'blur') }>
                 <aside className={ cn(css.header, css.content_width) }>
@@ -74,7 +76,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = (props) => {
                     icon="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
                     label="Профиль"
                     onClick={ () => {
-                        navigate(pageGetter.profile());
+                        navigate(pageGetter.profile(userService.user?.login));
                     } }
                 />
                 <MobileSiteNavigationButton

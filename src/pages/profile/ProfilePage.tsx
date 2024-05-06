@@ -1,10 +1,8 @@
-import React, { lazy } from 'react';
-import {
-    UserAuthForm,
-} from '@/widgets/user/form/UserAuthForm/UserAuthForm.tsx';
-import { useUserData } from '@/hooks/user/useUserData.ts';
+import React, { lazy, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import Loader from '@/components/common/Loader/Loader.tsx';
+import { useParams } from 'react-router-dom';
+import { usersService } from '@/services/users/users.service.ts';
+import { authService } from '@/services/auth/auth.service.ts';
 
 
 const ProfilePageContainer = lazy(() => import('@/containers/profile/ProfilePageContainer/ProfilePageContainer.tsx'));
@@ -13,17 +11,21 @@ const ProfilePageContainer = lazy(() => import('@/containers/profile/ProfilePage
 export type ProfilePageProps = {}
 
 const ProfilePage: React.FC<ProfilePageProps> = observer((props) => {
-    const {}                = props;
-    const { process, data } = useUserData();
+    const {}        = props;
+    const { login } = useParams<{ login: string }>();
+
+    useEffect(() => {
+        if (login) {
+            usersService.getProfileDataByLogin(login, authService.token[0]);
+        }
+    }, [ login ]);
+
+    if (!login) {
+        return 404;
+    }
 
     return (
-        <div>
-            {
-                process ? <Loader/> :
-                data ? <ProfilePageContainer user={ data }/> :
-                <UserAuthForm/>
-            }
-        </div>
+        <ProfilePageContainer login={ login }/>
     );
 });
 

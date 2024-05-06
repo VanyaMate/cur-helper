@@ -1,66 +1,66 @@
 .container {
-    display         : flex;
-    flex-direction  : column;
-    gap             : var(--offset-small);
-    align-items     : center;
-    justify-content : center;
-    padding         : var(--offset-small);
-    border-radius   : var(--offset-medium);
-    width           : 60px !important;
-    height          : 60px !important;
-    cursor          : pointer;
-    transition      : var(--transition-fast);
-    border          : 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    gap: var(--offset-small);
+    align-items: center;
+    justify-content: center;
+    padding: var(--offset-small);
+    border-radius: var(--offset-medium);
+    width: 60px !important;
+    height: 60px !important;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border: 1px solid transparent;
 
     .box {
-        display         : flex;
-        flex-direction  : column;
-        gap             : var(--offset-small);
-        align-items     : center;
-        justify-content : center;
-        width           : 60px;
-        height          : 60px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--offset-small);
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
     }
 
     &:hover:not(.active) {
         .icon {
-            opacity : .6;
+            opacity: .6;
         }
 
         .label {
-            color : var(--text-color-second);
+            color: var(--text-color-second);
         }
     }
 
     &.active,
     &:active {
         .icon {
-            opacity : .8;
+            opacity: .8;
         }
 
         .label {
-            color : var(--text-color-second);
+            color: var(--text-color-second) !important;
         }
 
         // new_design
-        border     : 1px solid var(--button-background-main);
-        background : var(--button-background-main);
-        box-shadow : 0 0 20px 0 var(--button-background-main-shadow);
+        border: 1px solid var(--button-background-main) !important;
+        background: var(--button-background-main) !important;
+        box-shadow: 0 0 20px 0 var(--button-background-main-shadow) !important;
     }
 
     .icon {
-        background-size : cover;
-        width           : 25px;
-        height          : 25px;
-        opacity         : .4;
-        filter          : invert(1);
-        transition      : var(--transition-fast);
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        opacity: .4;
+        filter: invert(1);
+        transition: var(--transition-fast);
     }
 
     .label {
-        font-size   : 10px;
-        color       : var(--text-color-invisible);
-        transition  : var(--transition-fast);
-        line-height : 1rem;
+        font-size: 10px;
+        color: var(--text-color-invisible);
+        transition: var(--transition-fast);
+        line-height: 1rem;
     }
 }
