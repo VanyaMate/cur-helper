@@ -24,6 +24,7 @@ import testResultStatus
     from '@/components/common/test/TestResultStatus/TestResultStatus.tsx';
 import TestResultPreview
     from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
+import { userService } from '@/services/user/user.service.ts';
 
 
 export type ProfilePageContainerProps =
@@ -100,10 +101,19 @@ export const ProfilePageContainer: FC<ProfilePageContainerProps> = observer(func
                                         />
                                         <Title
                                             size="medium">{ testResult.test.title }</Title>
-                                        <Link
-                                            to={ `/${ TEST_PAGE }/${ TEST_RESULT_PAGE }/${ testResult.id }` }
-                                            size={ 'small' }
-                                        >Подробнее</Link>
+                                        <SpaceBetween>
+                                            {
+                                                userData.user.login === userService.user?.login
+                                                ? <Link
+                                                    size="small"
+                                                    to={ `/${ TEST_PAGE }/${ TEST_RESULT_PAGE }/${ testResult.id }` }
+                                                >Подробнее</Link> : null
+                                            }
+                                            <Link
+                                                size="small"
+                                                to={ `/${ TEST_PAGE }/${ testResult.test.id }` }
+                                            >Перейти к тесту</Link>
+                                        </SpaceBetween>
                                     </Section>
                                 ))
                             }
