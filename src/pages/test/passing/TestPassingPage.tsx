@@ -19,6 +19,7 @@ const TestPassingPage: React.FC = observer(() => {
         if (testId) {
             testPassingService.getById(authService.token[0], testId);
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ testId, authService.token[0] ]);
 
     return (

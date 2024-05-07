@@ -29,7 +29,7 @@ export const UserRegistrationForm: FC<UserRegistrationFormProps> = memo(function
             password: passwordValue,
             email   : emailValue,
         }, true).then(onFinish);
-    }, [ registration, loginValue, passwordValue, emailValue ]);
+    }, [registration, loginValue, passwordValue, emailValue, onFinish]);
 
     return (
         <Section

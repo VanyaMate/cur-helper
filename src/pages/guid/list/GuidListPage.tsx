@@ -14,6 +14,7 @@ const GuidListPage: React.FC<GuidListPageProps> = observer((props) => {
 
     useEffect(() => {
         themesService.getThemesList(authService.token[0]);
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ authService.token[0] ]);
 
     return <GuidListContainer/>;

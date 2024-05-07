@@ -20,6 +20,7 @@ const GuidListIdPage: React.FC<GuidListIdPageProps> = observer((props) => {
         if (guidId) {
             themesService.getThemeListById(guidId, authService.token[0]);
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ guidId, authService.token[0] ]);
 
     return <GuidListIdContainer id={ guidId ?? '' }/>;

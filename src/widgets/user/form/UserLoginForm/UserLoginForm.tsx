@@ -19,7 +19,7 @@ export const UserLoginForm: FC<UserLoginFormProps> = memo(function UserLoginForm
     const { className, onFinish, ...other } = props;
     const { login }                         = useAuthActions();
 
-    const [ loginValue, onChangeLogin ] = useInput({});
+    const [ loginValue, onChangeLogin ]       = useInput({});
     const [ passwordValue, onChangePassword ] = useInput({});
 
     const loginCallback = useCallback(() => {
@@ -27,7 +27,7 @@ export const UserLoginForm: FC<UserLoginFormProps> = memo(function UserLoginForm
             login   : loginValue,
             password: passwordValue,
         }, true).then(onFinish);
-    }, [ login, loginValue, passwordValue ]);
+    }, [ login, loginValue, onFinish, passwordValue ]);
 
     return (
         <Section

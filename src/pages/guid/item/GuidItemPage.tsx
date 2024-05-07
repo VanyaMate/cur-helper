@@ -19,6 +19,7 @@ const GuidItemPage: React.FC<GuidItemPageProps> = observer((props) => {
         if (guidId) {
             themesService.getThemeFullDataByPublicId(guidId, authService.token[0]);
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ guidId, authService.token[0] ]);
 
     return <GuidItemContainer id={ guidId ?? '' }/>;

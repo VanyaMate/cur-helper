@@ -89,7 +89,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             !userData?.id
                             ? <Button
                                 onClick={ authUserPopup.open }
-                                styleType={ 'main' }>Пройти</Button>
+                                styleType="main">Пройти</Button>
                             : <Button onClick={ startTestPopup.open }
                                       styleType="main">
                                 {

@@ -19,6 +19,7 @@ const TestItemPage: React.FC<TestItemPageProps> = observer((props) => {
         if (testId) {
             testsService.getOneTestByIds(testId, authService.token[0]);
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ testId, authService.token[0] ]);
 
     return (
