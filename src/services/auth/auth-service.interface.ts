@@ -1,7 +1,10 @@
 import {
     UserAuthType,
 } from '@/types/auth/auth.types.ts';
-import { LoginDataType, RegistrationDataType } from '@vanyamate/cur-helper-types';
+import {
+    LoginDataType,
+    RegistrationDataType,
+} from '@vanyamate/cur-helper-types';
 
 
 export interface IAuthService {
@@ -9,6 +12,8 @@ export interface IAuthService {
     pending: boolean;
     error: string;
     token: [ string, boolean ];
+
+    getToken (): [ string, boolean ];
 
     login (loginData: LoginDataType, remember?: boolean): Promise<UserAuthType>;
 

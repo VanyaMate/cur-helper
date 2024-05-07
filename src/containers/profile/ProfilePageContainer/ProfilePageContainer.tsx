@@ -1,27 +1,18 @@
-import React, { ComponentPropsWithoutRef, FC, memo } from 'react';
-import { UserType } from '@vanyamate/cur-helper-types';
+import React, { ComponentPropsWithoutRef, FC } from 'react';
 import P from '@/components/ui/p/P/P.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import AdditionalList
     from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import RoundImage from '@/components/ui/image/RoundImage/RoundImage.tsx';
-import {
-    TestPassingShortInfo,
-} from '@vanyamate/cur-helper-types/types/test-passing/index.ts';
 import FetchShow from '@/components/common/FetchShow/FetchShow.tsx';
 import { usersService } from '@/services/users/users.service.ts';
 import { observer } from 'mobx-react-lite';
-import TitleSection
-    from '@/components/ui/container/TitleSection/TitleSection.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { TEST_PAGE, TEST_RESULT_PAGE } from '@/constants/pages.ts';
 import SpaceBetween
     from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
-import Tag from '@/components/common/Tag/Tag.tsx';
-import testResultStatus
-    from '@/components/common/test/TestResultStatus/TestResultStatus.tsx';
 import TestResultPreview
     from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
 import { userService } from '@/services/user/user.service.ts';

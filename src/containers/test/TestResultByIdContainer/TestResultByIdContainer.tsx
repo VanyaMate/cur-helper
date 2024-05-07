@@ -46,7 +46,7 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = observe
     return (
         <Section size="small" tag="section">
             <TestItemPageHeader
-                publicId={ '' }
+                publicId=""
                 title={ test.test.title }
             />
             <Section size="extra-small">

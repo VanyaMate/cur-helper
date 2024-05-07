@@ -10,18 +10,23 @@ import IconM from '@/components/ui/icon/IconM.tsx';
 
 
 export type UserLoginFormProps =
-    {}
+    {
+        onFinish?: () => void;
+    }
     & ComponentPropsWithoutRef<'div'>;
 
 export const UserLoginForm: FC<UserLoginFormProps> = memo(function UserLoginForm (props) {
-    const { className, ...other } = props;
-    const { login }               = useAuthActions();
+    const { className, onFinish, ...other } = props;
+    const { login }                         = useAuthActions();
 
-    const [ loginValue, onChangeLogin ]       = useInput({});
+    const [ loginValue, onChangeLogin ] = useInput({});
     const [ passwordValue, onChangePassword ] = useInput({});
 
     const loginCallback = useCallback(() => {
-        return login({ login: loginValue, password: passwordValue }, true);
+        return login({
+            login   : loginValue,
+            password: passwordValue,
+        }, true).then(onFinish);
     }, [ login, loginValue, passwordValue ]);
 
     return (

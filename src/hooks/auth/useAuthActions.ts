@@ -48,8 +48,8 @@ export const useAuthActions = function (): AuthActions {
     }, []);
 
     const logout = useCallback(async () => {
-        await authService.logout();
         userService.remove();
+        await authService.logout();
         return true;
     }, []);
 

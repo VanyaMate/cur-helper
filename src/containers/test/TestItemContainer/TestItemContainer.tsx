@@ -1,14 +1,17 @@
 import React from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
-import TestBriefing from '@/components/common/test/TestBriefing/TestBriefing.tsx';
+import TestBriefing
+    from '@/components/common/test/TestBriefing/TestBriefing.tsx';
 import TestItemPageHeader
     from '@/components/common/test/TestItemPageHeader/TestItemPageHeader.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import TestResultProgressbarCircle
     from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
-import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
+import AdditionalList
+    from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
 import Collapse from '@/components/ui/collapse/Collapse/Collapse.tsx';
 import {
     useWindowPopupController,
@@ -17,14 +20,23 @@ import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import TestResultPreview
     from '@/components/common/test/TestResultPreview/TestResultPreview.tsx';
-import { useDateDeltaWithPostfix } from '@/hooks/date/useDateDeltaWithPostfix.ts';
-import ThemeListItem from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
+import {
+    useDateDeltaWithPostfix,
+} from '@/hooks/date/useDateDeltaWithPostfix.ts';
+import ThemeListItem
+    from '@/components/common/theme/ThemeListItem/ThemeListItem.tsx';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { observer } from 'mobx-react-lite';
-import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
+import {
+    testPassingService,
+} from '@/services/test-passing/test-passing.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
 import P from '@/components/ui/p/P/P.tsx';
 import FetchShow from '@/components/common/FetchShow/FetchShow.tsx';
+import { useUserData } from '@/hooks/user/useUserData.ts';
+import {
+    UserAuthForm,
+} from '@/widgets/user/form/UserAuthForm/UserAuthForm.tsx';
 
 
 export type TestItemContainerProps = {
@@ -34,22 +46,24 @@ export type TestItemContainerProps = {
 const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => {
     const { id }             = props;
     const fetch              = testsService.tests[id];
-    const popupController    = useWindowPopupController();
+    const startTestPopup     = useWindowPopupController();
+    const authUserPopup      = useWindowPopupController();
     const navigate           = useNavigate();
     const pageGetter         = usePageUrl();
     const timeToPass: string = useDateDeltaWithPostfix(Date.now() - (fetch?.data?.timeToPass ?? 0), Date.now(), '');
     // TODO: Может быть как-то это сделать по другому
     const data               = fetch?.data;
+    const { data: userData } = useUserData();
 
     return (
         <FetchShow fetch={ fetch }>
             {
                 data
                 ? <Section size="small">
-                    <WindowPopup controller={ popupController }>
+                    <WindowPopup controller={ startTestPopup }>
                         <TestBriefing
                             description={ data.description }
-                            onClose={ popupController.close }
+                            onClose={ startTestPopup.close }
                             onStart={ async () => {
                                 return new Promise(() => {
                                     testPassingService.start(authService.token[0], data.id)
@@ -64,12 +78,25 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             title={ data.title }
                         />
                     </WindowPopup>
+                    <WindowPopup controller={ authUserPopup }>
+                        <UserAuthForm onFinish={ () => {
+                            authUserPopup.close();
+                            startTestPopup.open();
+                        } }/>
+                    </WindowPopup>
                     <TestItemPageHeader
                         extra={
-                            <Button onClick={ popupController.open }
-                                    styleType="main">{ data.shortResult?.status === 'process'
-                                                       ? 'Продолжить'
-                                                       : 'Начать' }</Button>
+                            !userData?.id
+                            ? <Button
+                                onClick={ authUserPopup.open }
+                                styleType={ 'main' }>Пройти</Button>
+                            : <Button onClick={ startTestPopup.open }
+                                      styleType="main">
+                                {
+                                    data.shortResult?.status === 'process'
+                                    ? 'Продолжить' : 'Начать'
+                                }
+                            </Button>
                         }
                         publicId={ data.theme.publicId }
                         title={ data.title }

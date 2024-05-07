@@ -17,13 +17,14 @@ class AuthService implements IAuthService {
     public authenticated: boolean             = false;
     public pending: boolean                   = !!this._getToken()[0];
     public error: string                      = '';
-
-    get token (): [ string, boolean ] {
-        return this._getToken();
-    }
+    public token: [ string, boolean ]         = this._getToken();
 
     constructor () {
         makeAutoObservable(this);
+    }
+
+    getToken (): [ string, boolean ] {
+        return this._getToken();
     }
 
     async refresh (): Promise<UserAuthType | null> {
@@ -90,6 +91,7 @@ class AuthService implements IAuthService {
         this._abortController.abort();
         this.authenticated = false;
         this._removeToken();
+        this.token = [ '', false ];
         return true;
     }
 
@@ -125,6 +127,7 @@ class AuthService implements IAuthService {
     }
 
     private _setToken (token: string, remember?: boolean) {
+        this.token = [ token, remember ?? false ];
         if (remember) {
             localStorage.setItem(this._authStorageName, token);
         } else {
@@ -142,16 +145,20 @@ class AuthService implements IAuthService {
     private _getToken (): [ string, boolean ] {
         const localStorageToken: string | null = localStorage.getItem(this._authStorageName);
         if (localStorageToken) {
+            console.log('ls', localStorageToken);
             return [ localStorageToken, true ];
         }
         const sessionStorageToken: string | null = sessionStorage.getItem(this._authStorageName);
         if (sessionStorageToken) {
+            console.log('ss', localStorageToken);
             return [ sessionStorageToken, false ];
         }
         const cookieStorageToken = document.cookie.match(new RegExp(`${this._authStorageName}=(.+)`))?.[1].split('&')[0];
         if (cookieStorageToken) {
+            console.log('cs', localStorageToken);
             return [ cookieStorageToken, false ];
         }
+        console.log('1', localStorageToken);
         return [ '', false ];
     }
 }

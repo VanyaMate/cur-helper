@@ -10,12 +10,14 @@ import { useInput } from '@/hooks/ui/input/useInput.ts';
 
 
 export type UserRegistrationFormProps =
-    {}
+    {
+        onFinish?: () => void;
+    }
     & ComponentPropsWithoutRef<'div'>;
 
 export const UserRegistrationForm: FC<UserRegistrationFormProps> = memo(function UserRegistrationForm (props) {
-    const { className, ...other } = props;
-    const { registration }        = useAuthActions();
+    const { className, onFinish, ...other } = props;
+    const { registration }                  = useAuthActions();
 
     const [ loginValue, onChangeLogin ]       = useInput({});
     const [ emailValue, onChangeEmail ]       = useInput({});
@@ -26,7 +28,7 @@ export const UserRegistrationForm: FC<UserRegistrationFormProps> = memo(function
             login   : loginValue,
             password: passwordValue,
             email   : emailValue,
-        }, true);
+        }, true).then(onFinish);
     }, [ registration, loginValue, passwordValue, emailValue ]);
 
     return (

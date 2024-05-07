@@ -2,21 +2,26 @@ import { FC, memo, ComponentPropsWithoutRef, useState } from 'react';
 import css from './UserAuthForm.module.scss';
 import { cn } from '@vanyamate/helpers/react/classname';
 import Section from '@/components/ui/container/Section/Section.tsx';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
-import { UserLoginForm } from '@/widgets/user/form/UserLoginForm/UserLoginForm.tsx';
+import {
+    UserLoginForm,
+} from '@/widgets/user/form/UserLoginForm/UserLoginForm.tsx';
 import {
     UserRegistrationForm,
 } from '@/widgets/user/form/UserRegistrationForm/UserRegistrationForm.tsx';
 
 
 export type UserAuthFormProps =
-    {}
+    {
+        onFinish?: () => void;
+    }
     & ComponentPropsWithoutRef<'div'>;
 
 export const UserAuthForm: FC<UserAuthFormProps> = memo(function UserAuthForm (props) {
-    const { className, ...other }         = props;
-    const [ isLoginForm, setIsLoginForm ] = useState<boolean>(true);
+    const { className, onFinish, ...other } = props;
+    const [ isLoginForm, setIsLoginForm ]   = useState<boolean>(true);
 
     return (
         <Section { ...other } className={ cn(css.container, className) }>
@@ -38,8 +43,8 @@ export const UserAuthForm: FC<UserAuthFormProps> = memo(function UserAuthForm (p
             </SpaceBetween>
             {
                 isLoginForm
-                ? <UserLoginForm/>
-                : <UserRegistrationForm/>
+                ? <UserLoginForm onFinish={ onFinish }/>
+                : <UserRegistrationForm onFinish={ onFinish }/>
             }
         </Section>
     );
