@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import { testsService } from '@/services/tests/tests.service.ts';
 import { observer } from 'mobx-react-lite';
-import ThemeTitleText from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
+import ThemeTitleText
+    from '@/components/common/theme/ThemeTitleText/ThemeTitleText.tsx';
 import FetchShow from '@/components/common/FetchShow/FetchShow.tsx';
 
 
@@ -31,7 +32,7 @@ const TestListContainer: React.FC<TestListContainerProps> = observer((props) => 
                 ? <Section size="large">
                     {
                         data.map((theme) => (
-                            <Collapse
+                            theme.tests.length ? <Collapse
                                 key={ theme.publicId }
                                 opened={ true }
                                 title={
@@ -52,7 +53,7 @@ const TestListContainer: React.FC<TestListContainerProps> = observer((props) => 
                                         ))
                                     }
                                 </TileBox>
-                            </Collapse>
+                            </Collapse> : null
                         ))
                     }
                 </Section>

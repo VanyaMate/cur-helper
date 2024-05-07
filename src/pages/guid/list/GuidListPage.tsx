@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { themesService } from '@/services/themes/themes.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
+import { observer } from 'mobx-react-lite';
 
 
 const GuidListContainer = React.lazy(() => import('@/containers/guid/GuidListContainer/GuidListContainer.tsx'));
@@ -8,14 +9,15 @@ const GuidListContainer = React.lazy(() => import('@/containers/guid/GuidListCon
 
 export type GuidListPageProps = {}
 
-const GuidListPage: React.FC<GuidListPageProps> = (props) => {
+const GuidListPage: React.FC<GuidListPageProps> = observer((props) => {
     const {} = props;
 
     useEffect(() => {
         themesService.getThemesList(authService.token[0]);
-    }, []);
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ authService.token[0] ]);
 
     return <GuidListContainer/>;
-};
+});
 
 export default React.memo(GuidListPage);

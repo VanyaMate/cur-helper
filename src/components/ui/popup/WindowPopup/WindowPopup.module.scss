@@ -1,5 +1,3 @@
-$close_button_size : 40px;
-
 .container {
     display                 : flex;
     position                : fixed;
@@ -31,7 +29,7 @@ $close_button_size : 40px;
         cursor     : pointer;
     }
 
-    $viewport_height_offset : calc($close_button_size + var(--offset-small));
+    $viewport_height_offset : calc(var(--height-medium) + var(--offset-small));
     $viewport_height        : calc(100% - $viewport_height_offset - var(--offset-small) * 2);
 
     .viewport {
@@ -46,9 +44,7 @@ $close_button_size : 40px;
         .closeButton {
             position : absolute;
             right    : 0;
-            top      : calc($close_button_size * -1 - var(--offset-small));
-            width    : $close_button_size;
-            height   : $close_button_size;
+            top      : calc(var(--height-medium) * -1 - var(--offset-small));
             padding  : 0;
         }
 

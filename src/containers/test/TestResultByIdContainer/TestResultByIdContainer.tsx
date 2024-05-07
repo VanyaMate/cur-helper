@@ -10,12 +10,16 @@ import {
 import { useTestTimeCalculator } from '@/hooks/test/useTestTimeCalculator.ts';
 import TestResultProgressbarCircle
     from '@/components/common/test/TestResultProgressbarCircle/TestResultProgressbarCircle.tsx';
-import AdditionalList from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import AdditionalList
+    from '@/components/ui/container/AdditionalList/AdditionalList.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import Link from '@/components/ui/link/Link/Link.tsx';
 import { useMathPercent } from '@/hooks/math/useMathPercent.ts';
 import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
-import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
+import {
+    testPassingService,
+} from '@/services/test-passing/test-passing.service.ts';
 import Loader from '@/components/common/Loader/Loader.tsx';
 import { observer } from 'mobx-react-lite';
 import TestResultPreview
@@ -42,18 +46,22 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = observe
     return (
         <Section size="small" tag="section">
             <TestItemPageHeader
-                publicId={ test.test.themeId }
+                publicId=""
                 title={ test.test.title }
             />
             <Section size="extra-small">
                 <TestResultPreview
-                    shortResult={ { ...test, questionsAmount: test.questions.length } }/>
+                    shortResult={ {
+                        ...test,
+                        questionsAmount: test.questions.length,
+                    } }/>
                 <Section size="small" type="main">
                     <AdditionalList
                         list={ [
                             {
                                 label: 'Пользователь',
-                                value: <Link to={ pageGetter.profile(test.user.login) }>
+                                value: <Link
+                                    to={ pageGetter.profile(test.user.login) }>
                                     { test.user.login }
                                 </Link>,
                             },
@@ -66,8 +74,14 @@ const TestResultByIdContainer: React.FC<TestPassingByIdContainerProps> = observe
                         />
                         <AdditionalList
                             list={ [
-                                { label: 'Вопросов', value: test.questions.length },
-                                { label: 'Правильных ответов', value: rightAnswers },
+                                {
+                                    label: 'Вопросов',
+                                    value: test.questions.length,
+                                },
+                                {
+                                    label: 'Правильных ответов',
+                                    value: rightAnswers,
+                                },
                                 { label: 'Попытка', value: '-' },
                                 { label: 'Время', value: time + ' минут' },
                             ] }

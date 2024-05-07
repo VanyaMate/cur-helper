@@ -34,18 +34,22 @@ export const useAuthActions = function (): AuthActions {
     }, []);
 
     const refresh = useCallback(async () => {
-        const authData: UserAuthType | null = await authService.refresh();
-        if (authData) {
-            userService.set(authData.user);
-            return authData.user;
-        } else {
-            return null;
+        if (userService.user === null && authService.token) {
+            const authData: UserAuthType | null = await authService.refresh();
+            if (authData) {
+                userService.set(authData.user);
+                return authData.user;
+            } else {
+                return null;
+            }
         }
+
+        return null;
     }, []);
 
     const logout = useCallback(async () => {
-        await authService.logout();
         userService.remove();
+        await authService.logout();
         return true;
     }, []);
 

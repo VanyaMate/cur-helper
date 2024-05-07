@@ -46,6 +46,7 @@ const WindowPopup: React.FC<WindowPopupProps> = (props) => {
                 <Button
                     className={ css.closeButton }
                     onClick={ controller.close }
+                    quad
                     styleType="danger"
                 >
                     <span className="material-symbols-outlined">close</span>

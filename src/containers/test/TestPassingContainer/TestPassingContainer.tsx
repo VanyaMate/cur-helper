@@ -1,10 +1,14 @@
 import React, { useMemo } from 'react';
-import { useTestPassingQuestionHash } from '@/hooks/test/useTestPassingQuestionHash.ts';
+import {
+    useTestPassingQuestionHash,
+} from '@/hooks/test/useTestPassingQuestionHash.ts';
 import {
     useTestPassingQuestionPageController,
 } from '@/hooks/test/useTestPassingQuestionPageController.ts';
 import { useTestCurrentQuestion } from '@/hooks/test/useTestCurrentQuestion.ts';
-import { useTestCompletedQuestions } from '@/hooks/test/useTestCompletedQuestions.ts';
+import {
+    useTestCompletedQuestions,
+} from '@/hooks/test/useTestCompletedQuestions.ts';
 import {
     useWindowPopupController,
 } from '@/hooks/ui/popup/WindowPopup/useWindowPopupController.ts';
@@ -13,7 +17,8 @@ import { usePageUrl } from '@/hooks/page/usePageUrl.ts';
 import WindowPopup from '@/components/ui/popup/WindowPopup/WindowPopup.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
 import Title from '@/components/ui/title/Title/Title.tsx';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import OrderedList from '@/components/ui/list/OrderedList/OrderedList.tsx';
 import Button from '@/components/ui/button/Button/Button.tsx';
@@ -22,7 +27,9 @@ import TestPassingProgress
     from '@/components/common/test/TestPassingProgress/TestPassingProgress.tsx';
 import TestQuestionPassing
     from '@/components/common/test/TestQuestionPassing/TestQuestionPassing.tsx';
-import { testPassingService } from '@/services/test-passing/test-passing.service.ts';
+import {
+    testPassingService,
+} from '@/services/test-passing/test-passing.service.ts';
 import { authService } from '@/services/auth/auth.service.ts';
 import Timer from '@/components/common/Timer/Timer.tsx';
 import { observer } from 'mobx-react-lite';
@@ -89,7 +96,8 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                     <Section size="extra-small">
                         <Title>Закончить тест?</Title>
                         <P type="invisible">
-                            Вы завершили { completedAmount }/{ test.questions.length }
+                            Вы
+                            завершили { completedAmount }/{ test.questions.length }
                         </P>
                     </Section>
                     <SpaceBetween>
@@ -101,6 +109,7 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                             onClick={ () => {
                                 testPassingService.finish(authService.token[0], test.id)
                                     .then((result) => {
+                                        popupFinishModal.close();
                                         navigate(pageGetter.testResult(result.id));
                                     });
                             } }
@@ -126,7 +135,8 @@ const TestPassingContainer: React.FC<TestPassingContainerProps> = observer((prop
                     </SpaceBetween>
                     <SpaceBetween>
                         <P type="invisible">Завершено { completedAmount }/{ test.questions.length }</P>
-                        <P type="second">Осталось <Timer ms={ test.remainingTime }/></P>
+                        <P type="second">Осталось <Timer
+                            ms={ test.remainingTime }/></P>
                     </SpaceBetween>
                 </Section>
                 <Section size="extra-small">

@@ -1,58 +1,32 @@
-import React, { useCallback } from 'react';
-import Button from '@/components/ui/button/Button/Button.tsx';
-import { useAuthActions } from '@/hooks/auth/useAuthActions.ts';
-import Input from '@/components/ui/input/Input/Input.tsx';
-import { useInput } from '@/hooks/ui/input/useInput.ts';
-import Section from '@/components/ui/container/Section/Section.tsx';
-import IconM from '@/components/ui/icon/IconM.tsx';
+import React, { lazy, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import { useParams } from 'react-router-dom';
+import { usersService } from '@/services/users/users.service.ts';
+import { authService } from '@/services/auth/auth.service.ts';
+
+
+const ProfilePageContainer = lazy(() => import('@/containers/profile/ProfilePageContainer/ProfilePageContainer.tsx'));
 
 
 export type ProfilePageProps = {}
 
-const ProfilePage: React.FC<ProfilePageProps> = (props) => {
-    const {}                = props;
-    const { login, logout } = useAuthActions();
+const ProfilePage: React.FC<ProfilePageProps> = observer((props) => {
+    const {}        = props;
+    const { login } = useParams<{ login: string }>();
 
-    const [ loginValue, onChangeLogin ]       = useInput({});
-    const [ passwordValue, onChangePassword ] = useInput({});
+    useEffect(() => {
+        if (login) {
+            usersService.getProfileDataByLogin(login, authService.token[0]);
+        }
+    }, [ login ]);
 
-    const loginCallback = useCallback(() => {
-        return login({ login: loginValue, password: passwordValue });
-    }, [ login, loginValue, passwordValue ]);
-
-    const logoutCallback = useCallback(() => {
-        logout();
-    }, [ logout ]);
+    if (!login) {
+        return 404;
+    }
 
     return (
-        <div>
-            <Section
-                type="main"
-            >
-                <Input
-                    label="Логин"
-                    onChangeHandler={ onChangeLogin }
-                    placeholder="Введите логин"
-                    value={ loginValue }
-                />
-                <Input
-                    label="Пароль"
-                    onChangeHandler={ onChangePassword }
-                    placeholder="Введите пароль"
-                    value={ passwordValue }
-                />
-                <Button
-                    disabled={ !loginValue.length || !passwordValue.length }
-                    onClickAsync={ loginCallback }
-                    postfix={ <IconM>arrow_right</IconM> }
-                    styleType="main"
-                >
-                    Войти
-                </Button>
-            </Section>
-            <Button onClick={ logoutCallback }>Выйти</Button>
-        </div>
+        <ProfilePageContainer login={ login }/>
     );
-};
+});
 
 export default React.memo(ProfilePage);
