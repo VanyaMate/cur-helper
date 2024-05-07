@@ -3,6 +3,7 @@
         border-radius : var(--offset-medium);
         max-width     : 100%;
         width         : 100%;
+        min-height    : 30px;
         border        : 1px solid var(--border-color-invisible);
 
         &.width {
