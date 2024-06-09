@@ -1,5 +1,18 @@
 # Cur-Helper
 
+## Frontend (визуальная часть)
+
+- TypeScript
+- React
+    - React-Router-Dom
+    - MobX
+- SCSS
+- Tiptap (headless текстовый редактор)
+
+## Сборщик
+
+- Vite
+
 ------ На будущее ------
 
 1. Вынести типы из backend / frontend в отдельный пакет
