@@ -25,6 +25,7 @@ import {
     UserAuthForm,
 } from '@/widgets/user/form/UserAuthForm/UserAuthForm.tsx';
 import Section from '@/components/ui/container/Section/Section.tsx';
+import Title from '@/components/ui/title/Title/Title';
 
 
 export type MobilePageLayoutProps = {}
@@ -56,7 +57,7 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = observer((props) => {
                         <Button onClick={ authActions.logout }
                                 styleType="danger">Выйти</Button>
                     </Section>
-                    : null
+                    : <Title size="medium">Вы не авторизованы</Title>
                 }
             </WindowPopup>
             <div className={ cn(css.content, menuController.opened && 'blur') }>
