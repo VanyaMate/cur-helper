@@ -45,6 +45,7 @@ export const UserLoginForm: FC<UserLoginFormProps> = memo(function UserLoginForm
                 label="Пароль"
                 onChangeHandler={ onChangePassword }
                 placeholder="Введите пароль"
+                type="password"
                 value={ passwordValue }
             />
             <Button

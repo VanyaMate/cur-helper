@@ -90,11 +90,16 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                             ? <Button
                                 onClick={ authUserPopup.open }
                                 styleType="main">Пройти</Button>
-                            : <Button onClick={ startTestPopup.open }
-                                      styleType="main">
+                            : <Button
+                                disabled={ !userData.verified }
+                                onClick={ startTestPopup.open }
+                                styleType="main"
+                            >
                                 {
-                                    data.shortResult?.status === 'process'
-                                    ? 'Продолжить' : 'Начать'
+                                    userData.verified
+                                    ? data.shortResult?.status === 'process'
+                                      ? 'Продолжить' : 'Начать' :
+                                    'Вы не верефицированы'
                                 }
                             </Button>
                         }
