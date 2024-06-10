@@ -99,7 +99,7 @@ const TestItemContainer: React.FC<TestItemContainerProps> = observer((props) => 
                                     userData.verified
                                     ? data.shortResult?.status === 'process'
                                       ? 'Продолжить' : 'Начать' :
-                                    'Вы не верефицированы'
+                                    'Вы не верифицированы'
                                 }
                             </Button>
                         }
