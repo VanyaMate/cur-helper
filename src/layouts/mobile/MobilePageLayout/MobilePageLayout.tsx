@@ -44,12 +44,20 @@ const MobilePageLayout: React.FC<MobilePageLayoutProps> = observer((props) => {
                 <UserAuthForm onFinish={ authPopup.close }/>
             </WindowPopup>
             <WindowPopup controller={ menuController }>
-                <Section>
-                    <Button
-                        onClick={ () => navigate(`/${ ADMIN_PAGE }`) }>Админ-панель</Button>
-                    <Button onClick={ authActions.logout }
-                            styleType="danger">Выйти</Button>
-                </Section>
+                {
+                    userService.user?.login
+                    ? <Section>
+                        {
+                            userService.user?.verified
+                            ? <Button
+                                onClick={ () => navigate(`/${ ADMIN_PAGE }`) }>Админ-панель</Button>
+                            : null
+                        }
+                        <Button onClick={ authActions.logout }
+                                styleType="danger">Выйти</Button>
+                    </Section>
+                    : null
+                }
             </WindowPopup>
             <div className={ cn(css.content, menuController.opened && 'blur') }>
                 <aside className={ cn(css.header, css.content_width) }>
