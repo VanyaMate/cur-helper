@@ -3,7 +3,10 @@ import {
 } from '@/services/test-passing/test-passing-service.interface.ts';
 import { API_HOST } from '@/constants/api.url.ts';
 import { makeAutoObservable } from 'mobx';
-import { TestPassingFullType, TestResultFullType } from '@vanyamate/cur-helper-types';
+import {
+    TestPassingFullType,
+    TestResultFullType,
+} from '@vanyamate/cur-helper-types';
 
 
 // TODO: Convert to fetchService
