@@ -18,5 +18,5 @@ export const THEME_ID    = 'themeId';
 export const TEST_ID     = 'testId';
 export const GUID_ID     = 'guidId';
 export const LOGIN       = 'login';
-export const ARTICLE_ID  = 'articleId';
+export const ARTICLE_ID  = 'articleKey';
 export const QUESTION_ID = 'questionId';

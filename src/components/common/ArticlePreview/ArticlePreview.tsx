@@ -1,9 +1,11 @@
 import React from 'react';
 import Section from '@/components/ui/container/Section/Section.tsx';
-import Title from '@/components/ui/title/Title/Title.tsx';
 import P from '@/components/ui/p/P/P.tsx';
 import css from './ArticlePreview.module.scss';
-import SpaceBetween from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import SpaceBetween
+    from '@/components/ui/container/flex/SpaceBetween/SpaceBetween.tsx';
+import { Link } from 'react-router-dom';
+import Title from '@/components/ui/title/Title/Title.tsx';
 
 
 export type ArticlePreviewProps = {
@@ -25,29 +27,31 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = (props) => {
             tag="article"
             type="main"
         >
-            <div
-                className={ css.image }
-                onClick={ () => console.log(url) }
-                style={ { backgroundImage: `url(${ image })` } }
-            />
-            <SpaceBetween>
+            <Link className={ css.link } to={ `${ url }` }>
+                <div
+                    className={ css.image }
+                    onClick={ () => console.log(url) }
+                    style={ { backgroundImage: `url(${ image })` } }
+                />
+                <SpaceBetween>
+                    {
+                        type ? <P type="invisible">{ type }</P> : null
+                    }
+                    <P type="invisible">{ date }</P>
+                </SpaceBetween>
+                <Title
+                    className={ css.title }
+                    lines={ 3 }
+                    size="small"
+                >{ title }</Title>
                 {
-                    type ? <P type="invisible">{ type }</P> : null
+                    description ? <P
+                        className={ css.description }
+                        lines={ 2 }
+                        type="invisible"
+                    >{ description }</P> : null
                 }
-                <P type="invisible">{ date }</P>
-            </SpaceBetween>
-            <Title
-                className={ css.title }
-                lines={ 3 }
-                size="small"
-            >{ title }</Title>
-            {
-                description ? <P
-                    className={ css.description }
-                    lines={ 2 }
-                    type="invisible"
-                >{ description }</P> : null
-            }
+            </Link>
         </Section>
     );
 };

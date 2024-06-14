@@ -8,6 +8,19 @@
         z-index  : 1;
     }
 
+    .link {
+        text-decoration : none;
+        display         : flex;
+        flex-direction  : column;
+        gap             : var(--offset-small);
+
+        &:hover {
+            .title {
+                color : var(--color-blue);
+            }
+        }
+    }
+
     .image {
         max-height          : 200px;
         min-height          : 200px;
@@ -17,7 +30,8 @@
     }
 
     .title {
-        font-size : 18px;
+        transition : var(--transition-fast);
+        font-size  : 18px;
     }
 
     .description {
